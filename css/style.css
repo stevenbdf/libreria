@@ -1,0 +1,82 @@
+body{
+  background-color: white;
+  font-family: 'Nunito', sans-serif;
+}
+
+h1,h2,h3,h4{
+  font-family: 'Staatliches', cursive;
+  color: #C4E538;
+}
+
+#nav img{
+  width: 140px;
+}
+
+#nav {
+  font-size: 20px;
+  z-index: 1;
+}
+
+span.libreria-numero{
+  font-size: 2rem;
+  color: white;
+}
+
+.navbar-libreria{
+  background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
+}
+
+main .container{
+  -webkit-box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
+   box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
+   border-radius: 10px;
+   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);;
+   color: white;
+}
+
+div.card{
+  color:black;
+}
+
+main .container #libro img{
+  max-width: 380px;
+}
+
+main .container i{
+  font-size: 25px;
+}
+
+main .container i.green{
+  color:#27ae60;
+}
+
+h3::after{
+  content: '';
+  margin: 0 auto;
+  background-image: url(../img/separador.png);
+  height: 3px;
+  width: 100%;
+  display: block;
+}
+
+#footer{
+   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
+}
+
+#footer a{
+  color: white;
+}
+
+
+@media only screen and (min-width:320px) {
+  main .container #libro img{
+    max-width: 250px;
+  }
+}
+
+@media only screen and (min-width:768px) {
+  main .container #libro img{
+    max-width: 368px;
+  }
+}
