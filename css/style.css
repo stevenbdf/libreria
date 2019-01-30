@@ -1,11 +1,15 @@
 body{
   background-color: white;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Nunito', sans-serif !important;
 }
 
-h1,h2,h3,h4{
+h1,h2,h3{
   font-family: 'Staatliches', cursive;
   color: #C4E538;
+}
+h4{
+  font-family: 'Staatliches', cursive;
+  text-transform: uppercase;
 }
 
 #nav img{
@@ -26,12 +30,16 @@ span.libreria-numero{
   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
 }
 
+body{
+  background-image: url(../img/bg-1.jpg);
+}
+
 main .container{
   -webkit-box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
   -moz-box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
    box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
    border-radius: 10px;
-   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);;
+   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
    color: white;
 }
 
@@ -98,4 +106,9 @@ img.profile-img{
     width: 10vh;
     height: 10vh;
   }
+}
+
+img.card-img-top{
+  height: 30vh;
+  width: 100%;
 }
