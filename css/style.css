@@ -120,7 +120,30 @@ img.card-img-top {
   width: 100%;
 }
 
-h5.titulo-home {
+
+h5.titulo-home{
   font-family: 'Permanent Marker', cursive;
   font-size: 80px;
+}
+
+
+.cardvis{
+    margin-left: 10pc;
+}
+.cardvis img{
+    height: 350px;
+    width: 500px;
+    margin-left: 8pc;
+
+}
+
+.cardvis1{
+    margin-left: 10pc;
+}
+.cardvis1 img{
+    margin-top: 4pc;
+    height: 350px;
+    width: 500px;
+    margin-left: 8pc;
+
 }
