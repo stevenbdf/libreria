@@ -112,3 +112,8 @@ img.card-img-top{
   height: 30vh;
   width: 100%;
 }
+
+.card1{
+    align-content: center;
+    padding: 2pc;
+}
