@@ -1,18 +1,19 @@
-body{
+body {
   background-color: white;
   font-family: 'Nunito', sans-serif !important;
 }
 
-h1,h2,h3{
+h1, h2, h3 {
   font-family: 'Staatliches', cursive;
   color: #C4E538;
 }
-h4{
+
+h4 {
   font-family: 'Staatliches', cursive;
   text-transform: uppercase;
 }
 
-#nav img{
+#nav img {
   width: 140px;
 }
 
@@ -21,12 +22,12 @@ h4{
   z-index: 1;
 }
 
-span.libreria-numero{
+span.libreria-numero {
   font-size: 2rem;
   color: white;
 }
 
-.navbar-libreria{
+.navbar-libreria {
   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
 }
 
@@ -35,39 +36,38 @@ body{
   background-image: url(../img/bg-1.jpg);
 }
 */
-
-main .container{
-  -webkit-box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
-  -moz-box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
-   box-shadow: -1px 10px 25px -5px rgba(0,0,0,0.75);
-   border-radius: 10px;
-   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
-   color: white;
+main .container {
+  -webkit-box-shadow: -1px 10px 25px -5px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -1px 10px 25px -5px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 10px 25px -5px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
+  color: white;
 }
 
-div.card{
-  -webkit-box-shadow: -4px 9px 5px -4px rgba(0,0,0,0.42);
-  -moz-box-shadow: -4px 9px 5px -4px rgba(0,0,0,0.42);
-  box-shadow: -4px 9px 5px -4px rgba(0,0,0,0.42);
+div.card {
+  -webkit-box-shadow: -4px 9px 5px -4px rgba(0, 0, 0, 0.42);
+  -moz-box-shadow: -4px 9px 5px -4px rgba(0, 0, 0, 0.42);
+  box-shadow: -4px 9px 5px -4px rgba(0, 0, 0, 0.42);
 }
 
-div.card{
-  color:black;
+div.card {
+  color: black;
 }
 
-main .container #libro img{
+main .container #libro img {
   max-width: 380px;
 }
 
-main .container i{
+main .container i {
   font-size: 25px;
 }
 
-main .container i.green{
-  color:#27ae60;
+main .container i.green {
+  color: #27ae60;
 }
 
-h3::after{
+h3::after {
   content: '';
   margin: 0 auto;
   background-image: url(../img/separador.png);
@@ -76,52 +76,51 @@ h3::after{
   display: block;
 }
 
-#footer{
-   background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
+#footer {
+  background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
 }
 
-#footer a{
+#footer a {
   color: white;
 }
 
-img.profile-img-main{
-  border-radius:50%;
+img.profile-img-main {
+  border-radius: 50%;
   width: 12vh;
   height: 12vh;
 }
 
-img.profile-img{
-  border-radius:50%;
+img.profile-img {
+  border-radius: 50%;
   height: 10vh;
   width: 10vh;
 }
 
-
 @media only screen and (min-width:320px) {
-  main .container #libro img{
+  main .container #libro img {
     max-width: 250px;
   }
 }
 
 @media only screen and (min-width:768px) {
-  main .container #libro img{
+  main .container #libro img {
     max-width: 368px;
   }
 }
 
 @media only screen and (min-width:320px) {
-  img.profile-img-main{
+  img.profile-img-main {
     width: 10vh;
     height: 10vh;
   }
 }
 
-img.card-img-top{
+img.card-img-top {
   height: 30vh;
   width: 100%;
 }
 
-h5.titulo-home{
+h5.titulo-home {
   font-family: 'Permanent Marker', cursive;
   font-size: 80px;
 }
