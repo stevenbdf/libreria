@@ -64,30 +64,30 @@ class model_page{
 
     public static function footer(){
         print('
-                 <footer id="footer" class="pb-4 pt-4">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Inicio</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Contactanos</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Noticias</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Terminos y Condiciones</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Privacidad</a>
-        </div>
-        <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Sugerencias</a>
+    <footer id="footer" class="pb-4 pt-4">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-12 col-md-6 col-lg pb-2">
+            <a href="#">Inicio</a>
+          </div>
+          <div class="col-12 col-md-6 col-lg pb-2">
+            <a href="#">Contactanos</a>
+          </div>
+          <div class="col-12 col-md-6 col-lg pb-2">
+            <a href="#">Noticias</a>
+          </div>
+          <div class="col-12 col-md-6 col-lg pb-2">
+            <a href="#">Terminos y Condiciones</a>
+          </div>
+          <div class="col-12 col-md-6 col-lg pb-2">
+            <a href="#">Privacidad</a>
+          </div>
+          <div class="col-12 col-md-6 col-lg pb-2">
+            <a href="#">Sugerencias</a>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
 
 
 
