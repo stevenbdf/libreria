@@ -12,6 +12,7 @@ h1, h2, h3 {
 
 h4 {
   font-family: 'Staatliches', cursive;
+  color: #C4E538;
   text-transform: uppercase;
 }
 
@@ -140,7 +141,25 @@ h5.titulo-home{
   }
 
   .carousel-inner img {
+    height: 50vh;
+  }
+
+  main#mission-vision{
+    height: 78.5vh;
+  }
+}
+
+@media only screen and (min-width:992px) {
+  main .container #libro img {
+    max-width: 368px;
+  }
+
+  .carousel-inner img {
     width: 100%;
-    height: 75vh;
+    height: 60vh;
+  }
+
+  main#mission-vision{
+    height: 85vh;
   }
 }
