@@ -1,23 +1,36 @@
 body {
-  background-color: white;
-  font-family: 'Nunito', sans-serif !important;
+  background-color: #f4f5f7;
+  /*font-family: 'Nunito', sans-serif !important;*/
 }
 
 h1, h2, h3 {
   font-family: 'Staatliches', cursive;
-  color: #C4E538;
+  color: #2dce89;
+  font-size: 32px;
 }
 
+h1{
+  font-size: 35px;
+}
 
+h1.in-container{
+  color:#f4f5f7;
+}
 
 h4 {
   font-family: 'Staatliches', cursive;
-  color: #C4E538;
+  color: #2dce89;
   text-transform: uppercase;
+  font-size: 28px;
 }
 
 h5 {
   font-family: 'Staatliches', cursive !important;
+}
+
+p.p-carousel{
+  color: #FFFFFF;
+  font-weight: 600;
 }
 
 #nav img {
@@ -36,16 +49,13 @@ span.libreria-numero {
   color: white;
 }
 
-.navbar-libreria {
-  background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
-}
 
 main .container {
   -webkit-box-shadow: -1px 10px 25px -5px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -1px 10px 25px -5px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 10px 25px -5px rgba(0, 0, 0, 0.75);
   border-radius: 10px;
-  background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
+  background: #172b4d;
   color: white;
 }
 
@@ -53,11 +63,10 @@ div.card {
   -webkit-box-shadow: -4px 9px 5px -4px rgba(0, 0, 0, 0.42);
   -moz-box-shadow: -4px 9px 5px -4px rgba(0, 0, 0, 0.42);
   box-shadow: -4px 9px 5px -4px rgba(0, 0, 0, 0.42);
-}
-
-div.card {
+  background: #f4f5f7;
   color: black;
 }
+
 
 main .container #libro img {
   max-width: 380px;
@@ -114,6 +123,7 @@ img.card-img-book {
 
 h5.titulo-home{
   font-family: 'Permanent Marker', cursive;
+  color: #5e72e4;
   font-size: 80px;
 }
 
@@ -125,6 +135,10 @@ h5.titulo-home{
 .carousel-inner img {
   width: 100%;
   height: 75vh;
+}
+
+.carousel-item{
+  background-color: rgba(33,37,41,0.45);
 }
 
 img.categorias-inicio{
@@ -158,6 +172,8 @@ img.categorias-inicio{
 
 .card:hover .card-img-overlay>p{
   display: block;
+  font-size: 15px;
+  margin: 0 0 10px 0;
 }
 
 .card:hover .card-img-overlay>a{
@@ -165,10 +181,12 @@ img.categorias-inicio{
 }
 
 .card:hover .card-img-overlay>h5{
-  color: #C4E538;
+  color: #5e72e4;
   margin-top: 0;
+  margin-bottom: 0;
+  line-height: normal;
 }
-
+/* Small */
 @media only screen and (min-width:320px) {
   main .container #libro img {
     max-width: 250px;
@@ -182,8 +200,10 @@ img.categorias-inicio{
     width: 10vh;
     height: 10vh;
   }
-}
 
+
+}
+/* Medium */
 @media only screen and (min-width:768px) {
   main .container #libro img {
     max-width: 368px;
@@ -196,8 +216,19 @@ img.categorias-inicio{
   main#mission-vision{
     height: 105vh;
   }
-}
 
+  .card:hover .card-img-overlay>p{
+    display: block;
+    font-size: 16px;
+    margin: 0 0 10px 0;
+  }
+
+  img.card-img-book {
+    height: 35vh;
+    width: 100%;
+  }
+}
+/* Large */
 @media only screen and (min-width:992px) {
   main .container #libro img {
     max-width: 368px;
@@ -211,6 +242,18 @@ img.categorias-inicio{
   main#mission-vision{
     height: 100vh;
   }
+
+  .card:hover .card-img-overlay>p{
+    display: block;
+    font-size: 16px;
+    margin: 0 0 20px 0;
+  }
+
 }
 
-
+@media only screen and (min-width: 1200px) {
+  img.card-img-book {
+    height: 55vh;
+    width: 100%;
+  }
+}

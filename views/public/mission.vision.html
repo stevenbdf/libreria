@@ -13,15 +13,22 @@
   <script defer src="../../resources/js/all.js"></script>
   <!-- Google Fonts -->
   <link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="../../resources/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <!-- Argon CSS -->
+  <link type="text/css" href="../../resources/css/argon.min.css" rel="stylesheet">
+
   <!-- Maquilishuat -->
   <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
   <link rel="stylesheet" href="../../resources/css/style.css">
 
   <title>Libreria Maquilishuat</title>
 </head>
-
 <body>
-  <nav id="nav" class="navbar navbar-expand-lg navbar-dark navbar-libreria sticky-top">
+  <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#"><img src="../../resources/img/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,6 +36,22 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-collapse-header">
+               <div class="row">
+                   <div class="col-6 collapse-brand">
+                       <a href="index.html">
+                           <img src="../../resources/img/logo.png">
+                       </a>
+                   </div>
+                   <div class="col-6 collapse-close">
+                       <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                           <span></span>
+                           <span></span>
+                       </button>
+                   </div>
+               </div>
+           </div>
+
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Inicio <i class="fas fa-home"></i></a>
@@ -94,7 +117,7 @@
     </div>
   </main>
 
-  <footer id="footer" class="pb-4 pt-4">
+  <footer id="footer" class="pb-4 pt-4 bg-gradient-primary">
     <div class="container">
       <div class="row text-center">
         <div class="col-12 col-md-6 col-lg pb-2">
@@ -113,16 +136,20 @@
           <a href="#">Privacidad</a>
         </div>
         <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="mission.vision.html">Misión y Visión</a>
+          <a href="mission.vision.html">Mision y Vision</a>
         </div>
       </div>
     </div>
   </footer>
 
+
+
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>
+  <script src="../../resources/js/argon.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
   <script defer src="../../resources/js/index.js"></script>
