@@ -89,6 +89,39 @@ class model_page{
         ';
     }
 
+    public static function headerDashboard(){
+        return '
+        <!doctype html>
+        <html lang="es">
+        <head>
+          <!-- Required meta tags -->
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+          <!-- Bootstrap CSS -->
+          <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+          <!-- Font Awesome -->
+          <link rel="stylesheet" href="../../resources/css/all.css">
+          <script defer src="../../resources/js/all.js"></script>
+          <!-- Google Fonts -->
+          <link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
+
+          <!-- Fonts -->
+          <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
+          <!-- Icons -->
+          <link href="../../resources/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+          <!-- Argon CSS -->
+          <link type="text/css" href="../../resources/css/argon.min.css" rel="stylesheet">
+
+          <!-- Maquilishuat -->
+          <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
+          <link rel="stylesheet" href="../../resources/css/style.css">
+
+          <title>Libreria Maquilishuat</title>
+        </head>
+        ';
+    }
+
     public static function footer(){
         print('
         <footer id="footer" class="pb-4 pt-4 bg-gradient-primary">
@@ -118,6 +151,25 @@ class model_page{
 
 
 
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
+        <script src="../../resources/js/popper.js"></script>
+        <script src="../../resources/js/bootstrap.js"></script>
+        <script src="../../resources/js/argon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <script defer src="../../resources/js/index.js"></script>
+
+
+      </body>
+
+      </html>
+        ');
+    }
+
+    public static function footerDashboard(){
+        print('
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
