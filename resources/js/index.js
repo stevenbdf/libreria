@@ -25,4 +25,25 @@ $(document).ready(function() {
     $('div.password').removeClass('focused');
   });
 
+  $("#password2").focus(function() {
+    $('div.password2').addClass('focused');
+  });
+  $("#password2").focusout(function() {
+    $('div.password2').removeClass('focused');
+  });
+
+  $("#name").focus(function() {
+    $('div.nombre').addClass('focused');
+  });
+  $("#name").focusout(function() {
+    $('div.nombre').removeClass('focused');
+  });
+
+  $("#lastName").focus(function() {
+    $('div.apellido').addClass('focused');
+  });
+  $("#lastName").focusout(function() {
+    $('div.apellido').removeClass('focused');
+  });
+
 });

@@ -31,6 +31,11 @@ h5 {
 p.p-carousel {
   color: #FFFFFF;
   font-weight: 600;
+  text-shadow:
+   -1px -1px 0 #5e72e4,
+    1px -1px 0 #5e72e4,
+   -1px 1px 0  #5e72e4,
+    1px 1px 0  #5e72e4;
 }
 
 #nav img {
@@ -262,5 +267,8 @@ img.categorias-inicio {
   img.card-img-book {
     height: 55vh;
     width: 100%;
+  }
+  main#mission-vision, main#login{
+    height: 120vh;
   }
 }
