@@ -32,4 +32,6 @@
                 </div>
             </form>
 </div>
-</html>
+  <?php
+    echo model_page::footer();
+   ?>
