@@ -8,14 +8,19 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../../resources/css/bootstrap.css">
-  <link href="../../resources/css/login1.css" rel="stylesheet" id="bootstrap-css">
-  <script src="../../resources/js/bootstrap.js"></script>
-  <link rel="stylesheet" href="../../resources/css/bootstrap.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../../resources/css/all.css">
   <script defer src="../../resources/js/all.js"></script>
   <!-- Google Fonts -->
   <link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="../../resources/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <!-- Argon CSS -->
+  <link type="text/css" href="../../resources/css/argon.min.css" rel="stylesheet">
+
   <!-- Maquilishuat -->
   <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
   <link rel="stylesheet" href="../../resources/css/style.css">
@@ -24,7 +29,7 @@
 </head>
 
 <body>
-  <nav id="nav" class="navbar navbar-expand-lg navbar-dark navbar-libreria sticky-top">
+  <nav id="nav" class="navbar navbar-expand-lg navbar-dark bg-gradient-primary sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#"><img src="../../resources/img/logo.png" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +37,22 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a href="index.html">
+                <img src="../../resources/img/logo.png">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbar-default" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Inicio <i class="fas fa-home"></i></a>
@@ -55,131 +76,95 @@
               <a class="dropdown-item" href="#">Cerrar Sesión <i class="fas fa-sign-out-alt"></i></a>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">$17.5 <i class="fas fa-shopping-cart"></i></i></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-<<<<<<< HEAD
-  <main id="login" >
-     <div class="row">
-        <div class=" col-12 col-md-4 offset-md-4 mt-5 mb-5">
-            
-      <div class="row">
-        <div class="col-10 offset-1 text-center mb-3">
-            <img id="profile-img" class="profile-img-card" src="../../resources/img/user1.png " width="200px" height="200px" />
-        </div>
-          <div class="col-10 offset-1">
-              <!--form-->
-          <form class="form-signin">
-                <span id="reauth-email" class="reauth-email"></span>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me">Recuérdame
-                    </label>
-                </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin mb-3" type="submit">Sign in</button>
-                    <h5 class="text-center">Ó</h5>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Recuperar contraseña</button>
-            </form><!-- /form -->
-=======
-  <main>
-    <section class="section section-shaped section-lg">
-      <div class="shape shape-style-1 bg-gradient-default">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="container pt-lg-md">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="card bg-secondary shadow border-0">
-              <div class="card-header bg-white pb-5">
-                <div class="text-muted text-center mb-3">
-                  <small>Sign up with</small>
-                </div>
-                <div class="text-center">
-                  <a href="#" class="btn btn-neutral btn-icon mr-4">
-                    <span class="btn-inner--icon">
-                      <img src="../assets/img/icons/common/github.svg">
-                    </span>
-                    <span class="btn-inner--text">Github</span>
-                  </a>
-                  <a href="#" class="btn btn-neutral btn-icon">
-                    <span class="btn-inner--icon">
-                      <img src="../assets/img/icons/common/google.svg">
-                    </span>
-                    <span class="btn-inner--text">Google</span>
-                  </a>
-                </div>
+  <main id="login">
+    <div class="container-fluid login pt-5 pt-lg-8 pb-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-white pb-5">
+              <div class="text-muted text-center mb-3">
+                <small>Continua con ...</small>
               </div>
-              <div class="card-body px-lg-5 py-lg-5">
-                <div class="text-center text-muted mb-4">
-                  <small>Or sign up with credentials</small>
-                </div>
-                <form role="form">
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Name" type="text">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Email" type="email">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                      </div>
-                      <input class="form-control" placeholder="Password" type="password">
-                    </div>
-                  </div>
-                  <div class="text-muted font-italic">
-                    <small>password strength:
-                      <span class="text-success font-weight-700">strong</span>
-                    </small>
-                  </div>
-                  <div class="row my-4">
-                    <div class="col-12">
-                      <div class="custom-control custom-control-alternative custom-checkbox">
-                        <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                        <label class="custom-control-label" for="customCheckRegister">
-                          <span>I agree with the
-                            <a href="#">Privacy Policy</a>
-                          </span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="text-center">
-                    <button type="button" class="btn btn-primary mt-4">Create account</button>
-                  </div>
-                </form>
+              <div class="btn-wrapper text-center">
+                <a href="#" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon">
+                    <i class="fab fa-facebook-square"></i>
+                  </span>
+                  <span class="btn-inner--text">Facebook</span>
+                </a>
+                <a href="#" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon">
+                    <i class="fab fa-google"></i>
+                  </span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
               </div>
             </div>
->>>>>>> gh-pages
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>O ingresa con tus credenciales</small>
+              </div>
+              <form role="form">
+                <div class="form-group email mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
+                    </div>
+                    <input id="email" class="form-control" placeholder="Email" type="email">
+                  </div>
+                </div>
+
+
+
+                <div class="form-group password">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <input id="password" class="form-control" placeholder="Password" type="password">
+                  </div>
+                </div>
+                <div class="custom-control custom-control-alternative custom-checkbox">
+                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
+                  <label class="custom-control-label" for=" customCheckLogin">
+                    <span>Recuerdame</span>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary my-4">Acceder</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="#" class="text-light">
+                <small>¿Olvidaste tu contraseña?</small>
+              </a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="#" class="text-light">
+                <small>Registrate</small>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   </main>
 
-  <footer id="footer" class="pb-4 pt-4">
+
+
+
+  <footer id="footer" class="pb-4 pt-4 bg-gradient-primary">
     <div class="container">
       <div class="row text-center">
         <div class="col-12 col-md-6 col-lg pb-2">
@@ -192,13 +177,13 @@
           <a href="news.html">Noticias</a>
         </div>
         <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="#">Terminos y Condiciones</a>
+          <a id="botoncito" href="#">Terminos y Condiciones</a>
         </div>
         <div class="col-12 col-md-6 col-lg pb-2">
           <a href="#">Privacidad</a>
         </div>
         <div class="col-12 col-md-6 col-lg pb-2">
-          <a href="mission.vision.html">Misión y Visión</a>
+          <a href="mission.vision.html">Mision y Vision</a>
         </div>
       </div>
     </div>
@@ -208,6 +193,11 @@
   <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>
+  <script src="../../resources/js/argon.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script defer src="../../resources/js/index.js"></script>
+
 </body>
 
 </html>

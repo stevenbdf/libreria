@@ -9,3 +9,20 @@ $("#botoncito").click(function() {
     confirmButtonAriaLabel: 'Thumbs up, great!',
   })
 })
+
+$(document).ready(function() {
+  $("#email").focus(function() {
+    $('div.email').addClass('focused');
+  });
+  $("#email").focusout(function() {
+    $('div.email').removeClass('focused');
+  });
+
+  $("#password").focus(function() {
+    $('div.password').addClass('focused');
+  });
+  $("#password").focusout(function() {
+    $('div.password').removeClass('focused');
+  });
+
+});
