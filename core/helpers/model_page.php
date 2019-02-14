@@ -91,33 +91,24 @@ class model_page{
 
     public static function headerDashboard(){
         return '
-        <!doctype html>
-        <html lang="es">
+        <!DOCTYPE html>
+        <html>
+
         <head>
-          <!-- Required meta tags -->
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-          <!-- Bootstrap CSS -->
-          <link rel="stylesheet" href="../../resources/css/bootstrap.css">
-          <!-- Font Awesome -->
-          <link rel="stylesheet" href="../../resources/css/all.css">
-          <script defer src="../../resources/js/all.js"></script>
-          <!-- Google Fonts -->
-          <link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
-
+          <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+          <meta name="author" content="Creative Tim">
+          <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
+          <!-- Favicon -->
+          <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
           <!-- Fonts -->
-          <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
           <!-- Icons -->
-          <link href="../../resources/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+          <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+          <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
           <!-- Argon CSS -->
-          <link type="text/css" href="../../resources/css/argon.min.css" rel="stylesheet">
-
-          <!-- Maquilishuat -->
-          <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
-          <link rel="stylesheet" href="../../resources/css/style.css">
-
-          <title>Libreria Maquilishuat</title>
+          <link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">
         </head>
         ';
     }
@@ -131,7 +122,7 @@ class model_page{
                 <a href="index.php">Inicio</a>
               </div>
               <div class="col-12 col-md-6 col-lg pb-2">
-                <a href="#">Contactanos</a>
+                <a href="contact.php">Contactanos</a>
               </div>
               <div class="col-12 col-md-6 col-lg pb-2">
                 <a href="news.php">Noticias</a>
