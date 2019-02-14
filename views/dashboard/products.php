@@ -28,6 +28,7 @@
 
 <body>
   <!-- Sidenav -->
+
   <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
     <div class="container-fluid">
       <!-- Toggler -->
@@ -105,17 +106,6 @@
             </div>
           </div>
         </div>
-        <!-- Form -->
-        <form class="mt-4 mb-3 d-md-none">
-          <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Buscar" aria-label="Buscar">
-            <div class="input-group-prepend">
-              <div class="input-group-text">
-                <span class="fa fa-search"></span>
-              </div>
-            </div>
-          </div>
-        </form>
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
@@ -206,17 +196,6 @@
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
-        <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            <div class="input-group input-group-alternative">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-              </div>
-              <input class="form-control" placeholder="Buscar" type="text">
-            </div>
-          </div>
-        </form>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
@@ -266,139 +245,7 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="products.php">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Productos</h5>
-                        <span class="h2 font-weight-bold mb-0">584</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i class="fas fa-chart-bar"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Noticias</h5>
-                        <span class="h2 font-weight-bold mb-0">2,356</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                          <i class="fas fa-chart-pie"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Categorias</h5>
-                        <span class="h2 font-weight-bold mb-0">924</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                          <i class="fas fa-users"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Empleados</h5>
-                        <span class="h2 font-weight-bold mb-0">24</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                          <i class="fas fa-percent"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
-                        <span class="h2 font-weight-bold mb-0">580</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                          <i class="fas fa-percent"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Pedidos</h5>
-                        <span class="h2 font-weight-bold mb-0">924</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                          <i class="fas fa-users"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Comentarios</h5>
-                        <span class="h2 font-weight-bold mb-0">584</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i class="fas fa-chart-bar"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
+
           </div>
         </div>
       </div>
@@ -411,188 +258,348 @@
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-light ls-1 mb-1">Resumen</h6>
-                  <h2 class="text-white mb-0">Valor en Ventas</h2>
-                </div>
-                <div class="col">
-                  <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                        <span class="d-none d-md-block">Mes</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    <li class="nav-item" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                        <span class="d-none d-md-block">Semanas</span>
-                        <span class="d-md-none">S</span>
-                      </a>
-                    </li>
-                  </ul>
+                  <h6 class="text-uppercase text-light ls-1 mb-1">Gestionar</h6>
+                  <h2 class="text-white mb-0">Productos</h2>
                 </div>
               </div>
             </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <!-- Chart wrapper -->
-                <canvas id="chart-sales" class="chart-canvas"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col">
+          <div class="card bg-default shadow">
+            <div class="card-header bg-transparent border-0">
+              <div class="row">
+                <div class="col-12 col-md-9 my-auto">
+                  <h4 class="text-white mb-0">Listado de Productos</h4>
+                </div>
+                <div class="col-12 col-md-3 mt-3 mt-md-0">
+                  <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-3 " data-toggle="tooltip" data-placement="top" title="Agregar">
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                      <i class="fas fa-plus"></i>
+                    </a>
+                  </div>
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-3 " data-toggle="tooltip" data-placement="top" title="Modificar">
+                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                      <i class="fas fa-pen"></i>
+                    </a>
+                  </div>
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow ml-3 " onclick="deleteAlert()">
+                    <a>
+                      <i class="fas fa-trash-alt"></i>
+                    </a>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-dark table-flush">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Idioma</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr onclick="alert('me tocaste')">
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">
+                      <div class="media align-items-center" style="">
+                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
+                      </div>
+                    </th>
+                    <td>
+                      Lisa Magano
+                    </td>
+                    <td>
+                      Español
+                    </td>
+                    <td>
+                      $15.95
+                    </td>
+                    <td>
+                      Drama
+                    </td>
+                    <td>
+
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="card-footer py-4" style="background-color:#172b4d !important;">
+              <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">
+                      <i class="fas fa-angle-left"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">
+                      <i class="fas fa-angle-right"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
           </div>
         </div>
 
       </div>
-      <div class="row mt-5">
-        <div class="col-12 col-xl-8 mb-5 mb-xl-0">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Paginas Visitadas</h3>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Agregar Producto</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">ISBN:</label>
+                  <input type="text" class="form-control form-control-alternative" id="ISBN">
                 </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Nombre de la página</th>
-                    <th scope="col">Visitoantes</th>
-                    <th scope="col">Usuarios unicos</th>
-                    <th scope="col">Rating</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      /argon/
-                    </th>
-                    <td>
-                      4,569
-                    </td>
-                    <td>
-                      340
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      index.php
-                    </th>
-                    <td>
-                      3,985
-                    </td>
-                    <td>
-                      319
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      categories.php
-                    </th>
-                    <td>
-                      3,513
-                    </td>
-                    <td>
-                      294
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-warning mr-3"></i> 36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      all.products.php
-                    </th>
-                    <td>
-                      2,050
-                    </td>
-                    <td>
-                      147
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-up text-success mr-3"></i> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      news.php
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      public/login.php
-                    </th>
-                    <td>
-                      1,795
-                    </td>
-                    <td>
-                      190
-                    </td>
-                    <td>
-                      <i class="fas fa-arrow-down text-danger mr-3"></i> 46,53%
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-xl-4 mt-3">
-          <div class="row">
-            <div class="col-12">
-              <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Usuario Conectados</h5>
-                      <span class="h2 font-weight-bold mb-0">584</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-success text-white rounded-circle shadow">
-                        <i class="fas fa-signal"></i>
-                      </div>
+                <div class="form-group">
+                  <label for="message-text" class="col-form-label">Autor:</label>
+                  <div class="input-group mb-3">
+                    <select class="custom-select form-control-alternative" id="inputGroupSelect01">
+                      <option selected>Choose...</option>
+                      <option value="1">One</option>
+                      <option value="2">Two</option>
+                      <option value="3">Three</option>
+                    </select>
                     </div>
                   </div>
-                </div>
-              </div>
+              </form>
             </div>
-            <div class="col-12 mt-xl-3">
-              <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Usuario Desconectados</h5>
-                      <span class="h2 font-weight-bold mb-0">584</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                        <i class="fas fa-signal"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Send message</button>
             </div>
           </div>
         </div>
       </div>
+
+
+
+
 
       <!-- Footer -->
       <footer class="footer">
@@ -631,6 +638,9 @@
   <script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="./assets/js/argon.js?v=1.0.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script src="../../resources/js/index.js"></script>
 </body>
 
 </html>

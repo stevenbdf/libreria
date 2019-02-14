@@ -7,18 +7,18 @@
   <div class="contact-image">
     <img src="../../resources/img/rocket_contact.png" alt="rocket_contact" />
   </div>
-  <form method="post">
+  <form method="post" role="form">
     <h3>Envianos un mensaje</h3>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <input type="text" name="txtName" class="form-control" placeholder="Tu Nombre *" value="" />
+          <input type="text" class="form-control form-control-alternative" placeholder="Tu Nombre *" />
         </div>
         <div class="form-group">
-          <input type="email" name="txtEmail" class="form-control" placeholder="Tu Correo *" value="" />
+          <input type="email" class="form-control form-control-alternative" placeholder="Tu Correo *"  />
         </div>
         <div class="form-group">
-          <input type="text" name="txtPhone" class="form-control" placeholder="Tu # Celular *" value="" />
+          <input type="text" class="form-control form-control-alternative" placeholder="Tu # Celular *"/>
         </div>
         <div class="form-group">
            <button type="button" class="btn btn-primary btn-lg btn-block">Enviar</button>
@@ -26,7 +26,7 @@
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <textarea name="txtMsg" class="form-control" placeholder="Tu Mensaje *" style="width: 100%; height: 185px;"></textarea>
+          <textarea name="txtMsg" class="form-control form-control-alternative" placeholder="Tu Mensaje *" style="width: 100%; height: 185px;"></textarea>
         </div>
       </div>
     </div>
