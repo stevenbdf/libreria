@@ -1,7 +1,30 @@
-<?php
-  require_once '../../core/helpers/model_page.php';
-  echo model_page::headerDashboard();
- ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+  <meta name="author" content="Creative Tim">
+  <title>Dashboard - Libreria Maquilishuat</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+  <!-- Fonts -->
+  <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <!-- Argon CSS -->
+
+
+  <!-- Maquilishuat -->
+  <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG">
+
+    <link type="text/css" href="./assets/css/argon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/css/style.css">
+</head>
 
 <body>
   <!-- Sidenav -->
@@ -85,7 +108,7 @@
         <!-- Form -->
         <form class="mt-4 mb-3 d-md-none">
           <div class="input-group input-group-rounded input-group-merge">
-            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+            <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Buscar" aria-label="Buscar">
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <span class="fa fa-search"></span>
@@ -97,62 +120,82 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="./index.html">
-              <i class="ni ni-tv-2 text-primary"></i> Dashboard
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/icons.html">
-              <i class="ni ni-planet text-blue"></i> Icons
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/maps.html">
-              <i class="ni ni-pin-3 text-orange"></i> Maps
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/profile.html">
-              <i class="ni ni-single-02 text-yellow"></i> User profile
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/tables.html">
-              <i class="ni ni-bullet-list-67 text-red"></i> Tables
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/login.html">
-              <i class="ni ni-key-25 text-info"></i> Login
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./examples/register.html">
-              <i class="ni ni-circle-08 text-pink"></i> Register
+              <i class="fas fa-chart-area mr-3 text-primary"></i>Seleccionar graficos...
             </a>
           </li>
         </ul>
         <!-- Divider -->
         <hr class="my-3">
         <!-- Heading -->
-        <h6 class="navbar-heading text-muted">Documentation</h6>
+        <h6 class="navbar-heading text-muted"> <i class="fas fa-dollar-sign mr-2 text-primary"></i>Ventas </h6>
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-              <i class="ni ni-spaceship"></i> Getting started
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-palette"></i> Dia
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html">
-              <i class="ni ni-palette"></i> Foundation
+            <a class="nav-link" href="#">
+              <i class="ni ni-ui-04"></i> Mes
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html">
-              <i class="ni ni-ui-04"></i> Components
+            <a class="nav-link" href="#">
+              <i class="ni ni-ui-04"></i> Año
             </a>
           </li>
         </ul>
+
+        <h6 class="navbar-heading text-muted"><i class="far fa-eye mr-2 text-primary"></i>Visitas </h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-palette"></i> Dia
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-ui-04"></i> Mes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-ui-04"></i> Año
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="navbar-heading text-muted"><i class="fas fa-users mr-2 text-primary"></i>Usuarios registrados </h6>
+        <!-- Navigation -->
+        <ul class="navbar-nav mb-md-3">
+          <li class="nav-item">
+
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-palette"></i> Dia
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-ui-04"></i> Mes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="ni ni-ui-04"></i> Año
+            </a>
+          </li>
+        </ul>
+
       </div>
     </div>
   </nav>
@@ -170,7 +213,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-search"></i></span>
               </div>
-              <input class="form-control" placeholder="Search" type="text">
+              <input class="form-control" placeholder="Buscar" type="text">
             </div>
           </div>
         </form>
@@ -193,11 +236,11 @@
               </div>
               <a href="./examples/profile.html" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
-                <span>My profile</span>
+                <span>Mi Perfil</span>
               </a>
               <a href="./examples/profile.html" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
-                <span>Settings</span>
+                <span>Configuración</span>
               </a>
               <a href="./examples/profile.html" class="dropdown-item">
                 <i class="ni ni-calendar-grid-58"></i>
@@ -223,13 +266,13 @@
         <div class="header-body">
           <!-- Card stats -->
           <div class="row">
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-3 col-lg-6 mt-3">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Traffic</h5>
-                      <span class="h2 font-weight-bold mb-0">350,897</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Productos</h5>
+                      <span class="h2 font-weight-bold mb-0">584</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
@@ -237,19 +280,15 @@
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-3 col-lg-6 mt-3">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">New users</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Noticias</h5>
                       <span class="h2 font-weight-bold mb-0">2,356</span>
                     </div>
                     <div class="col-auto">
@@ -258,19 +297,15 @@
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last week</span>
-                  </p>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-3 col-lg-6 mt-3">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Sales</h5>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Categorias</h5>
                       <span class="h2 font-weight-bold mb-0">924</span>
                     </div>
                     <div class="col-auto">
@@ -279,20 +314,16 @@
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                    <span class="text-nowrap">Since yesterday</span>
-                  </p>
                 </div>
               </div>
             </div>
-            <div class="col-xl-3 col-lg-6">
+            <div class="col-xl-3 col-lg-6 mt-3">
               <div class="card card-stats mb-4 mb-xl-0">
                 <div class="card-body">
                   <div class="row">
                     <div class="col">
-                      <h5 class="card-title text-uppercase text-muted mb-0">Performance</h5>
-                      <span class="h2 font-weight-bold mb-0">49,65%</span>
+                      <h5 class="card-title text-uppercase text-muted mb-0">Empleados</h5>
+                      <span class="h2 font-weight-bold mb-0">24</span>
                     </div>
                     <div class="col-auto">
                       <div class="icon icon-shape bg-info text-white rounded-circle shadow">
@@ -300,10 +331,57 @@
                       </div>
                     </div>
                   </div>
-                  <p class="mt-3 mb-0 text-muted text-sm">
-                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 mt-3">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
+                      <span class="h2 font-weight-bold mb-0">580</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                        <i class="fas fa-percent"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 mt-3">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Pedidos</h5>
+                      <span class="h2 font-weight-bold mb-0">924</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6 mt-3">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Comentarios</h5>
+                      <span class="h2 font-weight-bold mb-0">584</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -314,26 +392,26 @@
     <!-- Page content -->
     <div class="container-fluid mt--7">
       <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">
+        <div class="col-xl-12 mb-5 mb-xl-0">
           <div class="card bg-gradient-default shadow">
             <div class="card-header bg-transparent">
               <div class="row align-items-center">
                 <div class="col">
-                  <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                  <h2 class="text-white mb-0">Sales value</h2>
+                  <h6 class="text-uppercase text-light ls-1 mb-1">Resumen</h6>
+                  <h2 class="text-white mb-0">Valor en Ventas</h2>
                 </div>
                 <div class="col">
                   <ul class="nav nav-pills justify-content-end">
                     <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 10, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
                       <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                        <span class="d-none d-md-block">Month</span>
+                        <span class="d-none d-md-block">Mes</span>
                         <span class="d-md-none">M</span>
                       </a>
                     </li>
                     <li class="nav-item" data-toggle="chart" data-target="#chart-sales" data-update='{"data":{"datasets":[{"data":[0, 20, 5, 25, 10, 30, 15, 40, 40]}]}}' data-prefix="$" data-suffix="k">
                       <a href="#" class="nav-link py-2 px-3" data-toggle="tab">
-                        <span class="d-none d-md-block">Week</span>
-                        <span class="d-md-none">W</span>
+                        <span class="d-none d-md-block">Semanas</span>
+                        <span class="d-md-none">S</span>
                       </a>
                     </li>
                   </ul>
@@ -349,24 +427,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4">
-          <div class="card shadow">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h2 class="mb-0">Total orders</h2>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-orders" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
+
       </div>
       <div class="row mt-5">
         <div class="col-xl-8 mb-5 mb-xl-0">
@@ -615,11 +676,15 @@
       </footer>
     </div>
   </div>
-
-  <?php
-    echo model_page::footerDashboard();
-   ?>
-
+  <!-- Argon Scripts -->
+  <!-- Core -->
+  <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Optional JS -->
+  <script src="./assets/vendor/chart.js/dist/Chart.min.js"></script>
+  <script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
+  <!-- Argon JS -->
+  <script src="./assets/js/argon.js?v=1.0.0"></script>
 </body>
 
 </html>
