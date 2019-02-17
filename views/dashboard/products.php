@@ -272,21 +272,26 @@
           <div class="card bg-default shadow">
             <div class="card-header bg-transparent border-0">
               <div class="row">
-                <div class="col-12 col-md-9 my-auto">
-                  <h4 class="text-white mb-0">Listado de Productos</h4>
+                <div class="col-12 col-md-6 col-lg-6 pt-auto">
+                  <div class="input-group input-group-alternative mt-md-2 mt-lg-0">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
+                    </div>
+                    <input class="form-control form-control-alternative" placeholder="Buscar ..." type="text">
+                  </div>
                 </div>
-                <div class="col-12 col-md-3 mt-3 mt-md-0">
-                  <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-3 " data-toggle="tooltip" data-placement="top" title="Agregar">
+                <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mt-3 mt-md-0 d-flex justify-content-around">
+                  <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Agregar">
                     <a href="#" data-toggle="modal" data-target="#exampleModal">
                       <i class="fas fa-plus"></i>
                     </a>
                   </div>
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-3 " data-toggle="tooltip" data-placement="top" title="Modificar">
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Modificar">
                     <a href="#" data-toggle="modal" data-target="#exampleModal">
                       <i class="fas fa-pen"></i>
                     </a>
                   </div>
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow ml-3 " onclick="deleteAlert()">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="deleteAlert()">
                     <a>
                       <i class="fas fa-trash-alt"></i>
                     </a>
@@ -580,18 +585,18 @@
                   <label for="message-text" class="col-form-label">Autor:</label>
                   <div class="input-group mb-3">
                     <select class="custom-select form-control-alternative" id="inputGroupSelect01">
-                      <option selected>Choose...</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
+                      <option selected>Seleccionar...</option>
+                      <option value="1">Eduardo Galeano</option>
+                      <option value="2">Claudia Lars</option>
+                      <option value="3">Jean Luke</option>
                     </select>
                     </div>
                   </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Send message</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-success">Guardar</button>
             </div>
           </div>
         </div>
