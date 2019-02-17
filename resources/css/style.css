@@ -240,6 +240,18 @@ img.categorias-inicio {
     border: none;
 }
 
+tbody tr,  div.icon-shape a {
+  color: white;
+}
+
+tbody tr,  div.icon-shape{
+  cursor: pointer;
+}
+
+tbody tr:hover{
+  background-color: #43659e;
+}
+
 /* Small */
 @media only screen and (min-width:320px) {
   main .container #libro img {

@@ -343,7 +343,7 @@
                     <th scope="col">Budget</th>
                     <th scope="col">Status</th>
                     <th scope="col">Users</th>
-                    <th scope="col">Completion</th>
+                    <th scope="col">Completion asdas</th>
                     <th scope="col"></th>
                   </tr>
                 </thead>
