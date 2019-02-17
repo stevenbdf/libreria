@@ -43,6 +43,14 @@ function deleteAlert(){
   })
 }
 
+function savedAlert(objeto='Registro'){
+  Swal.fire(
+  '¡Correcto!',
+  `${objeto} guardado correctamente`,
+  'success'
+  )
+}
+
 
 $(document).ready(function() {
   $("#email").focus(function() {

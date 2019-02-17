@@ -282,12 +282,12 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mt-3 mt-md-0 d-flex justify-content-around">
                   <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Agregar">
-                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                    <a href="#" data-toggle="modal" data-target="#guardarProductoModal">
                       <i class="fas fa-plus"></i>
                     </a>
                   </div>
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Modificar">
-                    <a href="#" data-toggle="modal" data-target="#exampleModal">
+                    <a href="#" data-toggle="modal" data-target="#modificarProductoModal">
                       <i class="fas fa-pen"></i>
                     </a>
                   </div>
@@ -566,7 +566,7 @@
 
       </div>
 
-      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="guardarProductoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -580,23 +580,261 @@
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">ISBN:</label>
                   <input type="text" class="form-control form-control-alternative" id="ISBN">
-                </div>
-                <div class="form-group">
+
                   <label for="message-text" class="col-form-label">Autor:</label>
                   <div class="input-group mb-3">
-                    <select class="custom-select form-control-alternative" id="inputGroupSelect01">
+                    <select class="custom-select form-control-alternative" id="inputGroupAutor">
                       <option selected>Seleccionar...</option>
                       <option value="1">Eduardo Galeano</option>
                       <option value="2">Claudia Lars</option>
                       <option value="3">Jean Luke</option>
                     </select>
+                  </div>
+
+                  <label for="message-text" class="col-form-label">Editorial:</label>
+                  <div class="input-group mb-3">
+                    <select class="custom-select form-control-alternative" id="inputGroupEditorials">
+                      <option selected>Seleccionar...</option>
+                      <option value="1">Debolsillo</option>
+                      <option value="2">Santillana El Salvador</option>
+                      <option value="3">Editorial Planeta</option>
+                    </select>
+                  </div>
+
+                  <label for="message-text" class="col-form-label">Titulo:</label>
+                  <input type="text" class="form-control form-control-alternative" id="tituloLibro">
+
+                  <div class="row">
+                    <div class="col-3">
+                      <label for="message-text" class="col-form-label">Idioma:</label>
+                      <div class="input group dropdown d-block">
+                        <a href="#" class="btn btn-default dropdown-toggle " data-toggle="dropdown" id="navbarDropdownMenuLink2">
+                            <img src="../../resources/img/flags/SV.png" /> ...
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/DE.png" /> Deutsch
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/GB.png" /> English(UK)
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/FR.png" /> Français
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/ES.png" /> Español
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/PT.png" /> Portuges
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <label for="message-text" class="col-form-label">No. de páginas:</label>
+                      <input type="number" class="form-control form-control-alternative" id="noPags">
+                    </div>
+                    <div class="col-5">
+                      <label for="message-text" class="col-form-label">Ecuadernación:</label>
+                      <div class="input-group mb-3">
+                        <select class="custom-select form-control-alternative" id="inputGroupEcuadernacion">
+                          <option selected>Seleccionar...</option>
+                          <option value="1">Tapa Dura</option>
+                          <option value="2">Tapa Blanda</option>
+                          <option value="3">Tapa Dura de Bolsillo</option>
+                          <option value="3">Tapa Blanda de Bolsillo</option>
+                        </select>
+                      </div>
                     </div>
                   </div>
+
+                  <label for="message-text" class="col-form-label">Reseña:</label>
+                  <textarea id="resena" class="form-control form-control-alternative" rows="5" placeholder="Escriba una breve descripción ..."></textarea>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">Precio:</label>
+                      <input type="number" step=".01" min="0" class="form-control form-control-alternative" id="tituloLibro">
+                    </div>
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">Categoria:</label>
+                      <div class="input-group mb-3">
+                        <select class="custom-select form-control-alternative" id="inputGroupCategoria">
+                          <option selected>Seleccionar...</option>
+                          <option value="1">Comic</option>
+                          <option value="2">Aventura</option>
+                          <option value="3">Ciencia Ficción</option>
+                          <option value="3">Romance</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">Me gusta:</label>
+                      <input type="number" class="form-control form-control-alternative" id="likes" disabled value="0">
+                    </div>
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">No me gusta:</label>
+                      <input type="number" class="form-control form-control-alternative" id="dislikes" disabled value="0">
+                    </div>
+                  </div>
+
+
+                </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success">Guardar</button>
+              <button type="button" class="btn btn-success" data-dismiss="modal" onclick="savedAlert('Libro')">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="modificarProductoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Modificar Producto</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">ISBN:</label>
+                  <input type="text" class="form-control form-control-alternative" id="ISBN">
+
+                  <label for="message-text" class="col-form-label">Autor:</label>
+                  <div class="input-group mb-3">
+                    <select class="custom-select form-control-alternative" id="inputGroupAutor">
+                      <option selected>Seleccionar...</option>
+                      <option value="1">Eduardo Galeano</option>
+                      <option value="2">Claudia Lars</option>
+                      <option value="3">Jean Luke</option>
+                    </select>
+                  </div>
+
+                  <label for="message-text" class="col-form-label">Editorial:</label>
+                  <div class="input-group mb-3">
+                    <select class="custom-select form-control-alternative" id="inputGroupEditorials">
+                      <option selected>Seleccionar...</option>
+                      <option value="1">Debolsillo</option>
+                      <option value="2">Santillana El Salvador</option>
+                      <option value="3">Editorial Planeta</option>
+                    </select>
+                  </div>
+
+                  <label for="message-text" class="col-form-label">Titulo:</label>
+                  <input type="text" class="form-control form-control-alternative" id="tituloLibro">
+
+                  <div class="row">
+                    <div class="col-3">
+                      <label for="message-text" class="col-form-label">Idioma:</label>
+                      <div class="input group dropdown d-block">
+                        <a href="#" class="btn btn-default dropdown-toggle " data-toggle="dropdown" id="navbarDropdownMenuLink2">
+                            <img src="../../resources/img/flags/SV.png" /> ...
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/DE.png" /> Deutsch
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/GB.png" /> English(UK)
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/FR.png" /> Français
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/ES.png" /> Español
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                  <img src="../../resources/img/flags/PT.png" /> Portuges
+                                </a>
+                            </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <label for="message-text" class="col-form-label">No. de páginas:</label>
+                      <input type="number" class="form-control form-control-alternative" id="noPags">
+                    </div>
+                    <div class="col-5">
+                      <label for="message-text" class="col-form-label">Ecuadernación:</label>
+                      <div class="input-group mb-3">
+                        <select class="custom-select form-control-alternative" id="inputGroupEcuadernacion">
+                          <option selected>Seleccionar...</option>
+                          <option value="1">Tapa Dura</option>
+                          <option value="2">Tapa Blanda</option>
+                          <option value="3">Tapa Dura de Bolsillo</option>
+                          <option value="3">Tapa Blanda de Bolsillo</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <label for="message-text" class="col-form-label">Reseña:</label>
+                  <textarea id="resena" class="form-control form-control-alternative" rows="5" placeholder="Escriba una breve descripción ..."></textarea>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">Precio:</label>
+                      <input type="number" step=".01" min="0" class="form-control form-control-alternative" id="tituloLibro">
+                    </div>
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">Categoria:</label>
+                      <div class="input-group mb-3">
+                        <select class="custom-select form-control-alternative" id="inputGroupCategoria">
+                          <option selected>Seleccionar...</option>
+                          <option value="1">Comic</option>
+                          <option value="2">Aventura</option>
+                          <option value="3">Ciencia Ficción</option>
+                          <option value="3">Romance</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">Me gusta:</label>
+                      <input type="number" class="form-control form-control-alternative" id="likes" disabled value="0">
+                    </div>
+                    <div class="col-6">
+                      <label for="message-text" class="col-form-label">No me gusta:</label>
+                      <input type="number" class="form-control form-control-alternative" id="dislikes" disabled value="0">
+                    </div>
+                  </div>
+
+
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-warning" data-dismiss="modal" onclick="savedAlert('Libro')">Modificar</button>
             </div>
           </div>
         </div>
