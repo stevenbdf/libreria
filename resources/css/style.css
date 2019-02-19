@@ -240,15 +240,19 @@ img.categorias-inicio {
     border: none;
 }
 
-tbody tr,  div.icon-shape a {
+table#productos tbody tr,  div.icon-shape a {
   color: white;
 }
 
-tbody tr,  div.icon-shape{
+table#productos tbody tr,  div.icon-shape{
   cursor: pointer;
 }
 
-tbody tr:hover{
+table#productos tbody tr:hover{
+  background-color: #43659e;
+}
+
+.selectedRow{
   background-color: #43659e;
 }
 
