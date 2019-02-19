@@ -61,49 +61,12 @@ function cleanSelectedRows(){
 function selectedRow(id){
 
   if($(`tr#${id}`).hasClass('selectedRow')){
+
     $(`tr#${id}`).removeClass('selectedRow');
   }else{
+
     cleanSelectedRows()
+
     $(`tr#${id}`).addClass('selectedRow');
   }
 }
-
-/* Optimizar esta funcion */
-
-$(document).ready(function() {
-  $("#email").focus(function() {
-    $('div.email').addClass('focused');
-  });
-  $("#email").focusout(function() {
-    $('div.email').removeClass('focused');
-  });
-
-  $("#password").focus(function() {
-    $('div.password').addClass('focused');
-  });
-  $("#password").focusout(function() {
-    $('div.password').removeClass('focused');
-  });
-
-  $("#password2").focus(function() {
-    $('div.password2').addClass('focused');
-  });
-  $("#password2").focusout(function() {
-    $('div.password2').removeClass('focused');
-  });
-
-  $("#name").focus(function() {
-    $('div.nombre').addClass('focused');
-  });
-  $("#name").focusout(function() {
-    $('div.nombre').removeClass('focused');
-  });
-
-  $("#lastName").focus(function() {
-    $('div.apellido').addClass('focused');
-  });
-  $("#lastName").focusout(function() {
-    $('div.apellido').removeClass('focused');
-  });
-
-});

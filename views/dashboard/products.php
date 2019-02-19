@@ -1,201 +1,14 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="author" content="Creative Tim">
-  <title>Dashboard - Libreria Maquilishuat</title>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../../resources/css/bootstrap.css">
-  <!-- Fonts -->
-  <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
-  <!-- Google Fonts -->
-  <link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
-  <!-- Icons -->
-  <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
-  <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <!-- Argon CSS -->
-
-
-  <!-- Maquilishuat -->
-  <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG">
-
-  <link type="text/css" href="./assets/css/argon.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../resources/css/style.css">
-</head>
-
-<body>
-  <!-- Sidenav -->
-
-  <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
-    <div class="container-fluid">
-      <!-- Toggler -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Brand -->
-      <a class="navbar-brand pt-0" href="./index.html">
-        <img src="../../resources/img/logo.png" class="navbar-brand-img" alt="...">
-      </a>
-      <!-- User -->
-      <ul class="nav align-items-center d-md-none">
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
-              </span>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
-            </div>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#!" class="dropdown-item">
-              <i class="ni ni-user-run"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-      <!-- Collapse -->
-      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
-        <!-- Collapse header -->
-        <div class="navbar-collapse-header d-md-none">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="./index.html">
-                <img src="./assets/img/brand/blue.png">
-              </a>
-            </div>
-            <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
-                <span></span>
-                <span></span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <!-- Navigation -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="./index.html">
-              <i class="fas fa-chart-area mr-3 text-primary"></i>Seleccionar graficos...
-            </a>
-          </li>
-        </ul>
-        <!-- Divider -->
-        <hr class="my-3">
-        <!-- Heading -->
-        <h6 class="navbar-heading text-muted"> <i class="fas fa-dollar-sign mr-2 text-primary"></i>Ventas </h6>
-        <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-palette"></i> Dia
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-ui-04"></i> Mes
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-ui-04"></i> Año
-            </a>
-          </li>
-        </ul>
-
-        <h6 class="navbar-heading text-muted"><i class="far fa-eye mr-2 text-primary"></i>Visitas </h6>
-        <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-palette"></i> Dia
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-ui-04"></i> Mes
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-ui-04"></i> Año
-            </a>
-          </li>
-        </ul>
-
-        <h6 class="navbar-heading text-muted"><i class="fas fa-users mr-2 text-primary"></i>Usuarios registrados </h6>
-        <!-- Navigation -->
-        <ul class="navbar-nav mb-md-3">
-          <li class="nav-item">
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-palette"></i> Dia
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-ui-04"></i> Mes
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="ni ni-ui-04"></i> Año
-            </a>
-          </li>
-        </ul>
-
-      </div>
-    </div>
-  </nav>
+<?php
+  require_once '../../core/helpers/model_page.php';
+  echo model_page::headerDashboardManagement();
+ ?>
   <!-- Main content -->
   <div class="main-content">
     <!-- Top navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Dashboard</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.php">Dashboard</a>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
@@ -220,14 +33,6 @@
               <a href="./examples/profile.html" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Configuración</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
               </a>
               <div class="dropdown-divider"></div>
               <a href="#!" class="dropdown-item">
@@ -281,17 +86,17 @@
                   </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mt-3 mt-md-0 d-flex justify-content-around">
-                  <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Agregar">
+                  <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Agregar">
                     <a href="#" data-toggle="modal" data-target="#guardarProductoModal">
                       <i class="fas fa-plus"></i>
                     </a>
                   </div>
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Modificar">
+                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Modificar">
                     <a href="#" data-toggle="modal" data-target="#modificarProductoModal">
                       <i class="fas fa-pen"></i>
                     </a>
                   </div>
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="deleteAlert('Libro')">
+                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Eliminar" onclick="deleteAlert('Libro')">
                     <a>
                       <i class="fas fa-trash-alt"></i>
                     </a>
@@ -695,6 +500,18 @@
                     </div>
                   </div>
 
+                  <div class="row mt-3 ">
+                    <div class="input-group mt-3 container">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Imagen</span>
+                      </div>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFoto1" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFoto1">Subir archivo</label>
+                      </div>
+                    </div>
+                  </div>
+
 
                 </div>
               </form>
@@ -837,6 +654,17 @@
                     </div>
                   </div>
 
+                  <div class="row mt-3 ">
+                    <div class="input-group mt-3 container">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Imagen</span>
+                      </div>
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGroupFoto1" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFoto1">Subir archivo</label>
+                      </div>
+                    </div>
+                  </div>
 
                 </div>
               </form>
