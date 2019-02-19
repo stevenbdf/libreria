@@ -9,20 +9,9 @@ $("#botoncito").click(function() {
     confirmButtonAriaLabel: 'Thumbs up, great!',
   })
 })
+/* alert para eliminar objetos */
 
-$("#botoncito").click(function() {
-  Swal.fire({
-    title: '<strong>TERMINOS Y CONDICIONES</strong>',
-    type: 'info',
-    html: '<p class="text-justify ml-3 mr-3">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using , making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>',
-    showCloseButton: true,
-    focusConfirm: true,
-    confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK!',
-    confirmButtonAriaLabel: 'Thumbs up, great!',
-  })
-})
-
-function deleteAlert(){
+function deleteAlert(objeto='registro'){
   Swal.fire({
     title: '¿Estas seguro?',
     text: "No podras recuperar la información borrada",
@@ -36,48 +25,48 @@ function deleteAlert(){
     if (result.value) {
       Swal.fire(
         '¡Borrado!',
-        'El registro ha sido eliminado',
+        `El ${objeto} ha sido eliminado`,
         'success'
       )
     }
   })
 }
 
+/* alert para guardar objetos */
 
-$(document).ready(function() {
-  $("#email").focus(function() {
-    $('div.email').addClass('focused');
-  });
-  $("#email").focusout(function() {
-    $('div.email').removeClass('focused');
-  });
+function savedAlert(objeto='Registro'){
+  Swal.fire(
+  '¡Correcto!',
+  `${objeto} guardado correctamente`,
+  'success'
+  )
+}
 
-  $("#password").focus(function() {
-    $('div.password').addClass('focused');
-  });
-  $("#password").focusout(function() {
-    $('div.password').removeClass('focused');
-  });
+/* alert para modificar objetos */
 
-  $("#password2").focus(function() {
-    $('div.password2').addClass('focused');
-  });
-  $("#password2").focusout(function() {
-    $('div.password2').removeClass('focused');
-  });
+function modifyAlert(objeto='Registro'){
+  Swal.fire(
+  '¡Correcto!',
+  `${objeto} modificado correctamente`,
+  'success'
+  )
+}
 
-  $("#name").focus(function() {
-    $('div.nombre').addClass('focused');
-  });
-  $("#name").focusout(function() {
-    $('div.nombre').removeClass('focused');
-  });
+function cleanSelectedRows(){
+  for (var i = 0; i < 11; i++) {
+      $(`tr#${i}`).removeClass('selectedRow');
+  }
+}
 
-  $("#lastName").focus(function() {
-    $('div.apellido').addClass('focused');
-  });
-  $("#lastName").focusout(function() {
-    $('div.apellido').removeClass('focused');
-  });
+function selectedRow(id){
 
-});
+  if($(`tr#${id}`).hasClass('selectedRow')){
+
+    $(`tr#${id}`).removeClass('selectedRow');
+  }else{
+
+    cleanSelectedRows()
+
+    $(`tr#${id}`).addClass('selectedRow');
+  }
+}
