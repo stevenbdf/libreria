@@ -89,6 +89,7 @@ class model_page{
         ';
     }
 
+
     public static function headerDashboard(){
         return '
         <!DOCTYPE html>
