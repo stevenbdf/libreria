@@ -2,48 +2,7 @@
   require_once '../../core/helpers/model_page.php';
   echo model_page::headerDashboardManagement();
  ?>
-  <!-- Main content -->
-  <div class="main-content">
-    <!-- Top navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-      <div class="container-fluid">
-        <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.php">Dashboard</a>
-        <!-- User -->
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="./assets/img/theme/team-4-800x800.jpg">
-                </span>
-                <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">Jessica Jones</span>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
-              </div>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-single-02"></i>
-                <span>Mi Perfil</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Configuración</span>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a href="#!" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
-              </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+
     <!-- Header -->
     <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
       <div class="container-fluid">
@@ -294,28 +253,6 @@
                     </td>
                   </tr>
                   <tr id="9" onclick="selectedRow(9)">
-                    <th scope="row">
-                      <div class="media align-items-center" style="">
-                        <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
-                      </div>
-                    </th>
-                    <td>
-                      Lisa Magano
-                    </td>
-                    <td>
-                      Español
-                    </td>
-                    <td>
-                      $15.95
-                    </td>
-                    <td>
-                      Drama
-                    </td>
-                    <td>
-
-                    </td>
-                  </tr>
-                  <tr id="10" onclick="selectedRow(10)">
                     <th scope="row">
                       <div class="media align-items-center" style="">
                         <span class="mb-0 text-sm">101 mensajes para decir te quiero para colorear y regalar</span>
