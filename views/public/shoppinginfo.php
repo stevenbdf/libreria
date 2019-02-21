@@ -3,7 +3,7 @@
   echo model_page::header();
  ?>
 
-<!------ Include the above in your HEAD tag ---------->
+
 
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       <tr>
-        <td data-th="Product">
+        <td data-th="Product">  <!-- sección de producto 1 -->
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
             <div class="col-sm-7 ml-3">
@@ -64,11 +64,11 @@
     </thead>
     <tbody>
       <tr>
-        <td data-th="Product">
+        <td data-th="Product"> <!-- sección de producto 2 -->
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
             <div class="col-sm-7 ml-3">
-              <h4 class="nomargin">Product0 1</h4>
+              <h4 class="nomargin">Product0 2</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
           </div>
@@ -108,11 +108,11 @@
     </thead>
     <tbody>
       <tr>
-        <td data-th="Product">
+        <td data-th="Product"><!-- sección de producto 3 -->
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
             <div class="col-sm-7 ml-3">
-              <h4 class="nomargin">Product0 1</h4>
+              <h4 class="nomargin">Product0 3</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
           </div>
@@ -152,11 +152,11 @@
     </thead>
     <tbody>
       <tr>
-        <td data-th="Product">
+        <td data-th="Product"><!-- sección de producto 4 -->
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
             <div class="col-sm-7 ml-3  ">
-              <h4 class="nomargin">Product0 1</h4>
+              <h4 class="nomargin">Product0 4</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
           </div>
@@ -196,11 +196,11 @@
     </thead>
     <tbody>
       <tr>
-        <td data-th="Product">
+        <td data-th="Product"><!-- sección de producto 5 -->
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
             <div class="col-sm-7 ml-3">
-              <h4 class="nomargin">Product0 1</h4>
+              <h4 class="nomargin">Product0 5</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
           </div>

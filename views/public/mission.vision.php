@@ -15,7 +15,7 @@
               <img src="../../resources/img/mision.vision/mision.jpg" class="card-img-top" alt="...">
             </div>
 
-            <div class="card-body">
+            <div class="card-body"> <!-- división de la misión -->
               <h3 class="text-center">Misión</h3>
               <p class="card-text">Contribuir a la difusión de la cultura y entretenimiento, creando espacios propicios para el encuentro con el conocimiento. Atendiendo el compromiso moral con nuestro entorno, nuestros colaboradores y accionistas.</p>
             </div>
@@ -26,7 +26,7 @@
             <div class="col-10 offset-1">
               <img src="../../resources/img/mision.vision/vision.jpg" class="card-img-top" alt="...">
             </div>
-            <div class="card-body">
+            <div class="card-body"><!-- división de la visión -->
               <h3 class="text-center">Visión</h3>
               <p class="card-text">Contribuir a la difusión de la cultura y entretenimiento, creando espacios propicios para el encuentro con el conocimiento. Atendiendo el compromiso moral con nuestro entorno, nuestros colaboradores y
                 accionistas.Consolidar el liderazgo de la marca, accediendo a nuevos mercados y enriqueciendo nuestra oferta cultural hacia el año 2020.</p>
