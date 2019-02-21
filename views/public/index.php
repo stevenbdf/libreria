@@ -3,14 +3,14 @@
   echo model_page::header();
  ?>
 
-  <div class="container">
+  <div class="container"> <!--En este div se encuentra en carrusel -->
     <div id="demo" class="carousel slide mb-4" data-ride="carousel">
-      <ul class="carousel-indicators">
+      <ul class="carousel-indicators"> <!--En esta parte se designan cuantas partes tendrá el carrusel -->
         <li data-target="#demo" data-slide-to="0" class="active"></li>
         <li data-target="#demo" data-slide-to="1"></li>
         <li data-target="#demo" data-slide-to="2"></li>
       </ul>
-      <div class="carousel-inner">
+      <div class="carousel-inner"> <!--Se establecen las imágenes por cada parte y además la información que lleva cada parte. -->
         <div class="carousel-item active">
           <img src="../../resources/img/book.jpg" class="d-block w-100" alt="Categorias">
           <div class="carousel-caption d-none d-md-block">
@@ -33,6 +33,7 @@
           </div>
         </div>
       </div>
+      <!--Se establecen y se les asigna la acción a los botones para que el carrusel funcione adecuadamente-->
       <a class="carousel-control-prev" href="#demo" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -44,10 +45,11 @@
     </div>
   </div>
 
-
+<!--Empiezan cada una de las diviciones para presentar las categorías rápidamente -->
   <div class="container mt-4 mb-4 pb-4">
     <h1 class="text-center pt-3">CATEGORIAS</h1>
     <div class="row">
+      <!-- Aquí comienzan las secciones -->
       <div class="col-12 col-md-6 col-lg-4 mb-4">
         <div class="card bg-dark text-white">
           <img src="../../resources/img/categories/comic.jpg" class="card-img categorias-inicio" alt="comic">
@@ -57,7 +59,7 @@
             <a href="all.products.php" class="btn btn-success">Ver más</a>
           </div>
         </div>
-      </div>
+      </div><!--Fin de una sección e inicio de otra -->
       <div class="col-12 col-md-6 col-lg-4 mb-4">
         <div class="card bg-dark text-white">
           <img src="../../resources/img/categories/drama.jpg" class="card-img categorias-inicio" alt="comic">
@@ -110,6 +112,7 @@
       </div>
     </div>
   </div>
+  <!--Aquí está el vídeo y las rejillas en cada tamaño siempre será de 12 -->
   <div class="container">
     <div class="row">
       <div class="col-12 ">

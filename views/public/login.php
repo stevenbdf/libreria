@@ -12,7 +12,7 @@
               <div class="text-muted text-center mb-3">
                 <small>Continua con ...</small>
               </div>
-              <div class="btn-wrapper text-center">
+              <div class="btn-wrapper text-center"> <!-- En esta parte se podrá iniciar sesión con otro métodos -->
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon">
                     <i class="fab fa-facebook-square"></i>
@@ -62,6 +62,7 @@
               </form>
             </div>
           </div>
+          <!--Parte final del form, está fuera del cuadro-->
           <div class="row mt-3">
             <div class="col-6">
               <a href="#" class="text-light">
@@ -80,7 +81,7 @@
   </main>
 
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- Se especifica que archivos se han usado para el funcionamiento del login-->
   <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>

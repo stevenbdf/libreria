@@ -364,3 +364,6 @@ table#productos tbody tr:hover{
 	table#cart tfoot td .btn{display:block;}
 
 }
+.form-gap {
+    padding-top: 70px;
+}
