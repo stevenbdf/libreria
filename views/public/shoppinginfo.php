@@ -23,7 +23,7 @@
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10">
+            <div class="col-sm-7 ml-3">
               <h4 class="nomargin">Product0 1</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
@@ -67,7 +67,7 @@
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10">
+            <div class="col-sm-7 ml-3">
               <h4 class="nomargin">Product0 1</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
@@ -111,7 +111,7 @@
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10">
+            <div class="col-sm-7 ml-3">
               <h4 class="nomargin">Product0 1</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
@@ -155,7 +155,7 @@
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10">
+            <div class="col-sm-7 ml-3  ">
               <h4 class="nomargin">Product0 1</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
@@ -199,7 +199,7 @@
         <td data-th="Product">
           <div class="row">
             <div class="col-sm-2 hidden-xs"><img src="../../resources/img/noimage.png" alt="..." class="img-responsive" /></div>
-            <div class="col-sm-10">
+            <div class="col-sm-7 ml-3">
               <h4 class="nomargin">Product0 1</h4>
               <p>Descripción del producto que se está comprando</p>
             </div>
