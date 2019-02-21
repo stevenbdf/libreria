@@ -23,7 +23,8 @@ class model_page{
           <link href="../../resources/vendor/nucleo/css/nucleo.css" rel="stylesheet">
           <!-- Argon CSS -->
           <link type="text/css" href="../../resources/css/argon.min.css" rel="stylesheet">
-
+          <!-- Sweetalert2 -->
+          <link type="text/css" href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
           <!-- Maquilishuat -->
           <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
           <link rel="stylesheet" href="../../resources/css/style.css">
@@ -108,6 +109,7 @@ class model_page{
           <!-- Icons -->
           <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
           <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+          <link type="text/css" href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
           <!-- Argon CSS -->
           <link type="text/css" href="./assets/css/argon.css?v=1.0.0" rel="stylesheet">
         </head>
@@ -150,8 +152,7 @@ class model_page{
         <script src="../../resources/js/bootstrap.js"></script>
         <script src="../../resources/js/bootstrap.bundle.min.js"></script>
         <script src="../../resources/js/argon.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <script src="../../resources/js/sweetalert2.min.js"></script>
         <script defer src="../../resources/js/index.js"></script>
 
 
@@ -169,8 +170,7 @@ class model_page{
         <script src="../../resources/js/popper.js"></script>
         <script src="../../resources/js/bootstrap.js"></script>
         <script src="../../resources/js/argon.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-        <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+        <script src="../../resources/js/sweetalert2.min.js"></script>
         <script defer src="../../resources/js/index.js"></script>
 
 
@@ -202,7 +202,7 @@ class model_page{
         <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
         <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
-
+        <link type="text/css" href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 
         <!-- Maquilishuat -->
         <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG">

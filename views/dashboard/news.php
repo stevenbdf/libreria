@@ -378,24 +378,8 @@ Bruna Husky es una detective replicante que vive en Madrid, en el año 2110. Ori
      <div class="row align-items-center justify-content-xl-between">
        <div class="col-xl-6">
          <div class="copyright text-center text-xl-left text-muted">
-           &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+           &copy; 2019 Libreria Maquilishuat
          </div>
-       </div>
-       <div class="col-xl-6">
-         <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-           <li class="nav-item">
-             <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-           </li>
-           <li class="nav-item">
-             <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-           </li>
-           <li class="nav-item">
-             <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-           </li>
-           <li class="nav-item">
-             <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-           </li>
-         </ul>
        </div>
      </div>
    </footer>
@@ -411,8 +395,7 @@ Bruna Husky es una detective replicante que vive en Madrid, en el año 2110. Ori
 <script src="./assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Argon JS -->
 <script src="./assets/js/argon.js?v=1.0.0"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="../../resources/js/sweetalert2.min.js"></script>
 <script src="../../resources/js/index.js"></script>
 </body>
 
