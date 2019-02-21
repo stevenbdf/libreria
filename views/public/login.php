@@ -65,7 +65,7 @@
           <!--Parte final del form, está fuera del cuadro-->
           <div class="row mt-3">
             <div class="col-6">
-              <a href="#" class="text-light">
+              <a href="forgotpass.php" class="text-light">
                 <small>¿Olvidaste tu contraseña?</small>
               </a>
             </div>

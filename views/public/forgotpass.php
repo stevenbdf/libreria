@@ -8,7 +8,7 @@
  <div class="form-gap"></div>
 <div class="container">
 	<div class="row">
-		<div class="col-md-10 col-md-offset-6">
+		<div class="col-md-5 col-md-offset-3  col-sm-5 col-sm-offset-3 col-xs-6 col-xs-offset-3">
             <div class="panel panel-default">
               <div class="panel-body">
                 <div class="text-center">
