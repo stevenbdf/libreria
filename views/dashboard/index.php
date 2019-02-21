@@ -35,22 +35,11 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <!-- Brand -->
-      <a class="navbar-brand pt-0" href="./index.html">
+      <a class="navbar-brand pt-0" href="index.php">
         <img src="../../resources/img/logo.png" class="navbar-brand-img" alt="...">
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-link-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="ni ni-bell-55"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right" aria-labelledby="navbar-default_dropdown_1">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
@@ -61,28 +50,16 @@
           </a>
           <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
             <div class=" dropdown-header noti-title">
-              <h6 class="text-overflow m-0">Welcome!</h6>
+              <h6 class="text-overflow m-0">Bienvenido</h6>
             </div>
             <a href="./examples/profile.html" class="dropdown-item">
               <i class="ni ni-single-02"></i>
-              <span>My profile</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-settings-gear-65"></i>
-              <span>Settings</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-calendar-grid-58"></i>
-              <span>Activity</span>
-            </a>
-            <a href="./examples/profile.html" class="dropdown-item">
-              <i class="ni ni-support-16"></i>
-              <span>Support</span>
+              <span>Mi Perfil</span>
             </a>
             <div class="dropdown-divider"></div>
             <a href="#!" class="dropdown-item">
               <i class="ni ni-user-run"></i>
-              <span>Logout</span>
+              <span>Cerrar Sesión</span>
             </a>
           </div>
         </li>
@@ -93,8 +70,8 @@
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
-              <a href="./index.html">
-                <img src="./assets/img/brand/blue.png">
+              <a href="index.php">
+                <img src="../../resources/img/logo.png">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -119,7 +96,7 @@
         <!-- Navigation -->
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="./index.html">
+            <a class="nav-link" href="#">
               <i class="fas fa-chart-area mr-3 text-primary"></i>Seleccionar graficos...
             </a>
           </li>
@@ -232,28 +209,16 @@
             </a>
             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
               <div class=" dropdown-header noti-title">
-                <h6 class="text-overflow m-0">Welcome!</h6>
+                <h6 class="text-overflow m-0">Bienvenido</h6>
               </div>
               <a href="./examples/profile.html" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>Mi Perfil</span>
               </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-settings-gear-65"></i>
-                <span>Configuración</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-calendar-grid-58"></i>
-                <span>Activity</span>
-              </a>
-              <a href="./examples/profile.html" class="dropdown-item">
-                <i class="ni ni-support-16"></i>
-                <span>Support</span>
-              </a>
               <div class="dropdown-divider"></div>
               <a href="#!" class="dropdown-item">
                 <i class="ni ni-user-run"></i>
-                <span>Logout</span>
+                <span>Cerrar Sesión</span>
               </a>
             </div>
           </li>
@@ -277,7 +242,7 @@
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i class="fas fa-chart-bar"></i>
+                          <i class="fas fa-book-open"></i>
                         </div>
                       </div>
                     </div>
@@ -286,7 +251,7 @@
               </a>
             </div>
             <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
+              <a href="news.php">
                 <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
                   <div class="card-body">
                     <div class="row">
@@ -296,7 +261,7 @@
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
-                          <i class="fas fa-chart-pie"></i>
+                          <i class="fas fa-newspaper"></i>
                         </div>
                       </div>
                     </div>
@@ -305,7 +270,7 @@
               </a>
             </div>
             <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
+              <a href="categories.php">
                 <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
                   <div class="card-body">
                     <div class="row">
@@ -315,7 +280,7 @@
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
-                          <i class="fas fa-users"></i>
+                          <i class="fas fa-align-left"></i>
                         </div>
                       </div>
                     </div>
@@ -324,7 +289,7 @@
               </a>
             </div>
             <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
+              <a href="employees.php">
                 <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
                   <div class="card-body">
                     <div class="row">
@@ -334,44 +299,6 @@
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                          <i class="fas fa-percent"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
-                        <span class="h2 font-weight-bold mb-0">580</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
-                          <i class="fas fa-percent"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
-                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col">
-                        <h5 class="card-title text-uppercase text-muted mb-0">Pedidos</h5>
-                        <span class="h2 font-weight-bold mb-0">924</span>
-                      </div>
-                      <div class="col-auto">
-                        <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
                           <i class="fas fa-users"></i>
                         </div>
                       </div>
@@ -381,7 +308,45 @@
               </a>
             </div>
             <div class="col-xl-3 col-lg-6 mt-3">
-              <a href="#">
+              <a href="clients.php">
+                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Clientes</h5>
+                        <span class="h2 font-weight-bold mb-0">580</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                          <i class="fas fa-users"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-6 mt-3">
+              <a href="orders.php">
+                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Pedidos</h5>
+                        <span class="h2 font-weight-bold mb-0">924</span>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                          <i class="fas fa-shopping-cart"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-6 mt-3">
+              <a href="comments.php">
                 <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
                   <div class="card-body">
                     <div class="row">
@@ -391,7 +356,25 @@
                       </div>
                       <div class="col-auto">
                         <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                          <i class="fas fa-chart-bar"></i>
+                          <i class="fas fa-comment-alt"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="col-xl-3 col-lg-6 mt-3">
+              <a href="authors.publishers.php">
+                <div class="card card-stats mb-4 mb-xl-0 card-lift--hover shadow border-0">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col">
+                        <h5 class="card-title text-uppercase text-muted mb-0">Autores y Editoriales</h5>
+                      </div>
+                      <div class="col-auto">
+                        <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                          <i class="fas fa-book-reader"></i>
                         </div>
                       </div>
                     </div>
