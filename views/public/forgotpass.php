@@ -14,8 +14,8 @@
                 <div class="text-center">
                     <div class="mb-4">
                   <h3><i class="fa fa-lock fa-4x"></i></h3>
-                  <h2 class="text-center">Forgot Password?</h2>
-                  <p>You can reset your password here.</p>
+                  <h2 class="text-center"> ¿Olvidaste tu contraseña?</h2>
+                  <p>Puedes cambiar tu contraseña aquí.</p>
                     </div>
                   <div class="panel-body">
 
@@ -24,7 +24,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="email" name="email" placeholder="email address" class="form-control"  type="email">
+                          <input id="email" name="email" placeholder="Correo electrónico" class="form-control"  type="email">
                         </div>
                       </div>
                       <div class="form-group">
