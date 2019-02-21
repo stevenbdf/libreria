@@ -64,6 +64,15 @@
                   </div>
                 </div>
 
+                <div class="form-group address mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                    </div>
+                    <input id="address" class="form-control" placeholder="Dirección" type="text">
+                  </div>
+                </div>
+
 
 
                 <div class="form-group password">

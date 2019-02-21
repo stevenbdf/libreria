@@ -46,12 +46,12 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mt-3 mt-md-0 d-flex justify-content-around">
                   <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="No disponible" style="background-color:#306950 !important;">
-                    <a href="#" data-toggle="modal" data-target="#guardarClienteModal">
+                    <a href="#" data-toggle="modal" data-target="#">
                       <i class="fas fa-plus"></i>
                     </a>
                   </div>
                   <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="No disponible" style="background-color:#773f31 !important;">
-                    <a href="#" data-toggle="modal" data-target="#modificarClienteModal">
+                    <a href="#" data-toggle="modal" data-target="#">
                       <i class="fas fa-pen"></i>
                     </a>
                   </div>
@@ -70,7 +70,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Correo</th>
-                    <th scope="col"></th>
+                    <th scope="col">Direccion</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
                   </tr>
@@ -89,7 +89,7 @@
                       fabiolamartinez190201@gmail.com
                     </td>
                     <td>
-
+                      San Salvador, El Salvador CP20100
                     </td>
                     <td>
 
@@ -112,7 +112,7 @@
                       fabiolamartinez190201@gmail.com
                     </td>
                     <td>
-
+                      San Salvador, El Salvador CP20100
                     </td>
                     <td>
 
@@ -135,7 +135,7 @@
                       fabiolamartinez190201@gmail.com
                     </td>
                     <td>
-
+                      San Salvador, El Salvador CP20100
                     </td>
                     <td>
 
@@ -158,7 +158,7 @@
                       fabiolamartinez190201@gmail.com
                     </td>
                     <td>
-
+                      San Salvador, El Salvador CP20100
                     </td>
                     <td>
 
@@ -181,7 +181,7 @@
                       fabiolamartinez190201@gmail.com
                     </td>
                     <td>
-
+                      San Salvador, El Salvador CP20100
                     </td>
                     <td>
 
