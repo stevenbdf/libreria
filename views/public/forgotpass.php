@@ -2,59 +2,60 @@
   require_once '../../core/helpers/model_page.php';
   echo model_page::header();
  ?>
- <!--Divider password  -->
-<div class=" col-12 col-md-6 offset-md-3 col-lg pb-2  col-xs-4">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
- <div class="form-gap"></div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-5 col-md-offset-3  col-sm-5 col-sm-offset-3 col-xs-6 col-xs-offset-3">
-            <div class="panel panel-default">
-              <div class="panel-body">
-                <div class="text-center">
-                    <div class="mb-4">
-                  <h3><i class="fa fa-lock fa-4x"></i></h3>
-                  <h2 class="text-center"> ¿Olvidaste tu contraseña?</h2>
-                  <p>Puedes cambiar tu contraseña aquí.</p>
+
+  <main id="login">
+    <div class="container-fluid login pt-5 pt-lg-4 pb-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Ingresa tu correo y te ayudaremos a recuperar tu contraseña</small>
+              </div>
+              <form>
+
+                <div class="form-group  mb-3">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
                     </div>
-                  <div class="panel-body">
-
-                    <form id="register-form" role="form" autocomplete="off" class="form" method="post">
-
-                      <div class="form-group">
-                        <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope color-blue"></i></span>
-                          <input id="email" name="email" placeholder="Correo electrónico" class="form-control"  type="email">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Cambiar" type="submit">
-                      </div>
-
-                      <input type="hidden" class="hide" name="token" id="token" value="">
-                    </form>
-
+                    <input class="form-control form-control-alternative" placeholder="Email" type="email">
                   </div>
                 </div>
-              </div>
+
+                <div class="text-center">
+                  <button type="button" class="btn btn-primary my-4">Enviar</button>
+                </div>
+              </form>
             </div>
           </div>
-	</div>
-</div>
-</div>
+          <!--Parte final del form, está fuera del cuadro-->
+          <div class="row mt-3">
+            <div class="col-6">
+              <a href="login.php" class="text-light">
+                <small>Iniciar Sesión</small>
+              </a>
+            </div>
+            <div class="col-6 text-right">
+              <a href="register.php" class="text-light">
+                <small>Registrate</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <!-- Se especifica que archivos se han usado para el funcionamiento del login-->
   <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script src="../../resources/js/argon.min.js"></script>
+  <script src="../../resources/js/sweetalert2.min.js"></script>
   <script defer src="../../resources/js/index.js"></script>
+
 </body>
 
 </html>
-
-<?php
-  echo model_page::footer();
- ?>

@@ -121,8 +121,7 @@
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>
   <script src="../../resources/js/argon.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script src="../../resources/js/sweetalert2.min.js"></script>
   <script defer src="../../resources/js/index.js"></script>
 
   </body>

@@ -2,10 +2,6 @@
   require_once '../../core/helpers/model_page.php';
   echo model_page::header();
  ?>
-
-
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
 
   <table id="cart" class="table table-hover table-condensed">
@@ -35,22 +31,12 @@
         </td>
         <td data-th="Subtotal" class="text-center">1.99</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-info btn-sm"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button>
         </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr class="visible-xs">
-        <td class="text-center"><strong>Total 1.99</strong></td>
-      </tr>
-      <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Has revisión <i class="fa fa-angle-right"></i></a></td>
-      </tr>
-    </tfoot>
+
   </table>
   <table id="cart" class="table table-hover table-condensed">
     <thead>
@@ -79,22 +65,11 @@
         </td>
         <td data-th="Subtotal" class="text-center">1.99</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-info btn-sm"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button>
         </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr class="visible-xs">
-        <td class="text-center"><strong>Total 1.99</strong></td>
-      </tr>
-      <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Has revisión <i class="fa fa-angle-right"></i></a></td>
-      </tr>
-    </tfoot>
   </table>
   <table id="cart" class="table table-hover table-condensed">
     <thead>
@@ -123,22 +98,11 @@
         </td>
         <td data-th="Subtotal" class="text-center">1.99</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-info btn-sm"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button>
         </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr class="visible-xs">
-        <td class="text-center"><strong>Total 1.99</strong></td>
-      </tr>
-      <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Has revisión <i class="fa fa-angle-right"></i></a></td>
-      </tr>
-    </tfoot>
   </table>
   <table id="cart" class="table table-hover table-condensed">
     <thead>
@@ -167,22 +131,11 @@
         </td>
         <td data-th="Subtotal" class="text-center">1.99</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-info btn-sm"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button>
         </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr class="visible-xs">
-        <td class="text-center"><strong>Total 1.99</strong></td>
-      </tr>
-      <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Has revisión <i class="fa fa-angle-right"></i></a></td>
-      </tr>
-    </tfoot>
   </table>
   <table id="cart" class="table table-hover table-condensed">
     <thead>
@@ -211,23 +164,26 @@
         </td>
         <td data-th="Subtotal" class="text-center">1.99</td>
         <td class="actions" data-th="">
-          <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-          <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-info btn-sm"><i class="fas fa-plus"></i></button>
+          <button class="btn btn-danger btn-sm"><i class="fas fa-minus"></i></button>
         </td>
       </tr>
     </tbody>
-    <tfoot>
-      <tr class="visible-xs">
-        <td class="text-center"><strong>Total 1.99</strong></td>
-      </tr>
-      <tr>
-        <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
-        <td><a href="#" class="btn btn-success btn-block">Has revisión <i class="fa fa-angle-right"></i></a></td>
-      </tr>
-    </tfoot>
+
   </table>
+  <div class="mb-3">
+    <div class="row">
+      <div class="col-3">
+        <a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a>
+      </div>
+      <div class="col-6">
+        <p class="hidden-xs text-center"><strong>Total $1.99</strong></p>
+      </div>
+      <div class="col-3">
+        <a href="#" class="btn btn-success float-right">Has revisión <i class="fa fa-angle-right"></i></a>
+      </div>
+    </div>
+  </div>
 
 </div>
 <?php

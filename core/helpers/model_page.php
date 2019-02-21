@@ -73,15 +73,14 @@ class model_page{
                       <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="login.php">Editar Mis Datos</a>
-                      <a class="dropdown-item" href="#">Mis Comentarios</a>
-                      <a class="dropdown-item" href="#">Mis Pedidos</a>
+                      <a class="dropdown-item" href="profile.php">Editar Mis Datos</a>
+                      <a class="dropdown-item" href="login.php">Login</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Cerrar Sesión <i class="fas fa-sign-out-alt"></i></a>
                     </div>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">$17.5 <i class="fas fa-shopping-cart"></i></i></a>
+                    <a class="nav-link" href="shoppinginfo.php">$17.5 <i class="fas fa-shopping-cart"></i></i></a>
                   </li>
                 </ul>
               </div>
@@ -105,7 +104,7 @@ class model_page{
           <!-- Favicon -->
           <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
           <!-- Fonts -->
-          <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
           <!-- Icons -->
           <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
           <link href="./assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
@@ -128,17 +127,12 @@ class model_page{
                 <a href="contact.php">Contactanos</a>
               </div>
               <div class="col-12 col-md-6 col-lg pb-2">
-                <a href="news.php">Noticias</a>
-              </div>
-              <div class="col-12 col-md-6 col-lg pb-2">
                 <a id="botoncito" href="#">Terminos y Condiciones</a>
-              </div>
-              <div class="col-12 col-md-6 col-lg pb-2">
-                <a href="#">Privacidad</a>
               </div>
               <div class="col-12 col-md-6 col-lg pb-2">
                 <a href="mission.vision.php">Mision y Vision</a>
               </div>
+
             </div>
           </div>
         </footer>

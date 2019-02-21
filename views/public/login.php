@@ -13,13 +13,13 @@
                 <small>Continua con ...</small>
               </div>
               <div class="btn-wrapper text-center"> <!-- En esta parte se podrá iniciar sesión con otro métodos -->
-                <a href="#" class="btn btn-neutral btn-icon">
+                <a href="https:www.facebook.com" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon">
                     <i class="fab fa-facebook-square"></i>
                   </span>
                   <span class="btn-inner--text">Facebook</span>
                 </a>
-                <a href="#" class="btn btn-neutral btn-icon">
+                <a href="https:www.gmail.com" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon">
                     <i class="fab fa-google"></i>
                   </span>
@@ -86,8 +86,7 @@
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>
   <script src="../../resources/js/argon.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script src="../../resources/js/sweetalert2.min.js"></script>
   <script defer src="../../resources/js/index.js"></script>
 
 </body>

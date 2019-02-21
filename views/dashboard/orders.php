@@ -477,8 +477,7 @@
   <script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="./assets/js/argon.js?v=1.0.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+  <script src="../../resources/js/sweetalert2.min.js"></script>
   <script src="../../resources/js/index.js"></script>
 </body>
 

@@ -283,7 +283,7 @@ table#productos tbody tr:hover{
   }
 
   main#mission-vision, main#login {
-    height: 105vh;
+    height: 140vh;
   }
 
   .card:hover .card-img-overlay>p {
@@ -310,7 +310,7 @@ table#productos tbody tr:hover{
   }
 
   main#mission-vision, main#login {
-    height: 100vh;
+    height: 140vh;
   }
 
   .card:hover .card-img-overlay>p {
@@ -326,7 +326,7 @@ table#productos tbody tr:hover{
     width: 100%;
   }
   main#mission-vision, main#login{
-    height: 120vh;
+    height: 150vh;
   }
 }
 

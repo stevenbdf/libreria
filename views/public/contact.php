@@ -22,13 +22,28 @@
           <input type="text" class="form-control form-control-alternative" placeholder="Tu # Celular *"/>
         </div>
         <div class="form-group">
-           <button type="button" class="btn btn-primary btn-lg btn-block">Enviar</button>
+           <button type="button" class="btn btn-primary btn-block">Enviar</button>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
           <textarea name="txtMsg" class="form-control form-control-alternative" placeholder="Tu Mensaje *" style="width: 100%; height: 185px;"></textarea>
         </div>
+      </div>
+
+    </div>
+    <div class="col-md-12 mt-5">
+      <h3>Nuestros datos</h3>
+    </div>
+    <div class="row">
+      <div class="col-6 mt-2">
+        <strong>Tel:</strong> +503 7781-4435
+      </div>
+      <div class="col-6 mt-2">
+        <strong>Correo:</strong> libreria_maquilishuat@gmail.com
+      </div>
+      <div class="col-12 mt-2">
+        <strong>Dirección:</strong> 5ta Calle Poniente, 2 Av. Principal Lincoln San Salvador, El Salvador
       </div>
     </div>
   </form>

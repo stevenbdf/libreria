@@ -34,6 +34,14 @@
           </div>
         </div>
       </div>
+      <div class="row mb-4">
+        <div class="col-12 mt-4 mb-2">
+          <h2 class="text-center">Nuestro Lema</h2>
+        </div>
+        <div class="col-12 mt-4 mb-2">
+          <h3 class="text-center" style="color:white !important;">"Para viajar lejos no hay mejor nave que un libro."</h3>
+        </div>
+      </div>
     </div>
   </main>
 
