@@ -2,7 +2,7 @@
   require_once '../../core/helpers/model_page.php';
   echo model_page::header();
  ?>
-  <!-- Page content -->
+  <!--contenido de pagina -->
   <main id="login">
     <div class="container-fluid login pt-5 pt-lg-4 pb-4">
       <div class="row justify-content-center">
@@ -12,6 +12,7 @@
               <div class="text-muted text-center mb-3">
                 <small>Registrate con ...</small>
               </div>
+              <!-- metodos de registrarse -->
               <div class="btn-wrapper text-center">
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon">
@@ -31,6 +32,7 @@
               <div class="text-center text-muted mb-4">
                 <small>O registrate con tus credenciales</small>
               </div>
+              <!-- formulario de registro-->
               <form role="form">
                 <div class="row">
                   <div class="col-12 col-md-6">
@@ -97,6 +99,7 @@
                   <button type="button" class="btn btn-primary my-4">Acceder</button>
                 </div>
               </form>
+               <!-- división de la misión -->
             </div>
           </div>
           <div class="row mt-3">
@@ -110,10 +113,10 @@
       </div>
     </div>
   </main>
-  <!-- Footer -->
 
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <!-- archivos necesarios -->
   <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>

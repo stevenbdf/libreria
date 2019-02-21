@@ -1,13 +1,15 @@
+<!--Se manda a llamar todo el encabezado con el menú -->
 <?php
   require_once '../../core/helpers/model_page.php';
   echo model_page::header();
  ?>
-
+<!-- Contenido principal, aquí se encuentran cada una de las diviciones para presentar cada producto según la categoría-->
   <main id="all-products">
-    <div class="container mt-4 mb-4 pb-4">
+    <div class="container mt-4 mb-4 pb-4">    <!-- Div principal en donde están cada una de las tarjetas. -->
       <h1 class="text-center pt-3">Comics</h1>
       <div class="card-columns">
 
+          <!-- Cada una de las tarjetas con la información del producto-->
         <div class="card pb-md-4 pb-lg-0 card-lift--hover shadow border-0">
           <img src="../../resources/img/books/vengadores-acuatico.jpg" class="card-img-top card-img-book" alt="...">
           <div class="card-body">
@@ -16,7 +18,7 @@
             <a href="product.php" class="btn btn-success float-left float-lg-none">Ver más</a> <a href="#" class="btn btn-primary float-right float-lg-none"><i class="fas fa-shopping-cart"></i></a>
           </div>
         </div>
-
+        <!--finaliza la tarjeta -->
         <div class="card pb-md-4 pb-lg-0 card-lift--hover shadow border-0">
           <img src="../../resources/img/books/campeones.jpg" class="card-img-top card-img-book" alt="...">
           <div class="card-body">
@@ -107,7 +109,7 @@
       </div>
     </div>
   </main>
-
+<!--Se manda a llamar todo el código html del footer-->
   <?php
     echo model_page::footer();
    ?>
