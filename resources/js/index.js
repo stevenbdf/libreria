@@ -55,6 +55,7 @@ function modifyAlert(objeto='Registro'){
 function cleanSelectedRows(){
   for (var i = 0; i < 11; i++) {
       $(`tr#${i}`).removeClass('selectedRow');
+      $(`tr#${i}b`).removeClass('selectedRow');
   }
 }
 
