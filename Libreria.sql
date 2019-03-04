@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-02-2019 a las 21:56:18
+-- Tiempo de generación: 27-02-2019 a las 00:32:08
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -30,19 +30,28 @@ CREATE TABLE `autor` (
   `idAutor` int(11) NOT NULL,
   `nombre` varchar(50) COLLATE utf8_bin NOT NULL,
   `apellido` varchar(50) COLLATE utf8_bin NOT NULL,
-  `pais` varchar(50) COLLATE utf8_bin NOT NULL
+  `pais` varchar(50) COLLATE utf8_bin NOT NULL,
+  `img` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `autor`
 --
 
-INSERT INTO `autor` (`idAutor`, `nombre`, `apellido`, `pais`) VALUES
-(1, 'Jojo ', 'Moyes', 'Estados Unidos'),
-(2, 'John ', 'Green', 'Estados Unidos'),
-(3, 'Lauren', 'Kate', 'Estados Unidos'),
-(4, 'Lauren', 'Oliver', 'Estados Unidos'),
-(5, 'Suzanne', 'Collins', 'Estados Unidos');
+INSERT INTO `autor` (`idAutor`, `nombre`, `apellido`, `pais`, `img`) VALUES
+(1, 'Jojo ', 'Moyes', 'Estados Unidos', ''),
+(2, 'John ', 'Green', 'Estados Unidos', ''),
+(3, 'Lauren', 'Kate', 'Estados Unidos', ''),
+(4, 'Lauren', 'Oliver', 'Estados Unidos', ''),
+(5, 'Suzanne', 'Collins', 'Estados Unidos', '');
+
+--
+-- Disparadores `autor`
+--
+DELIMITER $$
+CREATE TRIGGER `llenar_bitacora` AFTER INSERT ON `autor` FOR EACH ROW INSERT into bitacora VALUES (null, 1, now(), 'Insertó un autor')
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -56,6 +65,34 @@ CREATE TABLE `bitacora` (
   `fecha` datetime NOT NULL,
   `accion` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `bitacora`
+--
+
+INSERT INTO `bitacora` (`idBitacora`, `idUsuario`, `fecha`, `accion`) VALUES
+(1, 1, '2019-02-20 08:23:44', 'se fresio'),
+(2, 1, '2019-02-20 08:33:36', 'Eliminó un libro'),
+(3, 1, '2019-02-20 08:36:54', 'Actualizó información en un libro'),
+(4, 1, '2019-02-20 09:34:10', 'Actualizó información en un libro'),
+(5, 1, '2019-02-20 09:59:28', 'Actualizó información en un libro'),
+(6, 1, '2019-02-20 09:59:39', 'Actualizó información en un libro'),
+(7, 1, '2019-02-20 09:59:47', 'Actualizó información en un libro'),
+(8, 1, '2019-02-20 09:59:58', 'Actualizó información en un libro'),
+(9, 1, '2019-02-20 10:00:07', 'Actualizó información en un libro'),
+(10, 1, '2019-02-20 10:00:16', 'Actualizó información en un libro'),
+(11, 1, '2019-02-20 10:01:22', 'Actualizó información en un libro'),
+(12, 1, '2019-02-20 10:05:33', 'Actualizó información en un libro'),
+(13, 1, '2019-02-20 10:10:20', 'Insertó un libro'),
+(14, 1, '2019-02-20 10:10:50', 'Eliminó un libro'),
+(15, 1, '2019-02-20 10:11:05', 'Actualizó información en un libro'),
+(16, 1, '2019-02-20 10:11:10', 'Actualizó información en un libro'),
+(17, 1, '2019-02-20 10:11:16', 'Actualizó información en un libro'),
+(18, 1, '2019-02-20 10:11:22', 'Actualizó información en un libro'),
+(19, 1, '2019-02-20 10:11:37', 'Actualizó información en un libro'),
+(20, 1, '2019-02-20 10:11:43', 'Actualizó información en un libro'),
+(21, 1, '2019-02-20 10:12:00', 'Insertó un libro'),
+(22, 1, '2019-02-20 10:15:49', 'Actualizó información en un libro');
 
 -- --------------------------------------------------------
 
@@ -80,6 +117,22 @@ INSERT INTO `categoria` (`idCategoria`, `nombreCat`, `desccuento`) VALUES
 (4, 'Aventura', 0),
 (5, 'Terror', 0);
 
+--
+-- Disparadores `categoria`
+--
+DELIMITER $$
+CREATE TRIGGER `llenar.delete` AFTER DELETE ON `categoria` FOR EACH ROW INSERT into bitacora values (null, 1, now(), 'Eliminó una categoría')
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `llenar.insert` AFTER INSERT ON `categoria` FOR EACH ROW insert into bitacora VALUES(null,1, now(),'Insertó una categoría')
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `llenar.update` AFTER UPDATE ON `categoria` FOR EACH ROW INSERt into bitacora values (null, 1, now(), 'Actualizó información en una categoría')
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -91,19 +144,21 @@ CREATE TABLE `cliente` (
   `nombreCliente` varchar(50) COLLATE utf8_bin NOT NULL,
   `apellidoCliente` varchar(50) COLLATE utf8_bin NOT NULL,
   `correo` varchar(70) COLLATE utf8_bin NOT NULL,
-  `contrasena` varchar(70) COLLATE utf8_bin NOT NULL
+  `contrasena` varchar(70) COLLATE utf8_bin NOT NULL,
+  `direccion` text COLLATE utf8_bin NOT NULL,
+  `img` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `nombreCliente`, `apellidoCliente`, `correo`, `contrasena`) VALUES
-(1, 'Fabiola Nicole', 'Martínez Ramírez', 'fabiolamartinez190201@gmail.com', 'passwor1234'),
-(2, 'Steven Benjamín', 'Díaz Flores', 'steven_123@gmail.com', 'password1234'),
-(3, 'Allison Stefany ', 'Cartagena Cárcamo', 'alli_12@gmail.com', 'pass1222'),
-(4, 'Ana Melisa', 'Ramírez', 'melisaramirez_25@hotmail.com', 'pass1234'),
-(5, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', 'password12');
+INSERT INTO `cliente` (`idCliente`, `nombreCliente`, `apellidoCliente`, `correo`, `contrasena`, `direccion`, `img`) VALUES
+(1, 'Fabiola Nicole', 'Martínez Ramírez', 'fabiolamartinez190201@gmail.com', 'passwor1234', '', ''),
+(2, 'Steven Benjamín', 'Díaz Flores', 'steven_123@gmail.com', 'password1234', '', ''),
+(3, 'Allison Stefany ', 'Cartagena Cárcamo', 'alli_12@gmail.com', 'pass1222', '', ''),
+(4, 'Ana Melisa', 'Ramírez', 'melisaramirez_25@hotmail.com', 'pass1234', '', ''),
+(5, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', 'password12', '', '');
 
 -- --------------------------------------------------------
 
@@ -141,10 +196,25 @@ CREATE TABLE `comentnoticias` (
 CREATE TABLE `detallepedido` (
   `idDetalle` int(11) NOT NULL,
   `idPedido` int(11) NOT NULL,
-  `ISBN` varchar(100) COLLATE utf8_bin NOT NULL,
+  `idLibro` int(20) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `precioVenta` float NOT NULL
+  `precioVenta` float(4,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `detallepedido`
+--
+
+INSERT INTO `detallepedido` (`idDetalle`, `idPedido`, `idLibro`, `cantidad`, `precioVenta`) VALUES
+(3, 2, 2, 2, 56.89);
+
+--
+-- Disparadores `detallepedido`
+--
+DELIMITER $$
+CREATE TRIGGER `resta` AFTER INSERT ON `detallepedido` FOR EACH ROW UPDATE libros set cant = cant-NEW.cantidad WHERE idLibro = new.idLibro
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -182,18 +252,19 @@ CREATE TABLE `empleados` (
   `apellidoEmpleado` varchar(50) COLLATE utf8_bin NOT NULL,
   `correo` varchar(50) COLLATE utf8_bin NOT NULL,
   `contrasena` varchar(70) COLLATE utf8_bin NOT NULL,
-  `DUI` varchar(10) COLLATE utf8_bin NOT NULL
+  `DUI` varchar(10) COLLATE utf8_bin NOT NULL,
+  `img` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `correo`, `contrasena`, `DUI`) VALUES
-(1, 'André Fernando', 'Candray Castillo', 'andre_candray@gmail.com', 'password345', '01805710-0'),
-(2, 'Gabriela Michelle', 'Oporto Gil', 'gab.oporto@outlook.es', 'root432', '15634234-9'),
-(3, 'Stephanie Gisselle', 'Zetino Rodríguez', 'gis.zet_12@icloud.com', 'gissi2354zet', '34521676-3'),
-(4, ' Diego Sebastián', 'Jiménez Artiga', 'diegoo_sebas@outlook.com', 'dieguito87654321', '34521678-1');
+INSERT INTO `empleados` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `correo`, `contrasena`, `DUI`, `img`) VALUES
+(1, 'André Fernando', 'Candray Castillo', 'andre_candray@gmail.com', 'password345', '01805710-0', ''),
+(2, 'Gabriela Michelle', 'Oporto Gil', 'gab.oporto@outlook.es', 'root432', '15634234-9', ''),
+(3, 'Stephanie Gisselle', 'Zetino Rodríguez', 'gis.zet_12@icloud.com', 'gissi2354zet', '34521676-3', ''),
+(4, ' Diego Sebastián', 'Jiménez Artiga', 'diegoo_sebas@outlook.com', 'dieguito87654321', '34521678-1', '');
 
 -- --------------------------------------------------------
 
@@ -202,7 +273,7 @@ INSERT INTO `empleados` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `co
 --
 
 CREATE TABLE `libros` (
-  `ISBN` varchar(20) COLLATE utf8_bin NOT NULL,
+  `idLibro` int(11) NOT NULL,
   `idAutor` int(11) NOT NULL,
   `idEditorial` int(11) NOT NULL,
   `NombreL` varchar(40) COLLATE utf8_bin NOT NULL,
@@ -214,19 +285,38 @@ CREATE TABLE `libros` (
   `idCat` int(11) NOT NULL,
   `img` varchar(100) COLLATE utf8_bin NOT NULL,
   `likes` int(11) NOT NULL,
-  `dislikes` int(11) NOT NULL
+  `dislikes` int(11) NOT NULL,
+  `cant` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `libros`
 --
 
-INSERT INTO `libros` (`ISBN`, `idAutor`, `idEditorial`, `NombreL`, `Idioma`, `NoPag`, `encuadernacion`, `resena`, `precio`, `idCat`, `img`, `likes`, `dislikes`) VALUES
-(' 9781470333720', 1, 1, 'Yo ntes de ti', 'Español', 496, 'Tapa blanda', 'ouisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 1, '', 0, 0),
-(' 9788427216266', 5, 3, 'Pack Trilogía Juegos del Hambre', 'Español', 1200, 'Tapa blanda bolsillo', 'La trilogía completa de los Juegos de Hambre de Suzanne Collins, en formato para viajes.', 50.99, 5, '', 0, 0),
-('9780141345659', 3, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora. ', 10.99, 4, '', 0, 0),
-('9783641048785', 2, 2, 'Oscuros', 'Español', 416, 'Tapa blanda', 'Helstone, Inglaterra, 1854.Es noche cerrada y dos jóvenes conversan en una remota casa de campo. Se sienten irresistiblemente atraídos el uno por el otro, pero él insiste en que no pueden estar juntos. Ella obvia sus advertencias y se acerca a él, con paso lento y desafiante.Cuando se besan, una furiosa llamarada lo inunda todo.\r\n', 11.5, 2, '', 0, 0),
-('9788466661454', 4, 2, 'Before I Fall', 'Inglés', 512, 'Tapa blanda', 'Samantha Kingston has it all: looks, popularity, the perfect boyfriend. Friday, February 12, should be just another day in her charmed life. Instead, it turns out to be her last. The catch: Samantha wakes up the next morning. Living the last day of her life she will untangle the mystery surrounding her death.', 17, 3, '', 0, 0);
+INSERT INTO `libros` (`idLibro`, `idAutor`, `idEditorial`, `NombreL`, `Idioma`, `NoPag`, `encuadernacion`, `resena`, `precio`, `idCat`, `img`, `likes`, `dislikes`, `cant`) VALUES
+(1, 1, 1, 'el ataque de las fresas', 'fresitas', 18, 'josue', 'la fabi', 1, 3, '.jpg', 4, 5, 0),
+(2, 3, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora. ', 10.99, 4, '', 0, 0, -5),
+(3, 1, 1, 'Yo ntes de ti', 'Español', 496, 'Tapa blanda', 'ouisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 1, '.jpg', 9, 3, 9),
+(4, 3, 4, 'Lo mejor de mí', 'Español', 398, 'Tapa blanda', 'Durante la primavera de 1984, cuando todavía iban al instituto, Amanda Collier y Dawson Cole se enamoraron para siempre. Aunque pertenecían a estratos sociales muy diferentes, el amor que sentían el uno por el otro parecía capaz de desafiar cualquier impedimento que la realidad en la vida de la pequeña ciudad de Oriental en Carolina del Norte quisiera ponerles por delante. Pero el verano después de su graduación una serie de acontecimientos imprevistos separaría a la pareja y los llevaría por caminos radicalmente opuestos.', 30, 2, '', 0, 0, 0),
+(5, 2, 2, 'Oscuros', 'Español', 416, 'Tapa blanda', 'Helstone, Inglaterra, 1854.Es noche cerrada y dos jóvenes conversan en una remota casa de campo. Se sienten irresistiblemente atraídos el uno por el otro, pero él insiste en que no pueden estar juntos. Ella obvia sus advertencias y se acerca a él, con paso lento y desafiante.Cuando se besan, una furiosa llamarada lo inunda todo.\r\n', 11.5, 2, '', 0, 0, 0),
+(6, 5, 3, 'Pack Trilogía Juegos del Hambre', 'Español', 1200, 'Tapa blanda bolsillo', 'La trilogía completa de los Juegos de Hambre de Suzanne Collins, en formato para viajes.', 50.99, 5, '', 0, 0, 0),
+(7, 1, 1, 'Yo ntes de ti', 'a', 496, 'a', 'a', 1, 1, '', 0, 0, 0);
+
+--
+-- Disparadores `libros`
+--
+DELIMITER $$
+CREATE TRIGGER `llenar.bit.insert` AFTER INSERT ON `libros` FOR EACH ROW INSERT into bitacora VALUES(null, 1, now(), 'Insertó un libro')
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `llenar.bitacora.update` AFTER UPDATE ON `libros` FOR EACH ROW INSERT INTO bitacora VALUES(null,1,now(),'Actualizó información en un libro')
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `llenar_bitacora.delete` AFTER DELETE ON `libros` FOR EACH ROW INSERT INTO bitacora VALUES(null,1,now(),'Eliminó un libro')
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -335,7 +425,9 @@ ALTER TABLE `comentnoticias`
 -- Indices de la tabla `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  ADD PRIMARY KEY (`idDetalle`);
+  ADD PRIMARY KEY (`idDetalle`),
+  ADD KEY `idPedido` (`idPedido`),
+  ADD KEY `idLibro` (`idLibro`);
 
 --
 -- Indices de la tabla `editorial`
@@ -353,7 +445,7 @@ ALTER TABLE `empleados`
 -- Indices de la tabla `libros`
 --
 ALTER TABLE `libros`
-  ADD PRIMARY KEY (`ISBN`);
+  ADD PRIMARY KEY (`idLibro`);
 
 --
 -- Indices de la tabla `noticias`
@@ -380,7 +472,7 @@ ALTER TABLE `autor`
 -- AUTO_INCREMENT de la tabla `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `categoria`
 --
@@ -405,7 +497,7 @@ ALTER TABLE `comentnoticias`
 -- AUTO_INCREMENT de la tabla `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `editorial`
 --
@@ -417,6 +509,11 @@ ALTER TABLE `editorial`
 ALTER TABLE `empleados`
   MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT de la tabla `libros`
+--
+ALTER TABLE `libros`
+  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
@@ -426,6 +523,17 @@ ALTER TABLE `noticias`
 --
 ALTER TABLE `pedidos`
   MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `detallepedido`
+--
+ALTER TABLE `detallepedido`
+  ADD CONSTRAINT `detallepedido_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedidos` (`idPedido`),
+  ADD CONSTRAINT `detallepedido_ibfk_2` FOREIGN KEY (`idLibro`) REFERENCES `libros` (`idLibro`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
