@@ -44,22 +44,12 @@
                     <input class="form-control form-control-alternative" placeholder="Buscar ..." type="text">
                   </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4 offset-lg-2 mt-3 mt-md-0 d-flex justify-content-around">
+                <div class="col-12 col-md-6 col-lg-2 offset-lg-4 mt-3 mt-md-0 float-right">
                   <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Agregar">
                     <a href="#" data-toggle="modal" data-target="#guardarAutoresModal">
                       <i class="fas fa-plus"></i>
                     </a>
-                  </div>
-                  <div class="icon icon-shape bg-warning text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Modificar">
-                    <a href="#" data-toggle="modal" data-target="#modificarAutoresModal">
-                      <i class="fas fa-pen"></i>
-                    </a>
-                  </div>
-                  <div class="icon icon-shape bg-danger text-white rounded-circle shadow ml-md-2 ml-lg-3 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Eliminar" onclick="deleteAlert('Autor')">
-                    <a>
-                      <i class="fas fa-trash-alt"></i>
-                    </a>
-                  </div>
+                  </div>  
                 </div>
               </div>
             </div>
@@ -75,119 +65,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr id="1" onclick="selectedRow(1)">
-                    <th scope="row">
-                      <div class="media align-items-center" style="">
-                        <span class="mb-0 text-sm">1</span>
-                      </div>
-                    </th>
-                    <td>
-                      Jojo
-                    </td>
-                    <td>
-                      Moyes
-                    </td>
-                    <td>
-                      Estados Unidos
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                  </tr>
-                  <tr id="2" onclick="selectedRow(2)">
-                    <th scope="row">
-                      <div class="media align-items-center" style="">
-                        <span class="mb-0 text-sm">2</span>
-                      </div>
-                    </th>
-                    <td>
-                      John
-                    </td>
-                    <td>
-                      Green
-                    </td>
-                    <td>
-                      Estados Unidos
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                  </tr>
-                  <tr id="3" onclick="selectedRow(3)">
-                    <th scope="row">
-                      <div class="media align-items-center" style="">
-                        <span class="mb-0 text-sm">3</span>
-                      </div>
-                    </th>
-                    <td>
-                      Lauren
-                    </td>
-                    <td>
-                      Kate
-                    </td>
-                    <td>
-                      Francia
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                  </tr>
-                  <tr id="4" onclick="selectedRow(4)">
-                    <th scope="row">
-                      <div class="media align-items-center" style="">
-                        <span class="mb-0 text-sm">4</span>
-                      </div>
-                    </th>
-                    <td>
-                      Salvador
-                    </td>
-                    <td>
-                      Salazar
-                    </td>
-                    <td>
-                      El Salvador
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                  </tr>
-                  <tr id="5" onclick="selectedRow(5)">
-                    <th scope="row">
-                      <div class="media align-items-center" style="">
-                        <span class="mb-0 text-sm">5</span>
-                      </div>
-                    </th>
-                    <td>
-                      Ismael
-                    </td>
-                    <td>
-                      Prego
-                    </td>
-                    <td>
-                      España
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                  </tr>
-
-
+                <tbody id="tbody-read-autores">
                 </tbody>
               </table>
             </div>
@@ -413,32 +291,33 @@
               </button>
             </div>
             <div class="modal-body">
-              <form>
+              <form method="POST" id="form-create-autor">
                 <div class="form-group">
                   <label for="recipient-name" class="col-form-label">Codigo:</label>
-                  <input type="text" class="form-control form-control-alternative" id="codigoAutor" readonly>
+                  <input type="text" name="codigo" class="form-control form-control-alternative" id="codigoAutor" readonly>
 
                   <div class="row">
                     <div class="col-6">
                       <label for="recipient-name" class="col-form-label">Nombre:</label>
-                      <input type="text" class="form-control form-control-alternative" id="nombreAutor">
+                      <input type="text" name="nombres" class="form-control form-control-alternative" id="nombreAutor">
                     </div>
                     <div class="col-6">
                       <label for="recipient-name" class="col-form-label">Apellido:</label>
-                      <input type="text" class="form-control form-control-alternative" id="apellidoAutor">
+                      <input type="text" name="apellidos" class="form-control form-control-alternative" id="apellidoAutor">
                     </div>
                   </div>
 
                   <label for="recipient-name" class="col-form-label">Pais:</label>
-                  <input type="text" class="form-control form-control-alternative" id="paisAutor">
+                  <input type="text" name="pais" class="form-control form-control-alternative" id="paisAutor">
 
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success">Guardar</button>
                 </div>
               </form>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-success" data-dismiss="modal" onclick="savedAlert('Autor')">Guardar</button>
-            </div>
+            
           </div>
         </div>
       </div>
@@ -599,6 +478,8 @@ Barcelona 08021 Barcelona ">
   <script src="./assets/js/argon.js?v=1.0.0"></script>
   <script src="../../resources/js/sweetalert2.min.js"></script>
   <script src="../../resources/js/index.js"></script>
+  <script src="../../core/helpers/functions.js"></script>
+  <script src="../../core/controllers/dashboard/autores.js"></script>
 </body>
 
 </html>
