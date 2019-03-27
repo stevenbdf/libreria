@@ -187,6 +187,7 @@ class model_page{
         <title>Dashboard - Libreria Maquilishuat</title>
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../../resources/css/bootstrap.css">
+        <link type="text/css" href="./assets/css/argon.css" rel="stylesheet">
 
         <!-- Fonts -->
         <link href="../../resources/fonts/GoogleArgo.css" rel="stylesheet">
@@ -200,8 +201,11 @@ class model_page{
 
         <!-- Maquilishuat -->
         <link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG">
+        
+        <link href="../../resources/css/datatable/dataTables.material.min.css" rel="stylesheet">
+        
 
-        <link type="text/css" href="./assets/css/argon.css" rel="stylesheet">
+        
         <link rel="stylesheet" href="../../resources/css/style.css">
       </head>
 

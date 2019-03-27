@@ -34,65 +34,23 @@
       <div class="row mt-5">
         <div class="col">
           <div class="card bg-default shadow">
-            <div class="card-header bg-transparent border-0">
-              <div class="row">
-                <div class="col-12 col-md-6 col-lg-6 pt-auto">
-                  <div class="input-group input-group-alternative mt-md-2 mt-lg-0">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span>
-                    </div>
-                    <input class="form-control form-control-alternative" placeholder="Buscar ..." type="text">
-                  </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-2 offset-lg-4 mt-3 mt-md-0 float-right">
-                  <div class="icon icon-shape bg-success text-white rounded-circle shadow ml-md-2 ml-lg-0 mt-md-2 mt-lg-0" data-toggle="tooltip"  data-placement="top" title="Agregar">
-                    <a href="#" data-toggle="modal" data-target="#guardarAutoresModal">
-                      <i class="fas fa-plus"></i>
-                    </a>
-                  </div>  
-                </div>
-              </div>
-            </div>
+
             <div class="table-responsive">
-              <table class="table align-items-center table-dark table-flush" id="productos">
+              <table id="autores" class="table align-items-center table-dark display" style="width:100%">
                 <thead class="thead-dark">
                   <tr>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Pais</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col-2">Codigo</th>
+                    <th scope="col-2">Nombre</th>
+                    <th scope="col-2">Apellido</th>
+                    <th scope="col-2">Pais</th>
+                    <th scope="col-2">Acciones</th>
+                    
                   </tr>
                 </thead>
-                <tbody id="tbody-read-autores">
+                <tbody id="tbody-read-autores" class="p-0 m-0">
+
                 </tbody>
               </table>
-            </div>
-            <div class="card-footer py-4" style="background-color:#172b4d !important;">
-              <nav aria-label="...">
-                <ul class="pagination justify-content-end mb-0">
-                  <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">
-                      <i class="fas fa-angle-left"></i>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                  </li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">1</a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">
-                      <i class="fas fa-angle-right"></i>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
             </div>
           </div>
         </div>
@@ -469,17 +427,17 @@ Barcelona 08021 Barcelona ">
   </div>
   <!-- Argon Scripts -->
   <!-- Core -->
+  <script src="../../resources/js/jquery-3.2.1.min.js"></script>
   <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
   <script src="./assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Optional JS -->
-  <script src="./assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="./assets/vendor/chart.js/dist/Chart.extension.js"></script>
-  <!-- Argon JS -->
+
   <script src="./assets/js/argon.js?v=1.0.0"></script>
   <script src="../../resources/js/sweetalert2.min.js"></script>
-  <script src="../../resources/js/index.js"></script>
   <script src="../../core/helpers/functions.js"></script>
-  <script src="../../core/controllers/dashboard/autores.js"></script>
+
+  
+  <script src="../../core/helpers/mdbootstrap/js/addons/datatables.js"></script>
+  <!-- <script src="../../core/controllers/dashboard/autores.js"></script> -->
 </body>
 
 </html>

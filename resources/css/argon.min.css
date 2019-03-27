@@ -1910,7 +1910,7 @@ pre code
     }
 }
 
-.table
+/* .table
 {
     width: 100%;
     margin-bottom: 1rem;
@@ -2237,7 +2237,7 @@ pre code
 .table-dark.table-hover tbody tr:hover
 {
     background-color: rgba(255, 255, 255, .075);
-}
+} */
 
 @media (max-width: 575.98px)
 {
@@ -6042,7 +6042,7 @@ input[type='button'].btn-block
     color: #8898aa;
 }
 
-.pagination
+/* .pagination
 {
     display: flex;
 
@@ -6161,7 +6161,7 @@ input[type='button'].btn-block
 {
     border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;
-}
+} */
 
 .badge
 {
