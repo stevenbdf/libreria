@@ -84,5 +84,26 @@ class Autores extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
+	public function getAutor()
+	{
+		$sql = 'SELECT idAutor, nombre, apellido, pais FROM autor WHERE idAutor = ?';
+		$params = array($this->id);
+		return Database::getRow($sql, $params);
+	}
+
+	public function updateAutor()
+	{
+		$sql = 'UPDATE autor SET nombre = ?, apellido = ?, pais = ? WHERE idAutor = ?';
+		$params = array($this->nombres, $this->apellidos,$this->pais, $this->id);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function deleteAutor()
+	{
+		$sql = 'DELETE FROM autor WHERE idAutor = ?';
+		$params = array($this->id);
+		return Database::executeRow($sql, $params);
+	}
+
 }
 ?>

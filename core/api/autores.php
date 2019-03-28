@@ -18,18 +18,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'No hay autores registrados';
                 }
                 break;
-            case 'search':
-                $_POST = $autor->validateForm($_POST);
-                if ($_POST['busqueda'] != '') {
-                    if ($result['dataset'] = $autor->searchProductos($_POST['busqueda'])) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'No hay coincidencias';
-                    }
-                } else {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                }
-                break;
             case 'create':
                 $_POST = $autor->validateForm($_POST);
                 if ($autor->setNombres($_POST['nombres'])) {
@@ -50,7 +38,61 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Nombre incorrecto';
                 }
                 break;
-            default:
+            case 'get':
+                if ($autor->setId($_POST['idAutor'])) {
+                    if ($result['dataset'] = $autor->getAutor()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Autor inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Autor incorrecto';
+                }
+                break;
+            case 'update':
+                $_POST = $autor->validateForm($_POST);
+                if ($autor->setId($_POST['id-update'])) {
+                    if ($autor->getAutor()) {
+                        if ($autor->setNombres($_POST['nombres-update'])) {
+                            if ($autor->setApellidos($_POST['apellidos-update'])) {
+                                if($autor->setPais($_POST['pais-update'])){
+                                    if ($autor->updateAutor()) {
+                                        $result['status'] = 1;
+                                    } else {
+                                        $result['exception'] = 'Operación fallida';
+                                    }
+                                }else{
+                                    $result['exception'] = 'Pais incorrecto';
+                                }
+                            } else {
+                                $result['exception'] = 'Apellidos incorrectos';
+                            }
+                        } else {
+                            $result['exception'] = 'Nombres incorrectos';
+                        }
+                    } else {
+                        $result['exception'] = 'Autor inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Autor incorrecto';
+                }
+                break;
+            case 'delete':
+				if ($autor->setId($_POST['idAutor'])) {
+					if ($autor->getAutor()) {
+						if ($autor->deleteAutor()) {
+							$result['status'] = 1;
+						} else {
+							$result['exception'] = 'Operación fallida';
+						}
+					} else {
+						$result['exception'] = 'Autor inexistente';
+					}
+				} else {
+					$result['exception'] = 'Autor incorrecta';
+				}
+            	break;
+			default:
                 exit('Acción no disponible');
         }
     } else if ($_GET['site'] == 'commerce') {

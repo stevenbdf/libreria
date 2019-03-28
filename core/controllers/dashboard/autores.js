@@ -1,17 +1,44 @@
-$(document).ready(()=>
-{
-   showTable();
+$(document).ready(() => {
+    showTable();
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiAutores = '../../core/api/autores.php?site=dashboard&action=';
 
+//Función para obtener y mostrar los registros disponibles
+const showTable = async () => {
+    const response = await $.ajax({
+        url: apiAutores + 'readAutores',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (!result.status) {
+            console.log(result.exception)
+        }
+        fillTable(result.dataset)
+    } else {
+        console.log(response);
+    }
+}
+
+//Función para recargar manualmente el datatable
+$('#reload').click(async () => {
+    $('#autores').DataTable().destroy();
+    showTable();
+})
+
 //Función para llenar tabla con los datos de los registros
-async function fillTable(rows)
-{
+function fillTable(rows) {
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
-    await rows.forEach(function(row){
+    rows.forEach(function (row) {
         content += `
             <tr id="${row.idAutor}">
                 <th scope="row">
@@ -29,17 +56,17 @@ async function fillTable(rows)
                     ${row.pais}
                 </td>
                 <td class="text-center">
-                    <button type="button" class="mr-2 btn btn-warning text-white">
+                    <button type="button" onclick="modalUpdate(${row.idAutor})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
-                    <button type="button" class="mr-2 btn btn-danger">
+                    <button type="button" onclick="confirmDelete(${row.idAutor})" class="mr-2 btn btn-danger">
                         <i class="material-icons mr-2">delete</i>Eliminar
                     </button> 
                 </td> 
             </tr>
         `;
     });
-    await $('#tbody-read-autores').html(content);
+    $('#tbody-read-autores').html(content);
     $('#autores').DataTable({
         "language": {
             "url": "../../resources/js/material/espaniol.json"
@@ -47,33 +74,12 @@ async function fillTable(rows)
     });
 }
 
-//Función para obtener y mostrar los registros disponibles
-const showTable = async() =>
-{
-    const response = await $.ajax({
-        url: apiAutores + 'readAutores',
-        type: 'post',
-        data: null,
-        datatype: 'json'
-    })
-    if (isJSONString(response)) {
-        const result = JSON.parse(response);
-        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-        if (!result.status) {
-            console.log(result.exception)
-        }
-        fillTable(result.dataset)
-    } else {
-        console.log(response);
-    }
-}
+/*---------------Funciones CRUD---------------*/
 
 //Función para crear un nuevo registro
-
-$('#form-create-autor').submit(function()
-{
+$('#form-create-autor').submit(async () => {
     event.preventDefault();
-    $.ajax({
+    const response = await $.ajax({
         url: apiAutores + 'create',
         type: 'post',
         data: new FormData($('#form-create-autor')[0]),
@@ -81,42 +87,164 @@ $('#form-create-autor').submit(function()
         cache: false,
         contentType: false,
         processData: false
-    })
-    .done(function(response){
-        //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-        if (isJSONString(response)) {
-            const result = JSON.parse(response);
-            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-            if (result.status) {
-                $('#form-create-autor')[0].reset();
-                $('#guardarAutoresModal').modal('toggle');
-                if (result.status == 1) {
-                    Swal.fire(
-                        'Operación Correcta',
-                        'Autor guardado correctamente.',
-                        'success'
-                    )
-                    $('#autores').DataTable().destroy();
-                    showTable();
-                    
-                } else if (result.status == 2) {
-                    console.log('Autor creado. ' + result.exception);
-                }
-                
-            } else {
-                console.log(result.exception)
-            }
-        } else {
-            console.log(response);
-        }
-    })
-    .fail(function(jqXHR){
+    }).fail(function (jqXHR) {
         //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status) {
+            $('#form-create-autor')[0].reset();
+            $('#guardarAutoresModal').modal('toggle');
+            if (result.status == 1) {
+                swal(
+                    'Operación Correcta',
+                    'Autor guardado correctamente.',
+                    'success'
+                )
+                $('#autores').DataTable().destroy();
+                showTable();
+
+            }
+
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        console.log(response);
+    }
 })
 
-$('#reload').click(async () =>{
-    $('#autores').DataTable().destroy();
-    showTable();
+//Función para mostrar formulario con registro a modificar
+const modalUpdate = async id => {
+    const response = await $.ajax({
+        url: apiAutores + 'get',
+        type: 'post',
+        data: {
+            idAutor: id
+        },
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
+        if (result.status) {
+            $('#form-update-autor')[0].reset();
+            $('#idAutor').val(result.dataset.idAutor);
+            $('#nombreAutor').val(result.dataset.nombre);
+            $('#apellidoAutor').val(result.dataset.apellido);
+            $('#paisAutor').val(result.dataset.pais);
+            $('#modificarAutoresModal').modal('toggle');
+        } else {
+            console.log(result.exception)
+        }
+    } else {
+        console.log(response);
+    }
+}
+
+//Función para modificar un registro seleccionado previamente
+$('#form-update-autor').submit(async () => {
+    event.preventDefault();
+    const response = await $.ajax({
+        url: apiAutores + 'update',
+        type: 'post',
+        data: new FormData($('#form-update-autor')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status) {
+            $('#modificarAutoresModal').modal('toggle');
+            if (result.status == 1) {
+                swal(
+                    'Operación Correcta',
+                    'Autor modificado correctamente.',
+                    'success'
+                )
+            }
+            $('#autores').DataTable().destroy();
+            showTable();
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        console.log(response);
+    }
 })
+
+//Función para eliminar un registro seleccionado
+function confirmDelete(id) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere eliminar el Autor?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borralo.',
+        closeOnConfirm: false,
+        closeOnCancel: true
+    },
+    async (isConfirm) => {
+        if (isConfirm) {
+            const response = await $.ajax({
+                url: apiAutores + 'delete',
+                type: 'post',
+                data: {
+                    idAutor: id
+                },
+                datatype: 'json'
+            })
+            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                if (result.status) {
+                    if (result.status == 1) {
+                        swal(
+                            'Operación Correcta',
+                            'Autor eliminado correctamente.',
+                            'success'
+                        )
+                        $('#autores').DataTable().destroy();
+                        showTable();
+                    }
+
+                } else {
+                    Swal.fire(
+                        'Error',
+                        result.exception,
+                        'error'
+                    )
+                }
+            } else {
+                console.log(response);
+            }
+        }
+    });
+}
+
