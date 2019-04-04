@@ -16,21 +16,23 @@
     <link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resources/css/material/material.min.css">
     <link rel="stylesheet" href="../../resources/css/material/dataTables.material.min.css">
-    
-    
+
+
     <link href="../../resources/css/material/material.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../../resources/css/authors.publishers/style.css">
 
 </head>
-<header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default">
-    <button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler"
-        data-target="#navdrawerDefault" data-toggle="navdrawer"><span class="navbar-toggler-icon"></span></button>
-    <span class="navbar-brand mr-auto">Libreria Maquilishuat</span>
-</header>
+
 
 
 <body>
+    <header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default sticky-top">
+        <button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer"
+            class="navbar-toggler" data-target="#navdrawerDefault" data-toggle="navdrawer"><span
+                class="navbar-toggler-icon"></span></button>
+        <span class="navbar-brand mr-auto">Libreria Maquilishuat</span>
+    </header>
     <div aria-hidden="true" class="navdrawer" id="navdrawerDefault" tabindex="-1">
         <div class="navdrawer-content">
             <div class="navdrawer-header">
@@ -62,7 +64,8 @@
             <div id="alerts"></div>
             <div class="row shadow-sm p-3 mb-5 bg-white rounded">
                 <div class="table-responsive-lg" style="width:100%">
-                    <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Autores</h1>
+                    <h1 class="text-center text-uppercase mt-4 mb-4"
+                        style="font-family: 'Arimo', sans-serif; font-size:50px;">Autores</h1>
                     <div class="row d-flex justify-content-center">
                         <div class="col-6 col-md-4 text-center">
                             <button type="button" class="mr-lg-2 btn btn-success" data-toggle="modal"
