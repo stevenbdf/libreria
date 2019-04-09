@@ -58,7 +58,7 @@ function fillTable(rows) {
                 <td>
                     ${row.tel}
                 </td>
-                <td class="text-center">
+                <td class="text-center" style="width:35%">
                     <button type="button" onclick="modalUpdate(${row.idEditorial})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
