@@ -3,12 +3,12 @@ $(document).ready(() => {
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
-const apiEditorial = '../../core/api/editorial.php?site=dashboard&action=';
+const apiCategoria = '../../core/api/categorias.php?site=dashboard&action=';
 
 //Función para obtener y mostrar los registros disponibles
 const showTable = async () => {
     const response = await $.ajax({
-        url: apiEditorial + 'readEditorial',
+        url: apiCategoria + 'readCategoria',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -30,7 +30,7 @@ const showTable = async () => {
 
 //Función para recargar manualmente el datatable
 $('#reload').click(async () => {
-    $('#editorial').DataTable().destroy();
+    $('#categoria').DataTable().destroy();
     showTable();
 })
 
@@ -40,37 +40,31 @@ function fillTable(rows) {
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
     rows.forEach(function (row) {
         content += `
-            <tr id="${row.idEditorial}">
+            <tr id="${row.idCategoria}">
                 <th scope="row">
                     <div class="media align-items-center" style="">
-                    <span class="mb-0 text-sm">${row.idEditorial}</span>
+                    <span class="mb-0 text-sm">${row.idCategoria}</span>
                     </div>
                 </th>
                 <td>
-                    ${row.nombreEdit}
+                    ${row.nombreCat}
                 </td>
                 <td>
-                    ${row.direccion}
-                </td>
-                <td>
-                    ${row.pais}
-                </td>
-                <td>
-                    ${row.tel}
+                    ${row.descuento}
                 </td>
                 <td class="text-center" style="width:35%">
-                    <button type="button"  onclick="modalUpdate(${row.idEditorial})" class="mr-2 btn btn-warning text-white">
+                    <button type="button" data-toggle="modal" data-target="#modificarCategoriaModal" onclick="modalUpdate(${row.idCategoria})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
-                    <button type="button" onclick="confirmDelete(${row.idEditorial})" class="mr-2 btn btn-danger">
+                    <button type="button" onclick="confirmDelete(${row.idCategoria})" class="mr-2 btn btn-danger">
                         <i class="material-icons mr-2">delete</i>Eliminar
                     </button> 
                 </td> 
             </tr>
         `;
     });
-    $('#tbody-read-editorial').html(content);
-    $('#editorial').DataTable({
+    $('#tbody-read-categoria').html(content);
+    $('#categoria').DataTable({
         "language": {
             "url": "../../resources/js/material/espaniol.json"
         }
@@ -80,12 +74,12 @@ function fillTable(rows) {
 /*---------------Funciones CRUD---------------*/
 
 //Función para crear un nuevo registro
-$('#form-create-editorial').submit(async () => {
+$('#form-create-categoria').submit(async () => {
     event.preventDefault();
     const response = await $.ajax({
-        url: apiEditorial+ 'create',
+        url: apiCategoria+ 'create',
         type: 'post',
-        data: new FormData($('#form-create-editorial')[0]),
+        data: new FormData($('#form-create-categoria')[0]),
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -99,15 +93,15 @@ $('#form-create-editorial').submit(async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (result.status) {
-            $('#form-create-editorial')[0].reset();
-            $('#guardarEditorialModal').modal('toggle');
+            $('#form-create-categoria')[0].reset();
+            $('#guardarCategoriaModal').modal('toggle');
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Autor guardado correctamente.',
+                    'Categoria guardado correctamente.',
                     'success'
                 )
-                $('#editorial').DataTable().destroy();
+                $('#categoria').DataTable().destroy();
                 showTable();
 
             }
@@ -126,11 +120,12 @@ $('#form-create-editorial').submit(async () => {
 
 //Función para mostrar formulario con registro a modificar
 const modalUpdate = async id => {
+    
     const response = await $.ajax({
-        url: apiEditorial + 'get',
+        url: apiCategoria + 'get',
         type: 'post',
         data: {
-            idEditorial: id
+            idCategoria: id
         },
         datatype: 'json'
     }).fail(function (jqXHR) {
@@ -142,13 +137,10 @@ const modalUpdate = async id => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
         if (result.status) {
-            $('#form-update-editorial')[0].reset();
-            $('#idEditorial').val(result.dataset.idEditorial);
-            $('#nombreEditorial').val(result.dataset.nombreEdit);
-            $('#direccionEditorial').val(result.dataset.direccion);
-            $('#paisEditorial').val(result.dataset.pais);
-            $('#telefonoEditorial').val(result.dataset.tel);
-            $('#modificarEditorialModal').modal('toggle');
+            $('#form-update-categoria')[0].reset();
+            $('#idCategoria').val(result.dataset.idCategoria);
+            $('#nombreCategoria').val(result.dataset.nombreCat);
+            $('#descuentoCategoria').val(result.dataset.descuento);
         } else {
             console.log(result.exception)
         }
@@ -158,12 +150,12 @@ const modalUpdate = async id => {
 }
 
 //Función para modificar un registro seleccionado previamente
-$('#form-update-editorial').submit(async () => {
+$('#form-update-categoria').submit(async () => {
     event.preventDefault();
     const response = await $.ajax({
-        url: apiEditorial + 'update',
+        url: apiCategoria + 'update',
         type: 'post',
-        data: new FormData($('#form-update-editorial')[0]),
+        data: new FormData($('#form-update-categoria')[0]),
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -177,7 +169,7 @@ $('#form-update-editorial').submit(async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (result.status) {
-            $('#modificarEditorialModal').modal('toggle');
+            $('#modificarCategoriaModal').modal('toggle');
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
@@ -185,7 +177,7 @@ $('#form-update-editorial').submit(async () => {
                     'success'
                 )
             }
-            $('#editorial').DataTable().destroy();
+            $('#categoria').DataTable().destroy();
             showTable();
         } else {
             swal(
@@ -203,7 +195,7 @@ $('#form-update-editorial').submit(async () => {
 function confirmDelete(id) {
     swal({
         title: 'Advertencia',
-        text: '¿Quiere eliminar la Editorial?',
+        text: '¿Quiere eliminar la Categoria?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -216,10 +208,10 @@ function confirmDelete(id) {
     async (isConfirm) => {
         if (isConfirm) {
             const response = await $.ajax({
-                url: apiEditorial + 'delete',
+                url: apiCategoria + 'delete',
                 type: 'post',
                 data: {
-                    idEditorial: id
+                    idCategoria: id
                 },
                 datatype: 'json'
             })
@@ -234,7 +226,7 @@ function confirmDelete(id) {
                             'Editorial eliminada correctamente.',
                             'success'
                         )
-                        $('#editorial').DataTable().destroy();
+                        $('#categoria').DataTable().destroy();
                         showTable();
                     }
 

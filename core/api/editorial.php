@@ -105,43 +105,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 			default:
                 exit('Acción no disponible');
         }
-    } /*else if ($_GET['site'] == 'commerce') {
-        switch ($_GET['action']) {
-            case 'readCategorias':
-                if ($result['dataset'] = $editorial->readCategorias()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'Contenido no disponible';
-                }
-                break;
-            case 'readProductos':
-                if ($editorial->setCategoria($_POST['id_categoria'])) {
-                    if ($result['dataset'] = $autor->readProductosCategoria()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'Contenido no disponible';
-                    }
-                } else {
-                    $result['exception'] = 'Categoría incorrecta';
-                }
-                break;
-            case 'detailProducto':
-                if ($editorial->setId($_POST['id_producto'])) {
-                    if ($result['dataset'] = $autor->getProducto()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'Contenido no disponible';
-                    }
-                } else {
-                    $result['exception'] = 'Producto incorrecto';
-                }
-                break;
-            default:
-                exit('Acción no disponible');
-    	}
-    } else {
-        exit('Acceso no disponible');
-    }*/
+    } 
 	print(json_encode($result));
 } else {
 	exit('Recurso denegado');

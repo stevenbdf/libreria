@@ -41,7 +41,7 @@ class Editorial extends Validator
 
 	public function setDireccion($value)
 	{
-		if ($this->validateAlphabetic($value)) {
+		if ($this->validateAlphabetic($value, 1, 255)) {
 			$this->direccion = $value;
 			return true;
 		} else {
@@ -70,13 +70,10 @@ class Editorial extends Validator
 	}
 	public function setTelefono($value)
 	{
-		if ($this->validateNumeric($value, 1, 15)) {
-			$this->telefono = $value;
-			return true;
-		} else {
-			return false;
-		}
+		$this->telefono=$value;
+		return true;
 	}
+	
 
 	public function getPais()
 	{
