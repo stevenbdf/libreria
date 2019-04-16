@@ -41,7 +41,7 @@ class Editorial extends Validator
 
 	public function setDireccion($value)
 	{
-		if ($this->validateAlphabetic($value, 1, 255)) {
+		if ($this->validateAlphanumeric($value, 1, 255)) {
 			$this->direccion = $value;
 			return true;
 		} else {

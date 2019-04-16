@@ -159,19 +159,20 @@
                                     <label for="recipient-name" class="col-form-label">Nombre:</label>
                                     <input name="nombres-update" type="text"
                                         class="form-control form-control-alternative" id="nombreEditorial">
-                                </div>     
+                                </div>
+                            </div>  
                             <div class="row">
                                 <div class="col-6">
                                     <label for="recipient-name" class="col-form-label">Teléfono:</label>
                                     <input name="telefono-update" type="text"
                                         class="form-control form-control-alternative" id="telefonoEditorial">
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <label for="recipient-name" class="col-form-label">Pais:</label>
                                     <input name="pais-update" type="text"
                                         class="form-control form-control-alternative" id="paisEditorial">
                                 </div>
-                                <div class="col-7">
+                                <div class="col-12">
                                     <label for="recipient-name" class="col-form-label">Direccion:</label>
                                     <input name="direccion-update" type="text"
                                         class="form-control form-control-alternative" id="direccionEditorial">
