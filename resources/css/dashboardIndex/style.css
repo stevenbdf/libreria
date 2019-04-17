@@ -1,0 +1,35 @@
+.card-title{
+    text-transform: uppercase;
+}
+.material-icons{
+    font-size: 45px;
+}
+
+div.card{
+    height: 180px !important;
+}
+
+/* estilos responsive tamaño large*/
+@media only screen and (min-width:992px) {
+    h5{
+        font-size: 17px !important;
+        font-weight: bold;
+    }
+
+    div.section-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.card{
+        height: 110px !important;
+    }
+
+    #important-container{
+        height: 82px !important; 
+    }
+
+    
+}

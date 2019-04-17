@@ -83,7 +83,7 @@ function fillTable(rows) {
 $('#form-create-editorial').submit(async () => {
     event.preventDefault();
     const response = await $.ajax({
-        url: apiEditorial+ 'create',
+        url: apiEditorial + 'create',
         type: 'post',
         data: new FormData($('#form-create-editorial')[0]),
         datatype: 'json',
@@ -213,42 +213,42 @@ function confirmDelete(id) {
         closeOnConfirm: false,
         closeOnCancel: true
     },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiEditorial + 'delete',
-                type: 'post',
-                data: {
-                    idEditorial: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Editorial eliminada correctamente.',
-                            'success'
-                        )
-                        $('#editorial').DataTable().destroy();
-                        showTable();
-                    }
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiEditorial + 'delete',
+                    type: 'post',
+                    data: {
+                        idEditorial: id
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Editorial eliminada correctamente.',
+                                'success'
+                            )
+                            $('#editorial').DataTable().destroy();
+                            showTable();
+                        }
 
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
                 } else {
-                    Swal.fire(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
+                    console.log(response);
                 }
-            } else {
-                console.log(response);
             }
-        }
-    });
+        });
 }
 
