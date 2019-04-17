@@ -82,7 +82,8 @@ class Database
         self::$statement = self::$connection->prepare($query);
         self::$statement->execute($values);
         self::desconnect();
-        return self::$statement->fetchAll(PDO::FETCH_ASSOC);
+        $response = self::$statement->fetchAll(PDO::FETCH_ASSOC);
+        return $response;
     }
 
 /*

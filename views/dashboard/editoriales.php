@@ -108,21 +108,21 @@
                     <form method="POST" id="form-create-editorial">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label for="recipient-name" class="col-form-label">Nombre:</label>
                                     <input type="text" name="nombre" class="form-control form-control-alternative">
+                                </div>
+                                <div class="col-6">
+                                    <label for="recipient-name" class="col-form-label">Telefono:</label>
+                                    <input type="text" name="telefono" class="form-control form-control-alternative">
                                 </div>
                                 <div class="col-6">
                                     <label for="recipient-name" class="col-form-label">Pais:</label>
                                     <input type="text" name="pais" class="form-control form-control-alternative">
                                 </div>
-                                <div class="col-7">
+                                <div class="col-12">
                                     <label for="recipient-name" class="col-form-label">Direccion:</label>
                                     <input type="text" name="direccion" class="form-control form-control-alternative">
-                                </div>
-                                <div class="col-5">
-                                    <label for="recipient-name" class="col-form-label">Telefono:</label>
-                                    <input type="text" name="telefono" class="form-control form-control-alternative">
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                                 id="idEditorial" readonly>
 
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label for="recipient-name" class="col-form-label">Nombre:</label>
                                     <input name="nombres-update" type="text"
                                         class="form-control form-control-alternative" id="nombreEditorial">

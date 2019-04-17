@@ -20,9 +20,10 @@
 
     <link href="../../resources/css/material/material.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../../resources/css/authors.publishers/style.css">
+    <link rel="stylesheet" href="../../resources/css/dashboardIndex/style.css">
 
 </head>
+
 <body>
     <header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default">
         <span class="navbar-brand mr-auto">Libreria Maquilishuat</span>
@@ -30,7 +31,125 @@
     <main>
         <div class="container">
             <div class="row">
-            <canvas id="myChart" width="400" height="400"></canvas>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Productos</h5>
+                                <p id="count-productos" class="text-center"></p>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    book
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Noticias</h5>
+                                <p id="count-noticias" class="text-center"></p>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    library_books
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Categorias</h5>
+                                <p id="count-categorias" class="text-center"></p>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    category
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Empleados</h5>
+                                <p id="count-empleados" class="text-center"></p>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    people
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Clientes</h5>
+                                <p id="count-clientes" class="text-center"></p>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    people_outline
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Pedidos</h5>
+                                <p id="count-pedidos" class="text-center"></p>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    shopping_cart
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Comentarios</h5>
+                            </div>
+                            <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    comment
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card mt-4">
+                        <div class="card-body row">
+                            <div class="section-info col-12 col-lg-8">
+                                <h5 class="card-title text-center">Autores y Editoriales</h5>
+                            </div>
+                            <div id="important-container"
+                                class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
+                                <i class="material-icons">
+                                    local_library
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
