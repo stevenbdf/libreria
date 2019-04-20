@@ -59,7 +59,7 @@ class Bitacora extends Validator
   //Metodos para manejar el CRUD
   public function readBitacora()
   {
-    $sql = 'SELECT idBitacora, nombreEmpleado, fecha, accion FROM bitacora INNER JOIN empleados ON empleados.idEmpleado = bitacora.idUsuario ORDER BY fecha asc';
+    $sql = 'SELECT idBitacora, nombreEmpleado, fecha, accion FROM bitacora INNER JOIN empleado ON empleado.idEmpleado = bitacora.idUsuario ORDER BY fecha asc';
     $params = array(null);
     return Database::getRows($sql, $params);
   }
