@@ -36,6 +36,7 @@ $('#reload').click(async () => {
 
 //Función para llenar tabla con los datos de los registros
 function fillTable(rows) {
+    console.log(rows)
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
     rows.forEach(function (row) {
@@ -79,6 +80,7 @@ function fillTable(rows) {
 
 //Función para eliminar un registro seleccionado
 function confirmDelete(id) {
+    console.log(id)
     swal({
         title: 'Advertencia',
         text: '¿Quiere eliminar el comentario?',
@@ -117,7 +119,7 @@ function confirmDelete(id) {
                     }
 
                 } else {
-                    Swal.fire(
+                    swal(
                         'Error',
                         result.exception,
                         'error'

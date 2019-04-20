@@ -5,14 +5,14 @@ class Index
 	//Metodos para manejar el CRUD
 	public function countProductos()
 	{
-		$sql = 'SELECT COUNT(*) AS count FROM libros';
+		$sql = 'SELECT COUNT(*) AS count FROM libro';
 		$params = array(null);
 		return Database::getRows($sql, $params);	
     }
 
 	public function countNoticias()
 	{
-		$sql = 'SELECT COUNT(*) AS count FROM noticias';
+		$sql = 'SELECT COUNT(*) AS count FROM noticia';
 		$params = array(null);
 		return Database::getRows($sql, $params);
     }
@@ -26,7 +26,7 @@ class Index
     
     public function countEmpleados()
 	{
-		$sql = 'SELECT COUNT(*) AS count FROM empleados';
+		$sql = 'SELECT COUNT(*) AS count FROM empleado';
 		$params = array(null);
 		return Database::getRows($sql, $params);
     }
@@ -40,7 +40,7 @@ class Index
     
     public function countPedidos()
 	{
-		$sql = 'SELECT COUNT(*) AS count FROM pedidos';
+		$sql = 'SELECT COUNT(*) AS count FROM pedido';
 		$params = array(null);
 		return Database::getRows($sql, $params);
     }

@@ -26,11 +26,8 @@ class Comentario extends Validator
 
 	public function setTitulo($value)
 	{
-		
 			$this->titulo = $value;
 			return true;
-		 
-		
 	}
 
 	public function getTitulo()
@@ -47,7 +44,7 @@ class Comentario extends Validator
 	public function getComentario()
 	{
 		return $this->comentario;
-    }
+  }
 
     public function setFecha($value)
 	{
@@ -78,14 +75,14 @@ class Comentario extends Validator
 	//Metodos para manejar el CRUD
 	public function readComentario()
 	{
-		$sql ='SELECT idComentN, titulo, comentnoticia.fecha  , comentario,idCliente FROM comentnoticia INNER JOIN cliente ON cliente.idCliente = comentnoticia.idComentN INNER JOIN noticia ON noticia.idNoticia=comentnoticia.idComentN ORDER BY idComentN';
+		$sql ='SELECT idComentN, titulo, comentnoticia.fecha  , comentario, nombreCliente FROM comentnoticia INNER JOIN cliente ON cliente.idCliente = comentnoticia.idComentN INNER JOIN noticia ON noticia.idNoticia=comentnoticia.idComentN ORDER BY idComentN';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function deleteComentario()
 	{
-		$sql = 'DELETE FROM comentnoticia WHERE idComent = ?';
+		$sql = 'DELETE FROM comentnoticia WHERE idComentN = ?';
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
