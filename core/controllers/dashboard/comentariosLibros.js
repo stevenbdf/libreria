@@ -67,7 +67,7 @@ function fillTable(rows) {
         `;
     });
     $('#tbody-read-comentario').html(content);
-    $('#categoria').DataTable({
+    $('#comentario').DataTable({
         "language": {
             "url": "../../resources/js/material/espaniol.json"
         }
@@ -117,7 +117,7 @@ function confirmDelete(id) {
                     }
 
                 } else {
-                    Swal.fire(
+                    swal(
                         'Error',
                         result.exception,
                         'error'

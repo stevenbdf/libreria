@@ -32,15 +32,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             case 'delete':
 				if ($comentario->setId($_POST['idComent'])) {
-					if ($comentario->getComentario()) {
-						if ($comentario->deleteComentario()) {
-							$result['status'] = 1;
-						} else {
-							$result['exception'] = 'Operación fallida';
-						}
-					} else {
-						$result['exception'] = 'Comentario inexistente';
-					}
+                    if ($comentario->deleteComentario()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Operación fallida';
+                    }
 				} else {
 					$result['exception'] = 'Comentario incorrecta';
 				}
