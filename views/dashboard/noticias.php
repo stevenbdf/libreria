@@ -16,21 +16,23 @@
     <link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../resources/css/material/material.min.css">
     <link rel="stylesheet" href="../../resources/css/material/dataTables.material.min.css">
-    
-    
+
+
     <link href="../../resources/css/material/material.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../../resources/css/authors.publishers/style.css">
 
 </head>
-<header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default">
-    <button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer" class="navbar-toggler"
-        data-target="#navdrawerDefault" data-toggle="navdrawer"><span class="navbar-toggler-icon"></span></button>
-    <span class="navbar-brand mr-auto">Libreria Maquilishuat</span>
-</header>
+
 
 
 <body>
+    <header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default sticky-top">
+        <button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer"
+            class="navbar-toggler" data-target="#navdrawerDefault" data-toggle="navdrawer"><span
+                class="navbar-toggler-icon"></span></button>
+        <span class="navbar-brand mr-auto">Libreria Maquilishuat</span>
+    </header>
     <div aria-hidden="true" class="navdrawer" id="navdrawerDefault" tabindex="-1">
         <div class="navdrawer-content">
             <div class="navdrawer-header">
@@ -62,31 +64,130 @@
             <div id="alerts"></div>
             <div class="row shadow-sm p-3 mb-5 bg-white rounded">
                 <div class="table-responsive-lg" style="width:100%">
-                    <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Noticias</h1>
+                    <h1 class="text-center text-uppercase mt-4 mb-4"
+                        style="font-family: 'Arimo', sans-serif; font-size:50px;">Noticias</h1>
                     <div class="row d-flex justify-content-center">
                         <div class="col-6 col-md-4 text-center">
+                            <button type="button" class="mr-lg-2 btn btn-success" data-toggle="modal"
+                                data-target="#guardarNoticiaModal">
+                                <i class="material-icons mr-2">add</i>
+                                Agregar
+                            </button>
                             <button type="button" class="ml-lg-2 btn btn-info" id="reload">
                                 <i class="material-icons mr-2">sync</i>
                                 Recargar
-                            </button> 
+                            </button>
                         </div>
                     </div>
-                    <table id="bitacora" class="table ">
+                    <table id="noticia" class="table table-responsive">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">Codigo</th>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Acción</th>
+                                <th scope="col">Empleado</th>
+                                <th scope="col">fecha</th>
+                                <th scope="col">Título</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Imágen</th>
+                                <th scope="col" class="text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody id="tbody-read-bitacora"></tbody>
+                        <tbody id="tbody-read-noticia"></tbody>
                     </table>
                 </div>
             </div>
         </div>
     </main>
-    
+    <!-- Ventana para guardar Autor -->
+    <div class="modal fade" id="guardarNoticiaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Agregar Autor</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="form-create-noticia">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="recipient-name" class="col-form-label">Título</label>
+                                    <input type="text" name="titulo" class="form-control form-control-alternative">
+                                </div>
+                                <div class="col-12">
+                                    <div class="textfield-box">
+                                        <label for="recipient-name" class="col-form-label">Descripción</label>
+                                        <input aria-describedby="exampleTextfieldBox1Help" class="form-control" name="descripcion"
+                                         placeholder="Escriba aquí su noticia..." type="text">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <label for="recipient-name" class="col-form-label">Imágen</label>
+                                    <input type="text"class="form-control form-control-alternative" name="imagen">
+                                    <button class="btn btn-primary my-1" type="button">Buscar imagen</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Ventana para modificar Autor -->
+    <div class="modal fade" id="modificarNoticiaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel">Modificar Noticia</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="form-update-noticia">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Codigo:</label>
+                            <input name="id-update" type="text" class="form-control form-control-alternative"
+                                id="idAutor" readonly>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <label for="recipient-name" class="col-form-label">Título</label>
+                                    <input name="titulo-update" type="text"
+                                        class="form-control form-control-alternative" id="tituloNoticia">
+                                </div>
+                                <div class="col-12">
+                                    <div class="textfield-box">
+                                        <label for="recipient-name" class="col-form-label">Descripción</label>
+                                        <input aria-describedby="exampleTextfieldBox1Help" name="descripcion-update" type="text" class="form-control" id="descripcionNoticia" placeholder="Edite aquí su noticia...">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                <label for="recipient-name" class="col-form-label">Imágen</label>
+                                    <input type="text" name="imagen-update" class="form-control form-control-alternative" id="imagenNoticia" >
+                                    <button class="btn btn-primary my-1" type="button">Buscar imagen</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-warning">Modificar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
