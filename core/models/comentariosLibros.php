@@ -79,7 +79,10 @@ class Comentario extends Validator
 	//Metodos para manejar el CRUD
 	public function readComentario()
 	{
-		$sql ='SELECT idComent, nombreCliente, fecha, comentario, nombreL FROM comentlibro INNER JOIN cliente ON cliente.idCliente = comentlibro.idComent INNER JOIN libro ON libro.idLibro=comentlibro.idComent ORDER BY idComent';
+		$sql ='SELECT idComent, nombreCliente, fecha, comentario, nombreL 
+						FROM comentlibro 
+						INNER JOIN cliente ON cliente.idCliente = comentlibro.idClient
+						INNER JOIN libro ON libro.idLibro = comentlibro.idLibro ORDER BY idComent';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
