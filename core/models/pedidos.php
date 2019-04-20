@@ -64,40 +64,46 @@ class Pedidos extends Validator
     }
 
 	//Metodos para manejar el CRUD
-	public function readPedidos()
-	{
-		$sql = 'SELECT idPedido,  FROM autor ORDER BY idAutor';
-		$params = array(null);
-		return Database::getRows($sql, $params);
-	}
-
-	public function createAutor()
-	{
-		$sql = 'INSERT INTO autor(nombre, apellido, pais) VALUES(?, ?, ?)';
-		$params = array($this->nombres, $this->apellidos,$this->pais);
-		return Database::executeRow($sql, $params);
-	}
-
-	public function getAutor()
-	{
-		$sql = 'SELECT idAutor, nombre, apellido, pais FROM autor WHERE idAutor = ?';
-		$params = array($this->id);
-		return Database::getRow($sql, $params);
-	}
-
-	public function updateAutor()
-	{
-		$sql = 'UPDATE autor SET nombre = ?, apellido = ?, pais = ? WHERE idAutor = ?';
-		$params = array($this->nombres, $this->apellidos,$this->pais, $this->id);
-		return Database::executeRow($sql, $params);
-	}
-
-	public function deleteAutor()
-	{
-		$sql = 'DELETE FROM autor WHERE idAutor = ?';
-		$params = array($this->id);
-		return Database::executeRow($sql, $params);
-	}
-
+		public function readPedidos()
+		{
+			$sql = 'SELECT idPedido, nombreCliente, fecha, estado 
+							FROM pedido 
+							INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+							ORDER BY idPedido';
+			$params = array(null);
+			return Database::getRows($sql, $params);
+		}
+		
+		public function getPedido()
+		{
+			$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, fecha, estado 
+							FROM pedido 
+							INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+							WHERE idPedido = ?
+							ORDER BY idPedido';
+			$params = array($this->id);
+			return Database::getRow($sql, $params);
+		}
+    
+    public function readDetallePedido()
+		{
+			$sql = 'SELECT idDetalle, idPedido, nombreL, cantidad, precioVenta,
+							(SELECT SUM(precioVenta) FROM detallePedido) as total 
+							FROM detallepedido 
+							INNER JOIN libro ON detallepedido.idLibro = libro.idLibro
+							WHERE idPedido = ?
+							ORDER BY idDetalle';
+			$params = array($this->id);
+			return Database::getRows($sql, $params);
+    }
+    
+    public function getTotalPedido()
+    {
+			$sql = 'SELECT SUM(precioVenta) as totalPedido
+							FROM detallePedido
+							WHERE idPedido = ?';
+			$params = array($this->id);
+			return Database::getRows($sql,$params);
+    }
 }
 ?>
