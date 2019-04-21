@@ -52,6 +52,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             case 'update':
                 $_POST = $noticia->validateForm($_POST);
                 if ($noticia->setId($_POST['id-update'])) {
+                    if ($noticia->getNoticia()) {
                         if ($noticia->setTitulo($_POST['titulo-update'])) {
                             if ($noticia->setDescripcion($_POST['descripcion-update'])) {
                                 if($noticia->setImagen($_POST['imagen-update'])){
@@ -70,8 +71,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $result['exception'] = 'Titulo incorrectos';
                         }
                     } else {
-                        $result['exception'] = 'Noticia incorrecta';
+                        $result['exception'] = 'Noticia inexistente';
                     }
+                } else {
+                    $result['exception'] = 'Noticia incorrecta';
+                }
                 break;
             case 'delete':
 				if ($noticia->setId($_POST['idNoticia'])) {
