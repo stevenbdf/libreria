@@ -1,4 +1,8 @@
-$(document).ready(() => {
+$(document).ready(async () => {
+    await $(() => {
+        $('div#editor').froalaEditor({language: 'es'}) 
+        $('button#insertImage-1').addClass('fr-disabled');
+    });
     showTable();
 })
 
@@ -78,6 +82,7 @@ function fillTable(rows) {
             "url": "../../resources/js/material/espaniol.json"
         }
     });
+    
 }
 
 function limitText (descripcion) {
@@ -100,10 +105,13 @@ function limitText (descripcion) {
 //Función para crear un nuevo registro
 $('#form-create-noticia').submit(async () => {
     event.preventDefault();
+    const noticiaTextArea = $('div#editor').froalaEditor('html.get');
+    const form = new FormData($('#form-create-noticia')[0]);
+    form.append('descripcion',noticiaTextArea)
     const response = await $.ajax({
         url: apiNoticia + 'create',
         type: 'post',
-        data: new FormData($('#form-create-noticia')[0]),
+        data: form,
         datatype: 'json',
         cache: false,
         contentType: false,

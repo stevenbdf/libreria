@@ -17,6 +17,16 @@
     <link rel="stylesheet" href="../../resources/css/material/material.min.css">
     <link rel="stylesheet" href="../../resources/css/material/dataTables.material.min.css">
 
+    <!-- Froala text editor -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/froala_editor.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/froala_style.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/code_view.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/image_manager.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/image.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/table.css">
+  <link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/video.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
 
     <link href="../../resources/css/material/material.css" rel="stylesheet">
 
@@ -84,7 +94,7 @@
                             <tr>
                                 <th scope="col">Codigo</th>
                                 <th scope="col">Empleado</th>
-                                <th scope="col">fecha</th>
+                                <th scope="col">Fecha</th>
                                 <th scope="col">Título</th>
                                 <th scope="col">Descripción</th>
                                 <th scope="col">Imágen</th>
@@ -112,23 +122,22 @@
                     <form method="POST" id="form-create-noticia">
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-12">
                                     <label for="recipient-name" class="col-form-label">Título</label>
-                                    <input type="text" name="titulo" class="form-control form-control-alternative">
+                                    <input type="text" id="titulo" name="titulo" class="form-control form-control-alternative">
                                 </div>
                                 <div class="col-12">
                                     <div class="textfield-box">
                                         <label for="recipient-name" class="col-form-label">Descripción</label>
-                                        <input aria-describedby="exampleTextfieldBox1Help" class="form-control" name="descripcion"
-                                         placeholder="Escriba aquí su noticia..." type="text">
+                                        <div id="editor"></div>
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <label for="recipient-name" class="col-form-label">Imágen</label>
-                                    <input type="text"class="form-control form-control-alternative" name="imagen">
+                                    <input id="imagen" name="imagen" type="text" class="form-control form-control-alternative" name="imagen">
                                     <button class="btn btn-primary my-1" type="button">Buscar imagen</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -172,8 +181,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                <label for="recipient-name" class="col-form-label">Imágen</label>
-                                    <input type="text" name="imagen-update" class="form-control form-control-alternative" id="imagenNoticia" >
+                                    <label for="recipient-name" class="col-form-label">Imágen</label>
+                                    <input type="text" name="imagen-update"
+                                        class="form-control form-control-alternative" id="imagenNoticia">
                                     <button class="btn btn-primary my-1" type="button">Buscar imagen</button>
                                 </div>
                             </div>
@@ -196,6 +206,30 @@
 
     <!-- Then Material JavaScript on top of Bootstrap JavaScript -->
 
+    <!-- Froala text editor plugin -->
+
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/froala_editor.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/align.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/code_beautifier.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/code_view.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/draggable.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/image.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/image_manager.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/link.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/lists.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/paragraph_format.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/paragraph_style.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/table.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/video.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/url.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/plugins/entities.min.js"></script>
+    <script type="text/javascript" src="../../resources/js/froala-text-editor/languages/es.js"></script>
+
     <!-- <script src="../../resources/js/material/material.js"></script> -->
     <script src="../../resources/js/material/material.js"></script>
     <script src="../../resources/js/material/jquery.dataTables.min.js"></script>
@@ -204,6 +238,7 @@
     <script src="../../resources/js/sweetalert2.min.js"></script>
 
     <script src="../../core/controllers/dashboard/noticias.js"></script>
+
 </body>
 
 </html>
