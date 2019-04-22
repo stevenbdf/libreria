@@ -28,10 +28,11 @@
                     <div class="card">
                         <div class="card-body">
                             <form class="row">
-                                <div class="col-12 d-flex justify-content-center py-4">
-                                    <i class="material-icons" style="font-size: 120px;">
-                                        supervised_user_circle
-                                    </i>
+                                <div class="col-12 d-flex justify-content-center align-items-center py-4" style="flex-direction: column;">
+                                        <h1>Registrate</h1>
+                                        <i class="material-icons mt-4" style="font-size: 120px;">
+                                            supervised_user_circle
+                                        </i>
                                 </div>
                                 <div class="form-group col-12 col-md-10 mt-3 offset-md-1">
                                     <label for="exampleInputEmail1">Correo:</label>

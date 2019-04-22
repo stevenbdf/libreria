@@ -4,6 +4,7 @@ $(document).ready(() => {
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiIndex = '../../core/api/index.php?site=dashboard&action=';
+const apiSession = '../../core/api/empleado.php?site=dashboard&action=';
 
 //Función para obtener y mostrar los registros disponibles
 const countTables = () => {
@@ -43,4 +44,19 @@ const ajaxRequest = async (functionName, DOM_ID) => {
     } else {
         console.log(response);
     }
+}
+
+//Función para cerrar la sesión del usuario
+function signOff() {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere cerrar la sesión?',
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+    },(function(isConfirm){
+        isConfirm && (location.href = apiSession + 'logout');
+    }))
+    
 }

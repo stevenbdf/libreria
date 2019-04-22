@@ -4,10 +4,10 @@ class Empleados extends Validator
 	//Declaración de propiedades
 	private $id = null;
 	private $nombres = null;
-    private $apellidos = null;
-    private $correo = null;
-    private $contrasena = null;
-    private $dui = null;
+	private $apellidos = null;
+	private $correo = null;
+	private $contrasena = null;
+	private $dui = null;
 
 	//Métodos para sobrecarga de propiedades
 	public function setId($value)
@@ -53,22 +53,22 @@ class Empleados extends Validator
 	public function getApellidos()
 	{
 		return $this->apellidos;
-    }
-    
-    public function setCorreo($value)
+	}
+
+	public function setCorreo($value)
 	{
-			$this->correo= $value;
-			return true;
+		$this->correo = $value;
+		return true;
 	}
 
 	public function getCorreo()
 	{
-		return $this->pais;
-    }
-    
-    public function setContrasena($value)
+		return $this->correo;
+	}
+
+	public function setContrasena($value)
 	{
-        if ($this->validateAlphaNumeric($value, 1, 100)) {
+		if ($this->validatePassword($value)) {
 			$this->contrasena = $value;
 			return true;
 		} else {
@@ -79,9 +79,9 @@ class Empleados extends Validator
 	public function getContrasena()
 	{
 		return $this->contrasena;
-    }
-    
-    public function setDui($value)
+	}
+
+	public function setDui($value)
 	{
 		if ($this->validateAlphaNumeric($value, 1, 10)) {
 			$this->dui = $value;
@@ -94,10 +94,36 @@ class Empleados extends Validator
 	public function getDui()
 	{
 		return $this->dui;
-    }
+	}
 
 
 	//Metodos para manejar el CRUD
+
+	public function checkCorreo()
+	{
+		$sql = 'SELECT idEmpleado FROM empleado WHERE correo = ?';
+		$params = array($this->correo);
+		$data = Database::getRow($sql, $params);
+		if ($data) {
+			$this->id = $data['idEmpleado'];
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function checkPassword()
+	{
+		$sql = 'SELECT contrasena FROM empleado WHERE idEmpleado = ?';
+		$params = array($this->id);
+		$data = Database::getRow($sql, $params);
+		if (password_verify($this->contrasena, $data['contrasena'])) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function readEmpleados()
 	{
 		$sql = 'SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, correo, contrasena, dui FROM empleado ORDER BY idEmpleado';
@@ -108,7 +134,7 @@ class Empleados extends Validator
 	public function createEmpleados()
 	{
 		$sql = 'INSERT INTO empleado(nombreEmpleado, apellidoEmpleado, correo, contrasena, dui) VALUES(?, ?, ?, ?, ?)';
-		$params = array($this->nombres, $this->apellidos,$this->correo,$this->contrasena,$this->dui);
+		$params = array($this->nombres, $this->apellidos, $this->correo, $this->contrasena, $this->dui);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -123,7 +149,7 @@ class Empleados extends Validator
 	{
 		$sql = 'UPDATE empleado SET nombreEmpleado = ?, apellidoEmpleado = ?, 
 						correo = ?, contrasena = ?, dui = ? WHERE idEmpleado = ?';
-		$params = array($this->nombres, $this->apellidos,$this->correo,$this->contrasena,$this->dui, $this->id);
+		$params = array($this->nombres, $this->apellidos, $this->correo, $this->contrasena, $this->dui, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -133,6 +159,4 @@ class Empleados extends Validator
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
-
 }
-?>

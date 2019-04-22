@@ -9,13 +9,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $empleado = new Empleados;
     $result = array('status' => 0, 'exception' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if ( $_GET['site'] == 'dashboard') {
+	if (isset($_SESSION['idEmpleado']) && ($_GET['site'] == 'dashboard')) {
         switch ($_GET['action']) {
             case 'readEmpleados':
                 if ($result['dataset'] = $empleado->readEmpleados()) {
                     $result['status'] = 1;
                 } else {
-                    $result['exception'] = 'No hay autores registrados';
+                    $result['exception'] = 'No hay empleados registrados';
                 }
                 break;
             case 'create':
@@ -92,7 +92,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Empleado incorrecto';
                 }
-            break;
+                break;
             case 'delete':
 				if ($empleado->setId($_POST['idEmpleado'])) {
 					if ($empleado->getEmpleados()) {
@@ -107,9 +107,51 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 				} else {
 					$result['exception'] = 'Empleado incorrecta';
 				}
-            	break;
+                break;
+            case 'logout':
+                if (session_destroy()) {
+                    header('location: ../../views/dashboard/');
+                } else {
+                    header('location: ../../views/dashboard/main.php');
+                }
+                break;
 			default:
                 exit('Acción no disponible');
+        }
+    } else if($_GET['site'] == 'dashboard') {
+        switch ($_GET['action']) {
+            case 'readEmpleados':
+                if ($result['dataset'] = $empleado->readEmpleados()) {
+                    $result['status'] = 1;
+                    $result['exception'] = 'Existe al menos 1 empleado registrado';
+                } else {
+                    $result['status'] = 2;
+                    $result['exception'] = 'No hay empleados registrados';
+                }
+                break;
+            case 'login':
+                $_POST = $empleado->validateForm($_POST);
+                if ($empleado->setCorreo($_POST['correo'])) {
+                    if ($empleado->checkCorreo()) {
+                        if ($empleado->setContrasena($_POST['contrasena'])) {
+                            if ($empleado->checkPassword()) {
+                                $_SESSION['idEmpleado'] = $empleado->getId();
+                                $_SESSION['correoUsuario'] = $empleado->getCorreo();
+                                
+                                $result['status'] = 1;
+                            } else {
+                                $result['exception'] = 'Clave inexistente';
+                            }
+                        } else {
+                            $result['exception'] = 'Clave menor a 6 caracteres';
+                        }
+                    } else {
+                        $result['exception'] = 'Correo inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Correo incorrecto';
+                }
+                break;
         }
     } else {
         exit('Acceso no disponible');
