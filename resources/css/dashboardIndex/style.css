@@ -9,6 +9,11 @@ div.card{
     height: 180px !important;
 }
 
+a{
+    text-decoration: none !important;
+    color: black;
+}
+
 /* estilos responsive tamaño large*/
 @media only screen and (min-width:992px) {
     h5{
