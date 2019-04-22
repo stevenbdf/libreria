@@ -121,14 +121,15 @@ class Empleados extends Validator
 
 	public function updateEmpleados()
 	{
-		$sql = 'UPDATE autor SET nombre = ?, apellido = ?, pais = ? WHERE idAutor = ?';
-		$params = array($this->nombres, $this->apellidos,$this->pais, $this->id);
+		$sql = 'UPDATE empleado SET nombreEmpleado = ?, apellidoEmpleado = ?, 
+						correo = ?, contrasena = ?, dui = ? WHERE idEmpleado = ?';
+		$params = array($this->nombres, $this->apellidos,$this->correo,$this->contrasena,$this->dui, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 
 	public function deleteEmpleados()
 	{
-		$sql = 'DELETE FROM autor WHERE idAutor = ?';
+		$sql = 'DELETE FROM empleado WHERE idEmpleado = ?';
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}

@@ -61,7 +61,7 @@ function fillTable(rows) {
                 <td>
                     ${row.dui}
                 </td>
-                <td class="text-center">
+                <td class="text-center" style="width:35%">
                     <button type="button" onclick="modalUpdate(${row.idEmpleado})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
@@ -107,7 +107,7 @@ $('#form-create-empleado').submit(async () => {
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Autor guardado correctamente.',
+                    'Empleado guardado correctamente.',
                     'success'
                 )
                 $('#empleado').DataTable().destroy();
@@ -184,7 +184,7 @@ $('#form-update-empleado').submit(async () => {
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Autor modificado correctamente.',
+                    'Empleado modificado correctamente.',
                     'success'
                 )
             }
@@ -206,7 +206,7 @@ $('#form-update-empleado').submit(async () => {
 function confirmDelete(id) {
     swal({
         title: 'Advertencia',
-        text: '¿Quiere eliminar el Autor?',
+        text: '¿Quiere eliminar el Empleado?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -234,7 +234,7 @@ function confirmDelete(id) {
                     if (result.status == 1) {
                         swal(
                             'Operación Correcta',
-                            'Autor eliminado correctamente.',
+                            'Empleado eliminado correctamente.',
                             'success'
                         )
                         $('#empleado').DataTable().destroy();

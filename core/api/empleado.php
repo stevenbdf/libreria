@@ -25,27 +25,27 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         if($empleado->setCorreo($_POST['correo'])){
                             if($empleado->setContrasena($_POST['contrasena'])){
                                 if($empleado->setDui($_POST['dui'])){
-                            if ($empleado->createEmpleados()) {
-                                $result['status'] = 1;
-                            } else {
-                                $result['exception'] = 'Operación fallida';
+                                    if ($empleado->createEmpleados()) {
+                                        $result['status'] = 1;
+                                    } else {
+                                        $result['exception'] = 'Operación fallida';
+                                    }
+                                }else{
+                                    $result['exception'] = 'DUI incorrecto';
+                                }
+                            }else{
+                                $result['exception'] = 'Contraseña incorrecto';
                             }
-                        }else{
-                            $result['exception'] = 'DUI incorrecto';
+                        } else {
+                            $result['exception'] = 'Correo incorrecto';
                         }
-                    }else{
-                        $result['exception'] = 'Contraseña incorrecto';
+                    } else {
+                        $result['exception'] = 'Apellido incorrecto';
                     }
                 } else {
-                    $result['exception'] = 'Correo incorrecto';
+                    $result['exception'] = 'Nombre incorrecto';
                 }
-            } else {
-                $result['exception'] = 'Apellido incorrecto';
-            }
-        } else {
-            $result['exception'] = 'Nombre incorrecto';
-        }
-         break;
+                break;
             case 'get':
                 if ($empleado->setId($_POST['idEmpleado'])) {
                     if ($result['dataset'] = $empleado->getEmpleados()) {
@@ -66,32 +66,32 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 if ($empleado->setCorreo($_POST['correo-update'])) {
                                     if ($empleado->setContrasena($_POST['contrasena-update'])) {
                                         if($empleado->setDui($_POST['dui-update'])){
-                                        if ($empleado->updateEmpleados()) {
-                                            $result['status'] = 1;
-                                        } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            if ($empleado->updateEmpleados()) {
+                                                $result['status'] = 1;
+                                            } else {
+                                                $result['exception'] = 'Operación fallida';
+                                            }
+                                        }else{
+                                            $result['exception'] = 'DUI incorrecto';
                                         }
-                                    }else{
-                                        $result['exception'] = 'DUI incorrecto';
+                                    } else {
+                                        $result['exception'] = 'Contraseña incorrectos';
                                     }
                                 } else {
-                                    $result['exception'] = 'Contraseña incorrectos';
+                                    $result['exception'] = 'Correo incorrectos';
                                 }
                             } else {
-                                $result['exception'] = 'Correo incorrectos';
+                                $result['exception'] = 'Apellidos incorrecto';
                             }
                         } else {
-                            $result['exception'] = 'Apellidos incorrecto';
+                            $result['exception'] = 'Nombres incorrecto';
                         }
                     } else {
-                        $result['exception'] = 'Nombres incorrecto';
+                        $result['exception'] = 'Empleado inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Empleado inexistente';
+                    $result['exception'] = 'Empleado incorrecto';
                 }
-            } else {
-                $result['exception'] = 'Empleado incorrecto';
-            }
             break;
             case 'delete':
 				if ($empleado->setId($_POST['idEmpleado'])) {
