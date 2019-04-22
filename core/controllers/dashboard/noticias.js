@@ -53,15 +53,15 @@ function fillTable(rows) {
                     ${row.fecha}
                 </td>
                 <td>
-                    ${row.titulo}
+                    ${limitText(row.titulo)}
                 </td>
                 <td>
-                    ${row.descripcion}
+                    ${limitText(row.descripcion)}
                 </td>
                 <td>
                     ${row.img}
                 </td>
-                <td class="text-center">
+                <td class="text-center" style="width:35%;">
                     <button type="button" onclick="modalUpdate(${row.idNoticia})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
@@ -78,6 +78,21 @@ function fillTable(rows) {
             "url": "../../resources/js/material/espaniol.json"
         }
     });
+}
+
+function limitText (descripcion) {
+    var descripcionCorta = '';
+    const limiteCaracteres = 60;
+    for (let index = 0; index < limiteCaracteres; index++) {
+        if(descripcion[index] !== undefined){
+            index !== limiteCaracteres - 1 
+            ? descripcionCorta = descripcionCorta + descripcion[index]
+            : descripcionCorta = descripcionCorta + '...';
+        }else{
+            break;
+        }
+    }
+    return descripcionCorta;
 }
 
 /*---------------Funciones CRUD---------------*/
