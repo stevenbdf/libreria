@@ -27,7 +27,6 @@ Dashboard::headerTemplate('Empleados');
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
                             <th scope="col">Correo</th>
-                            <th scope="col">Contraseña</th>
                             <th scope="col">DUI</th>
                             <th scope="col" class="text-center">Acciones</th>
                         </tr>
@@ -38,12 +37,12 @@ Dashboard::headerTemplate('Empleados');
         </div>
     </div>
 </main>
-<!-- Ventana para guardar Autor -->
+<!-- Ventana para guardar Empleado -->
 <div class="modal fade" id="guardarEmpleadoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Agregar Autor</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Agregar Empleado</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -84,12 +83,12 @@ Dashboard::headerTemplate('Empleados');
         </div>
     </div>
 </div>
-<!-- Ventana para modificar Autor -->
+<!-- Ventana para modificar Empleado -->
 <div class="modal fade" id="modificarEmpleadoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">Modificar Autor</h4>
+                <h4 class="modal-title" id="exampleModalLabel">Modificar Empleado</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -112,10 +111,6 @@ Dashboard::headerTemplate('Empleados');
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Correo:</label>
                                 <input name="correo-update" type="text" class="form-control form-control-alternative" id="correoEmpleado">
-                            </div>
-                            <div class="col-6">
-                                <label for="recipient-name" class="col-form-label">Contraseña</label>
-                                <input name="contrasena-update" type="text" class="form-control form-control-alternative" id="contrasenaEmpleado">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">DUI:</label>

@@ -9,7 +9,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     $empleado = new Empleados;
     $result = array('status' => 0, 'exception' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if (isset($_SESSION['idEmpleado']) && ($_GET['site'] == 'dashboard')) {
+    if (isset($_SESSION['idEmpleado']) && ($_GET['site'] == 'dashboard')) {
         switch ($_GET['action']) {
             case 'readEmpleados':
                 if ($result['dataset'] = $empleado->readEmpleados()) {
@@ -21,19 +21,19 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             case 'create':
                 $_POST = $empleado->validateForm($_POST);
                 if ($empleado->setNombres($_POST['nombre'])) {
-                    if($empleado->setApellidos($_POST['apellido'])){
-                        if($empleado->setCorreo($_POST['correo'])){
-                            if($empleado->setContrasena($_POST['contrasena'])){
-                                if($empleado->setDui($_POST['dui'])){
+                    if ($empleado->setApellidos($_POST['apellido'])) {
+                        if ($empleado->setCorreo($_POST['correo'])) {
+                            if ($empleado->setContrasena($_POST['contrasena'])) {
+                                if ($empleado->setDui($_POST['dui'])) {
                                     if ($empleado->createEmpleados()) {
                                         $result['status'] = 1;
                                     } else {
                                         $result['exception'] = 'Operación fallida';
                                     }
-                                }else{
+                                } else {
                                     $result['exception'] = 'DUI incorrecto';
                                 }
-                            }else{
+                            } else {
                                 $result['exception'] = 'Contraseña incorrecto';
                             }
                         } else {
@@ -64,18 +64,14 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         if ($empleado->setNombres($_POST['nombres-update'])) {
                             if ($empleado->setApellidos($_POST['apellidos-update'])) {
                                 if ($empleado->setCorreo($_POST['correo-update'])) {
-                                    if ($empleado->setContrasena($_POST['contrasena-update'])) {
-                                        if($empleado->setDui($_POST['dui-update'])){
-                                            if ($empleado->updateEmpleados()) {
-                                                $result['status'] = 1;
-                                            } else {
-                                                $result['exception'] = 'Operación fallida';
-                                            }
-                                        }else{
-                                            $result['exception'] = 'DUI incorrecto';
+                                    if ($empleado->setDui($_POST['dui-update'])) {
+                                        if ($empleado->updateEmpleados()) {
+                                            $result['status'] = 1;
+                                        } else {
+                                            $result['exception'] = 'Operación fallida';
                                         }
                                     } else {
-                                        $result['exception'] = 'Contraseña incorrectos';
+                                        $result['exception'] = 'DUI incorrecto';
                                     }
                                 } else {
                                     $result['exception'] = 'Correo incorrectos';
@@ -94,19 +90,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-				if ($empleado->setId($_POST['idEmpleado'])) {
-					if ($empleado->getEmpleados()) {
-						if ($empleado->deleteEmpleados()) {
-							$result['status'] = 1;
-						} else {
-							$result['exception'] = 'Operación fallida';
-						}
-					} else {
-						$result['exception'] = 'Empleado inexistente';
-					}
-				} else {
-					$result['exception'] = 'Empleado incorrecta';
-				}
+                if ($_SESSION['idEmpleado'] != $_POST['idEmpleado']) {
+                    if ($empleado->setId($_POST['idEmpleado'])) {
+                        if ($empleado->getEmpleados()) {
+                            if ($empleado->deleteEmpleados()) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['exception'] = 'Operación fallida';
+                            }
+                        } else {
+                            $result['exception'] = 'Empleado inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Empleado incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'No puedes eliminarte a ti mismo';
+                }
                 break;
             case 'logout':
                 if (session_destroy()) {
@@ -115,10 +115,10 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     header('location: ../../views/dashboard/main.php');
                 }
                 break;
-			default:
+            default:
                 exit('Acción no disponible');
         }
-    } else if($_GET['site'] == 'dashboard') {
+    } else if ($_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'readEmpleados':
                 if ($result['dataset'] = $empleado->readEmpleados()) {
@@ -137,7 +137,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             if ($empleado->checkPassword()) {
                                 $_SESSION['idEmpleado'] = $empleado->getId();
                                 $_SESSION['correoUsuario'] = $empleado->getCorreo();
-                                
+
                                 $result['status'] = 1;
                             } else {
                                 $result['exception'] = 'Clave inexistente';
@@ -156,8 +156,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     } else {
         exit('Acceso no disponible');
     }
-	print(json_encode($result));
+    print(json_encode($result));
 } else {
-	exit('Recurso denegado');
+    exit('Recurso denegado');
 }
-?>

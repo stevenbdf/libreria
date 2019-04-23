@@ -56,9 +56,6 @@ function fillTable(rows) {
                     ${row.correo}
                 </td>
                 <td>
-                    ${row.contrasena}
-                </td>
-                <td>
                     ${row.dui}
                 </td>
                 <td class="text-center" style="width:35%">
@@ -149,7 +146,6 @@ const modalUpdate = async id => {
             $('#nombreEmpleado').val(result.dataset.nombreEmpleado);
             $('#apellidoEmpleado').val(result.dataset.apellidoEmpleado);
             $('#correoEmpleado').val(result.dataset.correo);
-            $('#contrasenaEmpleado').val(result.dataset.contrasena);
             $('#duiEmpleado').val(result.dataset.dui);
             $('#modificarEmpleadoModal').modal('toggle');
         } else {
@@ -242,7 +238,7 @@ function confirmDelete(id) {
                     }
 
                 } else {
-                    Swal.fire(
+                    swal(
                         'Error',
                         result.exception,
                         'error'

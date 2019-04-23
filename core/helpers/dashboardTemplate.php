@@ -52,7 +52,7 @@ class Dashboard
 								</div>
 								<nav class="navdrawer-nav">
 								<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>'.$_SESSION['correoUsuario'].'</p>
-								<p class="nav-link"><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Editar datos</p>
+								<p class="nav-link"><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Cambiar contraseña</p>
 								<p class="nav-link" onclick="signOff()"><i class="material-icons mr-3" style="font-size: 30px;">power_settings_new</i>Cerrar sesión</p>
 								</nav>
 							</div>
@@ -109,7 +109,7 @@ class Dashboard
 								</div>
 								<nav class="navdrawer-nav">
 								<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>'.$_SESSION['correoUsuario'].'</p>
-								<p class="nav-link"><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Editar datos</p>
+								<p class="nav-link"><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Cambiar contraseña</p>
 								<p class="nav-link" onclick="signOff()"><i class="material-icons mr-3" style="font-size: 30px;">power_settings_new</i>Cerrar sesión</p>
 								</nav>
 								<div class="navdrawer-divider"></div>
@@ -192,7 +192,7 @@ class Dashboard
 								</div>
 								<nav class="navdrawer-nav">
 								<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>'.$_SESSION['correoUsuario'].'</p>
-								<p class="nav-link"><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Editar datos</p>
+								<p class="nav-link"><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Cambiar contraseña</p>
 								<p class="nav-link" onclick="signOff()"><i class="material-icons mr-3" style="font-size: 30px;">power_settings_new</i>Cerrar sesión</p>
 								</nav>
 								<div class="navdrawer-divider"></div>

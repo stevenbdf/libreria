@@ -126,15 +126,16 @@ class Empleados extends Validator
 
 	public function readEmpleados()
 	{
-		$sql = 'SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, correo, contrasena, dui FROM empleado ORDER BY idEmpleado';
+		$sql = 'SELECT idEmpleado, nombreEmpleado, apellidoEmpleado, correo, dui FROM empleado ORDER BY idEmpleado';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function createEmpleados()
 	{
+		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
 		$sql = 'INSERT INTO empleado(nombreEmpleado, apellidoEmpleado, correo, contrasena, dui) VALUES(?, ?, ?, ?, ?)';
-		$params = array($this->nombres, $this->apellidos, $this->correo, $this->contrasena, $this->dui);
+		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->dui);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -148,8 +149,8 @@ class Empleados extends Validator
 	public function updateEmpleados()
 	{
 		$sql = 'UPDATE empleado SET nombreEmpleado = ?, apellidoEmpleado = ?, 
-						correo = ?, contrasena = ?, dui = ? WHERE idEmpleado = ?';
-		$params = array($this->nombres, $this->apellidos, $this->correo, $this->contrasena, $this->dui, $this->id);
+						correo = ?, dui = ? WHERE idEmpleado = ?';
+		$params = array($this->nombres, $this->apellidos, $this->correo, $this->dui, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 
