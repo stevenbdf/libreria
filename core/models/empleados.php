@@ -154,6 +154,14 @@ class Empleados extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
+	public function updateContrasena()
+	{
+		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
+		$sql = 'UPDATE empleado SET contrasena = ? WHERE idEmpleado = ?';
+		$params = array($hash, $this->id);
+		return Database::executeRow($sql, $params);
+	}
+
 	public function deleteEmpleados()
 	{
 		$sql = 'DELETE FROM empleado WHERE idEmpleado = ?';
