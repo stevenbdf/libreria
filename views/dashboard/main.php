@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboardTemplate.php');
-Dashboard::headerTemplate('Iniciar sesión');
+Dashboard::headerTemplate('Principal');
 ?>
 <main>
     <div class="container">
@@ -111,7 +111,12 @@ Dashboard::headerTemplate('Iniciar sesión');
                 <div class="card mt-4">
                     <div class="card-body row">
                         <div class="section-info col-12 col-lg-8">
-                            <h5 class="card-title text-center">Comentarios</h5>
+                            <a href="./comentariosLibros.php">
+                                <h5 class="card-title text-center small">Comentarios Libros</h5>
+                            </a>
+                            <a href="./comentariosNoticias.php">
+                                <h5 class="card-title text-center small mt-2">Comentarios Noticias</h5>
+                            </a>
                         </div>
                         <div class="col-12 col-lg-4 d-flex align-items-center justify-content-center">
                             <i class="material-icons">

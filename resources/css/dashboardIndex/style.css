@@ -21,6 +21,10 @@ a{
         font-weight: bold;
     }
 
+    h5.small{
+        font-size: 14px !important;
+    }
+
     div.section-info{
         display: flex;
         flex-direction: column;
