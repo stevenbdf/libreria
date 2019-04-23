@@ -1,18 +1,20 @@
 $(document).ready(async () => {
     await $(() => {
-        $('div#editor').froalaEditor({language: 'es'}) 
+        $('div#editor').froalaEditor({ language: 'es' })
+        $('div#editor2').froalaEditor({ language: 'es' })
         $('button#insertImage-1').addClass('fr-disabled');
+        $('button#insertImage-2').addClass('fr-disabled');
     });
     showTable();
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
-const apiNoticia= '../../core/api/noticia.php?site=dashboard&action=';
+const apiNoticia = '../../core/api/noticia.php?site=dashboard&action=';
 
 //Función para obtener y mostrar los registros disponibles
 const showTable = async () => {
     const response = await $.ajax({
-        url: apiNoticia  + 'readNoticia',
+        url: apiNoticia + 'readNoticia',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -60,16 +62,13 @@ function fillTable(rows) {
                     ${limitText(row.titulo)}
                 </td>
                 <td>
-                    ${limitText(row.descripcion)}
-                </td>
-                <td>
-                    ${row.img}
+                    <img src="../../resources/img/news/${row.img}" width="160" height="120">
                 </td>
                 <td class="text-center" style="width:35%;">
                     <button type="button" onclick="modalUpdate(${row.idNoticia})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
-                    <button type="button" onclick="confirmDelete(${row.idNoticia})" class="mr-2 btn btn-danger">
+                    <button type="button" onclick="confirmDelete(${row.idNoticia}, '${row.img}')" class="mr-2 btn btn-danger">
                         <i class="material-icons mr-2">delete</i>Eliminar
                     </button> 
                 </td> 
@@ -82,18 +81,18 @@ function fillTable(rows) {
             "url": "../../resources/js/material/espaniol.json"
         }
     });
-    
+
 }
 
-function limitText (descripcion) {
+function limitText(descripcion) {
     var descripcionCorta = '';
     const limiteCaracteres = 60;
     for (let index = 0; index < limiteCaracteres; index++) {
-        if(descripcion[index] !== undefined){
-            index !== limiteCaracteres - 1 
-            ? descripcionCorta = descripcionCorta + descripcion[index]
-            : descripcionCorta = descripcionCorta + '...';
-        }else{
+        if (descripcion[index] !== undefined) {
+            index !== limiteCaracteres - 1
+                ? descripcionCorta = descripcionCorta + descripcion[index]
+                : descripcionCorta = descripcionCorta + '...';
+        } else {
             break;
         }
     }
@@ -105,9 +104,20 @@ function limitText (descripcion) {
 //Función para crear un nuevo registro
 $('#form-create-noticia').submit(async () => {
     event.preventDefault();
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
     const noticiaTextArea = $('div#editor').froalaEditor('html.get');
+
     const form = new FormData($('#form-create-noticia')[0]);
-    form.append('descripcion',noticiaTextArea)
+
+    form.append('descripcion', noticiaTextArea);
+    form.append('fecha', today);
+
     const response = await $.ajax({
         url: apiNoticia + 'create',
         type: 'post',
@@ -130,7 +140,7 @@ $('#form-create-noticia').submit(async () => {
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Autor guardado correctamente.',
+                    'Noticia guardado correctamente.',
                     'success'
                 )
                 $('#noticia').DataTable().destroy();
@@ -145,7 +155,7 @@ $('#form-create-noticia').submit(async () => {
             )
         }
     } else {
-         console.log(response);
+        console.log(response);
     }
 })
 
@@ -170,8 +180,10 @@ const modalUpdate = async id => {
             $('#form-update-noticia')[0].reset();
             $('#idNoticia').val(result.dataset.idNoticia);
             $('#tituloNoticia').val(result.dataset.titulo);
-            $('#descripcionNoticia').val(result.dataset.descripcion);
-            $('#imagenNoticia').val(result.dataset.img);
+            $('#editor2').froalaEditor('html.set', result.dataset.descripcion);
+            var content = `<img src="../../resources/img/news/${result.dataset.img}" width="320" height="240">`;
+            $('#imagen-update-container').html(content);
+            $('#imagen-noticia').val(result.dataset.img);
             $('#modificarNoticiaModal').modal('toggle');
         } else {
             console.log(result.exception)
@@ -184,10 +196,13 @@ const modalUpdate = async id => {
 //Función para modificar un registro seleccionado previamente
 $('#form-update-noticia').submit(async () => {
     event.preventDefault();
+    const noticiaTextArea = $('div#editor2').froalaEditor('html.get');
+    const form = new FormData($('#form-update-noticia')[0]);
+    form.append('descripcion', noticiaTextArea);
     const response = await $.ajax({
         url: apiNoticia + 'update',
         type: 'post',
-        data: new FormData($('#form-update-noticia')[0]),
+        data: form,
         datatype: 'json',
         cache: false,
         contentType: false,
@@ -205,7 +220,13 @@ $('#form-update-noticia').submit(async () => {
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Autor modificado correctamente.',
+                    'Noticia modificada correctamente.',
+                    'success'
+                )
+            } else if (result.status == 2 || result.status == 3) {
+                swal(
+                    'Operación Correcta',
+                    'Noticia modificada correctamente.' + result.exception,
                     'success'
                 )
             }
@@ -224,55 +245,63 @@ $('#form-update-noticia').submit(async () => {
 })
 
 //Función para eliminar un registro seleccionado
-function confirmDelete(id) {
+function confirmDelete(id, file) {
     swal({
         title: 'Advertencia',
-        text: '¿Quiere eliminar el Autor?',
+        text: '¿Quiere eliminar la Noticia?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borralo.',
+        confirmButtonText: 'Si, borrala.',
         closeOnConfirm: false,
         closeOnCancel: true
     },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiNoticia + 'delete',
-                type: 'post',
-                data: {
-                    idNoticia: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Autor eliminado correctamente.',
-                            'success'
-                        )
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiNoticia + 'delete',
+                    type: 'post',
+                    data: {
+                        idNoticia: id,
+                        imagenNoticia: file
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Noticia eliminada correctamente.',
+                                'success'
+                            )
+
+                        } else if (result.status == 2) {
+                            swal(
+                                'Operación parcialmente correcta',
+                                'Noticia eliminada.' + result.exception,
+                                'success'
+                            )
+                        }
                         $('#noticia').DataTable().destroy();
                         showTable();
-                    }
 
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
                 } else {
-                    Swal.fire(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
+                    console.log(response);
                 }
-            } else {
-                console.log(response);
             }
-        }
-    });
+        });
 }
 

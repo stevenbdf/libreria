@@ -6,10 +6,10 @@ require_once('../../core/models/noticias.php');
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
-    $noticia= new Noticias;
+    $noticia = new Noticias;
     $result = array('status' => 0, 'exception' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-	if ( $_GET['site'] == 'dashboard') {
+    if (isset($_SESSION['idEmpleado']) &&  $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
             case 'readNoticia':
                 if ($result['dataset'] = $noticia->readNoticia()) {
@@ -21,17 +21,32 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             case 'create':
                 $_POST = $noticia->validateForm($_POST);
                 if ($noticia->setTitulo($_POST['titulo'])) {
-                    if($noticia->setDescripcion($_POST['descripcion'])){
-                        if($noticia->setImagen($_POST['imagen'])){
-                            if ($noticia->createNoticia()) {
-                                $result['status'] = 1;
+                    if ($noticia->setDescripcion($_POST['descripcion'])) {
+                        if (is_uploaded_file($_FILES['imagen']['tmp_name'])) {
+                            if ($noticia->setImagen($_FILES['imagen'], null)) {
+                                if ($noticia->setEmpleadoId($_SESSION['idEmpleado'])) {
+                                    if ($noticia->setFecha($_POST['fecha'])) {
+                                        if ($noticia->createNoticia()) {
+                                            if ($noticia->saveFile($_FILES['imagen'], $noticia->getRuta(), $noticia->getImagen())) {
+                                                $result['status'] = 1;
+                                            } else {
+                                                $result['status'] = 2;
+                                                $result['exception'] = 'No se guardó el archivo';
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Operación fallida';
+                                        }
+                                    }
+                                } else {
+                                    $result['exception'] = 'Id empleado incorrecto';
+                                }
                             } else {
-                                $result['exception'] = 'Operación fallida';
+                                $result['exception'] = $noticia->getImageError();
                             }
-                        }else{
-                            $result['exception'] = 'Imágen incorrecto';
+                        } else {
+                            $result['exception'] = 'Seleccione una imagen';
                         }
-                    }else{
+                    } else {
                         $result['exception'] = 'Descripción incorrecto';
                     }
                 } else {
@@ -54,21 +69,61 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($noticia->setId($_POST['id-update'])) {
                     if ($noticia->getNoticia()) {
                         if ($noticia->setTitulo($_POST['titulo-update'])) {
-                            if ($noticia->setDescripcion($_POST['descripcion-update'])) {
-                                if($noticia->setImagen($_POST['imagen-update'])){
-                                    if ($autor->updateAutor()) {
-                                        $result['status'] = 1;
+                            if ($noticia->setDescripcion($_POST['descripcion'])) {
+                                if (is_uploaded_file($_FILES['imagen-update']['tmp_name'])) {
+                                    if ($noticia->setImagen($_FILES['imagen-update'], $_POST['imagen-noticia'])) {
+                                        $archivo = true;
                                     } else {
-                                        $result['exception'] = 'Operación fallida';
+                                        $result['exception'] = $noticia->getImageError();
+                                        $archivo = false;
                                     }
-                                }else{
-                                    $result['exception'] = 'Imágen incorrecto';
+                                } else {
+                                    if ($noticia->setImagen(null, $_POST['imagen-noticia'])) {
+                                        $result['exception'] = 'No se subió ningún archivo';
+                                    } else {
+                                        $result['exception'] = $noticia->getImageError();
+                                    }
+                                    $archivo = false;
+                                }
+                                if ($noticia->updateNoticia()) {
+                                    if ($archivo) {
+                                        if ($noticia->saveFile($_FILES['imagen-update'], $noticia->getRuta(), $noticia->getImagen())) {
+                                            $result['status'] = 1;
+                                        } else {
+                                            $result['status'] = 2;
+                                            $result['exception'] = 'No se guardó el archivo';
+                                        }
+                                    } else {
+                                        $result['status'] = 3;
+                                    }
+                                } else {
+                                    $result['exception'] = 'Operación fallida';
                                 }
                             } else {
-                                $result['exception'] = 'Descripción incorrectos';
+                                $result['exception'] = 'Descripción incorrecto';
                             }
                         } else {
-                            $result['exception'] = 'Titulo incorrectos';
+                            $result['exception'] = 'Titulo incorrecto';
+                        }
+                    }else{
+                        $result['exception'] = 'Noticia inexistente';    
+                    }
+                } else {
+                    $result['exception'] = 'Noticia incorrecta';
+                }
+                break;
+            case 'delete':
+                if ($noticia->setId($_POST['idNoticia'])) {
+                    if ($noticia->getNoticia()) {
+                        if ($noticia->deleteNoticia()) {
+                            if ($noticia->deleteFile($noticia->getRuta(), $_POST['imagenNoticia'])) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['status'] = 2;
+                                $result['exception'] = 'No se borró el archivo';
+                            }
+                        } else {
+                            $result['exception'] = 'Operación fallida';
                         }
                     } else {
                         $result['exception'] = 'Noticia inexistente';
@@ -77,22 +132,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Noticia incorrecta';
                 }
                 break;
-            case 'delete':
-				if ($noticia->setId($_POST['idNoticia'])) {
-					if ($noticia->getNoticia()) {
-						if ($noticia->deleteNoticia()) {
-							$result['status'] = 1;
-						} else {
-							$result['exception'] = 'Operación fallida';
-						}
-					} else {
-						$result['exception'] = 'Noticia inexistente';
-					}
-				} else {
-					$result['exception'] = 'Noticia incorrecta';
-				}
-            	break;
-			default:
+            default:
                 exit('Acción no disponible');
         }
     } else if ($_GET['site'] == 'commerce') {
@@ -106,12 +146,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 break;
             default:
                 exit('Acción no disponible');
-    	}
+        }
     } else {
         exit('Acceso no disponible');
     }
-	print(json_encode($result));
+    print(json_encode($result));
 } else {
-	exit('Recurso denegado');
+    exit('Recurso denegado');
 }
-?>

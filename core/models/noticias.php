@@ -4,8 +4,11 @@ class Noticias extends Validator
 	//Declaración de propiedades
 	private $id = null;
 	private $titulo = null;
-    private $descripcion = null;
-    private $imagen = null;
+	private $descripcion = null;
+	private $imagen = null;
+	private $empleadoId = null;
+	private $fecha = null;
+	private $ruta = '../../resources/img/news/';
 
 	//Métodos para sobrecarga de propiedades
 	public function setId($value)
@@ -25,7 +28,7 @@ class Noticias extends Validator
 
 	public function setTitulo($value)
 	{
-		if ($this->validateAlphabetic($value, 1, 100)) {
+		if ($this->validateAlphanumeric($value, 1, 100)) {
 			$this->titulo = $value;
 			return true;
 		} else {
@@ -40,19 +43,28 @@ class Noticias extends Validator
 
 	public function setDescripcion($value)
 	{
-			$this->descripcion = $value;
-			return true;
+		$this->descripcion = $value;
+		return true;
 	}
 
 	public function getDescripcion()
 	{
 		return $this->descripcion;
-    }
-    
-    public function setImagen($value)
+	}
+
+	public function setImagen($file, $name)
 	{
-		$this->imagen=$value;
-		return true;
+		if ($this->validateImageFile($file, $this->ruta, $name, 640, 480)) {
+			$this->imagen = $this->getImageName();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getRuta()
+	{
+		return $this->ruta;
 	}
 
 	public function getImagen()
@@ -60,19 +72,37 @@ class Noticias extends Validator
 		return $this->imagen;
 	}
 
+	public function setEmpleadoId($value)
+	{
+		if($this->validateId($value)){
+			$this->empleadoId = $value;
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function setFecha($value)
+	{
+		$this->fecha = $value;
+		return true;
+	}
+
 
 	//Metodos para manejar el CRUD
 	public function readNoticia()
 	{
-        $sql='SELECT idNoticia, nombreEmpleado, fecha, titulo, descripcion, noticia.img FROM noticia INNER JOIN empleado ON empleado.idEmpleado=noticia.idNoticia ORDER BY idNoticia';
+		$sql = 'SELECT idNoticia, nombreEmpleado, fecha, titulo, descripcion, noticia.img 
+				FROM noticia INNER JOIN empleado ON empleado.idEmpleado=noticia.idEmpleado
+				ORDER BY idNoticia';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function createNoticia()
 	{
-		$sql = 'INSERT INTO noticia(titulo, descripcion, img) VALUES(?, ?, ?)';
-		$params = array($this->titulo, $this->descripcion,$this->imagen);
+		$sql = 'INSERT INTO noticia(idEmpleado, fecha, titulo, descripcion, img) VALUES(?, ?, ?, ?, ?)';
+		$params = array($this->empleadoId, $this->fecha, $this->titulo,  $this->descripcion, $this->imagen);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -86,7 +116,7 @@ class Noticias extends Validator
 	public function updateNoticia()
 	{
 		$sql = 'UPDATE noticia SET titulo = ?, descripcion = ?, img = ? WHERE idNoticia = ?';
-		$params = array($this->titulo, $this->descripcion,$this->imagen, $this->id);
+		$params = array($this->titulo, $this->descripcion, $this->imagen, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -96,6 +126,4 @@ class Noticias extends Validator
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
-
 }
-?>
