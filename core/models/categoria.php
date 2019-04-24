@@ -27,7 +27,7 @@ class Categoria extends Validator
 
 	public function setNombre($value)
 	{
-		if ($this->validateAlphabetic($value, 1, 30)) {
+		if ($this->validateAlphabetic($value, 1, 16)) {
 			$this->nombre = $value;
 			return true;
 		} else {
@@ -42,8 +42,12 @@ class Categoria extends Validator
 
 	public function setDescripcion($value)
 	{
-		$this->descripcion = $value;
-		return true;
+		if ($this->validateAlphabetic($value, 1, 110)) {
+			$this->descripcion = $value;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getDescription()

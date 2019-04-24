@@ -51,13 +51,13 @@ class Validator
 	public function validateImageFile($file, $path, $name, $maxWidth, $maxHeigth)
 	{
 		if ($file) {
-	     	if ($file['size'] <= 2097152) {
-		    	list($width, $height, $type) = getimagesize($file['tmp_name']);
+			if ($file['size'] <= 2097152) {
+				list($width, $height, $type) = getimagesize($file['tmp_name']);
 				if ($width <= $maxWidth && $height <= $maxHeigth) {
 					//Tipos de imagen: 1 - GIF, 2 - JPG y 3 - PNG
 					if ($type == 1 || $type == 2 || $type == 3) {
 						if ($name) {
-							if (file_exists($path.$name)) {
+							if (file_exists($path . $name)) {
 								$this->imageName = $name;
 								return true;
 							} else {
@@ -66,7 +66,7 @@ class Validator
 							}
 						} else {
 							$extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
-							$this->imageName = uniqid().'.'.$extension;
+							$this->imageName = uniqid() . '.' . $extension;
 							return true;
 						}
 					} else {
@@ -77,12 +77,12 @@ class Validator
 					$this->imageError = 2;
 					return false;
 				}
-	     	} else {
+			} else {
 				$this->imageError = 3;
 				return false;
-	     	}
+			}
 		} else {
-			if (file_exists($path.$name)) {
+			if (file_exists($path . $name)) {
 				$this->imageName = $name;
 				return true;
 			} else {
@@ -103,7 +103,7 @@ class Validator
 
 	public function validateAlphabetic($value, $minimum, $maximum)
 	{
-		if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s\w]{'.$minimum.','.$maximum.'}$/', $value)) {
+		if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s\.-]{' . $minimum . ',' . $maximum . '}$/', $value)) {
 			return true;
 		} else {
 			return false;
@@ -112,7 +112,7 @@ class Validator
 
 	public function validateAlphanumeric($value, $minimum, $maximum)
 	{
-		if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.\w]{'.$minimum.','.$maximum.'}$/', $value)) {
+		if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.-]{' . $minimum . ',' . $maximum . '}$/', $value)) {
 			return true;
 		} else {
 			return false;
@@ -138,9 +138,9 @@ class Validator
 	}
 
 	public function saveFile($file, $path, $name)
-    {
+	{
 		if (file_exists($path)) {
-			if (move_uploaded_file($file['tmp_name'], $path.$name)) {
+			if (move_uploaded_file($file['tmp_name'], $path . $name)) {
 				return true;
 			} else {
 				return false;
@@ -148,12 +148,12 @@ class Validator
 		} else {
 			return false;
 		}
-  	}
+	}
 
 	public function deleteFile($path, $name)
-    {
+	{
 		if (file_exists($path)) {
-			if (unlink($path.$name)) {
+			if (unlink($path . $name)) {
 				return true;
 			} else {
 				return false;
@@ -163,4 +163,3 @@ class Validator
 		}
 	}
 }
-?>
