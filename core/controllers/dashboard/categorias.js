@@ -50,13 +50,19 @@ function fillTable(rows) {
                     ${row.nombreCat}
                 </td>
                 <td>
+                    ${limitText(row.descripcion)}
+                </td>
+                <td>
+                    <img src="../../resources/img/categories/${row.img}" width="160" height="120">
+                </td>
+                <td>
                     ${row.descuento}
                 </td>
                 <td class="text-center" style="width:35%">
                     <button type="button" data-toggle="modal" data-target="#modificarCategoriaModal" onclick="modalUpdate(${row.idCategoria})" class="mr-2 btn btn-warning text-white">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
-                    <button type="button" onclick="confirmDelete(${row.idCategoria})" class="mr-2 btn btn-danger">
+                    <button type="button" onclick="confirmDelete(${row.idCategoria},'${row.img}')" class="mr-2 btn btn-danger">
                         <i class="material-icons mr-2">delete</i>Eliminar
                     </button> 
                 </td> 
@@ -71,13 +77,28 @@ function fillTable(rows) {
     });
 }
 
+function limitText(descripcion) {
+    var descripcionCorta = '';
+    const limiteCaracteres = 60;
+    for (let index = 0; index < limiteCaracteres; index++) {
+        if (descripcion[index] !== undefined) {
+            index !== limiteCaracteres - 1
+                ? descripcionCorta = descripcionCorta + descripcion[index]
+                : descripcionCorta = descripcionCorta + '...';
+        } else {
+            break;
+        }
+    }
+    return descripcionCorta;
+}
+
 /*---------------Funciones CRUD---------------*/
 
 //Función para crear un nuevo registro
 $('#form-create-categoria').submit(async () => {
     event.preventDefault();
     const response = await $.ajax({
-        url: apiCategoria+ 'create',
+        url: apiCategoria + 'create',
         type: 'post',
         data: new FormData($('#form-create-categoria')[0]),
         datatype: 'json',
@@ -103,9 +124,7 @@ $('#form-create-categoria').submit(async () => {
                 )
                 $('#categoria').DataTable().destroy();
                 showTable();
-
             }
-
         } else {
             swal(
                 'Error',
@@ -114,13 +133,13 @@ $('#form-create-categoria').submit(async () => {
             )
         }
     } else {
-        console.log(response);
+        console.log(response)
     }
 })
 
 //Función para mostrar formulario con registro a modificar
 const modalUpdate = async id => {
-    
+
     const response = await $.ajax({
         url: apiCategoria + 'get',
         type: 'post',
@@ -140,6 +159,10 @@ const modalUpdate = async id => {
             $('#form-update-categoria')[0].reset();
             $('#idCategoria').val(result.dataset.idCategoria);
             $('#nombreCategoria').val(result.dataset.nombreCat);
+            $('#descripcion-update').val(result.dataset.descripcion);
+            var content = `<img src="../../resources/img/categories/${result.dataset.img}" width="320" height="240">`;
+            $('#imagen-update-container').html(content);
+            $('#imagen-categoria').val(result.dataset.img);
             $('#descuentoCategoria').val(result.dataset.descuento);
         } else {
             console.log(result.exception)
@@ -173,8 +196,20 @@ $('#form-update-categoria').submit(async () => {
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Editorial modificada correctamente.',
+                    'Categoria modificada correctamente.',
                     'success'
+                )
+            } else if (result.status == 2) {
+                swal(
+                    '¡Atención!',
+                    'Categoria modificada.' + result.exception,
+                    'success'
+                )
+            } else if (result.status == 3) {
+                swal(
+                    '¡Atención!',
+                    'Categoria modificada.' + result.exception,
+                    'warning'
                 )
             }
             $('#categoria').DataTable().destroy();
@@ -192,7 +227,7 @@ $('#form-update-categoria').submit(async () => {
 })
 
 //Función para eliminar un registro seleccionado
-function confirmDelete(id) {
+function confirmDelete(id, file) {
     swal({
         title: 'Advertencia',
         text: '¿Quiere eliminar la Categoria?',
@@ -205,42 +240,52 @@ function confirmDelete(id) {
         closeOnConfirm: false,
         closeOnCancel: true
     },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiCategoria + 'delete',
-                type: 'post',
-                data: {
-                    idCategoria: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Editorial eliminada correctamente.',
-                            'success'
-                        )
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiCategoria + 'delete',
+                    type: 'post',
+                    data: {
+                        idCategoria: id,
+                        imagenCategoria: file
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Categoria eliminada correctamente.',
+                                'success'
+                            )
+                        } else if (result.status == 2) {
+                            swal(
+                                'Operación parcialmente correcta',
+                                'Categoria eliminada.' + result.exception,
+                                'warning'
+                            )
+                        }
                         $('#categoria').DataTable().destroy();
                         showTable();
+                    } else {
+                        swal(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
                     }
-
                 } else {
-                    Swal.fire(
+                    swal(
                         'Error',
-                        result.exception,
+                        response,
                         'error'
                     )
                 }
-            } else {
-                console.log(response);
             }
-        }
-    });
+        });
 }
 

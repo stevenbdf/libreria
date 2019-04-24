@@ -48,69 +48,7 @@
 <!--Empiezan cada una de las diviciones para presentar las categorías rápidamente -->
   <div class="container mt-4 mb-4 pb-4">
     <h1 class="text-center pt-3">CATEGORIAS</h1>
-    <div class="row">
-      <!-- Aquí comienzan las secciones -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card bg-dark text-white">
-          <img src="../../resources/img/categories/comic.jpg" class="card-img categorias-inicio" alt="comic">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Comic</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="all.products.php" class="btn btn-success">Ver más</a>
-          </div>
-        </div>
-      </div><!--Fin de una sección e inicio de otra -->
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card bg-dark text-white">
-          <img src="../../resources/img/categories/drama.jpg" class="card-img categorias-inicio" alt="comic">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Drama</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="all.products.php" class="btn btn-success">Ver más</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card bg-dark text-white">
-          <img src="../../resources/img/categories/fiction.jpg" class="card-img categorias-inicio" alt="comic">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Ficción</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="all.products.php" class="btn btn-success">Ver más</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card bg-dark text-white">
-          <img src="../../resources/img/categories/comic.jpg" class="card-img categorias-inicio" alt="comic">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Comic</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="all.products.php" class="btn btn-success">Ver más</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card bg-dark text-white">
-          <img src="../../resources/img/categories/drama.jpg" class="card-img categorias-inicio" alt="comic">
-          <div class="card-img-overlay">
-            <h5 class="card-title">Drama</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="all.products.php" class="btn btn-success">Ver más</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-md-6 col-lg-4 mb-4">
-        <div class="card bg-dark text-white">
-          <img src="../../resources/img/categories/fiction.jpg" class="card-img categorias-inicio" alt="comic">
-          <div class="card-img-overlay">
-            <h5 class="card-title ">Ficción</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <a href="all.products.php" class="btn btn-success">Ver más</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="categoria-container" class="row"></div>
   </div>
   <!--Aquí está el vídeo y las rejillas en cada tamaño siempre será de 12 -->
   <div class="container">
@@ -124,5 +62,5 @@
   </div>
 
   <?php
-    echo model_page::footer();
+    echo model_page::footer('index');
    ?>

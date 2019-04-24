@@ -25,6 +25,8 @@ Dashboard::headerTemplate('Categorias');
                         <tr>
                             <th scope="col">Codigo</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Descuento</th>
                             <th scope="col" class="text-center">Acciones</th>
                         </tr>
@@ -56,6 +58,21 @@ Dashboard::headerTemplate('Categorias');
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Descuento:</label>
                                 <input type="text" name="descuento" class="form-control form-control-alternative">
+                            </div>
+                            <div class="col-12">
+                                <label for="recipient-name" class="col-form-label">Descripción:</label>
+                                <textarea class="form-control" name="descripcion" id="descripcion" aria-label="With textarea"></textarea>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Imagen:</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="imagen" id="imagen">
+                                        <label class="custom-file-label" for="inputGroupFile01">.gif, .png, .jpg</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,10 +107,27 @@ Dashboard::headerTemplate('Categorias');
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
                                 <input name="nombres-update" type="text" class="form-control form-control-alternative" id="nombreCategoria">
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label for="recipient-name" class="col-form-label">Descuento:</label>
-                                    <input name="descuento-update" type="text" class="form-control form-control-alternative" id="descuentoCategoria">
+                            <div class="col-6">
+                                <label for="recipient-name" class="col-form-label">Descuento:</label>
+                                <input name="descuento-update" type="text" class="form-control form-control-alternative" id="descuentoCategoria">
+                            </div>
+                            <div class="col-12">
+                                <label for="recipient-name" class="col-form-label">Descripción:</label>
+                                <textarea class="form-control" name="descripcion-update" id="descripcion-update" aria-label="With textarea"></textarea>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center my-4">
+                                <div id="imagen-update-container"></div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Imagen:</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="imagen-update" id="imagen-update">
+                                        <input type="text" class="d-none" id="imagen-categoria" name="imagen-categoria">
+                                        <label class="custom-file-label" for="inputGroupFile01">.gif, .png, .jpg</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -223,11 +223,17 @@ $('#form-update-noticia').submit(async () => {
                     'Noticia modificada correctamente.',
                     'success'
                 )
-            } else if (result.status == 2 || result.status == 3) {
+            } else if (result.status == 2) {
                 swal(
-                    'Operación Correcta',
-                    'Noticia modificada correctamente.' + result.exception,
+                    '¡Atención!',
+                    'Noticia modificada' + result.exception,
                     'success'
+                )
+            } else if (result.status == 3){
+                swal(
+                    '¡Atención!',
+                    'Noticia modificada' + result.exception,
+                    'warning'
                 )
             }
             $('#noticia').DataTable().destroy();
@@ -285,21 +291,25 @@ function confirmDelete(id, file) {
                             swal(
                                 'Operación parcialmente correcta',
                                 'Noticia eliminada.' + result.exception,
-                                'success'
+                                'warning'
                             )
                         }
                         $('#noticia').DataTable().destroy();
                         showTable();
 
                     } else {
-                        Swal.fire(
+                        swal(
                             'Error',
                             result.exception,
                             'error'
                         )
                     }
                 } else {
-                    console.log(response);
+                    swal(
+                        'Error',
+                        response,
+                        'error'
+                    )
                 }
             }
         });

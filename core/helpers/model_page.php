@@ -115,7 +115,7 @@ class model_page{
         ';
     }
 
-    public static function footer(){
+    public static function footer($controller ='index'){
         print('
         <footer id="footer" class="pb-4 pt-4 bg-gradient-primary">
           <div class="container">
@@ -141,13 +141,15 @@ class model_page{
 
 
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="../../core/helpers/functions.js"></script>
         <script src="../../resources/js/popper.js"></script>
         <script src="../../resources/js/bootstrap.js"></script>
         <script src="../../resources/js/bootstrap.bundle.min.js"></script>
         <script src="../../resources/js/argon.min.js"></script>
         <script src="../../resources/js/sweetalert2.min.js"></script>
         <script defer src="../../resources/js/index.js"></script>
+        <script src="../../core/controllers/public/'.$controller.'.js"></script>
 
 
       </body>
@@ -166,8 +168,7 @@ class model_page{
         <script src="../../resources/js/argon.min.js"></script>
         <script src="../../resources/js/sweetalert2.min.js"></script>
         <script defer src="../../resources/js/index.js"></script>
-
-
+        
       </body>
 
       </html>

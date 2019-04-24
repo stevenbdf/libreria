@@ -36,6 +36,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                         } else {
                                             $result['exception'] = 'Operación fallida';
                                         }
+                                    } else {
+                                        $result['exception'] = 'Fecha incorrecta';
                                     }
                                 } else {
                                     $result['exception'] = 'Id empleado incorrecto';
@@ -85,8 +87,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                     }
                                     $archivo = false;
                                 }
-                                if ($noticia->updateNoticia()) {
-                                    if ($archivo) {
+                                if ($archivo) {
+                                    if ($noticia->updateNoticia()) {
                                         if ($noticia->saveFile($_FILES['imagen-update'], $noticia->getRuta(), $noticia->getImagen())) {
                                             $result['status'] = 1;
                                         } else {
@@ -94,10 +96,14 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                             $result['exception'] = 'No se guardó el archivo';
                                         }
                                     } else {
-                                        $result['status'] = 3;
+                                        $result['exception'] = 'Operación fallida';
                                     }
                                 } else {
-                                    $result['exception'] = 'Operación fallida';
+                                    if ($noticia->updateNoticia()) {
+                                        $result['status'] = 3;
+                                    } else {
+                                        $result['exception'] = 'Operación fallida';
+                                    }
                                 }
                             } else {
                                 $result['exception'] = 'Descripción incorrecto';
@@ -105,8 +111,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                         } else {
                             $result['exception'] = 'Titulo incorrecto';
                         }
-                    }else{
-                        $result['exception'] = 'Noticia inexistente';    
+                    } else {
+                        $result['exception'] = 'Noticia inexistente';
                     }
                 } else {
                     $result['exception'] = 'Noticia incorrecta';
