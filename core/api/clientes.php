@@ -80,6 +80,21 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Alias incorrecto';
                 }
                 break;
+            case 'delete':
+                if ($usuario->setId($_POST['idCliente'])) {
+                    if ($usuario->getCliente()) {
+                        if ($usuario->deleteCliente()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Operación fallida';
+                        }
+                    } else {
+                        $result['exception'] = 'Cliente inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Cliente incorrecta';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
