@@ -1,0 +1,221 @@
+$(document).ready(() => {
+    showTable();
+    showOptions();
+})
+
+//Constante para establecer la ruta y parámetros de comunicación con la API
+const apiProductos = '../../core/api/productos.php?site=dashboard&action=';
+
+const apiAutores = '../../core/api/autores.php?site=dashboard&action=';
+
+const apiEditoriales = '../../core/api/editorial.php?site=dashboard&action=';
+
+const apiCategorias = '../../core/api/categorias.php?site=dashboard&action=';
+
+const showOptions = async () => {
+    const autores = await ajaxRequest(apiAutores, 'readAutores');
+
+    const editoriales = await ajaxRequest(apiEditoriales, 'readEditorial');
+
+    const categorias = await ajaxRequest(apiCategorias, 'readCategoria');
+
+    let autoresOpt = '<option value="0"> </option>';
+    autores.map(item => {
+        autoresOpt += `<option value="${item.idAutor}">${item.nombre} ${item.apellido}</option>)`;
+    })
+
+    let editorialesOpt = '<option value="0"> </option>';
+    editoriales.map(item => {
+        editorialesOpt += `<option value="${item.idEditorial}">${item.nombreEdit}</option>)`;
+    })
+
+    let categoriasOpt = '<option value="0"> </option>';
+    categorias.map(item => {
+        categoriasOpt += `<option value="${item.idCategoria}">${item.nombreCat} Desc. ${item.descuento}%</option>)`;
+    })
+
+    $('#autorSelect').html(autoresOpt);
+
+    $('#editorialSelect').html(editorialesOpt);
+
+    $('#categoriaSelect').html(categoriasOpt);
+}
+
+//Función para obtener y mostrar los registros disponibles
+const showTable = async () => {
+    const response = await $.ajax({
+        url: apiProductos + 'readProductos',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (!result.status) {
+            console.log(result.exception)
+        }
+        fillTable(result.dataset)
+    } else {
+        console.log(response);
+    }
+}
+
+//Función para recargar manualmente el datatable
+$('#reload').click(async () => {
+    $('#productos').DataTable().destroy();
+    showTable();
+})
+
+//Función para llenar tabla con los datos de los registros
+function fillTable(rows) {
+    let content = '';
+    //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
+    rows.forEach(function (row) {
+        const aprob = row.aprobacion;
+        const colorTd = aprob >= 70 ? 'green' : aprob >= 50 && aprob <= 69 ? 'orange' : 'red';
+        content += `
+            <tr id="${row.idLibro}">
+                <th scope="row">
+                    <div class="media align-items-center" style="">
+                    <span class="mb-0 text-sm">${row.idLibro}</span>
+                    </div>
+                </th>
+                <td>
+                    ${limitText(row.NombreL)}
+                </td>
+                <td>
+                    <img src="../../resources/img/books/${row.img}" width="120" height="160">
+                </td>
+                <td>
+                    ${row.nombreCat}
+                </td>
+                <td style="color: ${colorTd}">
+                   <p style="font-weight: bold">${row.aprobacion}%</p>
+                </td>
+                <td>
+                    ${row.nombreAutor} ${row.apellidoAutor}
+                </td>
+                <td>
+                    ${row.editorial}
+                </td>
+                <td>
+                    ${row.cantidad}
+                </td>
+                <td>
+                    <strong>$${row.precio}</strong>
+                </td>
+                <td>
+                    <strong>${row.descuento}%</strong>
+                </td>
+                <td>
+                    <strong>$${row.precioFinal}</strong>
+                </td>
+                <td  style="width: 35%">
+                    <button type="button" onclick="modalUpdate(${row.idLibro})" class="mr-2 mt-lg-2 btn btn-warning text-white w-100">
+                        <i class="material-icons mr-2">edit</i>Editar
+                    </button>
+                    <button type="button" onclick="confirmDelete(${row.idLibro})" class="mr-2 mt-lg-2 btn btn-danger w-100">
+                        <i class="material-icons mr-2">delete</i>Eliminar
+                    </button> 
+                </td> 
+            </tr>
+        `;
+    });
+    $('#tbody-read-productos').html(content);
+    $('#productos').DataTable({
+        "language": {
+            "url": "../../resources/js/material/espaniol.json"
+        }
+    });
+}
+
+function limitText(descripcion) {
+    var descripcionCorta = '';
+    const limiteCaracteres = 35;
+    for (let index = 0; index < limiteCaracteres; index++) {
+        if (descripcion[index] !== undefined) {
+            index !== limiteCaracteres - 1
+                ? descripcionCorta = descripcionCorta + descripcion[index]
+                : descripcionCorta = descripcionCorta + '...';
+        } else {
+            break;
+        }
+    }
+    return descripcionCorta;
+}
+
+
+/*  Función reutilizable para obtener registros
+    @param {string} API - ruta de API
+    @param {string} functionName - nombre de la función para buscar en la API
+    @returns {array}
+*/
+const ajaxRequest = async (API, functionName) => {
+    const response = await $.ajax({
+        url: API + `${functionName}`
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (!result.status) {
+            console.log(result.exception);
+        }
+        return result.dataset;
+    } else {
+        console.log(response);
+    }
+}
+
+/*---------------Funciones CRUD---------------*/
+
+//Función para crear un nuevo registro
+$('#form-create-producto').submit(async () => {
+    event.preventDefault();
+    const response = await $.ajax({
+        url: apiProductos + 'create',
+        type: 'post',
+        data: new FormData($('#form-create-producto')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status) {
+            $('#form-create-producto')[0].reset();
+            $('#guardarProductosModal').modal('toggle');
+            if (result.status == 1) {
+                swal(
+                    'Operación Correcta',
+                    'Producto guardado correctamente.',
+                    'success'
+                )
+                $('#productos').DataTable().destroy();
+                showTable();
+
+            }
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        console.log(response);
+    }
+})
+
