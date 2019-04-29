@@ -79,6 +79,103 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Titulo incorrecto';
                 }
                 break;
+            case 'get':
+                if ($producto->setIdLibro($_POST['idProducto'])) {
+                    if ($result['dataset'] = $producto->getProducto()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+            case 'update':
+                $_POST = $producto->validateForm($_POST);
+                if ($producto->setIdLibro($_POST['idLibro'])) {
+                    if ($producto->getProducto()) {
+                        if ($producto->setTitulo($_POST['titulo-update'])) {
+                            if ($producto->setIdAutor($_POST['autorSelect-update']) && $_POST['autorSelect-update'] != 0) {
+                                if ($producto->setIdEditorial($_POST['editorialSelect-update']) && $_POST['editorialSelect-update'] != 0) {
+                                    if ($producto->setIdCategoria($_POST['categoriaSelect-update']) && $_POST['categoriaSelect-update'] != 0) {
+                                        if ($producto->setIdioma($_POST['idioma-update'])) {
+                                            if ($producto->setNoPags($_POST['noPaginas-update'])) {
+                                                if ($producto->setEncuadernacion($_POST['encuadernacion-update'])) {
+                                                    if ($producto->setResena($_POST['resena-update'])) {
+                                                        if ($producto->setPrecio($_POST['precio-update'])) {
+                                                            if ($producto->setCantidad($_POST['cantidad-update'])) {
+
+                                                                if (is_uploaded_file($_FILES['imagen-update']['tmp_name'])) {
+                                                                    if ($producto->setImagen($_FILES['imagen-update'], $_POST['imagen-producto'])) {
+                                                                        $archivo = true;
+                                                                    } else {
+                                                                        $result['exception'] = $producto->getImageError();
+                                                                        $archivo = false;
+                                                                    }
+                                                                } else {
+                                                                    if ($producto->setImagen(null, $_POST['imagen-producto'])) {
+                                                                        $result['exception'] = 'No se subió ningún archivo';
+                                                                    } else {
+                                                                        $result['exception'] = $producto->getImageError();
+                                                                    }
+                                                                    $archivo = false;
+                                                                }
+
+                                                                if ($archivo) {
+                                                                    if ($producto->updateProducto()) {
+                                                                        if ($producto->saveFile($_FILES['imagen-update'], $producto->getRuta(), $producto->getImagen())) {
+                                                                            $result['status'] = 1;
+                                                                        } else {
+                                                                            $result['status'] = 2;
+                                                                            $result['exception'] = 'No se guardó el archivo';
+                                                                        }
+                                                                    } else {
+                                                                        $result['exception'] = 'Operacion fallida';
+                                                                    }
+                                                                } else {
+                                                                    if ($producto->updateProducto()) {
+                                                                        $result['status'] = 3;
+                                                                    } else {
+                                                                        $result['exception'] = 'Operación fallida';
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                $result['exception'] = 'Cantidad incorrecta';
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = 'Precio incorrecto';
+                                                        }
+                                                    } else {
+                                                        $result['exception'] = 'Reseña incorrecta';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'Encuadernacion incorrecta';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Número de páginas incorrecto';
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Idioma incorrecto';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Categoria incorrecta';
+                                    }
+                                } else {
+                                    $result['exception'] = 'Editorial incorrecta';
+                                }
+                            } else {
+                                $result['exception'] = 'Autor incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Titulo incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }

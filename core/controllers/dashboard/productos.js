@@ -35,10 +35,13 @@ const showOptions = async () => {
     })
 
     $('#autorSelect').html(autoresOpt);
+    $('#autorSelect-update').html(autoresOpt);
 
     $('#editorialSelect').html(editorialesOpt);
+    $('#editorialSelect-update').html(editorialesOpt);
 
     $('#categoriaSelect').html(categoriasOpt);
+    $('#categoriaSelect-update').html(categoriasOpt);
 }
 
 //Función para obtener y mostrar los registros disponibles
@@ -218,4 +221,104 @@ $('#form-create-producto').submit(async () => {
         console.log(response);
     }
 })
+
+//Función para mostrar formulario con registro a modificar
+const modalUpdate = async id => {
+    const response = await $.ajax({
+        url: apiProductos + 'get',
+        type: 'post',
+        data: {
+            idProducto: id
+        },
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
+        if (result.status) {
+            $('#form-update-producto')[0].reset();
+            $('#idLibro').val(result.dataset.idLibro);
+            $('#autorSelect-update').val(result.dataset.idAutor);
+            $('#editorialSelect-update').val(result.dataset.idEditorial);
+            $('#categoriaSelect-update').val(result.dataset.idCat);
+            $('#titulo-update').val(result.dataset.NombreL);
+            $('#idioma-update').val(result.dataset.Idioma);
+            $('#noPaginas-update').val(result.dataset.NoPag);
+            $('#encuadernacion-update').val(result.dataset.encuadernacion);
+            $('#resena-update').val(result.dataset.resena);
+            $('#precio-update').val(result.dataset.precio);
+            $('#cantidad-update').val(result.dataset.cantidad);
+            $('#aprobacion').val(result.dataset.aprobacion + '%');
+            $('#likes').val(result.dataset.likes);
+            $('#dislikes').val(result.dataset.dislikes);
+            var content = `<img src="../../resources/img/books/${result.dataset.img}" width="240" height="320">`;
+            $('#imagen-update-container').html(content);
+            $('#imagen-producto').val(result.dataset.img);
+            $('#modificarProductosModal').modal('toggle');
+        } else {
+            console.log(result.exception)
+        }
+    } else {
+        console.log(response);
+    }
+}
+
+//Función para modificar un registro seleccionado previamente
+$('#form-update-producto').submit(async () => {
+    event.preventDefault();
+    const response = await $.ajax({
+        url: apiProductos + 'update',
+        type: 'post',
+        data: new FormData($('#form-update-producto')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status) {
+            $('#modificarProductosModal').modal('toggle');
+            if (result.status == 1) {
+                swal(
+                    'Operación Correcta',
+                    'Producto modificado correctamente.',
+                    'success'
+                )
+            } else if (result.status == 2) {
+                swal(
+                    '¡Atención!',
+                    'Producto modificado ' + result.exception,
+                    'success'
+                )
+            } else if (result.status == 3){
+                swal(
+                    '¡Atención!',
+                    'Producto modificado ' + result.exception,
+                    'warning'
+                )
+            }
+            $('#productos').DataTable().destroy();
+            showTable();
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        console.log(response);
+    }
+})
+
 

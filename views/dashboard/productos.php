@@ -45,7 +45,7 @@ Dashboard::headerTemplate('Productos');
         </div>
     </div>
 </main>
-<!-- Ventana para guardar Autor -->
+<!-- Ventana para guardar Productos -->
 <div class="modal fade" id="guardarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -85,7 +85,7 @@ Dashboard::headerTemplate('Productos');
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">No.Págs:</label>
-                                <input type="number" name="noPaginas" class="form-control form-control-alternative">
+                                <input type="number" min="1" max="2000" name="noPaginas" class="form-control form-control-alternative">
                             </div>
                             <div class="col-5">
                                 <div class="form-group mt-4">
@@ -127,6 +127,116 @@ Dashboard::headerTemplate('Productos');
                         <div class="row mt-3">
                             <div class="col-4">
                                 <label for="aprobacion">Aprobación:</label>
+                                <input type="text" readonly class="form-control-plaintext" id="aprobacion-update">
+                            </div>
+                            <div class="col-4">
+                                <label for="likes">Likes:</label>
+                                <input type="text" readonly class="form-control-plaintext" id="likes-update">
+                            </div>
+                            <div class="col-4">
+                                <label for="dislikes">Dislikes:</label>
+                                <input type="text" readonly class="form-control-plaintext" id="dislikes-update">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="custom-file mt-4">
+                                    <input type="file" class="custom-file-input" name="imagen" id="imagen" lang="es">
+                                    <label class="custom-file-label" for="imagen">Seleccionar imagen</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ventana para modificar Productos -->
+<div class="modal fade" id="modificarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Modificar Producto</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" id="form-update-producto">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="idLibro">Código:</label>
+                                    <input type="text" readonly class="form-control-plaintext" name="idLibro" id="idLibro">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="autorSelect">Autor</label>
+                                <select class="form-control" name="autorSelect-update" id="autorSelect-update"></select>
+
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="editorialSelect">Editorial</label>
+                                    <select class="form-control" name="editorialSelect-update" id="editorialSelect-update"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <label for="recipient-name" class="col-form-label">Titulo:</label>
+                        <input type="text" name="titulo-update" id="titulo-update" class="form-control form-control-alternative">
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <label for="recipient-name" class="col-form-label">Idioma:</label>
+                                <input type="text" name="idioma-update" id="idioma-update" class="form-control form-control-alternative">
+                            </div>
+                            <div class="col-3">
+                                <label for="recipient-name" class="col-form-label">No.Págs:</label>
+                                <input type="number" min="1" max="2000" name="noPaginas-update" id="noPaginas-update" class="form-control form-control-alternative">
+                            </div>
+                            <div class="col-5">
+                                <div class="form-group mt-3">
+                                    <label for="encuadernacion">Encuadernacion</label>
+                                    <select class="form-control" name="encuadernacion-update" id="encuadernacion-update">
+                                        <option value="0"></option>
+                                        <option value="Tapa blanda">Tapa blanda</option>
+                                        <option value="Tapa dura">Tapa dura</option>
+                                        <option value="Tapa blanda de bolsillo">Tapa blanda de bolsillo</option>
+                                        <option value="Tapa dura de bolsillo">Tapa dura de bolsillo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="resena">Reseña:</label>
+                            <textarea class="form-control" name="resena-update" id="resena-update" rows="5"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <label for="recipient-name" class="col-form-label">Precio:</label>
+                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio-update" id="precio-update" class="form-control form-control-alternative">
+                            </div>
+                            <div class="col-3">
+                                <label for="recipient-name" class="col-form-label">Cantidad:</label>
+                                <input type="number" min="0" max="5000" step="1" name="cantidad-update" id="cantidad-update" class="form-control form-control-alternative">
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group mt-3">
+                                    <label for="categoria">Categoria</label>
+                                    <select class="form-control" name="categoriaSelect-update" id="categoriaSelect-update"></select>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-4">
+                                <label for="aprobacion">Aprobación:</label>
                                 <input type="text" readonly class="form-control-plaintext" id="aprobacion">
                             </div>
                             <div class="col-4">
@@ -139,13 +249,18 @@ Dashboard::headerTemplate('Productos');
                             </div>
                         </div>
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-center my-4">
+                                <div id="imagen-update-container"></div>
+                            </div>
                             <div class="col-12">
                                 <div class="custom-file mt-4">
-                                    <input type="file" class="custom-file-input" name="imagen" id="imagen" lang="es">
-                                    <label class="custom-file-label" for="imagen">Seleccionar imagen</label>
+                                    <input type="file" class="custom-file-input" name="imagen-update" id="imagen-update" lang="es">
+                                    <label class="custom-file-label" for="imagen-update">Seleccionar imagen</label>
                                 </div>
                             </div>
                         </div>
+                        <label for="archivo" class="col-form-label">Archivo</label>
+                        <input name="imagen-producto" id="imagen-producto" type="text" class="form-control form-control-alternative" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

@@ -122,12 +122,13 @@ Dashboard::headerTemplate('Noticias');
                                     </div>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="imagen-update" name="imagen-update">
-                                        <input type="text" class="d-none" id="imagen-noticia" name="imagen-noticia">
                                         <label class="custom-file-label" for="inputGroupFile01">.gif, .png, .jpg</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <label for="archivo" class="col-form-label">Archivo</label>
+                        <input name="imagen-noticia" id="imagen-noticia" type="text" class="form-control form-control-alternative" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

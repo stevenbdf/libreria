@@ -187,10 +187,11 @@ class Productos extends Validator
 
     public function getProducto()
     {
-        $sql = "SELECT idLibro,  autor.nombre as 'nombreAutor', autor.apellido as 'apellidoAutor', NombreL,
-        editorial.nombreEdit as 'editorial', categoria.nombreCat, cant as 'cantidad',
+        $sql = "SELECT idLibro, libro.idAutor, autor.nombre as 'nombreAutor', autor.apellido as 'apellidoAutor', NombreL,
+        libro.idEditorial, editorial.nombreEdit as 'editorial', libro.idCat, categoria.nombreCat, cant as 'cantidad',
         Idioma, NoPag, encuadernacion, resena,ROUND ( precio ,2 ) as 'precio', categoria.descuento,
-        ROUND( precio - ( precio * ( categoria.descuento / 100 ) ), 2) as 'precioFinal', libro.img
+        ROUND( precio - ( precio * ( categoria.descuento / 100 ) ), 2) as 'precioFinal', libro.img,
+        getAprobacionLibro(idLibro) as 'aprobacion', getLikes(idLibro) as 'likes', getDislikes(idLibro) as 'dislikes'
         FROM libro INNER JOIN autor ON libro.idAutor = autor.idAutor
         INNER JOIN categoria ON libro.idCat = categoria.idCategoria
         INNER JOIN editorial ON libro.idEditorial = editorial.idEditorial
@@ -204,8 +205,21 @@ class Productos extends Validator
         $sql = 'INSERT INTO libro(idAutor, idEditorial, NombreL, Idioma, NoPag, encuadernacion, resena,
         precio, idCat, img, cant)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->idAutor, $this->idEditorial, $this->titulo, $this->idioma, $this->noPags,
-        $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad);
+        $params = array(
+            $this->idAutor, $this->idEditorial, $this->titulo, $this->idioma, $this->noPags,
+            $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad
+        );
+        return Database::executeRow($sql, $params);
+    }
+
+    public function updateProducto()
+    {
+        $sql = 'UPDATE libro SET idAutor = ?, idEditorial = ?, NombreL = ?, Idioma = ?, NoPag = ?, encuadernacion = ?, resena = ?,
+        precio = ?, idCat = ?, img = ?, cant = ? WHERE idLibro = ?';
+        $params = array(
+            $this->idAutor, $this->idEditorial, $this->titulo, $this->idioma, $this->noPags,
+            $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad, $this->idLibro
+        );
         return Database::executeRow($sql, $params);
     }
 }
