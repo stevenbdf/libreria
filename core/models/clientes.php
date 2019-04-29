@@ -160,5 +160,19 @@ class Clientes extends Validator
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
+	public function deleteCliente()
+	{
+		$sql = 'DELETE FROM cliente WHERE idCliente = ?';
+		$params = array($this->id);
+		return Database::executeRow($sql, $params);
+	}
+
+	
+	public function getCliente()
+	{
+		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img FROM cliente WHERE idCliente = ?';
+		$params = array($this->id);
+		return Database::getRow($sql, $params);
+	}
 }
 ?>
