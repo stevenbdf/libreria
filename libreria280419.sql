@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2019 at 06:09 AM
+-- Generation Time: Apr 29, 2019 at 06:33 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -137,8 +137,10 @@ INSERT INTO `autor` (`idAutor`, `nombre`, `apellido`, `pais`, `img`) VALUES
 (3, 'Lauren', 'Kate', 'Estados Unidos', ''),
 (4, 'Karen', 'Oliver', 'España', ''),
 (5, 'Suzanne', 'Collins', 'Estados Unidos', ''),
-(7, 'Steven', 'Diaz Flores', 'Mexico', '../img/steven.jpg'),
-(8, 'Emma', 'Mars', 'Argentina', '');
+(7, 'Luke', 'Pearson', 'Reino Unido', '../img/steven.jpg'),
+(8, 'Emma', 'Mars', 'Argentina', ''),
+(9, 'Belén', 'Delgado', 'Argentina', ''),
+(10, 'Nicholas', 'Sparks', 'Estados Unidos', '');
 
 --
 -- Triggers `autor`
@@ -370,7 +372,38 @@ INSERT INTO `bitacora` (`idBitacora`, `idUsuario`, `fecha`, `accion`) VALUES
 (202, 1, '2019-04-28 22:04:18', 'Eliminó un libro'),
 (203, 1, '2019-04-28 22:06:05', 'Insertó un libro'),
 (204, 1, '2019-04-28 22:06:10', 'Eliminó un libro'),
-(205, 1, '2019-04-28 22:06:53', 'Insertó un libro');
+(205, 1, '2019-04-28 22:06:53', 'Insertó un libro'),
+(206, 1, '2019-04-28 22:11:32', 'Actualizó información en un libro'),
+(207, 1, '2019-04-28 22:12:56', 'Actualizó información en un libro'),
+(208, 1, '2019-04-28 22:12:58', 'Actualizó información en un libro'),
+(209, 1, '2019-04-28 22:13:01', 'Actualizó información en un libro'),
+(210, 1, '2019-04-28 22:13:04', 'Actualizó información en un libro'),
+(211, 1, '2019-04-28 22:13:07', 'Actualizó información en un libro'),
+(212, 1, '2019-04-28 22:13:09', 'Actualizó información en un libro'),
+(213, 1, '2019-04-28 22:13:11', 'Actualizó información en un libro'),
+(214, 1, '2019-04-28 22:13:16', 'Eliminó un libro'),
+(215, 1, '2019-04-28 22:13:51', 'Actualizó información en un libro'),
+(216, 1, '2019-04-28 22:15:05', 'Actualizó información en un libro'),
+(217, 1, '2019-04-28 22:16:56', 'Actualizó información en un libro'),
+(218, 1, '2019-04-28 22:17:52', 'Actualizó información en un libro'),
+(219, 1, '2019-04-28 22:18:44', 'Actualizó información en un libro'),
+(220, 1, '2019-04-28 22:21:08', 'Actualizó información en un libro'),
+(221, 1, '2019-04-28 22:21:22', 'Actualizó información en un libro'),
+(222, 1, '2019-04-28 22:21:29', 'Actualizó información en un libro'),
+(223, 1, '2019-04-28 22:21:34', 'Actualizó información en un libro'),
+(224, 1, '2019-04-28 22:23:01', 'Insertó un autor'),
+(225, 1, '2019-04-28 22:23:27', 'Actualizó información en un libro'),
+(226, 1, '2019-04-28 22:24:03', 'Insertó una categoría'),
+(227, 1, '2019-04-28 22:24:30', 'Actualizó información en un libro'),
+(228, 1, '2019-04-28 22:24:36', 'Actualizó información en un libro'),
+(229, 1, '2019-04-28 22:24:42', 'Actualizó información en un libro'),
+(230, 1, '2019-04-28 22:26:22', 'Insertó una categoría'),
+(231, 1, '2019-04-28 22:26:33', 'Actualizó información en un libro'),
+(232, 1, '2019-04-28 22:26:41', 'Actualizó información en un libro'),
+(233, 1, '2019-04-28 22:26:59', 'Actualizó información en un libro'),
+(234, 1, '2019-04-28 22:27:54', 'Insertó un autor'),
+(235, 1, '2019-04-28 22:28:04', 'Actualizó información en un libro'),
+(236, 1, '2019-04-28 22:32:40', 'Actualizó información en un libro');
 
 -- --------------------------------------------------------
 
@@ -396,7 +429,9 @@ INSERT INTO `categoria` (`idCategoria`, `nombreCat`, `descripcion`, `descuento`,
 (3, 'Ciencia Ficción', 'Viaja a traves de las ingeniosas aventuras en el espacio viajes en el tiempo alienigenas y mas.', 0, '5cbfcc20e36cc.jpg'),
 (4, 'Aventura', 'Genero que relata travesías de sus héroes principales y antagonistas.', 25, '5cbfc6db81147.jpg'),
 (34, 'Poesía', 'Composición literaria que se concibe como expresión artística de la belleza por medio de la palabra', 25, '5cbfd8288d450.jpg'),
-(35, 'Policíaca', 'La novela policíaca es un genero literario dentro de la novela.', 2, '5cbfd985a70b8.jpg');
+(35, 'Policíaca', 'La novela policíaca es un genero literario dentro de la novela.', 2, '5cbfd985a70b8.jpg'),
+(36, 'Adolescentes', 'Los libros más populares de adolescentes estan aqui', 15, '5cc67c63eb8e1.jpg'),
+(37, 'Terror', 'Preparate para sentir una increible sensacion de miedo', 5, '5cc67cee747a3.jpg');
 
 --
 -- Triggers `categoria`
@@ -552,7 +587,8 @@ INSERT INTO `editorial` (`idEditorial`, `nombreEdit`, `direccion`, `pais`, `tel`
 (2, 'Debolsillo', 'Blvd Miguel de Cervantes Saavedra 301 piso 1Col Granada CP 11520 Miguel Hidalgo Ciudad de México', 'México', '(55) 3067 8441'),
 (3, 'Santillana El Salvador', '87 avenida norte 311 Colonia Escalón San Salvador', 'El Salvador', '+503 2505-8920'),
 (4, 'Editorial Planeta', 'Av. Diagonal, 662-664\r\n08034 Barcelona', 'España', '662-664 08034 '),
-(5, 'Amazon', 'Seattle Washington', 'Estado Unidos', '+1 206-922-0880');
+(5, 'Amazon', 'Seattle Washington', 'Estado Unidos', '+1 206-922-0880'),
+(6, 'Safe Creative', 'Santiago Chile', 'Chile', '1505034002314');
 
 -- --------------------------------------------------------
 
@@ -604,15 +640,14 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`idLibro`, `idAutor`, `idEditorial`, `NombreL`, `Idioma`, `NoPag`, `encuadernacion`, `resena`, `precio`, `idCat`, `img`, `cant`) VALUES
-(1, 1, 1, 'El teorema de katherine', 'Español', 18, 'Tapa blanda', 'Según Colin Singleton existen dos tipos de persona: los que dejan y los que son dejados. Él, sin duda, pertenece al segundo. Su última ex, Katherine XIX, no es una reina, sino la Katherine número diecinueve que le ha roto el corazón.\r\n\r\nPara escapar de su mal de amores, y con el propósito de hallar un teorema que explique su maldición de las Katherines, Colin emprende junto a su amigo Hassan una aventura que le llevará a Gutshot, un pueblecito de Tennessee, y a la sospecha de que en la vida la inteligencia no siempre es la mejor compañera de viaje.', 1, 3, 'spiderman.jpg', 8),
-(2, 3, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora. ', 10.99, 4, 'spiderman.jpg', 15),
-(3, 1, 1, 'Yo ntes de ti', 'Español', 496, 'Tapa blanda', 'ouisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 1, 'spiderman.jpg', 4),
-(4, 3, 4, 'Lo mejor de mí', 'Español', 398, 'Tapa blanda', 'Durante la primavera de 1984, cuando todavía iban al instituto, Amanda Collier y Dawson Cole se enamoraron para siempre. Aunque pertenecían a estratos sociales muy diferentes, el amor que sentían el uno por el otro parecía capaz de desafiar cualquier impedimento que la realidad en la vida de la pequeña ciudad de Oriental en Carolina del Norte quisiera ponerles por delante. Pero el verano después de su graduación una serie de acontecimientos imprevistos separaría a la pareja y los llevaría por caminos radicalmente opuestos.', 30, 2, 'spiderman.jpg', 50),
-(5, 2, 2, 'Oscuros', 'Español', 416, 'Tapa blanda', 'Helstone, Inglaterra, 1854.Es noche cerrada y dos jóvenes conversan en una remota casa de campo. Se sienten irresistiblemente atraídos el uno por el otro, pero él insiste en que no pueden estar juntos. Ella obvia sus advertencias y se acerca a él, con paso lento y desafiante.Cuando se besan, una furiosa llamarada lo inunda todo.\r\n', 11.5, 2, 'spiderman.jpg', 14),
-(7, 1, 1, 'Yo ntes de ti', 'a', 496, 'a', 'a', 1, 1, 'spiderman.jpg', 20),
-(9, 2, 3, 'uhuhu', 'uhu', 4, 'iugyygyu', 'ugyu', 5, 1, 'spiderman.jpg', 21),
+(1, 2, 1, 'El teorema de katherine', 'Español', 18, 'Tapa blanda', 'Según Colin Singleton existen dos tipos de persona: los que dejan y los que son dejados. Él, sin duda, pertenece al segundo. Su última ex, Katherine XIX, no es una reina, sino la Katherine número diecinueve que le ha roto el corazón.\r\n\r\nPara escapar de su mal de amores, y con el propósito de hallar un teorema que explique su maldición de las Katherines, Colin emprende junto a su amigo Hassan una aventura que le llevará a Gutshot, un pueblecito de Tennessee, y a la sospecha de que en la vida la inteligencia no siempre es la mejor compañera de viaje.', 1, 2, '5cc679ff368a4.jpg', 8),
+(2, 2, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora.', 10.99, 36, '5cc67a4988d2d.jpg', 15),
+(3, 1, 1, 'Yo antes de ti', 'Español', 496, 'Tapa blanda', 'ouisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 2, '5cc67ab8cfbdc.jpg', 4),
+(4, 10, 4, 'Lo mejor de mí', 'Español', 398, 'Tapa blanda', 'Durante la primavera de 1984, cuando todavía iban al instituto, Amanda Collier y Dawson Cole se enamoraron para siempre. Aunque pertenecían a estratos sociales muy diferentes, el amor que sentían el uno por el otro parecía capaz de desafiar cualquier impedimento que la realidad en la vida de la pequeña ciudad de Oriental en Carolina del Norte quisiera ponerles por delante. Pero el verano después de su graduación una serie de acontecimientos imprevistos separaría a la pareja y los llevaría por caminos radicalmente opuestos.', 12, 2, '5cc67af077b0f.jpg', 50),
+(5, 3, 2, 'Oscuros', 'Español', 416, 'Tapa blanda', 'Helstone, Inglaterra, 1854.Es noche cerrada y dos jóvenes conversan en una remota casa de campo. Se sienten irresistiblemente atraídos el uno por el otro, pero él insiste en que no pueden estar juntos. Ella obvia sus advertencias y se acerca a él, con paso lento y desafiante.Cuando se besan, una furiosa llamarada lo inunda todo.', 11.5, 37, '5cc67b2442626.jpg', 14),
+(7, 9, 6, 'Shut up im lesbian', 'Inglés', 600, 'Tapa blanda', 'Skyler siempre ha soñado con estudiar en la prestigiosa universidad de Harvard. Y lo consigue gracias a la beca que le consiguió su padre.\r\nLo que ella no tuvo en cuenta al llegar al primer día es la mirada pervertida de chicos y asco por parte de las chicas.\r\nNo quiere ser una más en la lista de todos ellos. Por eso se le ocurre una mentira espontánea: Fingir ser lesbiana.\r\nClaro, todo saldría perfecto. No se meterían con ella. \r\nHasta que se topa con ellos: Ashton, Michael, Calum y Luke, accidentalmente sus compañeros de cuarto.\r\nFingir frente a la gente no hay problema, pero incluso fingir en tu propio cuarto se vuelve algo complicado.\r\nAún más si éstos cuatro chicos deciden ponerte a prueba y te traen a una chica -que para peor, siente algo por ti- para que empiecen algo.\r\n\r\n-Sigo sin creer que eres lesbiana. -Ashton se acomodó en el sillón y me miró con una sonrisa lujuriosa. - A no ser que en verdad seas hetero pero tengas miedo de admitirlo. -canturreó.\r\n\r\n-¡Cállate! Soy lesbiana.', 15, 36, '5cc67bb48c2bf.jpg', 35),
 (10, 7, 1, 'Las Aventuras de Hilda', 'Español', 80, 'Tapa dura', 'Las aventuras de hilda cuentan las historia de una niña que vive en el bosque, en este tiene muchas historias que contar con sus amigos', 15.5, 4, '5cc5dd7853d24.jpg', 50),
-(13, 8, 5, '101 razones para odiarla', 'Español', 204, 'Tapa dura de bolsillo', 'Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas. \r\n\r\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar. \r\n\r\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.', 15.75, 2, '5cc6785d5e02e.jpg', 25);
+(13, 8, 5, '101 razones para odiarla', 'Español', 204, 'Tapa dura de bolsillo', 'Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas. \r\n\r\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar. \r\n\r\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.', 15.75, 36, '5cc6785d5e02e.jpg', 25);
 
 --
 -- Triggers `libro`
@@ -821,19 +856,19 @@ ALTER TABLE `aprobacion`
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `cliente`
@@ -863,7 +898,7 @@ ALTER TABLE `detallepedido`
 -- AUTO_INCREMENT for table `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `empleado`
