@@ -121,7 +121,7 @@ function fillTable(rows) {
                     <button type="button" onclick="modalUpdate(${row.idLibro})" class="mr-2 mt-lg-2 btn btn-warning text-white w-100">
                         <i class="material-icons mr-2">edit</i>Editar
                     </button>
-                    <button type="button" onclick="confirmDelete(${row.idLibro})" class="mr-2 mt-lg-2 btn btn-danger w-100">
+                    <button type="button" onclick="confirmDelete(${row.idLibro},'${row.img}')" class="mr-2 mt-lg-2 btn btn-danger w-100">
                         <i class="material-icons mr-2">delete</i>Eliminar
                     </button> 
                 </td> 
@@ -218,7 +218,11 @@ $('#form-create-producto').submit(async () => {
             )
         }
     } else {
-        console.log(response);
+        swal(
+            'Error',
+            response,
+            'error'
+        )
     }
 })
 
@@ -317,8 +321,75 @@ $('#form-update-producto').submit(async () => {
             )
         }
     } else {
-        console.log(response);
+        swal(
+            'Error',
+            response,
+            'error'
+        )
     }
 })
 
+//Función para eliminar un registro seleccionado
+function confirmDelete(id, file) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere eliminar el producto?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrala.',
+        closeOnConfirm: false,
+        closeOnCancel: true
+    },
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiProductos + 'delete',
+                    type: 'post',
+                    data: {
+                        idLibro: id,
+                        imagenProducto: file
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Producto eliminado correctamente.',
+                                'success'
+                            )
 
+                        } else if (result.status == 2) {
+                            swal(
+                                'Operación parcialmente correcta',
+                                'Producto eliminado.' + result.exception,
+                                'warning'
+                            )
+                        }
+                        $('#productos').DataTable().destroy();
+                        showTable();
+
+                    } else {
+                        swal(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
+                } else {
+                    swal(
+                        'Error',
+                        response,
+                        'error'
+                    )
+                }
+            }
+        });
+}

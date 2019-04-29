@@ -176,6 +176,26 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 }
                 break;
+            case 'delete':
+                if ($producto->setIdLibro($_POST['idLibro'])) {
+                    if ($producto->getProducto()) {
+                        if ($producto->deleteProducto()) {
+                            if ($producto->deleteFile($producto->getRuta(), $_POST['imagenProducto'])) {
+                                $result['status'] = 1;
+                            } else {
+                                $result['status'] = 2;
+                                $result['exception'] = 'No se borró el archivo';
+                            }
+                        } else {
+                            $result['exception'] = 'Operación fallida';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }

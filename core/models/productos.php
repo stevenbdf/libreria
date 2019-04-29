@@ -222,4 +222,11 @@ class Productos extends Validator
         );
         return Database::executeRow($sql, $params);
     }
+
+    public function deleteProducto()
+    {
+        $sql = 'DELETE FROM libro WHERE idLibro = ?';
+        $params = array($this->idLibro);
+        return Database::executeRow($sql, $params);
+    }
 }
