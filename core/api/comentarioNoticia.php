@@ -18,7 +18,6 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'No hay comentarios registradas';
                 }
                 break;
-            
             case 'get':
                 if ($comentario->setId($_POST['idComentN'])) {
                     if ($result['dataset'] = $comentario->getComentario()) {
@@ -44,7 +43,17 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 			default:
                 exit('Acción no disponible');
         }
-    } 
+    } else if ($_GET['site'] == 'public') {
+        switch ($_GET['action']) {
+            case 'readComentarios':
+                if ($result['dataset'] = $comentario->readComentario()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay comentarios registradas';
+                }
+                break;
+        }
+    }
 	print(json_encode($result));
 } else {
 	exit('Recurso denegado');

@@ -141,13 +141,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             default:
                 exit('Acción no disponible');
         }
-    } else if ($_GET['site'] == 'commerce') {
+    } else if ($_GET['site'] == 'public') {
         switch ($_GET['action']) {
             case 'readNoticia':
                 if ($result['dataset'] = $noticia->readNoticia()) {
                     $result['status'] = 1;
                 } else {
-                    $result['exception'] = 'Contenido no disponible';
+                    $result['exception'] = 'No hay noticias registradas';
                 }
                 break;
             default:

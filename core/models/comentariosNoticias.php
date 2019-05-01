@@ -75,8 +75,9 @@ class Comentario extends Validator
 	//Metodos para manejar el CRUD
 	public function readComentario()
 	{
-		$sql ='SELECT idComentN, titulo, comentnoticia.fecha , comentario, nombreCliente 
-						FROM comentnoticia INNER JOIN cliente ON cliente.idCliente = comentnoticia.idClient 
+		$sql ='SELECT idComentN, titulo, comentnoticia.idNoticia,comentnoticia.fecha ,cliente.img as img, comentario, nombreCliente 
+						FROM comentnoticia 
+						INNER JOIN cliente ON cliente.idCliente = comentnoticia.idClient 
 						INNER JOIN noticia ON noticia.idNoticia = comentnoticia.idNoticia 
 						ORDER BY idComentN';
 		$params = array(null);
