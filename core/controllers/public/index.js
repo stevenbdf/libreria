@@ -41,7 +41,7 @@ function fillContainer(rows) {
                 <div class="card-img-overlay">
                     <h5 class="card-title">${row.nombreCat}</h5>
                     <p class="card-text">${row.descripcion}</p>
-                    <a href="all.products.php" class="btn btn-success">Ver más</a>
+                    <a href="all.products.php?categoria=${row.idCategoria}" class="btn btn-success">Ver más</a>
                 </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($result['dataset'] = $comentario->readComentario()) {
                     $result['status'] = 1;
                 } else {
-                    $result['exception'] = 'No hay comentarios registradas';
+                    $result['exception'] = 'No hay comentarios registrados';
                 }
                 break;
             
@@ -44,9 +44,22 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 			default:
                 exit('Acción no disponible');
         }
-    } 
+    } else if ( $_GET['site'] == 'public') {
+        switch($_GET['action']) {
+            case 'readComentariosLibro':
+                if($comentario->setIdLibro($_POST['idProducto'])) {
+                    if ($result['dataset'] = $comentario->readComentariosLibro()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay comentarios registrados';
+                    }
+                } else {
+                    $result['exception'] = 'Libro incorrecto';
+                }
+                break;
+        }
+    }
 	print(json_encode($result));
 } else {
 	exit('Recurso denegado');
 }
-?>

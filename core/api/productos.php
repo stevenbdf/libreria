@@ -200,7 +200,30 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 exit('Acción no disponible');
         }
     } else if ($_GET['site'] == 'public') {
-        exit('API en mantenimiento');
+        switch ($_GET['action']) {
+            case 'readProductosByCategory':
+                if ($producto->setIdCategoria($_POST['idCategoria'])) {
+                    if ($result['dataset'] = $producto->readProductosByCategory()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'No hay productos registrados en esta categoria.';
+                    }
+                } else {
+                    $result['exception'] = 'Categoria incorrecta.';
+                }
+                break;
+            case 'get':
+                if ($producto->setIdLibro($_POST['idProducto'])) {
+                    if ($result['dataset'] = $producto->getProducto()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Producto inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+        }
     } else {
         exit('Acceso no disponible');
     }
