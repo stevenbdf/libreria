@@ -82,6 +82,8 @@ const addLike = async(idProducto) =>{
                 'Has dado like.',
                 'success'
             )
+            showProducts();
+            showComments();
         } else {
             swal(
                 'Error',
@@ -116,6 +118,8 @@ const addDislike = async(idProducto) =>{
                 'Has dado like.',
                 'success'
             )
+            showProducts();
+            showComments();
         } else {
             swal(
                 'Error',
