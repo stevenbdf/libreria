@@ -15,7 +15,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($result['dataset'] = $autor->readAutores()) {
                     $result['status'] = 1;
                 } else {
-                    $result['exception'] = 'No hay autores registrados';
+                    $result['exception'] = 'No hay autores registradas';
                 }
                 break;
             case 'create':

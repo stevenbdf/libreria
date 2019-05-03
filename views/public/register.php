@@ -95,6 +95,16 @@
                                 </div>
                             </div>
 
+                            <div class="form-group">
+                                <div class="input-group input-group-alternative">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-file-image"></i></span>
+                                    </div>
+                                    <input id="imagen" name="imagen" class="form-control"
+                                        type="file">
+                                </div>
+                            </div>
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary my-4">Acceder</button>
                             </div>

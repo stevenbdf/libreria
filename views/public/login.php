@@ -31,14 +31,14 @@
               <div class="text-center text-muted mb-4">
                 <small>O ingresa con tus credenciales</small>
               </div>
-              <form>
+              <form id="form-login-cliente">
 
                 <div class="form-group  mb-3">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
                     </div>
-                    <input class="form-control form-control-alternative" placeholder="Email" type="email">
+                    <input name="correo" class="form-control form-control-alternative" placeholder="Email" type="email">
                   </div>
                 </div>
 
@@ -47,7 +47,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password">
+                    <input name="contrasena" class="form-control" placeholder="Password" type="password">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">
@@ -57,7 +57,7 @@
                   </label>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary my-4">Acceder</button>
+                  <button type="submit" class="btn btn-primary my-4">Acceder</button>
                 </div>
               </form>
             </div>
@@ -83,11 +83,14 @@
 
   <!-- Se especifica que archivos se han usado para el funcionamiento del login-->
   <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
+  <script src="../../resources/js/jquery-3.2.1.min.js"></script>
+  <script src="../../core/helpers/functions.js"></script>
   <script src="../../resources/js/popper.js"></script>
   <script src="../../resources/js/bootstrap.js"></script>
   <script src="../../resources/js/argon.min.js"></script>
   <script src="../../resources/js/sweetalert2.min.js"></script>
-  <script defer src="../../resources/js/index.js"></script>
+  <script src="../../resources/js/index.js"></script>
+  <script defer src="../../core/controllers/public/login.js"></script>
 
 </body>
 

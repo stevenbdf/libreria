@@ -8,7 +8,8 @@ class Clientes extends Validator
 	private $correo = null;
 	private $direccion = null;
 	private $contrasena = null;
-    private $img = null;
+	private $img = null;
+	private $ruta = '../../resources/img/clients/';
 
 	//Métodos para sobrecarga de propiedades
 	public function setId($value)
@@ -88,12 +89,14 @@ class Clientes extends Validator
 
 	public function setDireccion($value)
 	{
-		if ($this->validateAlphanumeric($value, 1 , 250)) {
+		/*if ($this->validateAlphanumeric($value, 1 , 250)) {
 			$this->direccion = $value;
 			return true;
 		} else {
 			return false;
-		}
+		}*/
+		$this->direccion = $value;
+		return true;
 	}
 
 	public function getDireccion()
@@ -101,14 +104,19 @@ class Clientes extends Validator
 		return $this->direccion;
     }
     
-    public function setImagen($value)
+    public function setImagen($file, $name)
 	{
-		if ($this->validateAlphabetic($value, 1 , 100)) {
-			$this->img = $value;
+		if ($this->validateImageFile($file, $this->ruta, $name, 500, 500)) {
+			$this->img = $this->getImageName();
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public function getRuta()
+	{
+		return $this->ruta;
 	}
 
 	public function getImagen()
@@ -118,48 +126,47 @@ class Clientes extends Validator
 
 
 	//Metodos para manejar el CRUD
-	public function readUsuarios()
+	public function createCliente()
 	{
-		$sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario FROM usuarios ORDER BY apellidos_usuario';
+		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
+		$sql = 'INSERT INTO cliente(nombreCliente, apellidoCliente, correo, contrasena, direccion, img) VALUES(?, ?, ?, ?, ?, ?)';
+		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->direccion, $this->img );
+		return Database::executeRow($sql, $params);
+	}
+
+	public function readClientes()
+	{
+		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img FROM cliente ORDER BY idCliente';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
-	public function searchUsuarios($value)
+	public function checkCorreo()
 	{
-		$sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario FROM usuarios WHERE apellidos_usuario LIKE ? OR nombres_usuario LIKE ? ORDER BY apellidos_usuario';
-		$params = array("%$value%", "%$value%");
-		return Database::getRows($sql, $params);
+		$sql = 'SELECT idCliente FROM cliente WHERE correo = ?';
+		$params = array($this->correo);
+		$data = Database::getRow($sql, $params);
+		if ($data) {
+			$this->id = $data['idCliente'];
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	public function createCliente()
+	public function checkPassword()
 	{
-		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO cliente(nombreCliente, apellidoCliente, correo, contrasena, direccion) VALUES(?, ?, ?, ?, ?)';
-		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->direccion );
-		return Database::executeRow($sql, $params);
-	}
-
-	public function getUsuario()
-	{
-		$sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario FROM usuarios WHERE id_usuario = ?';
+		$sql = 'SELECT contrasena FROM cliente WHERE idCliente = ?';
 		$params = array($this->id);
-		return Database::getRow($sql, $params);
+		$data = Database::getRow($sql, $params);
+		if (password_verify($this->contrasena, $data['contrasena'])) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	public function updateUsuario()
-	{
-		$sql = 'UPDATE usuarios SET nombres_usuario = ?, apellidos_usuario = ?, correo_usuario = ?, alias_usuario = ? WHERE id_usuario = ?';
-		$params = array($this->nombres, $this->apellidos, $this->correo, $this->alias, $this->id);
-		return Database::executeRow($sql, $params);
-	}
 
-	public function deleteUsuario()
-	{
-		$sql = 'DELETE FROM usuarios WHERE id_usuario = ?';
-		$params = array($this->id);
-		return Database::executeRow($sql, $params);
-	}
 	public function deleteCliente()
 	{
 		$sql = 'DELETE FROM cliente WHERE idCliente = ?';

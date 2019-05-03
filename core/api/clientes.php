@@ -6,37 +6,54 @@ require_once('../../core/models/clientes.php');
 //Se comprueba si existe una petición del sitio web y la acción a realizar, de lo contrario se muestra una página de error
 if (isset($_GET['site']) && isset($_GET['action'])) {
     session_start();
-    $usuario = new Clientes;
+    $clientes = new Clientes;
     $result = array('status' => 0, 'exception' => '');
     //Se verifica si existe una sesión iniciada como administrador para realizar las operaciones correspondientes
-    if (isset($_SESSION['idUsuario']) && $_GET['site'] == 'dashboard') {
+    if (isset($_SESSION['idEmpleado']) && $_GET['site'] == 'dashboard') {
         switch ($_GET['action']) {
+            case 'read':
+                if ($result['dataset'] = $clientes->readClientes()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'Operación incorrecta';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
-    } else if ($_GET['site'] == 'public') {
+    } else if (isset($_SESSION['idCliente']) && $_GET['site'] == 'public') {
         switch ($_GET['action']) {
-            case 'read':
-                if ($usuario->readUsuarios()) {
-                    $result['status'] = 1;
-                    $result['exception'] = 'Existe al menos un usuario registrado';
+            case 'logout':
+                if (session_destroy()) {
+                    header('location: ../../views/public/index.php');
                 } else {
-                    $result['status'] = 2;
-                    $result['exception'] = 'No existen usuarios registrados';
+                    header('location: ../../views/public/index.php');
                 }
                 break;
+        }
+    }  else if ($_GET['site'] == 'public') {
+        switch ($_GET['action']) {
             case 'register':
-                $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombres'])) {
-                    if ($usuario->setApellidos($_POST['apellidos'])) {
-                        if ($usuario->setCorreo($_POST['correo'])) {
-                            if($usuario->setDireccion($_POST['direccion'])){
+                $_POST = $clientes->validateForm($_POST);
+                if ($clientes->setNombres($_POST['nombres'])) {
+                    if ($clientes->setApellidos($_POST['apellidos'])) {
+                        if ($clientes->setCorreo($_POST['correo'])) {
+                            if ($clientes->setDireccion($_POST['direccion'])) {
                                 if ($_POST['clave1'] == $_POST['clave2']) {
-                                    if ($usuario->setContrasena($_POST['clave1'])) {
-                                        if ($usuario->createCliente()) {
-                                            $result['status'] = 1;
+                                    if ($clientes->setContrasena($_POST['clave1'])) {
+                                        if ($clientes->setImagen($_FILES['imagen'], null)) {
+                                            if ($clientes->createCliente()) {
+                                                if ($clientes->saveFile($_FILES['imagen'], $clientes->getRuta(), $clientes->getImagen())) {
+                                                    $result['status'] = 1;
+                                                } else {
+                                                    $result['status'] = 2;
+                                                    $result['exception'] = 'No se guardó el archivo';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Operación fallida';
+                                            }
                                         } else {
-                                            $result['exception'] = 'Operación fallida';
+                                            $result['exception'] = $clientes->getImageError();
                                         }
                                     } else {
                                         $result['exception'] = 'Clave menor a 6 caracteres';
@@ -44,7 +61,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 } else {
                                     $result['exception'] = 'Claves diferentes';
                                 }
-                            }else{
+                            } else {
                                 $result['exception'] = 'Direccion incorrecta';
                             }
                         } else {
@@ -58,14 +75,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'login':
-                $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setAlias($_POST['alias'])) {
-                    if ($usuario->checkAlias()) {
-                        if ($usuario->setClave($_POST['clave'])) {
-                            if ($usuario->checkPassword()) {
-                                $_SESSION['idUsuario'] = $usuario->getId();
-                                $_SESSION['aliasUsuario'] = $usuario->getAlias();
-                                
+                $_POST = $clientes->validateForm($_POST);
+                if ($clientes->setCorreo($_POST['correo'])) {
+                    if ($clientes->checkCorreo()) {
+                        if ($clientes->setContrasena($_POST['contrasena'])) {
+                            if ($clientes->checkPassword()) {
+                                $_SESSION['idCliente'] = $clientes->getId();
+                                $_SESSION['correoCliente'] = $clientes->getCorreo();
                                 $result['status'] = 1;
                             } else {
                                 $result['exception'] = 'Clave inexistente';
@@ -74,35 +90,19 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             $result['exception'] = 'Clave menor a 6 caracteres';
                         }
                     } else {
-                        $result['exception'] = 'Alias inexistente';
+                        $result['exception'] = 'Correo inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Alias incorrecto';
-                }
-                break;
-            case 'delete':
-                if ($usuario->setId($_POST['idCliente'])) {
-                    if ($usuario->getCliente()) {
-                        if ($usuario->deleteCliente()) {
-                            $result['status'] = 1;
-                        } else {
-                            $result['exception'] = 'Operación fallida';
-                        }
-                    } else {
-                        $result['exception'] = 'Cliente inexistente';
-                    }
-                } else {
-                    $result['exception'] = 'Cliente incorrecta';
+                    $result['exception'] = 'Correo incorrecto';
                 }
                 break;
             default:
-                exit('Acción no disponible');
+                exit('accion no disponible');
         }
-    } else {
-        exit('Acceso no disponible');
+    } else if ($_GET['site'] == 'dashboard') {
+        exit('Acceso restringido');
     }
-	print(json_encode($result));
+    print(json_encode($result));
 } else {
-	exit('Recurso denegado');
+    exit('Recurso denegado');
 }
-?>

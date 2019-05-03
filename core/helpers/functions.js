@@ -14,6 +14,7 @@ function isJSONString(string)
 }
 
 const apiSession = '../../core/api/empleado.php?site=dashboard&action=';
+const apiSessionCliente = '../../core/api/clientes.php?site=public&action=';
 
 //Función para cerrar la sesión del usuario
 function signOff() {
@@ -26,6 +27,20 @@ function signOff() {
         confirmButtonText: 'Aceptar'
     },(function(isConfirm){
         isConfirm && (location.href = apiSession + 'logout');
+    }))
+}
+
+//Función para cerrar la sesión del usuario
+function signOffCliente() {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere cerrar la sesión?',
+        type: 'warning',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+    },(function(isConfirm){
+        isConfirm && (location.href = apiSessionCliente + 'logout');
     }))
 }
 

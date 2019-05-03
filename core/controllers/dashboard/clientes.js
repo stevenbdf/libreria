@@ -8,7 +8,7 @@ const apiClientes = '../../core/api/clientes.php?site=dashboard&action=';
 //Función para obtener y mostrar los registros disponibles
 const showTable = async () => {
     const response = await $.ajax({
-        url: apiClientes + 'readClientes',
+        url: apiClientes + 'read',
         type: 'post',
         data: null,
         datatype: 'json'
@@ -59,10 +59,10 @@ function fillTable(rows) {
                     ${row.direccion}
                 </td>
                 <td>
-                    <img src="../../resources/img/clients/${row.img}" width="160" height="120">
+                    <img src="../../resources/img/clients/${row.img}" width="150" height="150">
                 </td>
                 <td class="text-center">
-                    <button type="button" onclick="confirmDelete(${row.idCliente})" class="mr-2 btn btn-danger">
+                    <button type="button" onclick="confirmDelete(${row.idCliente})" class="mr-2 btn btn-danger w-100">
                         <i class="material-icons mr-2">delete</i>Eliminar
                     </button> 
                 </td> 
@@ -76,59 +76,5 @@ function fillTable(rows) {
         }
     });
 }
-
-/*---------------Funciones CRUD---------------*/
-
-//Función para eliminar un registro seleccionado
-function confirmDelete(id) {
-    swal({
-        title: 'Advertencia',
-        text: '¿Quiere eliminar el Cliente?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borralo.',
-        closeOnConfirm: false,
-        closeOnCancel: true
-    },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiClientes + 'delete',
-                type: 'post',
-                data: {
-                    idCliente: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Autor eliminado correctamente.',
-                            'success'
-                        )
-                        $('#clientes').DataTable().destroy();
-                        showTable();
-                    }
-
-                } else {
-                    Swal.fire(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
-                }
-            } else {
-                console.log(response);
-            }
-        }
-    });
-}
+ 
 

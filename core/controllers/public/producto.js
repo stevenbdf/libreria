@@ -5,7 +5,7 @@ $(document).ready(() => {
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiProductos = '../../core/api/productos.php?site=public&action=';
 const apiComentarios = '../../core/api/comentarioLibro.php?site=public&action=';
-
+const apiReacciones = '../../core/api/reacciones.php?site=public&action=';
 
 function findGetParameter(parameterName) {
     var result = null,
@@ -42,8 +42,8 @@ const showProducts = async () => {
         } else {
             $('div#libro').html(`<img src="../../resources/img/books/${result.dataset.img}" alt="${result.dataset.NombreL}">`);
             $('h1#titulo-libro').html(result.dataset.NombreL);
-            $('div#likes').html(`<i class="fas fa-thumbs-up green" onclick="alert('diste like')"></i> Likes ${result.dataset.likes}`);
-            $('div#dislikes').html(`<i class="fas fa-thumbs-down"></i> Dislikes ${result.dataset.dislikes}`);
+            $('div#likes').html(`<i class="fas fa-thumbs-up green" onclick="addLike(${result.dataset.idLibro})"></i> Likes ${result.dataset.likes}`);
+            $('div#dislikes').html(`<i class="fas fa-thumbs-down" onclick="addDislike(${result.dataset.idLibro})"></i> Dislikes ${result.dataset.dislikes}`);
             $('div#barra-aprobacion').html(`<div class="progress-bar bg-success" role="progressbar" style="width: ${result.dataset.aprobacion}%" aria-valuenow="${result.dataset.aprobacion}" aria-valuemin="0" aria-valuemax="100"></div>`);
             $('div#precio').html(`<h4>Precio: <span class="libreria-numero">$${result.dataset.precioFinal}</span></h4>`);
             $('div#cantidad').html(`<h4>Disponibles: <span class="libreria-numero">${result.dataset.cantidad}</span> </h4>`);
@@ -54,6 +54,74 @@ const showProducts = async () => {
             $('div#autor').html(`<span class="font-weight-bold text-uppercase">Autor:  </span> ${result.dataset.nombreAutor} ${result.dataset.apellidoAutor}`);
             $('div#encuadernacion').html(`<span class="font-weight-bold text-uppercase">Encuadernación:  </span> ${result.dataset.encuadernacion}`);
             $('div#pais').html(`<span class="font-weight-bold text-uppercase">País:  </span> ${result.dataset.pais}`);
+        }
+    } else {
+        console.log(response);
+    }
+}
+
+const addLike = async(idProducto) =>{
+    const response = await $.ajax({
+        url: apiReacciones + 'insert',
+        type: 'post',
+        data: {
+            idProducto,
+            tipoReaccion: 1
+        },
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status == 1) {
+            swal(
+                'Gracias por tu reacción',
+                'Has dado like.',
+                'success'
+            )
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        console.log(response);
+    }
+}
+
+const addDislike = async(idProducto) =>{
+    const response = await $.ajax({
+        url: apiReacciones + 'insert',
+        type: 'post',
+        data: {
+            idProducto,
+            tipoReaccion: 0
+        },
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status == 1) {
+            swal(
+                'Gracias por tu reacción',
+                'Has dado like.',
+                'success'
+            )
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
         }
     } else {
         console.log(response);
@@ -112,7 +180,6 @@ function fillContainer(rows) {
     });
     $('div#comentarios-container').html(content);
 }
-
 
 function limitText(descripcion) {
     var descripcionCorta = '';
