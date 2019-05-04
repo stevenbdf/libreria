@@ -145,7 +145,9 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'readNoticia':
                 if ($result['dataset'] = $noticia->readNoticia()) {
-                    $result['imagenCliente'] = $_SESSION['imagenCliente'];
+                    if (isset($_SESSION['imagenCliente'])) {
+                        $result['imagenCliente'] = $_SESSION['imagenCliente'];
+                    }
                     $result['status'] = 1;
                 } else {
                     $result['exception'] = 'No hay noticias registradas';

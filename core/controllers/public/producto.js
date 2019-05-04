@@ -131,7 +131,6 @@ function fillContainer(rows, idCliente) {
                 <img class="profile-img" src="../../resources/img/clients/${row.img}" alt="foto de perfil">
             </div>
             <div class="col-8  offset-2 offset-md-1 offset-lg-0 my-auto mt-4">
-            
                 <div class="card mt-2">
                     <div class="card-body pb-0">
                     <p id="${row.idComent}-p" class="m-0 p-0">${row.comentario}</p>
@@ -141,8 +140,7 @@ function fillContainer(rows, idCliente) {
                     ${validateUpdateDelete(row, idCliente)}
                         ${row.nombreCliente} - ${row.fecha}
                     </div>
-                </div>
-                
+                </div> 
             </div>
             <!-- Termina una comentario -->
         `;

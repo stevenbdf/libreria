@@ -3,10 +3,10 @@ class Comentario extends Validator
 {
 	//Declaración de propiedades
 	private $id = null;
-	private $titulo = null;
-    private $comentario = null;
-    private $fecha=null;
-    private $nombreC=null;
+	private $idNoticia = null;
+	private $comentario = null;
+	private $fecha = null;
+	private $idCliente = null;
 
 	//Métodos para sobrecarga de propiedades
 	public function setId($value)
@@ -24,64 +24,84 @@ class Comentario extends Validator
 		return $this->id;
 	}
 
-	public function setTitulo($value)
+	public function setIdNoticia($value)
 	{
-			$this->titulo = $value;
-			return true;
-	}
-
-	public function getTitulo()
-	{
-		return $this->titulo;
-	}
-
-	public function setComentario($value)
-	{
-		$this->comentario=$value;
-		return true;
-	}
-
-	public function getComentario()
-	{
-		return $this->comentario;
-  }
-
-    public function setFecha($value)
-	{
-		$this->fecha=$value;
-		return true;
-	}
-
-	public function getFecha()
-	{
-		return $this->fecha;
-    }
-
-    public function setNombreC($value)
-	{
-		if ($this->validateAlphabetic($value, 1, 50)) {
-			$this->nombreC = $value;
+		if ($this->validateId($value)) {
+			$this->idNoticia = $value;
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public function getNombreC()
+	public function getIdNoticia()
 	{
-		return $this->nombreC;
+		return $this->idNoticia;
+	}
+
+	public function setComentario($value)
+	{
+		$this->comentario = $value;
+		return true;
+	}
+
+	public function getComentario()
+	{
+		return $this->comentario;
+	}
+
+	public function setFecha($value)
+	{
+		$this->fecha = $value;
+		return true;
+	}
+
+	public function getFecha()
+	{
+		return $this->fecha;
+	}
+
+	public function setIdCliente($value)
+	{
+		if ($this->validateId($value)) {
+			$this->idCliente = $value;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getIdCliente()
+	{
+		return $this->idCliente;
 	}
 
 	//Metodos para manejar el CRUD
 	public function readComentario()
 	{
-		$sql ='SELECT idComentN, titulo, comentnoticia.idNoticia,comentnoticia.fecha ,cliente.img as img, comentario, nombreCliente 
+		$sql = 'SELECT idComentN, titulo, comentnoticia.idNoticia,comentnoticia.fecha ,cliente.img as img, comentario,comentnoticia.idClient, nombreCliente 
 						FROM comentnoticia 
 						INNER JOIN cliente ON cliente.idCliente = comentnoticia.idClient 
 						INNER JOIN noticia ON noticia.idNoticia = comentnoticia.idNoticia 
-						ORDER BY idComentN';
+						ORDER BY idComentN DESC';
 		$params = array(null);
 		return Database::getRows($sql, $params);
+	}
+
+	public function createComentario()
+	{
+		$sql = 'INSERT INTO comentnoticia(idNoticia, comentario, fecha, idClient)
+						VALUES (?, ? ,(SELECT NOW()), ?)';
+		$params = array($this->idNoticia, $this->comentario,$this->idCliente );
+		return Database::executeRow($sql, $params);
+	}
+
+	public function updateComentario()
+	{
+		$sql = 'UPDATE comentnoticia SET comentario = ?, fecha = (SELECT NOW())
+				WHERE idComentN = ?';
+		$params = array($this->comentario, $this->id);
+		return Database::executeRow($sql, $params);
 	}
 
 	public function deleteComentario()
@@ -90,6 +110,4 @@ class Comentario extends Validator
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
-
 }
-?>
