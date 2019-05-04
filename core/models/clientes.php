@@ -181,5 +181,12 @@ class Clientes extends Validator
 		$params = array($this->id);
 		return Database::getRow($sql, $params);
 	}
+
+	public function getImagenCliente()
+	{
+		$sql = 'SELECT img FROM cliente WHERE correo = ?';
+		$params = array($this->correo);
+		return Database::getRow($sql, $params);
+	}
 }
 ?>

@@ -50,8 +50,12 @@ class Reacciones extends Validator
 
     public function setTipoReaccion($value)
     {
-        $this->tipoReaccion = $value;
-        return true;
+        if ($value == 0 || $value == 1) {
+            $this->tipoReaccion = $value;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getTipoReaccion()
@@ -68,10 +72,26 @@ class Reacciones extends Validator
         return Database::executeRow($sql, $params);
     }
 
-    public function updateAprobacion()
+    public function readReaccionesEmpleado()
     {
-        $sql = 'UPDATE aprobacion SET tipo = ?  WHERE idAprobacion = ?';
-        $params = array($this->tipoReaccion, $this->idReaccion);
+        $sql = 'SELECT idAprobacion, idLibro, idCliente, tipo 
+                FROM aprobacion WHERE idCliente = ? AND idLibro = ?
+                ORDER BY idAprobacion';
+        $params = array($this->idCliente, $this->idProducto);
+        return Database::getRows($sql, $params);
+    }
+
+    public function updateReaccion()
+    {
+        $sql = 'UPDATE aprobacion SET tipo = ?  WHERE idCliente = ? AND idLibro = ?';
+        $params = array($this->tipoReaccion, $this->idCliente, $this->idProducto);
+        return Database::executeRow($sql, $params);
+    }
+
+    public function deleteReaccion()
+    {
+        $sql = 'DELETE FROM aprobacion WHERE idCliente = ? and idLibro = ?';
+        $params = array($this->idCliente, $this->idProducto);
         return Database::executeRow($sql, $params);
     }
 }

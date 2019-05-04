@@ -4,7 +4,6 @@ class model_page{
       session_start();
 
       ini_set('date.timezone', 'America/El_Salvador');
-
       if (isset($_SESSION['idCliente'])) {
         print ('
         <!doctype html>

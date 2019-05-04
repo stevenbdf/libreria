@@ -82,6 +82,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             if ($clientes->checkPassword()) {
                                 $_SESSION['idCliente'] = $clientes->getId();
                                 $_SESSION['correoCliente'] = $clientes->getCorreo();
+                                $_SESSION['imagenCliente'] = $clientes->getImagenCliente();
                                 $result['status'] = 1;
                             } else {
                                 $result['exception'] = 'Clave inexistente';

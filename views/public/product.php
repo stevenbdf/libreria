@@ -47,7 +47,7 @@ echo model_page::header();
     <!--Tu comentario -->
     <div class="row mt-4">
       <div class="col-1 col-md-2 offset-md-1 text-right pt-2 pb-2">
-        <img class="profile-img-main" src="../../resources/img/profile.jpeg" alt="foto de perfil">
+        <img class="profile-img-main" src="../../resources/img/clients/<?php echo $_SESSION['imagenCliente']['img'] ?>" alt="foto de perfil">
       </div>
       <div class="col-8 offset-2 offset-md-0 col-md-6 my-auto">
         <div class="input-group">
