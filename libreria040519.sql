@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2019 at 06:33 AM
+-- Generation Time: May 04, 2019 at 08:10 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -111,7 +111,16 @@ INSERT INTO `aprobacion` (`idAprobacion`, `idLibro`, `idCliente`, `tipo`) VALUES
 (11, 3, 3, 1),
 (12, 4, 3, 1),
 (13, 4, 2, 0),
-(14, 4, 1, 0);
+(14, 4, 1, 0),
+(42, 5, 9, 1),
+(46, 7, 9, 1),
+(47, 13, 9, 0),
+(48, 14, 9, 1),
+(49, 10, 9, 1),
+(50, 3, 9, 0),
+(51, 1, 9, 1),
+(52, 1, 4, 0),
+(53, 17, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -138,9 +147,13 @@ INSERT INTO `autor` (`idAutor`, `nombre`, `apellido`, `pais`, `img`) VALUES
 (4, 'Karen', 'Oliver', 'España', ''),
 (5, 'Suzanne', 'Collins', 'Estados Unidos', ''),
 (7, 'Luke', 'Pearson', 'Reino Unido', '../img/steven.jpg'),
-(8, 'Emma', 'Mars', 'Argentina', ''),
 (9, 'Belén', 'Delgado', 'Argentina', ''),
-(10, 'Nicholas', 'Sparks', 'Estados Unidos', '');
+(10, 'Nicholas', 'Sparks', 'Estados Unidos', ''),
+(11, 'Jonathan', 'Hickman', 'Estados Unidos', ''),
+(12, 'Isaac', 'Asimov', 'Rusia', ''),
+(13, 'Andy', 'Weir', 'Estado Unidos', ''),
+(14, 'Eduardo', 'Galeano', 'Uruguay', ''),
+(15, 'Agatha', 'Christie', 'Reino Unido', '');
 
 --
 -- Triggers `autor`
@@ -403,7 +416,22 @@ INSERT INTO `bitacora` (`idBitacora`, `idUsuario`, `fecha`, `accion`) VALUES
 (233, 1, '2019-04-28 22:26:59', 'Actualizó información en un libro'),
 (234, 1, '2019-04-28 22:27:54', 'Insertó un autor'),
 (235, 1, '2019-04-28 22:28:04', 'Actualizó información en un libro'),
-(236, 1, '2019-04-28 22:32:40', 'Actualizó información en un libro');
+(236, 1, '2019-04-28 22:32:40', 'Actualizó información en un libro'),
+(237, 1, '2019-05-01 10:51:32', 'Actualizó información en un libro'),
+(238, 1, '2019-05-01 11:20:01', 'Actualizó información en un libro'),
+(239, 1, '2019-05-01 11:25:07', 'Actualizó información en un libro'),
+(240, 1, '2019-05-01 11:25:25', 'Actualizó información en un libro'),
+(241, 1, '2019-05-03 20:57:21', 'Insertó un autor'),
+(242, 1, '2019-05-03 20:58:15', 'Insertó un libro'),
+(243, 1, '2019-05-03 21:00:32', 'Insertó un autor'),
+(244, 1, '2019-05-03 21:02:16', 'Insertó un libro'),
+(245, 1, '2019-05-03 21:03:48', 'Insertó un autor'),
+(246, 1, '2019-05-03 21:10:31', 'Insertó un libro'),
+(247, 1, '2019-05-03 21:15:14', 'Insertó un autor'),
+(248, 1, '2019-05-03 21:17:55', 'Insertó un libro'),
+(249, 1, '2019-05-03 21:19:03', 'Actualizó información en un libro'),
+(250, 1, '2019-05-03 21:20:10', 'Insertó un autor'),
+(251, 1, '2019-05-03 21:25:31', 'Insertó un libro');
 
 -- --------------------------------------------------------
 
@@ -470,13 +498,14 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`idCliente`, `nombreCliente`, `apellidoCliente`, `correo`, `contrasena`, `direccion`, `img`) VALUES
-(1, 'Fabiola Nicole', 'Martínez Ramírez', 'fabiolamartinez190201@gmail.com', 'passwor1234', '', ''),
-(2, 'Steven Benjamín', 'Díaz Flores', 'steven_123@gmail.com', 'password1234', '', ''),
-(3, 'Allison Stefany ', 'Cartagena Cárcamo', 'alli_12@gmail.com', 'pass1222', '', ''),
-(4, 'Ana Melisa', 'Ramírez', 'melisaramirez_25@hotmail.com', 'pass1234', '', ''),
-(5, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', 'password12', '', ''),
-(6, 'Daniel', 'Carranza', 'dncarr@outlook.com', '$2y$10$a99SpvC3oZY0YTXurd6fOu.KDYbKBneNG9Z2Rin7lJLA71SoG.F1O', 'san salvador', ''),
-(8, 'sdfsdfs', 'dfsdfsdf', 'sdfsdf@gmail.com', '$2y$10$g3jDSak9FbQIH4sAtkUq/ex2x9zUu3xw3mWKLxmYaCGHJYflQR10C', 'adssad', '');
+(1, 'Fabiola Nicole', 'Martínez Ramírez', 'fabiolamartinez190201@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
+(2, 'Steven Benjamín', 'Díaz Flores', 'steven_123@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
+(3, 'Allison Stefany ', 'Cartagena Cárcamo', 'alli_12@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
+(4, 'Ana Melisa', 'Ramírez', 'melisaramirez_25@hotmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
+(5, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
+(6, 'Daniel', 'Carranza', 'dncarr@outlook.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'san salvador', 'profile.jpeg'),
+(8, 'sdfsdfs', 'dfsdfsdf', 'sdfsdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'adssad', 'profile.jpeg'),
+(9, 'Steven', 'Diaz', 'stevenbdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'San salvador El Salvador', '5ccce83663be0.png');
 
 -- --------------------------------------------------------
 
@@ -500,7 +529,11 @@ CREATE TABLE `comentlibro` (
 INSERT INTO `comentlibro` (`idComent`, `idLibro`, `comentario`, `hora`, `fecha`, `idClient`) VALUES
 (1, 2, 'Muy buen libro me hizo llorar', '2019-02-28 15:43:25', '2019-02-20', 1),
 (2, 1, 'Es un libro demasiado infantil...', '2019-02-28 15:43:25', '2019-02-13', 5),
-(3, 5, 'Que miedoooooo', '2019-02-28 15:43:50', '2019-02-20', 4);
+(3, 5, 'Que miedoooooo', '2019-02-28 15:43:50', '2019-02-20', 4),
+(10, 17, 'Increíble las obras utópicas de este hombre', '2019-05-04 17:09:55', '2019-05-04', 9),
+(12, 1, '  Excelente libro, perfecto para aquellos que les rompen el corazón a cada rato', '2019-05-04 18:03:33', '2019-05-04', 9),
+(13, 18, 'Recuerdo que me encantaba este libro, cuando iba a la secundaria', '2019-05-04 18:05:40', '2019-05-04', 9),
+(15, 1, ' En mi opinión, falta ese toque del autor J. Green, muy básico este libro  :(', '2019-05-04 18:08:11', '2019-05-04', 4);
 
 -- --------------------------------------------------------
 
@@ -584,11 +617,12 @@ CREATE TABLE `editorial` (
 
 INSERT INTO `editorial` (`idEditorial`, `nombreEdit`, `direccion`, `pais`, `tel`) VALUES
 (1, 'Nube de Tinta', 'Travessera de Gracia', 'Chile', '933660300'),
-(2, 'Debolsillo', 'Blvd Miguel de Cervantes Saavedra 301 piso 1Col Granada CP 11520 Miguel Hidalgo Ciudad de México', 'México', '(55) 3067 8441'),
+(2, 'Debolsillo', 'Blvd Miguel de Cervantes Saavedra 301 piso 1Col Granada CP 11520 Miguel Hidalgo Ciudad de México', 'México', '+55 3067 8441'),
 (3, 'Santillana El Salvador', '87 avenida norte 311 Colonia Escalón San Salvador', 'El Salvador', '+503 2505-8920'),
-(4, 'Editorial Planeta', 'Av. Diagonal, 662-664\r\n08034 Barcelona', 'España', '662-664 08034 '),
+(4, 'Editorial Planeta', 'Av Diagonal 662-66408034 Barcelona', 'España', '+34 93 492 88'),
 (5, 'Amazon', 'Seattle Washington', 'Estado Unidos', '+1 206-922-0880'),
-(6, 'Safe Creative', 'Santiago Chile', 'Chile', '1505034002314');
+(6, 'Safe Creative', 'Santiago Chile', 'Chile', '1505034002314'),
+(7, 'Booket', 'Av Diagonal 662-664 08034 Barcelona', 'España', '+ 34 93 492 88 ');
 
 -- --------------------------------------------------------
 
@@ -640,14 +674,19 @@ CREATE TABLE `libro` (
 --
 
 INSERT INTO `libro` (`idLibro`, `idAutor`, `idEditorial`, `NombreL`, `Idioma`, `NoPag`, `encuadernacion`, `resena`, `precio`, `idCat`, `img`, `cant`) VALUES
-(1, 2, 1, 'El teorema de katherine', 'Español', 18, 'Tapa blanda', 'Según Colin Singleton existen dos tipos de persona: los que dejan y los que son dejados. Él, sin duda, pertenece al segundo. Su última ex, Katherine XIX, no es una reina, sino la Katherine número diecinueve que le ha roto el corazón.\r\n\r\nPara escapar de su mal de amores, y con el propósito de hallar un teorema que explique su maldición de las Katherines, Colin emprende junto a su amigo Hassan una aventura que le llevará a Gutshot, un pueblecito de Tennessee, y a la sospecha de que en la vida la inteligencia no siempre es la mejor compañera de viaje.', 1, 2, '5cc679ff368a4.jpg', 8),
+(1, 2, 1, 'El teorema de katherine', 'Español', 18, 'Tapa blanda', 'Según Colin Singleton existen dos tipos de persona: los que dejan y los que son dejados. Él, sin duda, pertenece al segundo. Su última ex, Katherine XIX, no es una reina, sino la Katherine número diecinueve que le ha roto el corazón.\r\n\r\nPara escapar de su mal de amores, y con el propósito de hallar un teorema que explique su maldición de las Katherines, Colin emprende junto a su amigo Hassan una aventura que le llevará a Gutshot, un pueblecito de Tennessee, y a la sospecha de que en la vida la inteligencia no siempre es la mejor compañera de viaje.', 10, 2, '5cc679ff368a4.jpg', 8),
 (2, 2, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora.', 10.99, 36, '5cc67a4988d2d.jpg', 15),
-(3, 1, 1, 'Yo antes de ti', 'Español', 496, 'Tapa blanda', 'ouisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 2, '5cc67ab8cfbdc.jpg', 4),
+(3, 1, 1, 'Yo antes de ti', 'Español', 496, 'Tapa blanda', 'Louisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 2, '5cc67ab8cfbdc.jpg', 4),
 (4, 10, 4, 'Lo mejor de mí', 'Español', 398, 'Tapa blanda', 'Durante la primavera de 1984, cuando todavía iban al instituto, Amanda Collier y Dawson Cole se enamoraron para siempre. Aunque pertenecían a estratos sociales muy diferentes, el amor que sentían el uno por el otro parecía capaz de desafiar cualquier impedimento que la realidad en la vida de la pequeña ciudad de Oriental en Carolina del Norte quisiera ponerles por delante. Pero el verano después de su graduación una serie de acontecimientos imprevistos separaría a la pareja y los llevaría por caminos radicalmente opuestos.', 12, 2, '5cc67af077b0f.jpg', 50),
 (5, 3, 2, 'Oscuros', 'Español', 416, 'Tapa blanda', 'Helstone, Inglaterra, 1854.Es noche cerrada y dos jóvenes conversan en una remota casa de campo. Se sienten irresistiblemente atraídos el uno por el otro, pero él insiste en que no pueden estar juntos. Ella obvia sus advertencias y se acerca a él, con paso lento y desafiante.Cuando se besan, una furiosa llamarada lo inunda todo.', 11.5, 37, '5cc67b2442626.jpg', 14),
 (7, 9, 6, 'Shut up im lesbian', 'Inglés', 600, 'Tapa blanda', 'Skyler siempre ha soñado con estudiar en la prestigiosa universidad de Harvard. Y lo consigue gracias a la beca que le consiguió su padre.\r\nLo que ella no tuvo en cuenta al llegar al primer día es la mirada pervertida de chicos y asco por parte de las chicas.\r\nNo quiere ser una más en la lista de todos ellos. Por eso se le ocurre una mentira espontánea: Fingir ser lesbiana.\r\nClaro, todo saldría perfecto. No se meterían con ella. \r\nHasta que se topa con ellos: Ashton, Michael, Calum y Luke, accidentalmente sus compañeros de cuarto.\r\nFingir frente a la gente no hay problema, pero incluso fingir en tu propio cuarto se vuelve algo complicado.\r\nAún más si éstos cuatro chicos deciden ponerte a prueba y te traen a una chica -que para peor, siente algo por ti- para que empiecen algo.\r\n\r\n-Sigo sin creer que eres lesbiana. -Ashton se acomodó en el sillón y me miró con una sonrisa lujuriosa. - A no ser que en verdad seas hetero pero tengas miedo de admitirlo. -canturreó.\r\n\r\n-¡Cállate! Soy lesbiana.', 15, 36, '5cc67bb48c2bf.jpg', 35),
 (10, 7, 1, 'Las Aventuras de Hilda', 'Español', 80, 'Tapa dura', 'Las aventuras de hilda cuentan las historia de una niña que vive en el bosque, en este tiene muchas historias que contar con sus amigos', 15.5, 4, '5cc5dd7853d24.jpg', 50),
-(13, 8, 5, '101 razones para odiarla', 'Español', 204, 'Tapa dura de bolsillo', 'Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas. \r\n\r\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar. \r\n\r\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.', 15.75, 36, '5cc6785d5e02e.jpg', 25);
+(13, 9, 5, '101 razones para odiarla', 'Español', 204, 'Tapa dura de bolsillo', 'Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas. \r\n\r\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar. \r\n\r\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.', 15.75, 36, '5cc6785d5e02e.jpg', 25),
+(14, 11, 5, 'Secret Wars', 'Inglés', 312, 'Tapa blanda', '¡El Universo Marvel ya no existe! Las incursiones interdimensionales han eliminado todas y cada una de las dimensiones una por una, y ahora, a pesar de los mejores esfuerzos de los científicos, sabios y superhumanos de ambas dimensiones, el Universo Marvel y el Universo Último han chocado entre sí ... ¡y han sido destruidos! Ahora, todo lo que existe en el vasto cosmos vacío es un solo planeta de mosaico titánico, hecho de los restos fragmentados de cientos de dimensiones devastadas: ¡Mundo de batalla! ¡Y los sobrevivientes de esta catástrofe multiversal deben aprender a sobrevivir en este extraño nuevo reino! ¿Qué extrañas criaturas habitan este mundo? ¿Qué caras familiares harán su regreso? ¿Y qué pasa cuando los diversos reinos van a la guerra? El Universo Marvel está muerto ... ¡y los vencedores de las Guerras Secretas determinarán lo que vendrá después!', 20, 1, '5cccffc73ef82.jpg', 15),
+(15, 12, 5, 'YO ROBOT', 'Español', 300, 'Tapa blanda', 'Publicada por primera vez en 1950, cuando la electrónica digital estaba en su infancia, Yo, robot resultó ciertamente visionaria y tendría una influencia enorme no sólo en toda la ciencia ficción posterior, sino incluso en la propia ciencia de la robótica. Aquí formuló Issac Asomov por primera vez las tres leyes fundamentales de la robótica, de las que se valdría para plantear interrogantes que se adentran en el campo de la ética y de la psicología: ¿qué diferencia hay entre un robot inteligente y un ser humano?, ¿puede el creador de un robot predecir su comportamiento?, ¿debe la lógica determinar lo que es mejor para la humanidad? A través de una serie de historias conectadas entre sí por el personaje de la robopsicóloga Susan Calvin, en las que aparecen todo tipo de máquinas inteligentes -  robots que leen el pensamiento, robots que se vuelven locos, robots con sentido del humor o robots políticos-, Asimov inventa unos robots cada vez más perfectos, que llegan a convertirse en un desafío para sus creadores.', 15, 3, '5ccd00b8e0412.jpg', 25),
+(16, 13, 4, 'El Marciano', 'Español', 339, 'Tapa blanda', 'Seis días atrás el astronauta Mark Watney se convirtió en uno de los primeros hombres en caminar por la superficie de Marte. Ahora está seguro de que será el primer hombre en morir allí. La tripulación de la nave en que viajaba se ve obligada a evacuar el planeta a causa de una tormenta de polvo, dejando atrás a Mark tras darlo por muerto. Pero él está vivo, y atrapado a millones de kilómetros de cualquier ser humano, sin posibilidad de enviar señales a la Tierra. De todos modos, si lograra establecer conexión, moriría mucho antes de que el rescate llegara.', 18.5, 3, '5ccd02a7bfde1.jpg', 50),
+(17, 14, 1, 'El libro de los abrazos', 'Español', 200, 'Tapa dura', 'Obra genial tanto por su originalidad como por su capacidad expresiva, impactante más si cabe por la sencillez con que está escrita. Los nadies: los hijos de nadie, los dueños de nada. Los nadies: los ningunos, los ninguneados, corriendo la liebre, muriendo la vida, jodidos, rejodidos: Que no son, aunque sean. Que no hablan idiomas, sino dialectos. Que no profesan religiones, sino supersticiones. Que no hacen arte, sino artesanía. Que no practican cultura, sino folklore. Que no son seres humanos, sino recursos humanos. Que no tienen cara, sino brazos. Que no tienen nombre, sino número. Que no figuran en la historia universal, sino en la crónica roja de la prensa local. Los nadies, que cuestan menos que la bala que los mata. Los Nadies. El libro de los abrazos.', 9.5, 34, '5ccd046350548.jpg', 20),
+(18, 15, 7, 'Asesinato en el Orient Express', 'Español', 240, 'Tapa blanda de bolsillo', 'La novela más popular del mítico detective Hércules Poirot.\r\n\r\nEn un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot, que repentinamente se topa con uno de los casos más desconcertantes de su carrera: en el compartimiento vecino ha sido asesinado Samuel E. Ratchett mientras dormía, pese a que ningún indicio trasluce un móvil concreto. Poirot aprovechará la situación para indagar entre los ocupantes del vagón, que a todas luces deberían ser los únicos posibles autores del crimen.\r\n\r\nUna víctima, doce sospechosos y una mente privilegiada en busca de la verdad.', 10, 35, '5ccd062b6185d.jpg', 20);
 
 --
 -- Triggers `libro`
@@ -685,11 +724,11 @@ CREATE TABLE `noticia` (
 --
 
 INSERT INTO `noticia` (`idNoticia`, `idEmpleado`, `fecha`, `titulo`, `descripcion`, `img`) VALUES
-(1, 3, '2019-02-13', 'La paradoja del bibliotecario ciego', '<p>Porque<strong><em> todos, absolutamente todos </em></strong>los personajes de esta novela tienen algo que ocultar, son lobos con piel de cordero, verdugos de manos inocentes, y todos, absolutamente todos son v&iacute;ctimas de una atm&oacute;sfera de violencia, de un tr&aacute;gico efecto domin&oacute; que les convierte irremisiblemente en victimarios, haciendo que uno tras otro, ficha tras ficha, todos vayan cayendo bajo el yugo del eros y el thanatos, ante las pulsiones de amor por lo prohibido y odio por los que les rodean, llegando incluso a estar dispuestos a la mayor de las bajezas, a verter la sangre de su sangre. Y todo esto y mucho m&aacute;s es este apabullante thriller costumbrista, que gracias a su continuo cambio de personajes no da respiro al lector durante sus 400 p&aacute;ginas. Una actualizaci&oacute;n de las m&aacute;s demoledoras tragedias griegas con la que los ganadores del premio Amazon Indie 2016 Ana Ballabriga y David Zaplana han logrado entretejer magistralmente los destinos de tantos y tan variados, complejos y atormentados antih&eacute;roes como solo V&iacute;ctor del &Aacute;rbol hab&iacute;a conseguido, regal&aacute;ndonos una novela impactante e inc&oacute;moda como pocas, que sorprender&aacute; y dar&aacute; mucho que pensar a lectores de toda la familia y todas las familias.</p>', '5cbe80098b1b5.jpg'),
-(2, 3, '2019-02-06', 'Llega el true crime literario llega la nueva Serie Negra', '<p>Saben, los amantes de lo criminal literario, que el pen&uacute;ltimo auge del g&eacute;nero en Espa&ntilde;a lo lider&oacute; la colecci&oacute;n que por entonces, hace m&aacute;s de una d&eacute;cada, dirig&iacute;a Anik Lapointe: la Serie Negra, de RBA. La primera novela negra que se edit&oacute; en RBA fue una novela de Ian Rankin, Black &amp; Blue. Se public&oacute; el a&ntilde;o 2001. Por entonces no exist&iacute;a una colecci&oacute;n de novela negra, si no que las novelas negras se publicaban en la colecci&oacute;n literaria, &ldquo;porque son literatura&rdquo;, recuerda su directora editorial, Luisa Guti&eacute;rrez. Seis a&ntilde;os despu&eacute;s, se decide crear un premio de novela negra, el mejor dotado del mundo, el RBA de Novela Polic&iacute;aca, y decididos a apostar por el g&eacute;nero, en un momento en que justo se asist&iacute;a a su definitivo despegue en Espa&ntilde;a, un a&ntilde;o m&aacute;s tarde, en 2008, se creaba la colecci&oacute;n Serie Negra. Su primer t&iacute;tulo, La muerte de Amalia Sacerdote, de Andrea Camilleri, coincid&iacute;a en librer&iacute;as con el primero de Stieg Larsson, Los hombres que no amaban a las mujeres (Destino), la novela llamada a poner de moda el crimen n&oacute;rdico, y a devolver la fe a un mercado maltratado por la sensaci&oacute;n de que el lector de g&eacute;nero no era un lector literario. As&iacute;, desde 2008 hasta 2014, y con la colecci&oacute;n noir de la prestigiosa Gallimard en mente, se publicaron cl&aacute;sicos, pero tambi&eacute;n autores contempor&aacute;neos, recuerda Guti&eacute;rrez, con la idea de crear &ldquo;un mapa de lo m&aacute;s completo posible&rdquo; en lo que a novela negra se refer&iacute;a. Conviv&iacute;an, en la colecci&oacute;n, La jungla de asfalto, de William Riley Burnett, con La mala mujer, de Marc Pastor; los cl&aacute;sicos de Raymond Chandler con los musculosos noirs hist&oacute;rico-germ&aacute;nicos de Philip Kerr.</p>', '5cbfc6bab769b.jpg'),
-(4, 2, '2019-01-03', 'El Cervantes de Egido 2017', '<p>En Cervantes se superponen muchos gustos. Por ejemplo, el placer con que el caballero lee libros de caballer&iacute;as, el que experimenta reinvent&aacute;ndose y renombrando a su amada, su caballo o incluso a s&iacute; mismo; el que trasluce el autor narrando ese proceso al tiempo que su protagonista lo desarrolla; el que tiene el lector leyendo las aventuras de uno y prendi&eacute;ndose en la escritura del otro, y por &uacute;ltimo el gusto de Aurora Egido por su autor y el de los lectores de este libro al recorrerlo. Aurora Egido es una especialista en Graci&aacute;n un&aacute;nimemente reconocida, pero ha dedicado muchas p&aacute;ginas tambi&eacute;n a Cervantes. Este libro re&uacute;ne casi una veintena de estudios aparecidos a lo largo de los &uacute;ltimos a&ntilde;os.&nbsp;</p>', '5cbe7f97e41a8.png'),
-(11, 1, '2019-04-22', 'Fallece Francisca Aguirre a sus 60 años', '<p>La poetisa alicantina <strong>Francisca Aguirre</strong>, m&aacute;s conocida como Paca Aguirre, <strong>ha fallecido en Madrid a los 88</strong> a&ntilde;os. Perteneciente a la denominada &laquo;<strong>otra generaci&oacute;n de los 50</strong>&raquo;, era de las pocas autoras que a&uacute;n segu&iacute;an en activo.</p><h2><strong>Francisca Aguirre</strong></h2><p>Fue hija del pintor <strong>Lorenzo Aguirre</strong> y estuvo casada con <strong>F&eacute;lix Grande, otro importante poeta</strong>, con el que tuvo a una <strong>hija</strong> tambi&eacute;n poetisa, <strong>Guadalupe Grande.</strong></p><p>Tard&oacute; mucho en publicar y se consider&oacute; muy <strong>influida por Antonio Machado</strong> respecto al proceso de creaci&oacute;n literaria, que debe ser un <strong>reflejo de la propia existencia</strong> m&aacute;s que de esa labor creativa. Esa influencia machadiana fue lo que m&aacute;s destacaron tambi&eacute;n cuando recibi&oacute; el <strong>Premio Nacional de las Letras</strong> el a&ntilde;o pasado.</p>', '5cbe5fcb864c4.jpg'),
-(12, 1, '2019-04-22', 'Entrevista a R G Wittener', '<p>Hoy tenemos el placer de entrevistar a <strong>R. G. Wittener</strong> (Witten, Alemania, 1973), escritor espa&ntilde;ol de<strong>&nbsp;relatos y novelas de ciencia ficci&oacute;n, fantas&iacute;a, y terror</strong>;.</p><h4>R. G. Wittener, el autor y su obra</h4><p>Actualidad Literatura: Antes de nada, y para el que no te conozca.</p><p><strong>R. G. Wittener</strong>: <em>Me llamo <strong>Rafael Gonz&aacute;lez Wittener</strong>, nac&iacute; en Alemania a mediados de los setenta y, a muy corta edad, mi familia se traslad&oacute; a Madrid, donde he crecido y vivido.</em></p><p><em>Mi contacto con la literatura fue a edad temprana, pues empec&eacute; a leer con cuatro a&ntilde;os, me atrev&iacute; a escribir mi primera novela con unos quince y logr&eacute; ser <strong>finalista del premio de relatos&nbsp;</strong></em><strong>El Fungible</strong><em>, que otorga el ayuntamiento de Alcobendas, con 25 a&ntilde;os.</em></p>', '5cbe60b347d95.jpg');
+(1, 3, '2019-02-13', 'La paradoja del bibliotecario ciego', '<p style=\"text-align: justify;\">Porque<strong><em>&nbsp;todos, absolutamente todos&nbsp;</em></strong>los personajes de esta novela tienen algo que ocultar, son lobos con piel de cordero, verdugos de manos inocentes, y todos, absolutamente todos son v&iacute;ctimas de una atm&oacute;sfera de violencia, de un tr&aacute;gico efecto domin&oacute; que les convierte irremisiblemente en victimarios, haciendo que uno tras otro, ficha tras ficha, todos vayan cayendo bajo el yugo del eros y el thanatos, ante las pulsiones de amor por lo prohibido y odio por los que les rodean, llegando incluso a estar dispuestos a la mayor de las bajezas, a verter la sangre de su sangre. Y todo esto y mucho m&aacute;s es este apabullante thriller costumbrista, que gracias a su continuo cambio de personajes no da respiro al lector durante sus 400 p&aacute;ginas. Una actualizaci&oacute;n de las m&aacute;s demoledoras tragedias griegas con la que los ganadores del premio Amazon Indie 2016 Ana Ballabriga y David Zaplana han logrado entretejer magistralmente los destinos de tantos y tan variados, complejos y atormentados antih&eacute;roes como solo V&iacute;ctor del &Aacute;rbol hab&iacute;a conseguido, regal&aacute;ndonos una novela impactante e inc&oacute;moda como pocas, que sorprender&aacute; y dar&aacute; mucho que pensar a lectores de toda la familia y todas las familias.</p>', '5cbe80098b1b5.jpg'),
+(2, 3, '2019-02-06', 'Llega el true crime literario llega la nueva Serie Negra', '<div style=\"text-align: justify;\"></div><p style=\"text-align: justify;\">Saben, los amantes de lo criminal literario, que el pen&uacute;ltimo auge del g&eacute;nero en Espa&ntilde;a lo lider&oacute; la colecci&oacute;n que por entonces, hace m&aacute;s de una d&eacute;cada, dirig&iacute;a Anik Lapointe: la Serie Negra, de RBA. La primera novela negra que se edit&oacute; en RBA fue una novela de Ian Rankin, Black &amp; Blue. Se public&oacute; el a&ntilde;o 2001. Por entonces no exist&iacute;a una colecci&oacute;n de novela negra, si no que las novelas negras se publicaban en la colecci&oacute;n literaria, &ldquo;porque son literatura&rdquo;, recuerda su directora editorial, Luisa Guti&eacute;rrez. Seis a&ntilde;os despu&eacute;s, se decide crear un premio de novela negra, el mejor dotado del mundo, el RBA de Novela Polic&iacute;aca, y decididos a apostar por el g&eacute;nero, en un momento en que justo se asist&iacute;a a su definitivo despegue en Espa&ntilde;a, un a&ntilde;o m&aacute;s tarde, en 2008, se creaba la colecci&oacute;n Serie Negra. Su primer t&iacute;tulo, La muerte de Amalia Sacerdote, de Andrea Camilleri, coincid&iacute;a en librer&iacute;as con el primero de Stieg Larsson, Los hombres que no amaban a las mujeres (Destino), la novela llamada a poner de moda el crimen n&oacute;rdico, y a devolver la fe a un mercado maltratado por la sensaci&oacute;n de que el lector de g&eacute;nero no era un lector literario. As&iacute;, desde 2008 hasta 2014, y con la colecci&oacute;n noir de la prestigiosa Gallimard en mente, se publicaron cl&aacute;sicos, pero tambi&eacute;n autores contempor&aacute;neos, recuerda Guti&eacute;rrez, con la idea de crear &ldquo;un mapa de lo m&aacute;s completo posible&rdquo; en lo que a novela negra se refer&iacute;a. Conviv&iacute;an, en la colecci&oacute;n, La jungla de asfalto, de William Riley Burnett, con La mala mujer, de Marc Pastor; los cl&aacute;sicos de Raymond Chandler con los musculosos noirs hist&oacute;rico-germ&aacute;nicos de Philip Kerr.</p>', '5cbfc6bab769b.jpg'),
+(4, 2, '2019-01-03', 'El Cervantes de Egido 2017', '<p style=\"text-align: justify;\">En Cervantes se superponen muchos gustos. Por ejemplo, el placer con que el caballero lee libros de caballer&iacute;as, el que experimenta reinvent&aacute;ndose y renombrando a su amada, su caballo o incluso a s&iacute; mismo; el que trasluce el autor narrando ese proceso al tiempo que su protagonista lo desarrolla; el que tiene el lector leyendo las aventuras de uno y prendi&eacute;ndose en la escritura del otro, y por &uacute;ltimo el gusto de Aurora Egido por su autor y el de los lectores de este libro al recorrerlo. Aurora Egido es una especialista en Graci&aacute;n un&aacute;nimemente reconocida, pero ha dedicado muchas p&aacute;ginas tambi&eacute;n a Cervantes. Este libro re&uacute;ne casi una veintena de estudios aparecidos a lo largo de los &uacute;ltimos a&ntilde;os.&nbsp;</p>', '5cbe7f97e41a8.png'),
+(11, 1, '2019-04-22', 'Fallece Francisca Aguirre a sus 60 años', '<div style=\"text-align: justify;\"><br></div><p style=\"text-align: justify;\">La poetisa alicantina <strong>Francisca Aguirre</strong>, m&aacute;s conocida como Paca Aguirre, <strong>ha fallecido en Madrid a los 88</strong> a&ntilde;os. Perteneciente a la denominada &laquo;<strong>otra generaci&oacute;n de los 50</strong>&raquo;, era de las pocas autoras que a&uacute;n segu&iacute;an en activo.</p><h1 style=\"text-align: justify;\"><strong>Francisca Aguirre</strong></h1><p style=\"text-align: justify;\">Fue hija del pintor <strong>Lorenzo Aguirre</strong> y estuvo casada con <strong>F&eacute;lix Grande, otro importante poeta</strong>, con el que tuvo a una <strong>hija</strong> tambi&eacute;n poetisa, <strong>Guadalupe Grande.</strong></p><p style=\"text-align: justify;\">Tard&oacute; mucho en publicar y se consider&oacute; muy <strong>influida por Antonio Machado</strong> respecto al proceso de creaci&oacute;n literaria, que debe ser un <strong>reflejo de la propia existencia</strong> m&aacute;s que de esa labor creativa. Esa influencia machadiana fue lo que m&aacute;s destacaron tambi&eacute;n cuando recibi&oacute; el <strong>Premio Nacional de las Letras</strong> el a&ntilde;o pasado.</p>', '5cbe5fcb864c4.jpg'),
+(12, 1, '2019-04-22', 'Entrevista a R G Wittener', '<p style=\"text-align: justify;\">Hoy tenemos el placer de entrevistar a <strong>R. G. Wittener</strong> (Witten, Alemania, 1973), escritor espa&ntilde;ol de<strong>&nbsp;relatos y novelas de ciencia ficci&oacute;n, fantas&iacute;a, y terror</strong>;.</p><h4 style=\"text-align: justify;\">R. G. Wittener, el autor y su obra</h4><p style=\"text-align: justify;\">Actualidad Literatura: Antes de nada, y para el que no te conozca.</p><p style=\"text-align: justify;\"><strong>R. G. Wittener</strong>: <em>Me llamo <strong>Rafael Gonz&aacute;lez Wittener</strong>, nac&iacute; en Alemania a mediados de los setenta y, a muy corta edad, mi familia se traslad&oacute; a Madrid, donde he crecido y vivido.</em></p><p style=\"text-align: justify;\"><em>Mi contacto con la literatura fue a edad temprana, pues empec&eacute; a leer con cuatro a&ntilde;os, me atrev&iacute; a escribir mi primera novela con unos quince y logr&eacute; ser <strong>finalista del premio de relatos&nbsp;</strong></em><strong>El Fungible</strong><em>, que otorga el ayuntamiento de Alcobendas, con 25 a&ntilde;os.</em></p>', '5cbe60b347d95.jpg');
 
 -- --------------------------------------------------------
 
@@ -850,19 +889,19 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT for table `aprobacion`
 --
 ALTER TABLE `aprobacion`
-  MODIFY `idAprobacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idAprobacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=252;
 
 --
 -- AUTO_INCREMENT for table `categoria`
@@ -874,13 +913,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comentlibro`
 --
 ALTER TABLE `comentlibro`
-  MODIFY `idComent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idComent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `comentnoticia`
@@ -898,7 +937,7 @@ ALTER TABLE `detallepedido`
 -- AUTO_INCREMENT for table `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `empleado`
@@ -910,7 +949,7 @@ ALTER TABLE `empleado`
 -- AUTO_INCREMENT for table `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `noticia`

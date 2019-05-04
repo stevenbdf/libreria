@@ -80,7 +80,7 @@ const showComments = async () => {
         if (!result.status) {
             $('div#comentarios-container').html(`<h1 class="text-center w-100">${result.exception}</h1>`);
         } else {
-            fillContainer(result.dataset)
+            fillContainer(result.dataset, result.idCliente)
         }
     } else {
         console.log(response);
@@ -121,7 +121,7 @@ const showReactions = async () => {
 }
 
 //Función para llenar div con comentarios
-function fillContainer(rows) {
+function fillContainer(rows, idCliente) {
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
     rows.forEach(function (row) {
@@ -131,11 +131,18 @@ function fillContainer(rows) {
                 <img class="profile-img" src="../../resources/img/clients/${row.img}" alt="foto de perfil">
             </div>
             <div class="col-8  offset-2 offset-md-1 offset-lg-0 my-auto mt-4">
+            
                 <div class="card mt-2">
-                    <div class="card-body">
-                    ${row.comentario}
+                    <div class="card-body pb-0">
+                    <p id="${row.idComent}-p" class="m-0 p-0">${row.comentario}</p>
+                    <textarea id="${row.idComent}-textarea" class="form-control d-none" aria-label="With textarea" placeholder="Escribe tu comentario..."> ${row.comentario}</textarea>
+                    </div>
+                    <div class="small m-0 p-0 text-right mr-3 mb-2 mt-2">
+                    ${validateUpdateDelete(row, idCliente)}
+                        ${row.nombreCliente} - ${row.fecha}
                     </div>
                 </div>
+                
             </div>
             <!-- Termina una comentario -->
         `;
@@ -143,6 +150,48 @@ function fillContainer(rows) {
     $('div#comentarios-container').html(content);
 }
 
+//Función para habilitar botones de editar y eliminar si los comentarios del cliente le pertencen
+function validateUpdateDelete(row, idCliente) {
+    if (row.idClient == idCliente) {
+        return `<div id="textarea-disabled-${row.idComent}" class="p-0 m-0 d-inline">
+                    <button type="button" onclick="showTextAreaEdit(${row.idComent})" class="btn btn-sm btn-white mr-3">
+                        Editar <i class="fas fa-pen"></i>
+                    </button>
+                    <button type="button" onclick="deleteComment(${row.idComent})" class="btn btn-sm btn-white mr-3">
+                        Eliminar <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div id="textarea-enabled-${row.idComent}" class="p-0 m-0 d-none">
+                    <button type="button" onclick="showTextAreaEdit(${row.idComent})" class="btn btn-sm btn-white mr-3">
+                        Cancelar <i class="fas fa-times"></i>
+                    </button>
+                    <button type="button" onclick="updateComment(${row.idComent})" class="btn btn-sm btn-white mr-3">
+                        Guardar <i class="fas fa-check"></i>
+                    </button>
+                </div>
+                `;
+    } else {
+        return '';
+    }
+}
+
+function showTextAreaEdit(idComent){
+    if(!$(`div#textarea-disabled-${idComent}`).hasClass('d-none')){
+        $(`p#${idComent}-p`).addClass('d-none');
+        $(`textarea#${idComent}-textarea`).removeClass('d-none');
+        $(`div#textarea-disabled-${idComent}`).removeClass('d-inline');
+        $(`div#textarea-disabled-${idComent}`).addClass('d-none');
+        $(`div#textarea-enabled-${idComent}`).removeClass('d-none');
+        $(`div#textarea-enabled-${idComent}`).addClass('d-inline');
+    } else {
+        $(`p#${idComent}-p`).removeClass('d-none');
+        $(`textarea#${idComent}-textarea`).addClass('d-none');
+        $(`div#textarea-disabled-${idComent}`).addClass('d-inline');
+        $(`div#textarea-disabled-${idComent}`).removeClass('d-none');
+        $(`div#textarea-enabled-${idComent}`).addClass('d-none');
+        $(`div#textarea-enabled-${idComent}`).removeClass('d-inline');
+    }
+}
 //Funcion para limitar texto
 function limitText(descripcion) {
     var descripcionCorta = '';
@@ -190,6 +239,11 @@ const addLike = async (idProducto) => {
             }
         } else {
             console.log(response);
+            swal(
+                'Error',
+                'Debes iniciar sesión para poder reaccionar a los libros',
+                'error'
+            )
         }
     } else if (!$('#like-icon').hasClass('text-green') && $('#dislike-icon').hasClass('text-green')) {
         updateReaction(1, idProducto);
@@ -229,6 +283,11 @@ const addDislike = async (idProducto) => {
             }
         } else {
             console.log(response);
+            swal(
+                'Error',
+                'Debes iniciar sesión para poder reaccionar a los libros',
+                'error'
+            )
         }
     } else if ($('#like-icon').hasClass('text-green') && !$('#dislike-icon').hasClass('text-green')) {
         updateReaction(0, idProducto);
@@ -303,5 +362,136 @@ const deleteReaction = async (idProducto) => {
     } else {
         console.log(response);
     }
+}
 
+//Función para agregar un comentario
+const addComment = async (idProducto) => {
+    if ($.trim($('textarea#comentario-create').val())){
+        const response = await $.ajax({
+            url: apiComentarios + 'createComentario',
+            type: 'post',
+            data: {
+                idProducto,
+                comentario:  $('textarea#comentario-create').val()
+            },
+            datatype: 'json'
+        }).fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status == 1) {
+                await showProducts();
+                await showComments();
+            } else {
+                swal(
+                    'Error',
+                    result.exception,
+                    'error'
+                )
+            }
+        } else {
+            console.log(response);
+            swal(
+                'Error',
+                'Debes iniciar sesión para poder comentar libros',
+                'error'
+            )
+        }
+    } else {
+        swal(
+            'Error',
+            'Escribe algo en la caja de comentarios',
+            'error'
+        )
+    }   
+}
+
+//Función para editar un comentario
+const updateComment = async (idComentario) => {
+    if ($.trim($(`textarea#${idComentario}-textarea`).val())){
+        const response = await $.ajax({
+            url: apiComentarios + 'updateComentario',
+            type: 'post',
+            data: {
+                idComentario,
+                comentario:  $(`textarea#${idComentario}-textarea`).val()
+            },
+            datatype: 'json'
+        }).fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status == 1) {
+                await showProducts();
+                await showComments();
+            } else {
+                swal(
+                    'Error',
+                    result.exception,
+                    'error'
+                )
+            }
+        } else {
+            console.log(response);
+        }
+    } else {
+        swal(
+            'Error',
+            'Escribe algo en la caja de comentarios',
+            'error'
+        )
+    }   
+}
+
+//Función para eliminar un comentario
+function deleteComment(idComentario) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere eliminar el comentario?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borralo.',
+        closeOnConfirm: true,
+        closeOnCancel: true
+    },
+    async (isConfirm) => {
+        if (isConfirm) {
+            const response = await $.ajax({
+                url: apiComentarios + 'delete',
+                type: 'post',
+                data: {
+                    idComentario
+                },
+                datatype: 'json'
+            })
+            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                if (result.status) {
+                    if (result.status == 1) {
+                        await showProducts();
+                        await showComments();
+                    }
+                } else {
+                    Swal.fire(
+                        'Error',
+                        result.exception,
+                        'error'
+                    )
+                }
+            } else {
+                console.log(response);
+            }
+        }
+    });
 }

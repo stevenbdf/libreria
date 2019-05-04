@@ -4,6 +4,7 @@ class Comentario extends Validator
 	//Declaración de propiedades
 	private $id = null;
 	private $idLibro = null;
+	private $idCliente = null;
 	private $nombreL = null;
 	private $comentario = null;
 	private $fecha = null;
@@ -29,6 +30,16 @@ class Comentario extends Validator
 	{
 		if ($this->validateId($value)) {
 			$this->idLibro = $value;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function setIdCliente($value)
+	{
+		if ($this->validateId($value)) {
+			$this->idCliente = $value;
 			return true;
 		} else {
 			return false;
@@ -96,9 +107,9 @@ class Comentario extends Validator
 	public function readComentario()
 	{
 		$sql = 'SELECT idComent, nombreCliente, fecha, comentario, nombreL 
-						FROM comentlibro 
-						INNER JOIN cliente ON cliente.idCliente = comentlibro.idClient
-						INNER JOIN libro ON libro.idLibro = comentlibro.idLibro ORDER BY idComent';
+				FROM comentlibro 
+				INNER JOIN cliente ON cliente.idCliente = comentlibro.idClient
+				INNER JOIN libro ON libro.idLibro = comentlibro.idLibro ORDER BY idComent';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -106,13 +117,29 @@ class Comentario extends Validator
 	//Metodos para manejar el CRUD
 	public function readComentariosLibro()
 	{
-		$sql = 'SELECT idComent, nombreCliente, cliente.img, fecha, comentario, nombreL 
-							FROM comentlibro 
-							INNER JOIN cliente ON cliente.idCliente = comentlibro.idClient
-							INNER JOIN libro ON libro.idLibro = comentlibro.idLibro WHERE comentLibro.idLibro = ?
-							ORDER BY idComent';
+		$sql = 'SELECT idComent, comentLibro.idClient, nombreCliente, cliente.img, fecha, comentario, nombreL 
+				FROM comentlibro 
+				INNER JOIN cliente ON cliente.idCliente = comentlibro.idClient
+				INNER JOIN libro ON libro.idLibro = comentlibro.idLibro WHERE comentLibro.idLibro = ?
+				ORDER BY idComent DESC';
 		$params = array($this->idLibro);
 		return Database::getRows($sql, $params);
+	}
+
+	public function createComentariosLibro()
+	{
+		$sql = 'INSERT INTO comentlibro(idLibro, comentario, fecha, idClient)
+				VALUES (?, ? ,(SELECT NOW()), ?)';
+		$params = array($this->idLibro, $this->comentario, $this->idCliente);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function updateComentariosLibro()
+	{
+		$sql = 'UPDATE comentlibro SET comentario = ?, fecha = (SELECT NOW())
+				WHERE idComent = ?';
+		$params = array($this->comentario, $this->id);
+		return Database::executeRow($sql, $params);
 	}
 
 	public function deleteComentario()
