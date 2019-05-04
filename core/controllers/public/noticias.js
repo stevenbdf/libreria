@@ -23,14 +23,14 @@ const showNews = async () => {
         if (!result.status) {
             console.log(result.exception);
         }
-        fillContainer(result.dataset);
+        fillContainer(result.dataset, result.imagenCliente);
     } else {
         console.log(response);
     }
 }
 
 //Función para llenar div con tarjetas de categorias
-function fillContainer(rows) {
+function fillContainer(rows, imagenCliente) {
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
     rows.forEach(function (row) {
@@ -54,7 +54,7 @@ function fillContainer(rows) {
                 </div>
         
                 <div class="col-1 col-md-2 offset-md-1 text-right pt-2 pb-2">
-                    <img class="profile-img-main" src="../../resources/img/profile.jpeg" alt="foto de perfil">
+                    <img class="profile-img-main" src="../../resources/img/clients/${imagenCliente.img}" alt="foto de perfil">
                 </div>
                 <div class="col-8 offset-2 offset-md-0 col-md-6 my-auto">
                     <div class="input-group">
@@ -100,9 +100,6 @@ const showComments = async (noticias) => {
         if (!result.status) {
             console.log(result.exception);
         } else {
-            console.log(result)
-
-
             noticias.forEach(function (noticia) {
                 result.dataset.forEach(function (comentario) {
                     if (comentario.idNoticia == noticia.idNoticia) {
@@ -124,8 +121,8 @@ const showComments = async (noticias) => {
                 })
             })
 
-            noticias.forEach( function (noticia) {
-                if ($(`div#comentarios-container-${noticia.idNoticia}`).children().length == 0 ) {
+            noticias.forEach(function (noticia) {
+                if ($(`div#comentarios-container-${noticia.idNoticia}`).children().length == 0) {
                     $(`div#comentarios-container-${noticia.idNoticia}`).html('<h1 class="text-center w-100">No hay comentarios registrados</h1>');
                 }
             })
