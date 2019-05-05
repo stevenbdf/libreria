@@ -10,18 +10,21 @@ echo model_page::header();
       <div class="col-md-12 col-lg-7 text-left pt-3">
         <h1 id="titulo-libro"></h1>
         <div class="row mt-4">
-          <div id="likes" class="col-4 text-center"></div>
-          <div id="dislikes" class="col-4 text-center"></div>
+          <div id="likes" class="col-6 col-md-4 text-center"></div>
+          <div id="dislikes" class="col-6 col-md-4 text-center"></div>
         </div>
         <div class="row mt-4">
-          <div class="col-8">
+          <div class="col-12 col-md-8">
             <div id="barra-aprobacion" class="progress" style="height:3px;"></div>
           </div>
         </div>
         <div class="row mt-4">
           <div class="col-12 precio text-left" id="precio"></div>
+          <div class="col-4 col-md-2 text-left mt-2 mb-2">
+            <input id="cantidad-input" min="1" type="number" class="form-control text-center my-auto" value="1">
+          </div>
           <div class="col-6 col-md-4 text-left mt-2 mb-2">
-            <button type="button" class="btn btn-success">Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
+            <button type="button" class="btn btn-success" onclick="addCart('<?php echo $_GET['id']?>')" >Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
           </div>
           <div class="col-12 text-left mt-2 mb-2" id="cantidad"></div>
         </div>

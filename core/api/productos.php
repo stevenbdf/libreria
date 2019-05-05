@@ -223,6 +223,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 }
                 break;
+            case 'readCartItems':
+                if (!isset($result['dataset'])) {
+                    $result['dataset'] = array();
+                }
+                foreach ($_SESSION['carrito'] as $key => $item) {
+                    if ($producto->setIdLibro(key($item))) {
+                        if (array_push($result['dataset'], $producto->getProducto())) {
+                            $result['carrito'] = $_SESSION['carrito'];
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Producto inexistente';
+                        }
+                    } else {
+                        $result['exception'] = 'Producto incorrecto';
+                    }
+                }
+                break;
         }
     } else {
         exit('Acceso no disponible');

@@ -7,6 +7,9 @@ $(document).ready(async () => {
 const apiProductos = '../../core/api/productos.php?site=public&action=';
 const apiComentarios = '../../core/api/comentarioLibro.php?site=public&action=';
 const apiReacciones = '../../core/api/reacciones.php?site=public&action=';
+const apiPedidos = '../../core/api/pedidos.php?site=public&action=';
+
+var precioProductoActual;
 
 function findGetParameter(parameterName) {
     var result = null,
@@ -41,6 +44,7 @@ const showProducts = async () => {
             console.log(result.exception);
             $('h1#titulo').html(result.exception);
         } else {
+            precioProductoActual =  result.dataset.precioFinal;
             $('div#libro').html(`<img src="../../resources/img/books/${result.dataset.img}" alt="${result.dataset.NombreL}">`);
             $('h1#titulo-libro').html(result.dataset.NombreL);
             $('div#likes').html(`<i id="like-icon" class="fas fa-thumbs-up green" style="font-size:25px;" onclick="addLike(${result.dataset.idLibro})"></i> Likes ${result.dataset.likes}`);
@@ -173,8 +177,8 @@ function validateUpdateDelete(row, idCliente) {
     }
 }
 
-function showTextAreaEdit(idComent){
-    if(!$(`div#textarea-disabled-${idComent}`).hasClass('d-none')){
+function showTextAreaEdit(idComent) {
+    if (!$(`div#textarea-disabled-${idComent}`).hasClass('d-none')) {
         $(`p#${idComent}-p`).addClass('d-none');
         $(`textarea#${idComent}-textarea`).removeClass('d-none');
         $(`div#textarea-disabled-${idComent}`).removeClass('d-inline');
@@ -364,13 +368,13 @@ const deleteReaction = async (idProducto) => {
 
 //Función para agregar un comentario
 const addComment = async (idProducto) => {
-    if ($.trim($('textarea#comentario-create').val())){
+    if ($.trim($('textarea#comentario-create').val())) {
         const response = await $.ajax({
             url: apiComentarios + 'createComentario',
             type: 'post',
             data: {
                 idProducto,
-                comentario:  $('textarea#comentario-create').val()
+                comentario: $('textarea#comentario-create').val()
             },
             datatype: 'json'
         }).fail(function (jqXHR) {
@@ -404,18 +408,18 @@ const addComment = async (idProducto) => {
             'Escribe algo en la caja de comentarios',
             'error'
         )
-    }   
+    }
 }
 
 //Función para editar un comentario
 const updateComment = async (idComentario) => {
-    if ($.trim($(`textarea#${idComentario}-textarea`).val())){
+    if ($.trim($(`textarea#${idComentario}-textarea`).val())) {
         const response = await $.ajax({
             url: apiComentarios + 'updateComentario',
             type: 'post',
             data: {
                 idComentario,
-                comentario:  $(`textarea#${idComentario}-textarea`).val()
+                comentario: $(`textarea#${idComentario}-textarea`).val()
             },
             datatype: 'json'
         }).fail(function (jqXHR) {
@@ -444,7 +448,7 @@ const updateComment = async (idComentario) => {
             'Escribe algo en la caja de comentarios',
             'error'
         )
-    }   
+    }
 }
 
 //Función para eliminar un comentario
@@ -461,35 +465,67 @@ function deleteComment(idComentario) {
         closeOnConfirm: true,
         closeOnCancel: true
     },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiComentarios + 'delete',
-                type: 'post',
-                data: {
-                    idComentario
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        await showProducts();
-                        await showComments();
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiComentarios + 'delete',
+                    type: 'post',
+                    data: {
+                        idComentario
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            await showProducts();
+                            await showComments();
+                        }
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
                     }
                 } else {
-                    Swal.fire(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
+                    console.log(response);
                 }
-            } else {
-                console.log(response);
             }
-        }
+        });
+}
+
+//Función para agregar un comentario
+const addCart = async (idProducto) => {
+    const response = await $.ajax({
+        url: apiPedidos + 'addCart',
+        type: 'post',
+        data: {
+            idProducto,
+            cantidad: $('input#cantidad-input').val(),
+            precioVenta: precioProductoActual 
+        },
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
     });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status == 1) {
+            console.log(result.dataset)
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        console.log(response);
+    }
 }
