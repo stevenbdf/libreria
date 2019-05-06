@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 04, 2019 at 08:10 PM
+-- Generation Time: May 06, 2019 at 07:54 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -113,14 +113,15 @@ INSERT INTO `aprobacion` (`idAprobacion`, `idLibro`, `idCliente`, `tipo`) VALUES
 (13, 4, 2, 0),
 (14, 4, 1, 0),
 (42, 5, 9, 1),
-(46, 7, 9, 1),
-(47, 13, 9, 0),
-(48, 14, 9, 1),
-(49, 10, 9, 1),
 (50, 3, 9, 0),
 (51, 1, 9, 1),
 (52, 1, 4, 0),
-(53, 17, 9, 1);
+(53, 17, 9, 1),
+(55, 7, 9, 1),
+(58, 14, 9, 0),
+(59, 18, 9, 1),
+(60, 15, 9, 1),
+(61, 1, 10, 1);
 
 -- --------------------------------------------------------
 
@@ -505,7 +506,9 @@ INSERT INTO `cliente` (`idCliente`, `nombreCliente`, `apellidoCliente`, `correo`
 (5, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
 (6, 'Daniel', 'Carranza', 'dncarr@outlook.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'san salvador', 'profile.jpeg'),
 (8, 'sdfsdfs', 'dfsdfsdf', 'sdfsdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'adssad', 'profile.jpeg'),
-(9, 'Steven', 'Diaz', 'stevenbdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'San salvador El Salvador', '5ccce83663be0.png');
+(9, 'Steven', 'Diaz', 'stevenbdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'San salvador El Salvador', '5ccce83663be0.png'),
+(10, 'Carlos', 'Santana', 'carlos@gmail.com', '$2y$10$kQj1XMh3gKriptOAken8vO6VIwK1MPWbit997EXB4nb4TeBdTRnSq', 'San Salvador el Salvador', '5ccefd6e47950.jpg'),
+(11, 'asdas', 'asdsad', 'stevenbdf@gmail.com', '$2y$10$VzkVx3lQ72n1v1EMUiIVLOnYUPhcccSJ3QrOjPIBuOk4LAWwA87.G', 'asdasdsad', '5ccf2829e2962.png');
 
 -- --------------------------------------------------------
 
@@ -532,8 +535,10 @@ INSERT INTO `comentlibro` (`idComent`, `idLibro`, `comentario`, `hora`, `fecha`,
 (3, 5, 'Que miedoooooo', '2019-02-28 15:43:50', '2019-02-20', 4),
 (10, 17, 'Increíble las obras utópicas de este hombre', '2019-05-04 17:09:55', '2019-05-04', 9),
 (12, 1, '  Excelente libro, perfecto para aquellos que les rompen el corazón a cada rato', '2019-05-04 18:03:33', '2019-05-04', 9),
-(13, 18, 'Recuerdo que me encantaba este libro, cuando iba a la secundaria', '2019-05-04 18:05:40', '2019-05-04', 9),
-(15, 1, ' En mi opinión, falta ese toque del autor J. Green, muy básico este libro  :(', '2019-05-04 18:08:11', '2019-05-04', 4);
+(13, 18, ' Recuerdo que me encantaba este libro, cuando iba a la secundaria en el 2017', '2019-05-05 00:12:29', '2019-05-04', 9),
+(15, 1, ' En mi opinión, falta ese toque del autor J. Green, muy básico este libro  :(', '2019-05-04 18:08:11', '2019-05-04', 4),
+(17, 14, 'Nada que ver con los comics, malisimo', '2019-05-04 18:12:25', '2019-05-04', 9),
+(18, 1, 'Me gusto', '2019-05-05 15:13:47', '2019-05-05', 10);
 
 -- --------------------------------------------------------
 
@@ -558,7 +563,10 @@ INSERT INTO `comentnoticia` (`idComentN`, `idNoticia`, `comentario`, `hora`, `fe
 (1, 4, 'Muy buena noticia, realmente intersante', '2019-02-28 15:41:45', '2019-02-20', 4),
 (2, 1, 'No me gusto para nada...', '2019-02-28 15:42:16', '2019-02-20', 5),
 (3, 1, 'Excelente noticia', '2019-02-28 15:42:16', '2019-02-27', 3),
-(4, 1, 'Nice new gentleman', '2019-02-28 15:42:51', '2019-02-20', 1);
+(4, 1, 'Nice new gentleman', '2019-02-28 15:42:51', '2019-02-20', 1),
+(9, 2, ' No puedo esperar a que lo tengan disponible.\nMuy buen reportaje', '2019-05-04 21:32:56', '2019-05-04', 9),
+(10, 1, 'QUE ASCO DE NOTICIA', '2019-05-05 00:12:11', '2019-05-04', 9),
+(11, 1, 'Holaa', '2019-05-05 15:13:26', '2019-05-05', 10);
 
 -- --------------------------------------------------------
 
@@ -889,7 +897,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT for table `aprobacion`
 --
 ALTER TABLE `aprobacion`
-  MODIFY `idAprobacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `idAprobacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `autor`
@@ -913,19 +921,19 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `comentlibro`
 --
 ALTER TABLE `comentlibro`
-  MODIFY `idComent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idComent` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `comentnoticia`
 --
 ALTER TABLE `comentnoticia`
-  MODIFY `idComentN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idComentN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `detallepedido`
