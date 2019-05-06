@@ -128,13 +128,42 @@ const addCart = async (idProducto) => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (result.status == 1) {
-            console.log(result.dataset)
+            swal(
+                'Correcto',
+                'Producto agregado al carrito',
+                'success'
+            )
+            showCartTotal();
         } else {
             swal(
                 'Error',
                 result.exception,
                 'error'
             )
+        }
+    } else {
+        console.log(response);
+    }
+}
+
+//Función para agregar un comentario
+const showCartTotal = async () => {
+    const response = await $.ajax({
+        url: apiPedidos + 'showCartTotal',
+        type: 'post',
+        data: null ,
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status == 1) {
+            $('a#cart-label-info').html(`<i class="fas fa-shopping-cart"></i> $${result.dataset}`);
+        } else {
+            console.log(result.exception)
         }
     } else {
         console.log(response);

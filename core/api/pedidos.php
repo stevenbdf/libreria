@@ -81,6 +81,64 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 $result['status'] = 1;
                 $result['dataset'] = ($_SESSION['carrito']);
                 break;
+            case 'deleteCart':
+                if (isset($_POST['idProducto'])) {
+                    foreach ($_SESSION['carrito'] as $key => $item) {
+                        if (array_key_exists((int)$_POST['idProducto'], $item)) {
+                            $cantidad = $item[$_POST['idProducto']]['cantidad'];
+                            $precioVenta = $item[$_POST['idProducto']]['precio'];
+                            $_SESSION['carrito'][$key][(int)$_POST['idProducto']] = array(
+                                'precio' => $precioVenta, 'cantidad' => (int)$cantidad - 1
+                            );
+                            $arrayEvaluando = $_SESSION['carrito'];
+                            if ((int)$arrayEvaluando[$key][(int)$_POST['idProducto']]['cantidad'] < 1) {
+                                unset($_SESSION['carrito'][$key]);
+                            }
+                            $result['status'] = 1;
+                            break;
+                        } else {
+                            $result['exception'] = 'Producto inexistente en el carrito';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+            case 'addItemCart':
+                if (isset($_POST['idProducto'])) {
+                    foreach ($_SESSION['carrito'] as $key => $item) {
+                        if (array_key_exists((int)$_POST['idProducto'], $item)) {
+                            $cantidad = $item[$_POST['idProducto']]['cantidad'];
+                            $precioVenta = $item[$_POST['idProducto']]['precio'];
+                            $_SESSION['carrito'][$key][(int)$_POST['idProducto']] = array(
+                                'precio' => $precioVenta, 'cantidad' => (int)$cantidad + 1
+                            );
+                            $arrayEvaluando = $_SESSION['carrito'];
+                            if ((int)$arrayEvaluando[$key][(int)$_POST['idProducto']]['cantidad'] < 1) {
+                                unset($_SESSION['carrito'][$key]);
+                            }
+                            $result['status'] = 1;
+                            break;
+                        } else {
+                            $result['exception'] = 'Producto inexistente en el carrito';
+                        }
+                    }
+                } else {
+                    $result['exception'] = 'Producto incorrecto';
+                }
+                break;
+            case 'showCartTotal':
+                $total = 0;
+                if (isset($_SESSION['carrito'])) {
+                    foreach ($_SESSION['carrito'] as $key => $value) {
+                        foreach ($value as $key2 => $value2) {
+                            $total =  $total + ((float)$value2['precio'] * (int)$value2['cantidad']);
+                        }
+                    }
+                    $result['status'] = 1;
+                    $result['dataset'] = $total;
+                }
+                break;
         }
     } else {
         exit('Acceso no disponible');

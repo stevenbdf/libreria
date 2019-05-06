@@ -23,13 +23,13 @@ echo model_page::header();
   <div class="mb-3">
     <div class="row">
       <div class="col-3">
-        <a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a>
+        <a href="categories.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Seguir comprando</a>
       </div>
       <div class="col-6">
-        <p class="hidden-xs text-center"><strong>Total $1.99</strong></p>
+        <p id="total-carrito" class="hidden-xs text-center"></p>
       </div>
       <div class="col-3">
-        <a href="#" class="btn btn-success float-right">Has revisión <i class="fa fa-angle-right"></i></a>
+        <button id="pagar-button" class="btn btn-success float-right">Procede a pagar <i class="fa fa-angle-right"></i></button>
       </div>
     </div>
   </div>

@@ -224,6 +224,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'readCartItems':
+            
                 if (!isset($result['dataset'])) {
                     $result['dataset'] = array();
                 }

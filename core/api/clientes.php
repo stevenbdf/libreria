@@ -31,7 +31,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
         }
-    }  else if ($_GET['site'] == 'public') {
+    } else if ($_GET['site'] == 'public') {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $clientes->validateForm($_POST);
@@ -53,7 +53,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                                 $result['exception'] = 'Operación fallida';
                                             }
                                         } else {
-                                            $result['exception'] = $clientes->getImageError();
+                                            $result['exception'] = $clientes->getImageError(). '. La dimension de la imagen debe ser 500x500';
                                         }
                                     } else {
                                         $result['exception'] = 'Clave menor a 6 caracteres';

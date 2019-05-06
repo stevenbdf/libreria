@@ -5,6 +5,14 @@ class model_page{
 
       ini_set('date.timezone', 'America/El_Salvador');
       if (isset($_SESSION['idCliente'])) {
+        $total = 0;
+        if(isset($_SESSION['carrito'])) {
+          foreach ($_SESSION['carrito'] as $key => $value) {
+            foreach ($value as $key2 => $value2) {
+              $total =  $total + ((float)$value2['precio'] * (int)$value2['cantidad']);
+            }
+          }
+        }
         print ('
         <!doctype html>
         <html lang="es">
@@ -81,8 +89,8 @@ class model_page{
                       <a class="dropdown-item" onclick="signOffCliente()">Cerrar Sesión <i class="fas fa-sign-out-alt"></i></a>
                     </div>
                   </li>
-                  <li class="nav-item mt-1">
-                    <a class="nav-link" href="shoppinginfo.php"><i class="fas fa-shopping-cart"></i></i></a>
+                  <li class="nav-item ">
+                    <a id="cart-label-info" class="nav-link" href="shoppinginfo.php"><i class="fas fa-shopping-cart"></i> $'.$total.'</a>
                   </li>
                 </ul>
               </div>
