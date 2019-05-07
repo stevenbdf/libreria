@@ -554,7 +554,7 @@ const addCart = async (idProducto) => {
     } else {
         swal(
             'Error',
-            'Lamentamos informarle que actualmente no hay stock de este producto',
+            'Lamentamos informarle que actualmente no hay suficiente stock de este producto',
             'error'
         )
     }

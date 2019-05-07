@@ -53,8 +53,8 @@ function fillContainer(rows, carrito) {
                             <h4 class="my-auto text-center w-100">$${(parseFloat(row.precioFinal)).toFixed(2)}</h4>
                         </div>
                         <div class="col-md-2 d-flex flex-md-column align-items-center justify-content-center flex-lg-row">
-                            <button onclick="addCartItems(${row.idLibro})" class="btn btn-info btn-sm my-auto mr-md-0 mr-lg-1"><i class="fas fa-plus" style="max-height: 18px"></i></button>
-                            <input readonly type="number" class="form-control text-center my-auto" style="max-width: 40%" value="${carrito[index][row.idLibro].cantidad}">
+                            <button onclick="addCartItems(${row.idLibro},${row.cantidad})" class="btn btn-info btn-sm my-auto mr-md-0 mr-lg-1"><i class="fas fa-plus" style="max-height: 18px"></i></button>
+                            <input id="cantidad-${row.idLibro}" readonly type="number" class="form-control text-center my-auto" style="max-width: 40%" value="${carrito[index][row.idLibro].cantidad}">
                             <button onclick="deleteCartItems(${row.idLibro})" class="btn btn-danger btn-sm my-auto ml-2 ml-md-0 ml-lg-2"><i class="fas fa-minus" style="max-height: 18px"></i></button>
                         </div>
                         <div class="col-md-2 d-flex justify-content-left">
@@ -104,26 +104,34 @@ const deleteCartItems = async (idProducto) => {
 }
 
 //Función para borrar elementos del carrito
-const addCartItems = async (idProducto) => {
-    const response = await $.ajax({
-        url: apiPedidos + 'addItemCart',
-        type: 'post',
-        data: { idProducto },
-        datatype: 'json'
-    }).fail(function (jqXHR) {
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-    if (isJSONString(response)) {
-        const result = JSON.parse(response);
-        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-        if (!result.status) {
-            console.log(result.exception);
+const addCartItems = async (idProducto, cantidad) => {
+    if (parseInt($(`#cantidad-${idProducto}`).val()) < cantidad ) {
+        const response = await $.ajax({
+            url: apiPedidos + 'addItemCart',
+            type: 'post',
+            data: { idProducto },
+            datatype: 'json'
+        }).fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (!result.status) {
+                console.log(result.exception);
+            } else {
+                location.reload();
+            }
         } else {
-            location.reload();
+            console.log(response);
         }
     } else {
-        console.log(response);
+        swal(
+            'Atención',
+            'Has alcanzado la cantidad maxima en stock',
+            'warning'
+        )
     }
 }
 
