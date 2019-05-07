@@ -136,10 +136,10 @@ function fillContainer(rows, idCliente) {
     rows.forEach(function (row) {
         content += `
             <!-- Empieza un comentario -->
-            <div class="col-2 col-md-2 offset-md-1 text-right pt-4 pb-2">
+            <div class="d-none d-md-inline col-2 col-md-2 offset-md-1 text-right pt-4 pb-2 ">
                 <img class="profile-img" src="../../resources/img/clients/${row.img}" alt="foto de perfil">
             </div>
-            <div class="col-8  offset-2 offset-md-1 offset-lg-0 my-auto mt-4">
+            <div class="col-12 col-md-8 offset-md-1 offset-lg-0 my-auto mt-4 pl-0 pr-0">
                 <div class="card mt-2">
                     <div class="card-body pb-0">
                     <p id="${row.idComent}-p" class="m-0 p-0">${row.comentario}</p>
@@ -160,7 +160,7 @@ function fillContainer(rows, idCliente) {
 //Función para habilitar botones de editar y eliminar si los comentarios del cliente le pertencen
 function validateUpdateDelete(row, idCliente) {
     if (row.idClient == idCliente) {
-        return `<div id="textarea-disabled-${row.idComent}" class="p-0 m-0 d-inline">
+        return `<div id="textarea-disabled-${row.idComent}" class="p-0 m-0 d-flex justify-content-center d-md-inline">
                     <button type="button" onclick="showTextAreaEdit(${row.idComent})" class="btn btn-sm btn-white mr-3">
                         Editar <i class="fas fa-pen"></i>
                     </button>
@@ -183,20 +183,20 @@ function validateUpdateDelete(row, idCliente) {
 }
 
 function showTextAreaEdit(idComent) {
-    if (!$(`div#textarea-disabled-${idComent}`).hasClass('d-none')) {
+    if(!$(`div#textarea-disabled-${idComent}`).hasClass('d-none')){
         $(`p#${idComent}-p`).addClass('d-none');
         $(`textarea#${idComent}-textarea`).removeClass('d-none');
-        $(`div#textarea-disabled-${idComent}`).removeClass('d-inline');
+        $(`div#textarea-disabled-${idComent}`).removeClass('d-md-inline d-flex');   
         $(`div#textarea-disabled-${idComent}`).addClass('d-none');
         $(`div#textarea-enabled-${idComent}`).removeClass('d-none');
-        $(`div#textarea-enabled-${idComent}`).addClass('d-inline');
+        $(`div#textarea-enabled-${idComent}`).addClass('d-flex justify-content-center d-md-inline');
     } else {
         $(`p#${idComent}-p`).removeClass('d-none');
         $(`textarea#${idComent}-textarea`).addClass('d-none');
-        $(`div#textarea-disabled-${idComent}`).addClass('d-inline');
+        $(`div#textarea-disabled-${idComent}`).addClass('d-flex justify-content-center d-md-inline');
         $(`div#textarea-disabled-${idComent}`).removeClass('d-none');
         $(`div#textarea-enabled-${idComent}`).addClass('d-none');
-        $(`div#textarea-enabled-${idComent}`).removeClass('d-inline');
+        $(`div#textarea-enabled-${idComent}`).removeClass('d-flex justify-content-center d-md-inline');
     }
 }
 //Funcion para limitar texto

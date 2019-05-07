@@ -54,10 +54,10 @@ function fillContainer(rows, imagenCliente) {
                     <h3 class="text-uppercase">Comentarios</h3>
                 </div>
         
-                <div class="col-1 col-md-2 offset-md-1 text-right pt-2 pb-2">
+                <div class="col-1 col-md-2 offset-md-1 text-right pt-2 pb-2 d-none d-md-inline">
                     <img class="profile-img-main" src="../../resources/img/clients/${imagenCliente.img}" alt="foto de perfil">
                 </div>
-                <div class="col-8 offset-2 offset-md-0 col-md-6 my-auto">
+                <div class="col-12 offset-md-0 col-md-6 mt-2 mb-2 my-md-auto ">
                     <div class="input-group">
                         <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i class="far fa-comment-dots"></i></span>
@@ -74,7 +74,7 @@ function fillContainer(rows, imagenCliente) {
                     <h1 class="uppercase text-center">Otros comentarios</h1>
                 </div>
             <!--Comentario  -->
-                <div id="comentarios-container-${row.idNoticia}" class="row mt-2 ml-auto mr-auto mb-4 p-3" style="border: 1px solid #5e72e4; width:85%;">
+                <div id="comentarios-container-${row.idNoticia}" class="row mt-2 ml-auto mr-auto mb-4 p-3 col-12 col-md-10" style="border: 1px solid #5e72e4; width:85%;">
                 </div>
             </div>
         </div>
@@ -150,10 +150,10 @@ const showComments = async (noticias) => {
                     if (comentario.idNoticia == noticia.idNoticia) {
                         $(`div#comentarios-container-${noticia.idNoticia}`).append(`
                             <!-- Empieza un comentario -->
-                            <div class="col-2 col-md-2 offset-md-1 text-right pt-4 pb-2">
+                            <div class="d-none d-md-inline col-2 col-md-2 offset-md-1 text-right pt-4 pb-2">
                                 <img class="profile-img" src="../../resources/img/clients/${comentario.img}" alt="foto de perfil">
                             </div>
-                            <div class="col-8  offset-2 offset-md-1 offset-lg-0 my-auto mt-4">
+                            <div class="col-12 col-md-8 offset-md-1 offset-lg-0 my-auto mt-4 pl-0 pr-0">
                                 <div class="card mt-2">
                                     <div class="card-body pb-0">
                                     <p id="${comentario.idComentN}-p" class="m-0 p-0">${comentario.comentario}</p>
@@ -184,19 +184,19 @@ const showComments = async (noticias) => {
 //Función para habilitar botones de editar y eliminar si los comentarios del cliente le pertencen
 function validateUpdateDelete(row, idCliente) {
     if (row.idClient == idCliente) {
-        return `<div id="textarea-disabled-${row.idComentN}" class="p-0 m-0 d-inline">
-                    <button type="button" onclick="showTextAreaEdit(${row.idComentN})" class="btn btn-sm btn-white mr-3">
+        return `<div id="textarea-disabled-${row.idComentN}" class="p-0 m-0 d-flex justify-content-center d-md-inline">
+                    <button type="button" onclick="showTextAreaEdit(${row.idComentN})" class="btn btn-sm btn-white mr-lg-3">
                         Editar <i class="fas fa-pen"></i>
                     </button>
-                    <button type="button" onclick="deleteComment(${row.idComentN})" class="btn btn-sm btn-white mr-3">
+                    <button type="button" onclick="deleteComment(${row.idComentN})" class="btn btn-sm btn-white mr-lg-3">
                         Eliminar <i class="fas fa-trash"></i>
                     </button>
                 </div>
                 <div id="textarea-enabled-${row.idComentN}" class="p-0 m-0 d-none">
-                    <button type="button" onclick="showTextAreaEdit(${row.idComentN})" class="btn btn-sm btn-white mr-3">
+                    <button type="button" onclick="showTextAreaEdit(${row.idComentN})" class="btn btn-sm btn-white mr-lg-3">
                         Cancelar <i class="fas fa-times"></i>
                     </button>
-                    <button type="button" onclick="updateComment(${row.idComentN})" class="btn btn-sm btn-white mr-3">
+                    <button type="button" onclick="updateComment(${row.idComentN})" class="btn btn-sm btn-white mr-lg-3">
                         Guardar <i class="fas fa-check"></i>
                     </button>
                 </div>
@@ -210,17 +210,17 @@ function showTextAreaEdit(idComent){
     if(!$(`div#textarea-disabled-${idComent}`).hasClass('d-none')){
         $(`p#${idComent}-p`).addClass('d-none');
         $(`textarea#${idComent}-textarea`).removeClass('d-none');
-        $(`div#textarea-disabled-${idComent}`).removeClass('d-inline');
+        $(`div#textarea-disabled-${idComent}`).removeClass('d-md-inline d-flex');   
         $(`div#textarea-disabled-${idComent}`).addClass('d-none');
         $(`div#textarea-enabled-${idComent}`).removeClass('d-none');
-        $(`div#textarea-enabled-${idComent}`).addClass('d-inline');
+        $(`div#textarea-enabled-${idComent}`).addClass('d-flex justify-content-center d-md-inline');
     } else {
         $(`p#${idComent}-p`).removeClass('d-none');
         $(`textarea#${idComent}-textarea`).addClass('d-none');
-        $(`div#textarea-disabled-${idComent}`).addClass('d-inline');
+        $(`div#textarea-disabled-${idComent}`).addClass('d-flex justify-content-center d-md-inline');
         $(`div#textarea-disabled-${idComent}`).removeClass('d-none');
         $(`div#textarea-enabled-${idComent}`).addClass('d-none');
-        $(`div#textarea-enabled-${idComent}`).removeClass('d-inline');
+        $(`div#textarea-enabled-${idComent}`).removeClass('d-flex justify-content-center d-md-inline');
     }
 }
 

@@ -49,7 +49,7 @@ echo model_page::header();
     </div>
     <!--Tu comentario -->
     <div class="row mt-4">
-      <div class="col-1 col-md-2 offset-md-1 text-right pt-2 pb-2">
+      <div class="col-1 col-md-2 offset-md-1 text-right pt-2 pb-2 d-none d-md-inline">
         <img class="profile-img-main" src="../../resources/img/clients/<?php
         if (isset($_SESSION['imagenCliente']['img'])) {
           echo $_SESSION['imagenCliente']['img'];
@@ -57,7 +57,7 @@ echo model_page::header();
           echo 'default-profile.gif';
         } ?>" alt="foto de perfil">
       </div>
-      <div class="col-8 offset-2 offset-md-0 col-md-6 my-auto">
+      <div class="col-12 offset-md-0 col-md-6 mt-2 mb-2 my-md-auto">
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-lg"><i class="far fa-comment-dots"></i></span>
