@@ -43,20 +43,22 @@ function fillContainer(rows, carrito) {
                     total = total + parseFloat(row.precioFinal * carrito[index][row.idLibro].cantidad);
                     content += `
                         <!-- Empieza un producto-->
-                        <div class="col-6 d-flex justify-content-around">
+                        <div class="col-md-3 d-flex justify-content-around">
                             <img src="../../resources/img/books/${row.img}" width="120" height="150" alt="..." />
+                        </div>
+                        <div class="col-md-3 d-flex justify-content-around">
                             <h4 class="my-auto">${row.NombreL}</h4>
                         </div>
-                        <div class="col-2 d-flex justify-content-left">
-                            <h4 class="my-auto">$${(parseFloat(row.precioFinal)).toFixed(2)}</h4>
+                        <div class="col-md-2 d-flex justify-content-left">
+                            <h4 class="my-auto text-center w-100">$${(parseFloat(row.precioFinal)).toFixed(2)}</h4>
                         </div>
-                        <div class="col-2 d-flex justify-content-center">
-                            <button onclick="addCartItems(${row.idLibro})" class="btn btn-info btn-sm my-auto"><i class="fas fa-plus" style="max-height: 18px"></i></button>
+                        <div class="col-md-2 d-flex flex-md-column align-items-center justify-content-center flex-lg-row">
+                            <button onclick="addCartItems(${row.idLibro})" class="btn btn-info btn-sm my-auto mr-md-0 mr-lg-1"><i class="fas fa-plus" style="max-height: 18px"></i></button>
                             <input readonly type="number" class="form-control text-center my-auto" style="max-width: 40%" value="${carrito[index][row.idLibro].cantidad}">
-                            <button onclick="deleteCartItems(${row.idLibro})" class="btn btn-danger btn-sm my-auto ml-2"><i class="fas fa-minus" style="max-height: 18px"></i></button>
+                            <button onclick="deleteCartItems(${row.idLibro})" class="btn btn-danger btn-sm my-auto ml-2 ml-md-0 ml-lg-2"><i class="fas fa-minus" style="max-height: 18px"></i></button>
                         </div>
-                        <div class="col-2 d-flex justify-content-left">
-                            <h4 class="my-auto">$${(parseFloat(row.precioFinal * carrito[index][row.idLibro].cantidad)).toFixed(2)}</h4>
+                        <div class="col-md-2 d-flex justify-content-left">
+                            <h4 class="my-auto text-center w-100">$${(parseFloat(row.precioFinal * carrito[index][row.idLibro].cantidad)).toFixed(2)}</h4>
                         </div>
                         <div class="col-12 mt-2 mb-2" style="background-color: #5e72e4; height: 2px;"></div>
                         <!-- Termina una productos -->
