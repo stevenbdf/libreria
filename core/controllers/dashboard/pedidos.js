@@ -37,10 +37,9 @@ $('#reload').click(async () => {
 function getTipoEstado(idEstado) {
     idEstado = parseInt(idEstado)
     switch(idEstado){
-        case 0: return 'Reservado';
-        case 1: return 'Pagado';
+        case 0: return 'Pagado';
+        case 1: return 'Enviado';
         case 2: return 'Cancelado';
-        case 3: return 'Anulado';
         default: return 'Error al obtener tipo estado';
     }
 }

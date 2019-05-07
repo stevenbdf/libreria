@@ -139,6 +139,40 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['dataset'] = $total;
                 }
                 break;
+            case 'addPedido':
+                if ($pedido->setIdCliente($_SESSION['idCliente'])) {
+                    if ($pedido->createPedido()) {
+                        if ($pedido->setId(Database::getLastRowId())) {
+                            $itemsAgregados = 0;
+                            foreach ($_SESSION['carrito'] as $key => $value) {
+                                foreach ($value as $key2 => $value2) {
+                                    if ($pedido->setIdProducto($key2)) {
+                                        if ($pedido->createDetallePedido($value2['cantidad'], $value2['precio'])) { 
+                                            $itemsAgregados++;
+                                        } else {
+                                            $result['exception'] = 'Operación fallida, item no ingresado al detalle del pedido';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Id producto incorrecto';
+                                    }
+                                }
+                            }
+                            if ($itemsAgregados == count($_SESSION['carrito'])) {
+                                $result['status'] = 1;
+                                $_SESSION['carrito'] = array();
+                            } else {
+                                $result['exception'] = 'No se ingresaron todos los items al carrito. Items agregados: '.$itemsAgregados;
+                            }
+                        } else {
+                            $result['exception'] = 'Id del ultimo pedido no definido.';
+                        }
+                    } else {
+                        $result['exception'] = 'Operación fallida, pedido no creado.';
+                    }
+                } else {
+                    $result['exception'] = 'Cliente incorrecto';
+                }
+                break;
         }
     } else {
         exit('Acceso no disponible');

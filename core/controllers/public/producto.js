@@ -10,6 +10,7 @@ const apiReacciones = '../../core/api/reacciones.php?site=public&action=';
 const apiPedidos = '../../core/api/pedidos.php?site=public&action=';
 
 var precioProductoActual;
+var cantidadProductoActual;
 
 function findGetParameter(parameterName) {
     var result = null,
@@ -44,7 +45,11 @@ const showProducts = async () => {
             console.log(result.exception);
             $('h1#titulo').html(result.exception);
         } else {
-            precioProductoActual =  result.dataset.precioFinal;
+            precioProductoActual = result.dataset.precioFinal;
+            cantidadProductoActual = result.dataset.cantidad;
+            if (cantidadProductoActual < 1) {
+                $('button#add-carrito').attr('disabled', true);
+            }
             $('div#libro').html(`<img src="../../resources/img/books/${result.dataset.img}" alt="${result.dataset.NombreL}">`);
             $('h1#titulo-libro').html(result.dataset.NombreL);
             $('div#likes').html(`<i id="like-icon" class="fas fa-thumbs-up green" style="font-size:25px;" onclick="addLike(${result.dataset.idLibro})"></i> Likes ${result.dataset.likes}`);
@@ -503,38 +508,55 @@ function deleteComment(idComentario) {
 
 //Función para agregar un comentario
 const addCart = async (idProducto) => {
-    const response = await $.ajax({
-        url: apiPedidos + 'addCart',
-        type: 'post',
-        data: {
-            idProducto,
-            cantidad: $('input#cantidad-input').val(),
-            precioVenta: precioProductoActual 
-        },
-        datatype: 'json'
-    }).fail(function (jqXHR) {
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-    if (isJSONString(response)) {
-        const result = JSON.parse(response);
-        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-        if (result.status == 1) {
-            swal(
-                'Correcto',
-                'Producto agregado al carrito',
-                'success'
-            )
-            showCartTotal();
+    var cantidadSeleccionada = parseInt($('input#cantidad-input').val());
+    console.log(cantidadSeleccionada);
+    console.log(NaN);
+    if (isNaN(cantidadSeleccionada)) {
+        swal(
+            'Error',
+            'Ingresa una cantidad mayor o igual a 1 unidad',
+            'error'
+        )
+    } else if (cantidadSeleccionada >= 1 && cantidadSeleccionada <= cantidadProductoActual) {
+        const response = await $.ajax({
+            url: apiPedidos + 'addCart',
+            type: 'post',
+            data: {
+                idProducto,
+                cantidad: $('input#cantidad-input').val(),
+                precioVenta: precioProductoActual
+            },
+            datatype: 'json'
+        }).fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status == 1) {
+                swal(
+                    'Correcto',
+                    'Producto agregado al carrito',
+                    'success'
+                )
+                showCartTotal();
+            } else {
+                swal(
+                    'Error',
+                    result.exception,
+                    'error'
+                )
+            }
         } else {
-            swal(
-                'Error',
-                result.exception,
-                'error'
-            )
+            console.log(response);
         }
     } else {
-        console.log(response);
+        swal(
+            'Error',
+            'Lamentamos informarle que actualmente no hay stock de este producto',
+            'error'
+        )
     }
 }
 
@@ -543,7 +565,7 @@ const showCartTotal = async () => {
     const response = await $.ajax({
         url: apiPedidos + 'showCartTotal',
         type: 'post',
-        data: null ,
+        data: null,
         datatype: 'json'
     }).fail(function (jqXHR) {
         //Se muestran en consola los posibles errores de la solicitud AJAX

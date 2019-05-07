@@ -24,7 +24,7 @@ echo model_page::header();
             <input id="cantidad-input" min="1" type="number" class="form-control text-center my-auto" value="1">
           </div>
           <div class="col-6 col-md-4 text-left mt-2 mb-2">
-            <button type="button" class="btn btn-success" onclick="addCart('<?php echo $_GET['id']?>')" >Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
+            <button id="add-carrito" type="button" class="btn btn-success" onclick="addCart('<?php echo $_GET['id']?>')" >Agregar al carrito <i class="fas fa-shopping-cart"></i></button>
           </div>
           <div class="col-12 text-left mt-2 mb-2" id="cantidad"></div>
         </div>

@@ -6,6 +6,7 @@ const apiProductos = '../../core/api/productos.php?site=public&action=';
 const apiPedidos = '../../core/api/pedidos.php?site=public&action=';
 
 var precioProductoActual = [];
+var productosDisponibles = [];
 
 function findGetParameter(parameterName) {
     var result = null,
@@ -42,6 +43,7 @@ const showProducts = async () => {
         }
         console.log(result.dataset)
         $('h1#titulo').html(result.dataset[0].nombreCat);
+        productosDisponibles = result.dataset;
         fillContainer(result.dataset);
     } else {
         console.log(response);
@@ -70,7 +72,7 @@ function printDescuento(row) {
     } else {
         return (`<h5 style="font-size: 20px !important;">$${row.precioFinal}</h5>`);
     }
-    
+
 }
 
 
@@ -81,7 +83,7 @@ function fillContainer(rows) {
     rows.forEach(function (row) {
         const aprob = row.aprobacion;
         const colorT = aprob >= 70 ? 'green' : aprob >= 50 && aprob <= 69 ? 'orange' : 'red';
-        
+
         content += `
             <!-- Empieza un producto-->
             <div class="card pb-md-4 pb-lg-0 card-lift--hover shadow border-0">
@@ -111,39 +113,49 @@ function fillContainer(rows) {
 
 //Función para agregar un comentario
 const addCart = async (idProducto) => {
-    const response = await $.ajax({
-        url: apiPedidos + 'addCart',
-        type: 'post',
-        data: {
-            idProducto,
-            cantidad: 1,
-            precioVenta: precioProductoActual[idProducto]
-        },
-        datatype: 'json'
-    }).fail(function (jqXHR) {
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-    if (isJSONString(response)) {
-        const result = JSON.parse(response);
-        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-        if (result.status == 1) {
-            swal(
-                'Correcto',
-                'Producto agregado al carrito',
-                'success'
-            )
-            showCartTotal();
+    const productoSeleccionado = productosDisponibles.filter(item => item.idLibro == idProducto);
+    if (productoSeleccionado[0].cantidad >= 1) {
+        const response = await $.ajax({
+            url: apiPedidos + 'addCart',
+            type: 'post',
+            data: {
+                idProducto,
+                cantidad: 1,
+                precioVenta: precioProductoActual[idProducto]
+            },
+            datatype: 'json'
+        }).fail(function (jqXHR) {
+            //Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+            if (result.status == 1) {
+                swal(
+                    'Correcto',
+                    'Producto agregado al carrito',
+                    'success'
+                )
+                showCartTotal();
+            } else {
+                swal(
+                    'Error',
+                    result.exception,
+                    'error'
+                )
+            }
         } else {
-            swal(
-                'Error',
-                result.exception,
-                'error'
-            )
+            console.log(response);
         }
     } else {
-        console.log(response);
+        swal(
+            'Error',
+            'Lamentamos informarle que actualmente no hay stock de este producto',
+            'error'
+        )
     }
+
 }
 
 //Función para agregar un comentario
@@ -151,7 +163,7 @@ const showCartTotal = async () => {
     const response = await $.ajax({
         url: apiPedidos + 'showCartTotal',
         type: 'post',
-        data: null ,
+        data: null,
         datatype: 'json'
     }).fail(function (jqXHR) {
         //Se muestran en consola los posibles errores de la solicitud AJAX

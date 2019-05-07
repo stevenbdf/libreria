@@ -124,3 +124,34 @@ const addCartItems = async (idProducto) => {
         console.log(response);
     }
 }
+
+//Función para pagar pedido
+const pagarPedido = async () => {
+    const response = await $.ajax({
+        url: apiPedidos + 'addPedido',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (!result.status) {
+            console.log(result.exception);
+        } else {
+            swal(
+                'Felicidades',
+                'Compra realizada con exito',
+                'success'
+            );
+            setTimeout(() => {
+                location.reload();
+            }, 3000);
+        }
+    } else {
+        console.log(response);
+    }
+}
