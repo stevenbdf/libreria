@@ -53,7 +53,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                                 $result['exception'] = 'Operación fallida';
                                             }
                                         } else {
-                                            $result['exception'] = $clientes->getImageError(). '. La dimension de la imagen debe ser 500x500';
+                                            $result['exception'] = $clientes->getImageError().'. La dimension de la imagen debe ser 500x500';
                                         }
                                     } else {
                                         $result['exception'] = 'Clave menor a 6 caracteres';
