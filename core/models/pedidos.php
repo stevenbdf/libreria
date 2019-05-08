@@ -67,6 +67,7 @@ class Pedidos extends Validator
 	public function setEstado($value)
 	{
 		$this->estado = $value;
+		return true;
 	}
 
 	public function getEstado()
@@ -77,7 +78,7 @@ class Pedidos extends Validator
 	//Metodos para manejar el CRUD
 	public function readPedidos()
 	{
-		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, fecha, estado,
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, estado,
 				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
@@ -143,6 +144,12 @@ class Pedidos extends Validator
 		$sql = 'INSERT INTO detallePedido(idPedido, idLibro, cantidad, precioVenta)
 				VALUES(?, ?, ?, ?)';
 		$params = array($this->id, $this->idProducto, $cantidad, $precioVenta);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function updateEstadoPedido(){
+		$sql = 'UPDATE pedido SET estado = ? WHERE idPedido = ?';
+		$params = array($this->estado, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 }

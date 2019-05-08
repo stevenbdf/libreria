@@ -21,7 +21,9 @@ Dashboard::headerTemplate('Pedidos');
                         <tr>
                             <th scope="col">Codigo</th>
                             <th scope="col">Cliente</th>
+                            <th scope="col">Correo</th>
                             <th scope="col">Fecha</th>
+                            <th scope="col">Monto Total</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Acción</th>
                         </tr>
@@ -44,7 +46,7 @@ Dashboard::headerTemplate('Pedidos');
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" id="form-pedidos">
+                <form id="form-pedidos">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
@@ -57,19 +59,23 @@ Dashboard::headerTemplate('Pedidos');
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Cliente:</label>
-                        <input name="cliente" type="text" class="form-control form-control-alternative" id="cliente">
+                        <input name="cliente" type="text" class="form-control form-control-alternative" id="cliente" readonly>
                         <div class="row">
                             <div class="col-6 col-md-4">
                                 <label for="recipient-name" class="col-form-label">Fecha:</label>
-                                <input name="fecha" type="text" class="form-control form-control-alternative" id="fecha">
+                                <input name="fecha" type="text" class="form-control form-control-alternative" id="fecha" readonly>
                             </div>
                             <div class="col-6 col-md-4">
                                 <label for="recipient-name" class="col-form-label">Estado:</label>
-                                <input name="estado" type="text" class="form-control form-control-alternative" id="estado">
+                                <select class="form-control" name="estado" id="estado">
+                                    <option value="0">Pagado</option>
+                                    <option value="1">Enviado</option>
+                                    <option value="2">Cancelado</option>
+                                </select>
                             </div>
                             <div class="col-12 col-md-4">
                                 <label for="recipient-name" class="col-form-label">Total $:</label>
-                                <input name="total" type="text" class="form-control form-control-alternative" id="total">
+                                <input name="total" type="text" class="form-control form-control-alternative" id="total" readonly>
                             </div>
                         </div>
 

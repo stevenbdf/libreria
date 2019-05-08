@@ -61,6 +61,21 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Detalle incorrecto';
                 }
                 break;
+            case 'updateEstado':
+                if ($pedido->setId($_POST['idPedido'])) {
+                    if ($pedido->setEstado($_POST['estado'])) {
+                        if ($pedido->updateEstadoPedido()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Operación fallida';
+                        }
+                    } else {
+                        $result['exception'] = 'Estado incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'Pedido incorrecto';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
