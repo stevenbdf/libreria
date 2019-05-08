@@ -18,6 +18,17 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Operación incorrecta';
                 }
                 break;
+            case 'delete':
+                if ($clientes->setId($_POST['idCliente'])) {
+                    if ($clientes->deleteCliente()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Cliente relacionado a pedidos, no se ha podido eliminar';
+                    }
+                } else {
+                    $result['exception'] = 'Cliente incorrecto';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
