@@ -41,7 +41,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
-                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required
+                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required>
                                         </div>
                                     </div>
                                 </div>
