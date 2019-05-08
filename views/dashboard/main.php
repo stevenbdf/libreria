@@ -74,7 +74,7 @@ Dashboard::headerTemplate('Principal');
                 </a>
             </div>
             <div class="col-12 col-md-4 col-lg-3">
-                <a href="./clients.php">
+                <a href="./clientes.php">
                     <div class="card mt-4">
                         <div class="card-body row">
                             <div class="section-info col-12 col-lg-8">

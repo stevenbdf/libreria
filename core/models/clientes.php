@@ -139,7 +139,7 @@ class Clientes extends Validator
 	public function readClientes()
 	{
 		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img 
-						ROM cliente ORDER BY idCliente';
+						FROM cliente ORDER BY idCliente';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
