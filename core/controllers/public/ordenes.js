@@ -86,7 +86,7 @@ const modalUpdate = async id => {
             $('#form-pedidos')[0].reset();
             $('#idPedido').val(result.dataset.idPedido);
             $('#idCliente').val(result.dataset.idCliente);
-            $('#cliente').val(result.dataset.nombreCliente);
+            $('#cliente').val(result.dataset.nombreCliente + ' ' + result.dataset.apellidoCliente);
             $('#fecha').val(result.dataset.fecha);
             $('#estado').val(getTipoEstado(parseInt(result.dataset.estado)));
             const response = await $.ajax({
@@ -157,5 +157,5 @@ function fillTableDetalle(rows) {
     rows.map( (item, index) => {
         total = total + (valoresProductos.cantidad[index] * valoresProductos.precioVenta[index]);
     })
-    $('#total').val(total);
+    $('#total').val(total.toFixed(2));
 }
