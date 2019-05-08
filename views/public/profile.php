@@ -1,15 +1,15 @@
 <?php
-  require_once '../../core/helpers/model_page.php';
-  echo model_page::header();
- ?>
+require_once '../../core/helpers/model_page.php';
+echo model_page::header();
+?>
 
 <!-- Header -->
 <div class="header pb-8 pt-5 pt-lg-8" style="min-height: 600px; background-image: url(../../resources/img/clients/<?php
-        if (isset($_SESSION['imagenCliente']['img'])) {
-          echo $_SESSION['imagenCliente']['img'];
-        } else {
-          echo 'default-profile.gif';
-        } ?>); background-size: contain; background-position: center top;">
+                                                                                                                  if (isset($_SESSION['imagenCliente']['img'])) {
+                                                                                                                    echo $_SESSION['imagenCliente']['img'];
+                                                                                                                  } else {
+                                                                                                                    echo 'default-profile.gif';
+                                                                                                                  } ?>); background-size: contain; background-position: center top;">
   <!-- Mask -->
   <span class="mask bg-gradient-default opacity-5"></span>
   <!-- Header container -->
@@ -44,15 +44,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Nombre:</label>
-                    <input type="text" id="nombres" name="nombres" class="form-control form-control-alternative"
-                      required>
+                    <input type="text" id="nombres" name="nombres" class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Apellido</label>
-                    <input type="text" id="apellidos" name="apellidos" class="form-control form-control-alternative"
-                      required>
+                    <input type="text" id="apellidos" name="apellidos" class="form-control form-control-alternative" required>
                   </div>
                 </div>
               </div>
@@ -60,15 +58,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Correo:</label>
-                    <input type="email" id="correo" name="correo" class="form-control form-control-alternative"
-                      required>
+                    <input type="email" id="correo" name="correo" class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" class="form-control form-control-alternative"
-                      required>
+                    <input type="text" id="direccion" name="direccion" class="form-control form-control-alternative" required>
                   </div>
                 </div>
                 <div class="col-lg-12">
@@ -98,11 +94,11 @@
                 </div>
               </div>
               <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Reíte tu contraseña Actual:</label>
-                    <input name="old-password-2" class="form-control form-control-alternative" type="password" required>
-                  </div>
+                <div class="form-group">
+                  <label class="form-control-label" for="input-address">Reíte tu contraseña Actual:</label>
+                  <input name="old-password-2" class="form-control form-control-alternative" type="password" required>
                 </div>
+              </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
@@ -127,5 +123,5 @@
   </div>
 </div>
 <?php
-  echo model_page::footer('perfil');
-  ?>
+echo model_page::footer('perfil');
+?>
