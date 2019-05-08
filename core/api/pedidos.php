@@ -61,11 +61,55 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Detalle incorrecto';
                 }
                 break;
+            case 'updateEstado':
+                if ($pedido->setId($_POST['idPedido'])) {
+                    if ($pedido->setEstado($_POST['estado'])) {
+                        if ($pedido->updateEstadoPedido()) {
+                            $result['status'] = 1;
+                        } else {
+                            $result['exception'] = 'Operación fallida';
+                        }
+                    } else {
+                        $result['exception'] = 'Estado incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'Pedido incorrecto';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
     } else if (isset($_SESSION['idCliente']) && $_GET['site'] == 'public') {
         switch ($_GET['action']) {
+            case 'readDetallePedido':
+                if ($pedido->setId($_POST['idPedido'])) {
+                    if ($result['dataset'] = $pedido->readDetallePedido()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Detalle inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Detalle incorrecto';
+                }
+                break;
+            case 'getPedido':
+                if ($pedido->setId($_POST['idPedido'])) {
+                    if ($result['dataset'] = $pedido->getPedido()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Pedido inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Pedido incorrecto';
+                }
+                break;
+            case 'readPedidos':
+                if ($result['dataset'] = $pedido->readPedidosCliente()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'No hay pedidos registrados';
+                }
+                break;
             case 'addCart':
                 if (count($_SESSION['carrito']) > 0) {
                     if (!validarExistente()) {
@@ -147,7 +191,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             foreach ($_SESSION['carrito'] as $key => $value) {
                                 foreach ($value as $key2 => $value2) {
                                     if ($pedido->setIdProducto($key2)) {
-                                        if ($pedido->createDetallePedido($value2['cantidad'], $value2['precio'])) { 
+                                        if ($pedido->createDetallePedido($value2['cantidad'], $value2['precio'])) {
                                             $itemsAgregados++;
                                         } else {
                                             $result['exception'] = 'Operación fallida, item no ingresado al detalle del pedido';
@@ -161,7 +205,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 $result['status'] = 1;
                                 $_SESSION['carrito'] = array();
                             } else {
-                                $result['exception'] = 'No se ingresaron todos los items al carrito. Items agregados: '.$itemsAgregados;
+                                $result['exception'] = 'No se ingresaron todos los items al carrito. Item s  agregados: ' . $itemsAgregados;
                             }
                         } else {
                             $result['exception'] = 'Id del ultimo pedido no definido.';

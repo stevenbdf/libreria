@@ -34,12 +34,13 @@ $('#reload').click(async () => {
     showTable();
 })
 
+//Función para obtener el nombre y elemento de acuerdo al estado
 function getTipoEstado(idEstado) {
     idEstado = parseInt(idEstado)
     switch(idEstado){
-        case 0: return 'Pagado';
-        case 1: return 'Enviado';
-        case 2: return 'Cancelado';
+        case 0: return '<span class="badge p-2 badge-info d-flex justify-content-center">Pagado</span>';
+        case 1: return '<span class="badge p-2 badge-success d-flex justify-content-center">Enviado</span>';
+        case 2: return '<span class="badge p-2 badge-danger d-flex justify-content-center">Cancelado</span>';
         default: return 'Error al obtener tipo estado';
     }
 }
@@ -52,22 +53,28 @@ function fillTable(rows) {
         content += `
             <tr id="${row.idPedido}">
                 <th scope="row">
-                    <div class="media align-items-center" style="">
+                    <div class="media align-items-center">
                     <span class="mb-0 text-sm">${row.idPedido}</span>
                     </div>
                 </th>
                 <td>
-                    ${row.nombreCliente}
+                    ${row.nombreCliente} ${row.apellidoCliente}
                 </td>
                 <td>
+                    ${row.correo}
+                </td>
+                <td style="width:12%">
                     ${row.fecha}
                 </td>
                 <td>
+                    $${row.montoTotal}
+                </td>
+                <td >
                     ${getTipoEstado(row.estado)}
                 </td>
-                <td class="text-center" style="width:35%">
-                    <button type="button" onclick="modalUpdate(${row.idPedido})" class="mr-2  btn btn-warning text-white">
-                        <i class="material-icons mr-2">edit</i>Ver
+                <td class="text-center" >
+                    <button type="button" onclick="modalUpdate(${row.idPedido})" class="w-100 mr-2  btn btn-warning text-white">
+                        <i class="material-icons mr-2">edit</i>Cambiar estado
                     </button>
                 </td> 
             </tr>
@@ -81,6 +88,7 @@ function fillTable(rows) {
     });
 }
 
+//Función para llenar la tabla con el detalle de cada producto por pedido
 function fillTableDetalle(rows) {
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
@@ -117,54 +125,10 @@ function fillTableDetalle(rows) {
     rows.map( (item, index) => {
         total = total + (valoresProductos.cantidad[index] * valoresProductos.precioVenta[index]);
     })
-    $('#total').val(total);
+    $('#total').val(total.toFixed(2));
 }
 
 /*---------------Funciones CRUD---------------*/
-
-//Función para crear un nuevo registro
-$('#form-create-autor').submit(async () => {
-    event.preventDefault();
-    const response = await $.ajax({
-        url: apiPedidos + 'create',
-        type: 'post',
-        data: new FormData($('#form-create-autor')[0]),
-        datatype: 'json',
-        cache: false,
-        contentType: false,
-        processData: false
-    }).fail(function (jqXHR) {
-        //Se muestran en consola los posibles errores de la solicitud AJAX
-        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
-    });
-    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-    if (isJSONString(response)) {
-        const result = JSON.parse(response);
-        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-        if (result.status) {
-            $('#form-create-autor')[0].reset();
-            $('#guardarAutoresModal').modal('toggle');
-            if (result.status == 1) {
-                swal(
-                    'Operación Correcta',
-                    'Autor guardado correctamente.',
-                    'success'
-                )
-                $('#autores').DataTable().destroy();
-                showTable();
-
-            }
-        } else {
-            swal(
-                'Error',
-                result.exception,
-                'error'
-            )
-        }
-    } else {
-        console.log(response);
-    }
-})
 
 //Función para mostrar formulario con registro a modificar
 const modalUpdate = async id => {
@@ -187,9 +151,9 @@ const modalUpdate = async id => {
             $('#form-pedidos')[0].reset();
             $('#idPedido').val(result.dataset.idPedido);
             $('#idCliente').val(result.dataset.idCliente);
-            $('#cliente').val(result.dataset.nombreCliente);
+            $('#cliente').val(result.dataset.nombreCliente + ' ' + result.dataset.apellidoCliente);
             $('#fecha').val(result.dataset.fecha);
-            $('#estado').val(getTipoEstado(parseInt(result.dataset.estado)));
+            $('#estado').val(parseInt(result.dataset.estado));
             const response = await $.ajax({
                 url: apiPedidos + 'readDetallePedido',
                 type: 'post',
@@ -222,16 +186,16 @@ const modalUpdate = async id => {
 }
 
 //Función para modificar un registro seleccionado previamente
-$('#form-update-autor').submit(async () => {
+$('#form-pedidos').submit(async () => {
     event.preventDefault();
     const response = await $.ajax({
-        url: apiPedidos + 'update',
+        url: apiPedidos + 'updateEstado',
         type: 'post',
-        data: new FormData($('#form-update-autor')[0]),
-        datatype: 'json',
-        cache: false,
-        contentType: false,
-        processData: false
+        data: {
+            idPedido: parseInt($('#idPedido').val()),
+            estado: parseInt($('#estado').val())
+        },
+        datatype: 'json'
     }).fail(function (jqXHR) {
         //Se muestran en consola los posibles errores de la solicitud AJAX
         console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
@@ -241,7 +205,6 @@ $('#form-update-autor').submit(async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (result.status) {
-            $('#modificarAutoresModal').modal('toggle');
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
@@ -249,7 +212,8 @@ $('#form-update-autor').submit(async () => {
                     'success'
                 )
             }
-            $('#autores').DataTable().destroy();
+            $('#modificarPedidoModal').modal('toggle');
+            $('#pedidos').DataTable().destroy();
             showTable();
         } else {
             swal(
@@ -262,57 +226,3 @@ $('#form-update-autor').submit(async () => {
         console.log(response);
     }
 })
-
-//Función para eliminar un registro seleccionado
-function confirmDelete(id) {
-    swal({
-        title: 'Advertencia',
-        text: '¿Quiere eliminar el Autor?',
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        cancelButtonText: 'Cancelar',
-        confirmButtonText: 'Si, borralo.',
-        closeOnConfirm: false,
-        closeOnCancel: true
-    },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiPedidos + 'delete',
-                type: 'post',
-                data: {
-                    idAutor: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Autor eliminado correctamente.',
-                            'success'
-                        )
-                        $('#autores').DataTable().destroy();
-                        showTable();
-                    }
-
-                } else {
-                    Swal.fire(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
-                }
-            } else {
-                console.log(response);
-            }
-        }
-    });
-}
-

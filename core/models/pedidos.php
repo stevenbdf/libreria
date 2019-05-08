@@ -67,6 +67,7 @@ class Pedidos extends Validator
 	public function setEstado($value)
 	{
 		$this->estado = $value;
+		return true;
 	}
 
 	public function getEstado()
@@ -77,21 +78,35 @@ class Pedidos extends Validator
 	//Metodos para manejar el CRUD
 	public function readPedidos()
 	{
-		$sql = 'SELECT idPedido, nombreCliente, fecha, estado 
-							FROM pedido 
-							INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
-							ORDER BY idPedido';
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, estado,
+				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
+				FROM pedido 
+				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+				ORDER BY idPedido DESC';
 		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
+
+	//Metodos para manejar el CRUD
+	public function readPedidosCliente()
+	{
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, fecha, estado, 
+				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
+				FROM pedido 
+				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+				WHERE pedido.idCliente = 9
+				ORDER BY idPedido DESC';
+		$params = array($_SESSION['idCliente']);
 		return Database::getRows($sql, $params);
 	}
 
 	public function getPedido()
 	{
-		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, fecha, estado 
-							FROM pedido 
-							INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
-							WHERE idPedido = ?
-							ORDER BY idPedido';
+		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, fecha, estado 
+				FROM pedido 
+				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+				WHERE idPedido = ?
+				ORDER BY idPedido';
 		$params = array($this->id);
 		return Database::getRow($sql, $params);
 	}
@@ -99,20 +114,20 @@ class Pedidos extends Validator
 	public function readDetallePedido()
 	{
 		$sql = 'SELECT idDetalle, idPedido, nombreL, cantidad, precioVenta,
-							(SELECT SUM(precioVenta) FROM detallePedido) as total 
-							FROM detallepedido 
-							INNER JOIN libro ON detallepedido.idLibro = libro.idLibro
-							WHERE idPedido = ?
-							ORDER BY idDetalle';
+				(SELECT SUM(precioVenta) FROM detallePedido) as total 
+				FROM detallepedido 
+				INNER JOIN libro ON detallepedido.idLibro = libro.idLibro
+				WHERE idPedido = ?
+				ORDER BY idDetalle';
 		$params = array($this->id);
 		return Database::getRows($sql, $params);
 	}
 
 	public function getTotalPedido()
 	{
-		$sql = 'SELECT SUM(precioVenta) as totalPedido
-							FROM detallePedido
-							WHERE idPedido = ?';
+		$sql = 'SELECT SUM(precioVenta*cantidad) as totalPedido
+				FROM detallePedido
+				WHERE idPedido = ?';
 		$params = array($this->id);
 		return Database::getRows($sql, $params);
 	}
@@ -126,9 +141,15 @@ class Pedidos extends Validator
 
 	public function createDetallePedido($cantidad, $precioVenta)
 	{
-	$sql = 'INSERT INTO detallePedido(idPedido, idLibro, cantidad, precioVenta)
-					VALUES(?, ?, ?, ?)';
+		$sql = 'INSERT INTO detallePedido(idPedido, idLibro, cantidad, precioVenta)
+				VALUES(?, ?, ?, ?)';
 		$params = array($this->id, $this->idProducto, $cantidad, $precioVenta);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function updateEstadoPedido(){
+		$sql = 'UPDATE pedido SET estado = ? WHERE idPedido = ?';
+		$params = array($this->estado, $this->id);
 		return Database::executeRow($sql, $params);
 	}
 }

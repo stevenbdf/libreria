@@ -76,5 +76,58 @@ function fillTable(rows) {
         }
     });
 }
- 
+
+//Función para eliminar un registro seleccionado
+function confirmDelete(idCliente) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere eliminar al cliente?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borralo.',
+        closeOnConfirm: false,
+        closeOnCancel: true
+    },
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiClientes + 'delete',
+                    type: 'post',
+                    data: { idCliente },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Cliente eliminado correctamente.',
+                                'success'
+                            )
+                        }
+                        $('#clientes').DataTable().destroy();
+                        showTable();    
+                    } else {
+                        swal(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
+                } else {
+                    swal(
+                        'Error',
+                        response,
+                        'error'
+                    )
+                }
+            }
+        });
+}
 
