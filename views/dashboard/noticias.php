@@ -53,7 +53,7 @@ Dashboard::headerTemplate('Noticias');
                         <div class="row">
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Título</label>
-                                <input type="text" id="titulo" name="titulo" class="form-control form-control-alternative">
+                                <input type="text" id="titulo" name="titulo" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-12 mt-4">
                                 <div class="textfield-box">

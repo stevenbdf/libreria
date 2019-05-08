@@ -53,11 +53,11 @@ Dashboard::headerTemplate('Categorias');
                         <div class="row">
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombre" class="form-control form-control-alternative">
+                                <input type="text" name="nombre" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Descuento:</label>
-                                <input type="text" name="descuento" class="form-control form-control-alternative">
+                                <input type="text" name="descuento" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Descripción:</label>
@@ -69,7 +69,7 @@ Dashboard::headerTemplate('Categorias');
                                         <span class="input-group-text">Imagen:</span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="imagen" id="imagen">
+                                        <input type="file" class="custom-file-input" name="imagen" id="imagen" required>
                                         <label class="custom-file-label" for="inputGroupFile01">.gif, .png, .jpg</label>
                                     </div>
                                 </div>

@@ -52,15 +52,15 @@ Dashboard::headerTemplate('Autores');
                         <div class="row">
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombres" class="form-control form-control-alternative">
+                                <input type="text" name="nombres" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Apellido:</label>
-                                <input type="text" name="apellidos" class="form-control form-control-alternative">
+                                <input type="text" name="apellidos" class="form-control form-control-alternative" required>
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Pais:</label>
-                        <input type="text" name="pais" class="form-control form-control-alternative">
+                        <input type="text" name="pais" class="form-control form-control-alternative" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
