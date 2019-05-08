@@ -52,12 +52,12 @@ function fillTable(rows) {
         content += `
             <tr id="${row.idPedido}">
                 <th scope="row">
-                    <div class="media align-items-center" style="">
+                    <div class="media align-items-center">
                     <span class="mb-0 text-sm">${row.idPedido}</span>
                     </div>
                 </th>
                 <td>
-                    ${row.nombreCliente}
+                    ${row.nombreCliente} ${row.apellidoCliente}
                 </td>
                 <td>
                     ${row.fecha}

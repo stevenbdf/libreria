@@ -77,17 +77,17 @@ class Pedidos extends Validator
 	//Metodos para manejar el CRUD
 	public function readPedidos()
 	{
-		$sql = 'SELECT idPedido, nombreCliente, fecha, estado 
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, fecha, estado 
 							FROM pedido 
 							INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
-							ORDER BY idPedido';
+							ORDER BY idPedido DESC';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
 
 	public function getPedido()
 	{
-		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, fecha, estado 
+		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, fecha, estado 
 							FROM pedido 
 							INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
 							WHERE idPedido = ?

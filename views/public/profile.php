@@ -3,18 +3,24 @@
   echo model_page::header();
  ?>
 
- <!-- Header -->
-<div class="header pb-8 pt-5 pt-lg-8" style="min-height: 600px; background-image: url(../dashboard/assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+<!-- Header -->
+<div class="header pb-8 pt-5 pt-lg-8" style="min-height: 600px; background-image: url(../../resources/img/clients/<?php
+        if (isset($_SESSION['imagenCliente']['img'])) {
+          echo $_SESSION['imagenCliente']['img'];
+        } else {
+          echo 'default-profile.gif';
+        } ?>); background-size: contain; background-position: center top;">
   <!-- Mask -->
-  <span class="mask bg-gradient-default opacity-8"></span>
+  <span class="mask bg-gradient-default opacity-5"></span>
   <!-- Header container -->
 
-    <div class="row">
-      <div class="col-lg-12">
-        <h1 class="display-2 text-white text-center">Hola Jesse</h1>
-        <p class="text-white mt-0 mb-5 text-center">Esta es la pagina de perfil donde puedes gestionar tu información.</p>
-      </div>
+  <div class="row container">
+    <div class="col-lg-12">
+      <h1 id="nombre-cliente" class="display-2 text-white text-center">Hola Jesse</h1>
+      <p class="text-white mt-0 mb-5 text-center">Esta es la pagina de tu cuenta donde puedes gestionar tu información.
+      </p>
     </div>
+  </div>
 
 </div>
 <!-- Page content -->
@@ -31,94 +37,95 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form id="form-update-cliente">
             <h6 class="heading-small text-muted mb-4">Información de Usuario</h6>
             <div class="pl-lg-4">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-email">Correo:</label>
-                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com">
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-email">DUI:</label>
-                    <input type="text" id="DUI" class="form-control form-control-alternative" placeholder="0145857-8">
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="form-group">
                     <label class="form-control-label" for="input-first-name">Nombre:</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Lucky">
+                    <input type="text" id="nombres" name="nombres" class="form-control form-control-alternative"
+                      required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Apellido</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Jesse">
-                  </div>
-                </div>
-              </div>
-              <a href="#!" class="btn btn-info">Editar Perfil</a>
-            </div>
-            <hr class="my-4" />
-            <!-- Address -->
-            <h6 class="heading-small text-muted mb-4">Cambiar Contraseña</h6>
-            <div class="pl-lg-4">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="form-control-label" for="input-address">Contraseña Actual:</label>
-                    <input class="form-control form-control-alternative" type="password">
+                    <input type="text" id="apellidos" name="apellidos" class="form-control form-control-alternative"
+                      required>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-city">Nueva Contraseña:</label>
-                    <input type="password" class="form-control form-control-alternative">
+                    <label class="form-control-label" for="input-email">Correo:</label>
+                    <input type="email" id="correo" name="correo" class="form-control form-control-alternative"
+                      required>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label class="form-control-label" for="input-country">Confirmar Contraseña:</label>
-                    <input type="password" class="form-control form-control-alternative">
+                    <label class="form-control-label" for="input-email">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" class="form-control form-control-alternative"
+                      required>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-file-image"></i> Imagen:</span>
+                      </div>
+                      <input id="imagen" name="imagen" class="form-control" type="file">
+                    </div>
                   </div>
                 </div>
               </div>
-              <a href="#!" class="btn btn-info">Cambiar Contraseña</a>
-            </div>
-            <hr class="my-4" />
+              <button type="submit" class="btn btn-info">Editar Perfil</button>
           </form>
         </div>
+        <hr class="my-4" />
+        <!-- Address -->
+        <h6 class="heading-small text-muted mb-4">Cambiar Contraseña</h6>
+        <div class="pl-lg-4">
+          <form id="form-update-contrasena-cliente">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-address">Contraseña Actual:</label>
+                  <input name="old-password" class="form-control form-control-alternative" type="password" required>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Reíte tu contraseña Actual:</label>
+                    <input name="old-password-2" class="form-control form-control-alternative" type="password" required>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-city">Nueva Contraseña:</label>
+                  <input name="new-password" type="password" class="form-control form-control-alternative" required>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="input-country">Confirmar Contraseña:</label>
+                  <input name="new-password-2" type="password" class="form-control form-control-alternative" required>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-info">Cambiar Contraseña</button>
+          </form>
+        </div>
+        <hr class="my-4" />
       </div>
     </div>
   </div>
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="row align-items-center justify-content-xl-between">
-      <div class="col-xl-6">
-        <div class="copyright text-center text-xl-left text-muted">
-          &copy; 2019 Libreria Maquilishuat
-        </div>
-      </div>
-    </div>
-  </footer>
 </div>
-
-
-  <!-- Se especifica que archivos se han usado para el funcionamiento del login-->
-  <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
-  <script src="../../resources/js/popper.js"></script>
-  <script src="../../resources/js/bootstrap.js"></script>
-  <script src="../../resources/js/argon.min.js"></script>
-  <script src="../../resources/js/sweetalert2.min.js"></script>
-  <script defer src="../../resources/js/index.js"></script>
-
-</body>
-
-</html>
+<?php
+  echo model_page::footer('perfil');
+  ?>

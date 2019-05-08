@@ -23,8 +23,9 @@ const showCartItems = async () => {
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
             console.log(result.exception);
+        } else {
+            fillContainer(result.dataset, result.carrito)
         }
-        fillContainer(result.dataset, result.carrito)
     } else {
         console.log(response);
     }

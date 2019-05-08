@@ -129,14 +129,17 @@ class Clientes extends Validator
 	public function createCliente()
 	{
 		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO cliente(nombreCliente, apellidoCliente, correo, contrasena, direccion, img) VALUES(?, ?, ?, ?, ?, ?)';
-		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->direccion, $this->img );
+		$sql = 'INSERT INTO cliente(nombreCliente, apellidoCliente, correo, contrasena, direccion, img)
+						VALUES(?, ?, ?, ?, ?, ?)';
+		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->direccion, 
+										$this->img );
 		return Database::executeRow($sql, $params);
 	}
 
 	public function readClientes()
 	{
-		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img FROM cliente ORDER BY idCliente';
+		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img 
+						ROM cliente ORDER BY idCliente';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -177,9 +180,27 @@ class Clientes extends Validator
 	
 	public function getCliente()
 	{
-		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img FROM cliente WHERE idCliente = ?';
+		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img 
+						FROM cliente WHERE idCliente = ?';
 		$params = array($this->id);
 		return Database::getRow($sql, $params);
+	}
+
+	public function updateCliente()
+	{
+		$sql = 'UPDATE cliente SET nombreCliente = ?, apellidoCliente = ?, correo = ?,
+						direccion = ?, img = ? WHERE idCliente = ?';
+		$params = array($this->nombres, $this->apellidos, $this->correo, $this->direccion, 
+										$this->img, $_SESSION['idCliente']);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function updateContrasena()
+	{
+		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
+		$sql = 'UPDATE cliente SET contrasena = ? WHERE idCliente = ?';
+		$params = array( $hash, $_SESSION['idCliente']);
+		return Database::executeRow($sql, $params);
 	}
 
 	public function getImagenCliente()

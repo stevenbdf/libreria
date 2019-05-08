@@ -30,7 +30,7 @@ echo model_page::header();
         <p id="total-carrito" class="hidden-xs text-center"></p>
       </div>
       <div class="col-12 col-md-3 text-center text-md-right">
-        <button id="pagar-button" onclick="pagarPedido()" class="btn btn-success float-md-right">Procede a pagar <i class="fa fa-angle-right"></i></button>
+        <button id="pagar-button" onclick="pagarPedido()" class="btn btn-success float-md-right d-none">Procede a pagar <i class="fa fa-angle-right"></i></button>
       </div>
     </div>
   </div>
