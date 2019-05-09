@@ -75,21 +75,21 @@ Dashboard::headerTemplate('Productos');
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Titulo:</label>
-                        <input type="text" name="titulo" class="form-control form-control-alternative">
+                        <input type="text" name="titulo" class="form-control form-control-alternative" required>
                         <div class="row mt-3">
                             <div class="col-4">
                                 <label for="recipient-name" class="col-form-label">Idioma:</label>
-                                <input type="text" name="idioma" class="form-control form-control-alternative">
+                                <input type="text" name="idioma" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">No.Págs:</label>
-                                <input type="number" min="1" max="2000" name="noPaginas" class="form-control form-control-alternative">
+                                <input type="number" min="1" max="2000" name="noPaginas" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-5">
                                 <div class="form-group mt-4">
                                     <div class="floating-label">
                                         <label for="encuadernacion">Encuadernacion</label>
-                                        <select class="form-control" name="encuadernacion" id="encuadernacion">
+                                        <select class="form-control" name="encuadernacion" id="encuadernacion" required>
                                             <option value="0"></option>
                                             <option value="Tapa blanda">Tapa blanda</option>
                                             <option value="Tapa dura">Tapa dura</option>
@@ -102,16 +102,16 @@ Dashboard::headerTemplate('Productos');
                         </div>
                         <div class="form-group">
                             <label for="resena">Reseña:</label>
-                            <textarea class="form-control" name="resena" id="resena" rows="5"></textarea>
+                            <textarea class="form-control" name="resena" id="resena" rows="5"></textarea required>
                         </div>
                         <div class="row">
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">Precio:</label>
-                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio" class="form-control form-control-alternative">
+                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">Cantidad:</label>
-                                <input type="number" min="0" max="5000" step="1" name="cantidad" class="form-control form-control-alternative">
+                                <input type="number" min="0" max="5000" step="1" name="cantidad" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-6">
                                 <div class="form-group mt-4">

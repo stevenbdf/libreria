@@ -41,7 +41,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
-                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text">
+                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required onfocusout="validateAlphabetic('name',1,50)" >
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
                                             <input id="lastName" name="apellidos" class="form-control" placeholder="Apellido"
-                                                type="text">
+                                                type="text" required onfocusout="validateAlphabetic('lastName',1,50)">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
                                     </div>
-                                    <input id="email" name="correo" class="form-control" placeholder="Correo" type="email">
+                                    <input id="email" name="correo" class="form-control" placeholder="Correo" type="email" required>
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                     </div>
-                                    <input id="address" name="direccion" class="form-control" placeholder="Dirección" type="text">
+                                    <input id="address" name="direccion" class="form-control" placeholder="Dirección" type="text" required>
                                 </div>
                             </div>
 
@@ -81,7 +81,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                                     </div>
-                                    <input id="password" name="clave1" class="form-control" placeholder="Contraseña" type="password">
+                                    <input id="password" name="clave1" class="form-control" placeholder="Contraseña" type="password" required onfocusout="validatePassword('password')">
                                 </div>
                             </div>
 
@@ -91,7 +91,7 @@
                                         <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                                     </div>
                                     <input id="password2" name="clave2" class="form-control" placeholder="Confirmar contraseña"
-                                        type="password">
+                                        type="password" required >
                                 </div>
                             </div>
 
@@ -101,7 +101,7 @@
                                         <span class="input-group-text"><i class="far fa-file-image"></i></span>
                                     </div>
                                     <input id="imagen" name="imagen" class="form-control"
-                                        type="file">
+                                        type="file" required>
                                 </div>
                             </div>
 
@@ -136,6 +136,7 @@
 <script src="../../resources/js/sweetalert2.min.js"></script>
 <script defer src="../../resources/js/index.js"></script>
 <script defer src="../../core/controllers/public/register.js"></script>
+<script src="../../core/helpers/Public.js"></script>
 
 </body>
 

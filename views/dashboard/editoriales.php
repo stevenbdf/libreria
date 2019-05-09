@@ -51,19 +51,19 @@ Dashboard::headerTemplate('Editoriales');
                         <div class="row">
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombre" class="form-control form-control-alternative">
+                                <input type="text" name="nombre" id="name" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name', 1,50)">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Telefono:</label>
-                                <input type="text" name="telefono" class="form-control form-control-alternative">
+                                <input type="text" name="telefono" class="form-control form-control-alternative" required onfocusout="validatePhone('phone,1,10')">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Pais:</label>
-                                <input type="text" name="pais" class="form-control form-control-alternative">
+                                <input type="text" name="pais" class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Direccion:</label>
-                                <input type="text" name="direccion" class="form-control form-control-alternative">
+                                <input type="text" name="direccion" class="form-control form-control-alternative" required>
                             </div>
                         </div>
                     </div>

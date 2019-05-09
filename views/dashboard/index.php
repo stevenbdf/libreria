@@ -16,13 +16,13 @@ Dashboard::headerTemplate('Iniciar sesión');
                         </div>
                         <div class="form-group col-12 col-md-10 mt-3 offset-md-1">
                             <label for="exampleInputEmail1">Correo:</label>
-                            <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" placeholder="alguien@dominio.com">
+                            <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" placeholder="alguien@dominio.com" required>
                             <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo
                                 electrónico con nadie más.</small>
                         </div>
                         <div class="form-group col-12 col-md-10 mt-3 offset-md-1">
                             <label for="exampleInputPassword1">Contraseña:</label>
-                            <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="*******">
+                            <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="*******" required>
                         </div>
                         <div class="col-12 col-md-10 offset-md-1">
                             <div class="row d-flex justify-content-center">
