@@ -52,15 +52,15 @@ Dashboard::headerTemplate('Autores');
                         <div class="row">
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombres" class="form-control form-control-alternative" required>
+                                <input type="text" id="name" name="nombres" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name',1,50)">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Apellido:</label>
-                                <input type="text" name="apellidos" class="form-control form-control-alternative" required>
+                                <input type="text" id="lastName" name="apellidos" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('lastName',1,50)">
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Pais:</label>
-                        <input type="text" name="pais" class="form-control form-control-alternative" required>
+                        <input type="text" name="pais" id="country" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('country',1,50)">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -127,7 +127,7 @@ Dashboard::headerTemplate('Autores');
 <script src="../../resources/js/material/dataTables.material.min.js"></script>
 <script src="../../core/helpers/functions.js"></script>
 <script src="../../resources/js/sweetalert2.min.js"></script>
-
+<script src="../../core/helpers/Public.js"></script>
 <script src="../../core/controllers/dashboard/autores.js"></script>
 </body>
 
