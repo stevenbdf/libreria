@@ -22,7 +22,7 @@ class Dashboard
 							<!-- CSS -->
 							<!-- Add Material font (Roboto) and Material icon as needed -->
 							<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
-							<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+							<link href="../../libraries/material-icons.css" rel="stylesheet">
 							<!-- Add Material CSS, replace Bootstrap CSS -->
 							<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 							<link rel="stylesheet" href="../../resources/css/material/material.min.css">
@@ -110,7 +110,7 @@ class Dashboard
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
 					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
-					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+					<link href="../../libraries/material-icons.css" rel="stylesheet">
 					<!-- Add Material CSS, replace Bootstrap CSS -->
 					<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 					<link rel="stylesheet" href="../../resources/css/material/material.min.css">
@@ -246,7 +246,7 @@ class Dashboard
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
 					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
-					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+					<link href="../../libraries/material-icons.css" rel="stylesheet">
 					<!-- Add Material CSS, replace Bootstrap CSS -->
 					<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 					<link rel="stylesheet" href="../../resources/css/material/material.min.css">
@@ -371,7 +371,7 @@ class Dashboard
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
 					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
-					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+					<link href="../../libraries/material-icons.css" rel="stylesheet">
 					<!-- Add Material CSS, replace Bootstrap CSS -->
 					<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 					<link rel="stylesheet" href="../../resources/css/material/material.min.css">
