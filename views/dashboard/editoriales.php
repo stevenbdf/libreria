@@ -53,11 +53,11 @@ Dashboard::headerTemplate('Editoriales');
                         <div class="row">
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombre" class="form-control form-control-alternative" required>
+                                <input type="text" name="nombre" id="name" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name', 1,50)">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Telefono:</label>
-                                <input type="text" name="telefono" class="form-control form-control-alternative" required>
+                                <input type="text" name="telefono" class="form-control form-control-alternative" required onfocusout="validatePhone('phone,1,10')">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Pais:</label>
@@ -140,7 +140,7 @@ Dashboard::headerTemplate('Editoriales');
 <script src="../../resources/js/material/dataTables.material.min.js"></script>
 <script src="../../core/helpers/functions.js"></script>
 <script src="../../resources/js/sweetalert2.min.js"></script>
-
+<script src="../../core/helpers/Public.js"></script>
 <script src="../../core/controllers/dashboard/editorial.js"></script>
 </body>
 
