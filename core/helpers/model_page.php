@@ -230,6 +230,7 @@ class model_page
         <script src="../../resources/js/sweetalert2.min.js"></script>
         <script defer src="../../resources/js/index.js"></script>
         <script src="../../core/controllers/public/' . $controller . '.js"></script>
+        <script src="../../core/helpers/Public.js"></script>
 
 
       </body>

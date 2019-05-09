@@ -39,6 +39,7 @@ $('#formulario-registro').submit(async () => {
     } else {
         console.log(response);
     }
+     
 })
 
 

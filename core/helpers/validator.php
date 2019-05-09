@@ -111,12 +111,13 @@ class Validator
 	}
 
 	public function validateAlphanumeric($value, $minimum, $maximum)
-	{
-		if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.-]{' . $minimum . ',' . $maximum . '}$/', $value)) {
-			return true;
-		} else {
-			return false;
-		}
+	{	
+			if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\.-]{' . $minimum . ',' . $maximum . '}$/', $value)) {
+				return true;
+			} else {
+				return false;
+			}
+		
 	}
 
 	public function validateMoney($value)
@@ -158,6 +159,14 @@ class Validator
 			} else {
 				return false;
 			}
+		} else {
+			return false;
+		}
+	}
+
+	public function validateLength($value){
+		if (strlen($value) < 50) {
+			return true;
 		} else {
 			return false;
 		}
