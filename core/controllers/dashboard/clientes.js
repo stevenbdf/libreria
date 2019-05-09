@@ -20,7 +20,10 @@ const showTable = async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception)
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
         fillTable(result.dataset)
     } else {
@@ -62,9 +65,7 @@ function fillTable(rows) {
                     <img src="../../resources/img/clients/${row.img}" width="150" height="150">
                 </td>
                 <td class="text-center">
-                    <button type="button" onclick="confirmDelete(${row.idCliente})" class="mr-2 btn btn-danger w-100">
-                        <i class="material-icons mr-2">delete</i>Eliminar
-                    </button> 
+                    ${validateButtons(row.idCliente, row.estado)}
                 </td> 
             </tr>
         `;
@@ -77,11 +78,27 @@ function fillTable(rows) {
     });
 }
 
+function validateButtons(idCliente, estado) {
+    if (parseInt(estado)) {
+        return `
+        <button type="button" onclick="deshabilitar(${idCliente})" class="mr-2 btn btn-danger w-100">
+            <i class="material-icons mr-2">close</i>Deshabilitar
+        </button>
+        `;
+    } else {
+        return `
+        <button type="button" onclick="habilitar(${idCliente})" class="mr-2 btn btn-success w-100">
+            <i class="material-icons mr-2">check</i>Habilitar
+        </button> 
+        `;
+    }
+}
+
 //Función para eliminar un registro seleccionado
-function confirmDelete(idCliente) {
+function deshabilitar(idCliente) {
     swal({
         title: 'Advertencia',
-        text: '¿Quiere eliminar al cliente?',
+        text: '¿Quiere deshabilitar al cliente?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -94,7 +111,7 @@ function confirmDelete(idCliente) {
         async (isConfirm) => {
             if (isConfirm) {
                 const response = await $.ajax({
-                    url: apiClientes + 'delete',
+                    url: apiClientes + 'deshabilitar',
                     type: 'post',
                     data: { idCliente },
                     datatype: 'json'
@@ -107,12 +124,12 @@ function confirmDelete(idCliente) {
                         if (result.status == 1) {
                             swal(
                                 'Operación Correcta',
-                                'Cliente eliminado correctamente.',
+                                'Cliente deshabilitado correctamente.',
                                 'success'
                             )
                         }
                         $('#clientes').DataTable().destroy();
-                        showTable();    
+                        showTable();
                     } else {
                         swal(
                             'Error',
@@ -131,3 +148,56 @@ function confirmDelete(idCliente) {
         });
 }
 
+//Función para eliminar un registro seleccionado
+function habilitar(idCliente) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere habilitar al cliente?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borralo.',
+        closeOnConfirm: false,
+        closeOnCancel: true
+    },
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiClientes + 'habilitar',
+                    type: 'post',
+                    data: { idCliente },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Cliente habilitado correctamente.',
+                                'success'
+                            )
+                        }
+                        $('#clientes').DataTable().destroy();
+                        showTable();
+                    } else {
+                        swal(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
+                } else {
+                    swal(
+                        'Error',
+                        response,
+                        'error'
+                    )
+                }
+            }
+        });
+}

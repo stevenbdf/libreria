@@ -2,42 +2,39 @@
 require_once('../../core/helpers/dashboardTemplate.php');
 Dashboard::headerTemplate('Categorias');
 ?>
-<main>
-    <div class="container mt-5">
-        <div id="alerts"></div>
-        <div class="row shadow-sm p-3 mb-5 bg-white rounded">
-            <div class="table-responsive-lg" style="width:100%">
-                <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Categorías</h1>
-                <div class="row d-flex justify-content-center">
-                    <div class="col-6 col-md-4 text-center">
-                        <button type="button" class="mr-lg-2 btn btn-success" data-toggle="modal" data-target="#guardarCategoriaModal">
-                            <i class="material-icons mr-2">add</i>
-                            Agregar
-                        </button>
-                        <button type="button" class="ml-lg-2 btn btn-info" id="reload">
-                            <i class="material-icons mr-2">sync</i>
-                            Recargar
-                        </button>
-                    </div>
+<div class="container mt-5">
+    <div class="row shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="table-responsive-lg" style="width:100%">
+            <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Categorías</h1>
+            <div class="row d-flex justify-content-center">
+                <div class="col-6 col-md-4 text-center">
+                    <button type="button" class="mr-lg-2 btn btn-success" data-toggle="modal" data-target="#guardarCategoriaModal">
+                        <i class="material-icons mr-2">add</i>
+                        Agregar
+                    </button>
+                    <button type="button" class="ml-lg-2 btn btn-info" id="reload">
+                        <i class="material-icons mr-2">sync</i>
+                        Recargar
+                    </button>
                 </div>
-                <table id="categoria" class="table ">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Codigo</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Imagen</th>
-                            <th scope="col">Descuento</th>
-                            <th scope="col" class="text-center">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody-read-categoria"></tbody>
-                </table>
             </div>
+            <table id="categoria" class="table ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Descuento</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-read-categoria"></tbody>
+            </table>
         </div>
     </div>
-</main>
-<!-- Ventana para guardar Autor -->
+</div>
+<!-- Ventana para guardar Categoria -->
 <div class="modal fade" id="guardarCategoriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -82,11 +79,10 @@ Dashboard::headerTemplate('Categorias');
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>
-<!-- Ventana para modificar Editorial -->
+<!-- Ventana para modificar Categoria -->
 <div class="modal fade" id="modificarCategoriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -135,28 +131,14 @@ Dashboard::headerTemplate('Categorias');
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             <button type="submit" class="btn btn-warning">Modificar</button>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-<!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-
-<!-- <script src="../../resources/js/material/material.js"></script> -->
-<script src="../../resources/js/material/material.js"></script>
-<script src="../../resources/js/material/jquery.dataTables.min.js"></script>
-<script src="../../resources/js/material/dataTables.material.min.js"></script>
-<script src="../../core/helpers/functions.js"></script>
-<script src="../../resources/js/sweetalert2.min.js"></script>
-
-<script src="../../core/controllers/dashboard/categorias.js"></script>
-</body>
-
-</html>
+<?php
+require_once('../../core/helpers/dashboardTemplate.php');
+Dashboard::footerTemplate('categorias');
+?>

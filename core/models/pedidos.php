@@ -78,7 +78,7 @@ class Pedidos extends Validator
 	//Metodos para manejar el CRUD
 	public function readPedidos()
 	{
-		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, estado,
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, pedido.estado,
 				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
@@ -90,7 +90,7 @@ class Pedidos extends Validator
 	//Metodos para manejar el CRUD
 	public function readPedidosCliente()
 	{
-		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, fecha, estado, 
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, fecha, pedido.estado, 
 				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
@@ -102,7 +102,7 @@ class Pedidos extends Validator
 
 	public function getPedido()
 	{
-		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, fecha, estado 
+		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, fecha, pedido.estado 
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
 				WHERE idPedido = ?

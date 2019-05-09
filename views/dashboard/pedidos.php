@@ -16,7 +16,7 @@ Dashboard::headerTemplate('Pedidos');
                         </button>
                     </div>
                 </div>
-                <table id="pedidos" class="table">
+                <table id="pedidos" class="table table-responsive">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Codigo</th>
@@ -105,23 +105,7 @@ Dashboard::headerTemplate('Pedidos');
     </div>
 </div>
 
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-<!-- Then Material JavaScript on top of Bootstrap JavaScript -->
-
-<!-- <script src="../../resources/js/material/material.js"></script> -->
-<script src="../../resources/js/material/material.js"></script>
-<script src="../../resources/js/material/jquery.dataTables.min.js"></script>
-<script src="../../resources/js/material/dataTables.material.min.js"></script>
-<script src="../../core/helpers/functions.js"></script>
-<script src="../../resources/js/sweetalert2.min.js"></script>
-
-<script src="../../core/controllers/dashboard/pedidos.js"></script>
-</body>
-
-</html>
+<?php
+require_once('../../core/helpers/dashboardTemplate.php');
+Dashboard::footerTemplate('index');
+?>

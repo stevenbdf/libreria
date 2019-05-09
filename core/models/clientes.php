@@ -138,10 +138,22 @@ class Clientes extends Validator
 
 	public function readClientes()
 	{
-		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img 
+		$sql = 'SELECT idCliente, estado, nombreCliente, apellidoCliente, correo, direccion, img 
 						FROM cliente ORDER BY idCliente';
 		$params = array(null);
 		return Database::getRows($sql, $params);
+	}
+
+	public function checkEstado()
+	{
+		$sql = 'SELECT estado FROM cliente WHERE correo = ?';
+		$params = array($this->correo);
+		$data = Database::getRow($sql, $params);
+		if ((int)$data['estado'] == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function checkCorreo()
@@ -170,9 +182,16 @@ class Clientes extends Validator
 	}
 
 
-	public function deleteCliente()
+	public function deshabilitarCliente()
 	{
-		$sql = 'DELETE FROM cliente WHERE idCliente = ?';
+		$sql = 'UPDATE cliente SET estado = 0 WHERE idCliente = ?';
+		$params = array($this->id);
+		return Database::executeRow($sql, $params);
+	}
+
+	public function habilitarCliente()
+	{
+		$sql = 'UPDATE cliente SET estado = 1 WHERE idCliente = ?';
 		$params = array($this->id);
 		return Database::executeRow($sql, $params);
 	}
@@ -180,7 +199,7 @@ class Clientes extends Validator
 	
 	public function getCliente()
 	{
-		$sql = 'SELECT idCliente, nombreCliente, apellidoCliente, correo, direccion, img 
+		$sql = 'SELECT idCliente, estado, nombreCliente, apellidoCliente, correo, direccion, img 
 						FROM cliente WHERE idCliente = ?';
 		$params = array($this->id);
 		return Database::getRow($sql, $params);

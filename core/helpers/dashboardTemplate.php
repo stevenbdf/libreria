@@ -21,24 +21,22 @@ class Dashboard
 							<title>Dashboard - '.$title.'</title>
 							<!-- CSS -->
 							<!-- Add Material font (Roboto) and Material icon as needed -->
-							<link
-								href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
-								rel="stylesheet">
-							<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+							<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
 							<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 							<!-- Add Material CSS, replace Bootstrap CSS -->
 							<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 							<link rel="stylesheet" href="../../resources/css/material/material.min.css">
 							<link rel="stylesheet" href="../../resources/css/material/dataTables.material.min.css">
 						
-						
+							<!-- Maquilishuat -->
+          					<link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
 							<link href="../../resources/css/material/material.css" rel="stylesheet">
 						
 							<link rel="stylesheet" href="../../resources/css/dashboardIndex/style.css">
 						
 						</head>
 						<body>
-						<header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default sticky-top">
+						<header class="navbar navbar-dark navbar-full doc-navbar-default sticky-top" style="background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); !important;">
 							<button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer"
 								class="navbar-toggler" data-target="#navdrawerDefault" data-toggle="navdrawer"><span
 									class="navbar-toggler-icon"></span></button>
@@ -97,6 +95,7 @@ class Dashboard
 								</div>
 							</div>
 						</div>
+						<main>
 						
 				');
 			} else if ($filename == 'noticias.php'){
@@ -110,8 +109,7 @@ class Dashboard
 					<title>Dashboard - '.$title.'</title>
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
-					<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
-					<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 					<!-- Add Material CSS, replace Bootstrap CSS -->
 					<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
@@ -119,7 +117,7 @@ class Dashboard
 					<link rel="stylesheet" href="../../resources/css/material/dataTables.material.min.css">
 				
 					<!-- Froala text editor -->
-					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+					<link rel="stylesheet" href="../../resources/css/all.css">
 					<link rel="stylesheet" href="../../resources/css/froala-text-editor/froala_editor.css">
 					<link rel="stylesheet" href="../../resources/css/froala-text-editor/froala_style.css">
 					<link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/code_view.css">
@@ -128,14 +126,15 @@ class Dashboard
 					<link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/table.css">
 					<link rel="stylesheet" href="../../resources/css/froala-text-editor/plugins/video.css">
 					<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-				
+					<!-- Maquilishuat -->
+         			<link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
 					<link href="../../resources/css/material/material.css" rel="stylesheet">
 				
 					<link rel="stylesheet" href="../../resources/css/dashboardBasic/style.css">
 				
 				</head>
 				<body>
-				<header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default sticky-top">
+				<header class="navbar navbar-dark navbar-full doc-navbar-default sticky-top" style="background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); !important;">
 					<button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer"
 						class="navbar-toggler" data-target="#navdrawerDefault" data-toggle="navdrawer"><span
 							class="navbar-toggler-icon"></span></button>
@@ -232,6 +231,7 @@ class Dashboard
 						</div>
 					</div>
 				</div>
+				<main>
 				');
 			}
 			else{
@@ -245,21 +245,21 @@ class Dashboard
 					<title>Dashboard - '.$title.'</title>
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
-					<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
-					<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 					<!-- Add Material CSS, replace Bootstrap CSS -->
 					<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 					<link rel="stylesheet" href="../../resources/css/material/material.min.css">
 					<link rel="stylesheet" href="../../resources/css/material/dataTables.material.min.css">
-				
+					<!-- Maquilishuat -->
+					<link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
 					<link href="../../resources/css/material/material.css" rel="stylesheet">
 				
 					<link rel="stylesheet" href="../../resources/css/dashboardBasic/style.css">
 				
 				</head>
 				<body>
-				<header class="navbar navbar-dark navbar-full bg-primary doc-navbar-default sticky-top">
+				<header class="navbar navbar-dark navbar-full doc-navbar-default sticky-top" style="background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); !important;">
 							<button aria-controls="navdrawerDefault" aria-expanded="false" aria-label="Toggle Navdrawer"
 								class="navbar-toggler" data-target="#navdrawerDefault" data-toggle="navdrawer"><span
 									class="navbar-toggler-icon"></span></button>
@@ -356,6 +356,7 @@ class Dashboard
 						</div>
 					</div>
 				</div>
+				<main>
 				');
 			}
 		} else {
@@ -369,19 +370,18 @@ class Dashboard
 					<title>Dashboard - '.$title.'</title>
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
-					<link
-						href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700"
-						rel="stylesheet">
-					<link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
 					<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 					<!-- Add Material CSS, replace Bootstrap CSS -->
 					<link href="../../resources/css/sweetalert2.min.css" rel="stylesheet">
 					<link rel="stylesheet" href="../../resources/css/material/material.min.css">
-				
+					<!-- Maquilishuat -->
+          			<link rel="icon" type="image/png" href="../../resources/img/fav-ico.PNG" />
 					<link href="../../resources/css/material/material.css" rel="stylesheet">        
 				
 				</head>
 				<body>
+				<main>
 			');
 			$filename = basename($_SERVER['PHP_SELF']);
 			if ($filename != 'index.php' && $filename != 'register.php') {
@@ -394,36 +394,46 @@ class Dashboard
 	{
 		print('
 					</main>
-					<footer class="page-footer teal">
+					<footer style="
+					background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 66%, #ee609c 80%, #ee609c 100%);
+					" class="text-white">
 						<div class="container">
 							<div class="row">
-								<div class="col s12 m6 l6">
-									<h5 class="white-text">Dashboard</h5>
-									<a class="white-text" href="mailto:dacasoft@outlook.com"><i class="material-icons left">email</i>Ayuda</a>
+								<div class="col-12 col-md-6 col-lg-6">
+									<h5 class="text-white">Dashboard</h5>
+									<a class="text-white" href="mailto:support@libreria-maquilishuat.com"><i class="material-icons left">email</i>Ayuda</a>
 								</div>
-								<div class="col s12 m6 l6">
-									<h5 class="white-text">Enlaces</h5>
-									<a class="white-text" href="http://localhost/phpmyadmin/" target="_blank"><i class="material-icons left">cloud</i>phpMyAdmin</a>
+								<div class="col-12 col-md-6 col-lg-6">
+									<h5 class="text-white">Enlaces</h5>
+									<a class="text-white" href="http://localhost/phpmyadmin/" target="_blank"><i class="material-icons left">cloud</i> phpMyAdmin</a>
 								</div>
 							</div>
-						</div>
-						<div class="footer-copyright">
-							<div class="container">
-								<span>© Coffeeshop, todos los derechos reservados.</span>
-								<span class="white-text right">Diseñado con <a class="red-text text-accent-1" href="http://materializecss.com/" target="_blank"><b>Materialize</b></a></span>
+							<div class="row mt-2">
+								<div class="container">
+									<span>© Libreria Maquilishuat, todos los derechos reservados.</span>
+									<span class="text-white">Diseñado con <a class="	text-accent-1" href="http://daemonite.github.io/material/" target="_blank"><b class="text-white">Bootstrap - Daemonite`s Material UI</b></a></span>
+								</div>
 							</div>
 						</div>
 					</footer>
-					<script type="text/javascript" src="../../libraries/jquery-3.2.1.min.js"></script>
-					<script type="text/javascript" src="../../resources/js/materialize.min.js"></script>
-					<script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-					<script type="text/javascript" src="../../resources/js/dashboard.js"></script>
-					<script type="text/javascript" src="../../core/helpers/functions.js"></script>
-					<script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
-					<script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
-				</body>
+					<!-- Optional JavaScript -->
+					<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+					<script src="../../libraries/jquery-3.3.1.js"></script>
+					<script src="../../libraries/popper.js"></script>
+					<script src="../../libraries/bootstrap-dashboard.js"></script>
+
+					<!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+
+					<!-- <script src="../../resources/js/material/material.js"></script> -->
+					<script src="../../resources/js/material/material.js"></script>
+					<script src="../../resources/js/material/jquery.dataTables.min.js"></script>
+					<script src="../../resources/js/material/dataTables.material.min.js"></script>
+					<script src="../../core/helpers/functions.js"></script>
+					<script src="../../resources/js/sweetalert2.min.js"></script>
+
+					<script src="../../core/controllers/dashboard/'.$controller.'.js"></script>
+					</body>
 			</html>
 		');
 	}
 }
-?>

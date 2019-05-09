@@ -36,7 +36,10 @@ const ajaxRequest = async (functionName, DOM_ID) => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception);
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
         //Se agrega la respuesta a una etiqueta <p>, ubicada mediante id 
         $(`#count-${DOM_ID}`).html(result.dataset[0].count);

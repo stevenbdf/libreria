@@ -20,7 +20,11 @@ const showTable = async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception)
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
         }
         fillTable(result.dataset)
     } else {
@@ -36,7 +40,6 @@ $('#reload').click(async () => {
 
 //Función para llenar tabla con los datos de los registros
 function fillTable(rows) {
-    console.log(rows)
     let content = '';
     //Se recorren las filas para armar el cuerpo de la tabla y se utiliza comilla invertida para escapar los caracteres especiales
     rows.forEach(function (row) {
@@ -93,42 +96,42 @@ function confirmDelete(id) {
         closeOnConfirm: false,
         closeOnCancel: true
     },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiComentario + 'delete',
-                type: 'post',
-                data: {
-                    idComentN: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Editorial eliminada correctamente.',
-                            'success'
-                        )
-                        $('#comentario').DataTable().destroy();
-                        showTable();
-                    }
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiComentario + 'delete',
+                    type: 'post',
+                    data: {
+                        idComentN: id
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Editorial eliminada correctamente.',
+                                'success'
+                            )
+                            $('#comentario').DataTable().destroy();
+                            showTable();
+                        }
 
+                    } else {
+                        swal(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
                 } else {
-                    swal(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
+                    console.log(response);
                 }
-            } else {
-                console.log(response);
             }
-        }
-    });
+        });
 }
 

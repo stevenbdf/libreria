@@ -1,6 +1,6 @@
 <?php
-require_once '../../core/helpers/model_page.php';
-echo model_page::header();
+require_once '../../core/helpers/modelPage.php';
+echo modelPage::header();
 ?>
 
 <main id="noticias">
@@ -15,5 +15,5 @@ echo model_page::header();
 </main>
 
 <?php
-echo model_page::footer('noticias');
+echo modelPage::footer('noticias');
 ?>

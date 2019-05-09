@@ -26,7 +26,10 @@ const showTable = async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception)
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
         fillTable(result.dataset)
     } else {

@@ -1,6 +1,6 @@
 <?php
-require_once '../../core/helpers/model_page.php';
-echo model_page::header();
+require_once '../../core/helpers/modelPage.php';
+echo modelPage::header();
 ?>
 
 <!-- Header -->
@@ -123,5 +123,5 @@ echo model_page::header();
   </div>
 </div>
 <?php
-echo model_page::footer('perfil');
+echo modelPage::footer('perfil');
 ?>

@@ -1,6 +1,6 @@
 <?php
-require_once '../../core/helpers/model_page.php';
-echo model_page::header();
+require_once '../../core/helpers/modelPage.php';
+echo modelPage::header();
 ?>
 <div class="container" style="min-height:75vh;">
   <h1 class="text-center mt-2">Carrito de productos</h1>
@@ -37,5 +37,5 @@ echo model_page::header();
 
 </div>
 <?php
-echo model_page::footer('carrito');
+echo modelPage::footer('carrito');
 ?>

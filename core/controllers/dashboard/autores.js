@@ -20,7 +20,10 @@ const showTable = async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception)
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
         fillTable(result.dataset)
     } else {
@@ -106,7 +109,6 @@ $('#form-create-autor').submit(async () => {
                 )
                 $('#autores').DataTable().destroy();
                 showTable();
-
             }
         } else {
             swal(
@@ -145,7 +147,10 @@ const modalUpdate = async id => {
             $('#paisAutor').val(result.dataset.pais);
             $('#modificarAutoresModal').modal('toggle');
         } else {
-            console.log(result.exception)
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
     } else {
         console.log(response);
@@ -208,42 +213,42 @@ function confirmDelete(id) {
         closeOnConfirm: false,
         closeOnCancel: true
     },
-    async (isConfirm) => {
-        if (isConfirm) {
-            const response = await $.ajax({
-                url: apiAutores + 'delete',
-                type: 'post',
-                data: {
-                    idAutor: id
-                },
-                datatype: 'json'
-            })
-            //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
-            if (isJSONString(response)) {
-                const result = JSON.parse(response);
-                //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
-                if (result.status) {
-                    if (result.status == 1) {
-                        swal(
-                            'Operación Correcta',
-                            'Autor eliminado correctamente.',
-                            'success'
-                        )
-                        $('#autores').DataTable().destroy();
-                        showTable();
-                    }
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiAutores + 'delete',
+                    type: 'post',
+                    data: {
+                        idAutor: id
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Autor eliminado correctamente.',
+                                'success'
+                            )
+                            $('#autores').DataTable().destroy();
+                            showTable();
+                        }
 
+                    } else {
+                        Swal.fire(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
                 } else {
-                    Swal.fire(
-                        'Error',
-                        result.exception,
-                        'error'
-                    )
+                    console.log(response);
                 }
-            } else {
-                console.log(response);
             }
-        }
-    });
+        });
 }
 

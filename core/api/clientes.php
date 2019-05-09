@@ -18,12 +18,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Operación incorrecta';
                 }
                 break;
-            case 'delete':
+            case 'deshabilitar':
                 if ($clientes->setId($_POST['idCliente'])) {
-                    if ($clientes->deleteCliente()) {
+                    if ($clientes->deshabilitarCliente()) {
                         $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Cliente relacionado a pedidos, no se ha podido eliminar';
+                        $result['exception'] = 'Cliente no se ha podido deshabilitar';
+                    }
+                } else {
+                    $result['exception'] = 'Cliente incorrecto';
+                }
+                break;
+            case 'habilitar':
+                if ($clientes->setId($_POST['idCliente'])) {
+                    if ($clientes->habilitarCliente()) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['exception'] = 'Cliente no se ha podido habilitar';
                     }
                 } else {
                     $result['exception'] = 'Cliente incorrecto';
@@ -183,21 +194,25 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             case 'login':
                 $_POST = $clientes->validateForm($_POST);
                 if ($clientes->setCorreo($_POST['correo'])) {
-                    if ($clientes->checkCorreo()) {
-                        if ($clientes->setContrasena($_POST['contrasena'])) {
-                            if ($clientes->checkPassword()) {
-                                $_SESSION['idCliente'] = $clientes->getId();
-                                $_SESSION['correoCliente'] = $clientes->getCorreo();
-                                $_SESSION['imagenCliente'] = $clientes->getImagenCliente();
-                                $result['status'] = 1;
+                    if ($clientes->checkEstado()) {
+                        if ($clientes->checkCorreo()) {
+                            if ($clientes->setContrasena($_POST['contrasena'])) {
+                                if ($clientes->checkPassword()) {
+                                    $_SESSION['idCliente'] = $clientes->getId();
+                                    $_SESSION['correoCliente'] = $clientes->getCorreo();
+                                    $_SESSION['imagenCliente'] = $clientes->getImagenCliente();
+                                    $result['status'] = 1;
+                                } else {
+                                    $result['exception'] = 'Clave inexistente';
+                                }
                             } else {
-                                $result['exception'] = 'Clave inexistente';
+                                $result['exception'] = 'Clave menor a 6 caracteres';
                             }
                         } else {
-                            $result['exception'] = 'Clave menor a 6 caracteres';
+                            $result['exception'] = 'Correo inexistente';
                         }
                     } else {
-                        $result['exception'] = 'Correo inexistente';
+                        $result['exception'] = 'Tu cuenta ha sido deshabilitada, contacta con uno de nuestros empleados al correo: contacto@libreria-maquilishuat.com.';
                     }
                 } else {
                     $result['exception'] = 'Correo incorrecto';

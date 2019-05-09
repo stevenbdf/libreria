@@ -1,6 +1,6 @@
 <?php
-require_once '../../core/helpers/model_page.php';
-echo model_page::header();
+require_once '../../core/helpers/modelPage.php';
+echo modelPage::header();
 ?>
 
 <div class="container" style="min-height:77.5vh">
@@ -89,5 +89,5 @@ echo model_page::header();
     
 
 <?php
-echo model_page::footer('ordenes');
+echo modelPage::footer('ordenes');
 ?>

@@ -1,7 +1,7 @@
 <!--Se manda a llamar todo el encabezado con el menú -->
 <?php
-require_once '../../core/helpers/model_page.php';
-echo model_page::header();
+require_once '../../core/helpers/modelPage.php';
+echo modelPage::header();
 ?>
 <!-- Contenido principal, aquí se encuentran cada una de las diviciones para presentar cada producto según la categoría-->
 <main id="all-products"  style="min-height:100vh;">
@@ -13,5 +13,5 @@ echo model_page::header();
 </main>
 <!--Se manda a llamar todo el código html del footer-->
 <?php
-echo model_page::footer('productos');
+echo modelPage::footer('productos');
 ?>

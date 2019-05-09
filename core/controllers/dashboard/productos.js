@@ -59,7 +59,10 @@ const showTable = async () => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception)
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
         fillTable(result.dataset)
     } else {
@@ -168,7 +171,10 @@ const ajaxRequest = async (API, functionName) => {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (!result.status) {
-            console.log(result.exception);
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
         return result.dataset;
     } else {
@@ -264,7 +270,10 @@ const modalUpdate = async id => {
             $('#imagen-producto').val(result.dataset.img);
             $('#modificarProductosModal').modal('toggle');
         } else {
-            console.log(result.exception)
+            swal('Error',
+                result.exception,
+                'error'
+            )
         }
     } else {
         console.log(response);
