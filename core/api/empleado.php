@@ -66,7 +66,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                 if ($empleado->setCorreo($_POST['correo-update'])) {
                                     if ($empleado->setDui($_POST['dui-update'])) {
                                         if ($empleado->updateEmpleados()) {
-                                            if($_SESSION['idEmpleado'] = $empleado->getId()) {
+                                            if ($_SESSION['idEmpleado'] = $empleado->getId()) {
                                                 $_SESSION['correoUsuario'] = $empleado->getCorreo();
                                             }
                                             $result['status'] = 1;
@@ -93,7 +93,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($_SESSION['idEmpleado'] = $_POST['idEmpleado']) {
+                if ($_SESSION['idEmpleado'] != $_POST['idEmpleado']) {
                     if ($empleado->setId($_POST['idEmpleado'])) {
                         if ($empleado->getEmpleados()) {
                             if ($empleado->deleteEmpleados()) {
@@ -121,23 +121,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
             case 'update-contrasena':
                 if ($_POST['old-password'] == $_POST['old-password-2']) {
                     if ($_POST['new-password'] == $_POST['new-password-2']) {
-                        if($empleado->setId($_SESSION['idEmpleado'])) {
+                        if ($empleado->setId($_SESSION['idEmpleado'])) {
                             if ($empleado->setContrasena($_POST['old-password'])) {
-                                if ($empleado->checkPassword()){
+                                if ($empleado->checkPassword()) {
                                     if ($empleado->setContrasena($_POST['new-password'])) {
-                                        if($empleado->updateContrasena()){
+                                        if ($empleado->updateContrasena()) {
                                             $result['status'] = 1;
                                         } else {
                                             $result['exception'] = 'Operación fallida';
                                         }
                                     } else {
-                                        $result['exception'] = 'Contraseña invalida, debe ser mayor a 6 caracteres';    
+                                        $result['exception'] = 'Contraseña invalida, debe ser mayor a 6 caracteres';
                                     }
                                 } else {
                                     $result['exception'] = 'Contraseña incorrecta';
                                 }
                             } else {
-                                $result['exception'] = 'Contraseña invalida, debe ser mayor a 6 caracteres';    
+                                $result['exception'] = 'Contraseña invalida, debe ser mayor a 6 caracteres';
                             }
                         } else {
                             $result['exception'] = 'Empleado incorrecto';
@@ -145,7 +145,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     } else {
                         $result['exception'] = 'Las contraseñas nuevas no coinciden';
                     }
-                } else { 
+                } else {
                     $result['exception'] = 'Las contraseñas antiguas no coinciden';
                 }
                 break;
@@ -186,6 +186,36 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Correo incorrecto';
                 }
                 break;
+            case 'create':
+                //Agregar validacion si existen empleados
+                if ($empleado->setNombres($_POST['nombre'])) {
+                    if ($empleado->setApellidos($_POST['apellido'])) {
+                        if ($empleado->setCorreo($_POST['correo'])) {
+                            if ($empleado->setContrasena($_POST['contrasena'])) {
+                                if ($empleado->setDui($_POST['dui'])) {
+                                    if ($empleado->createEmpleados()) {
+                                        $result['status'] = 1;
+                                    } else {
+                                        $result['exception'] = 'Operación fallida';
+                                    }
+                                } else {
+                                    $result['exception'] = 'DUI incorrecto';
+                                }
+                            } else {
+                                $result['exception'] = 'Contraseña incorrecto';
+                            }
+                        } else {
+                            $result['exception'] = 'Correo incorrecto';
+                        }
+                    } else {
+                        $result['exception'] = 'Apellido incorrecto';
+                    }
+                } else {
+                    $result['exception'] = 'Nombre incorrecto';
+                }
+                break;
+            default:
+                exit('Acción no disponible');
         }
     } else {
         exit('Acceso no disponible');
