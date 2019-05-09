@@ -93,7 +93,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'delete':
-                if ($_SESSION['idEmpleado'] != $_POST['idEmpleado']) {
+                if ((int)$_SESSION['idEmpleado'] != (int)$_POST['idEmpleado']) {
                     if ($empleado->setId($_POST['idEmpleado'])) {
                         if ($empleado->getEmpleados()) {
                             if ($empleado->deleteEmpleados()) {

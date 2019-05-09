@@ -68,6 +68,12 @@ class Autores extends Validator
 		return $this->pais;
 	}
 
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
 
 	//Metodos para manejar el CRUD
 	public function readAutores()
@@ -81,7 +87,12 @@ class Autores extends Validator
 	{
 		$sql = 'INSERT INTO autor(nombre, apellido, pais) VALUES(?, ?, ?)';
 		$params = array($this->nombres, $this->apellidos,$this->pais);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Ingreso un autor');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getAutor()
@@ -95,14 +106,24 @@ class Autores extends Validator
 	{
 		$sql = 'UPDATE autor SET nombre = ?, apellido = ?, pais = ? WHERE idAutor = ?';
 		$params = array($this->nombres, $this->apellidos,$this->pais, $this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Modifico un autor');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function deleteAutor()
 	{
 		$sql = 'DELETE FROM autor WHERE idAutor = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Borro un autor');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

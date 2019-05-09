@@ -126,6 +126,14 @@ class Clientes extends Validator
 
 
 	//Metodos para manejar el CRUD
+
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
+
 	public function createCliente()
 	{
 		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
@@ -186,14 +194,24 @@ class Clientes extends Validator
 	{
 		$sql = 'UPDATE cliente SET estado = 0 WHERE idCliente = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Deshabilito un cliente');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function habilitarCliente()
 	{
 		$sql = 'UPDATE cliente SET estado = 1 WHERE idCliente = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Habilito un cliente');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	

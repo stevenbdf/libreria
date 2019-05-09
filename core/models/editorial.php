@@ -82,6 +82,13 @@ class Editorial extends Validator
 
 
 	//Metodos para manejar el CRUD
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
+
 	public function readEditorial()
 	{
 		$sql = 'SELECT idEditorial, nombreEdit, direccion, pais, tel FROM editorial ORDER BY idEditorial';
@@ -93,7 +100,12 @@ class Editorial extends Validator
 	{
 		$sql = 'INSERT INTO editorial(nombreEdit, direccion, pais, tel) VALUES(?, ?, ?, ?)';
 		$params = array($this->nombre, $this->direccion, $this->pais, $this->telefono);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Ingreso una editorial');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getEditorial()
@@ -107,14 +119,24 @@ class Editorial extends Validator
 	{
 		$sql = 'UPDATE editorial SET nombreEdit = ?, direccion = ?, pais = ?, tel= ? WHERE idEditorial = ?';
 		$params = array($this->nombre, $this->direccion,$this->pais,$this->telefono, $this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Modifico una editorial');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function deleteEditorial()
 	{
 		$sql = 'DELETE FROM editorial WHERE idEditorial = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Borro una editorial');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

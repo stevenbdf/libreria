@@ -76,6 +76,13 @@ class Pedidos extends Validator
 	}
 
 	//Metodos para manejar el CRUD
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
+
 	public function readPedidos()
 	{
 		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, pedido.estado,
@@ -150,6 +157,11 @@ class Pedidos extends Validator
 	public function updateEstadoPedido(){
 		$sql = 'UPDATE pedido SET estado = ? WHERE idPedido = ?';
 		$params = array($this->estado, $this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Modifico el estado de un pedido');
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

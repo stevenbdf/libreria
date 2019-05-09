@@ -170,6 +170,13 @@ class Productos extends Validator
 
 
     //Metodos para manejar el CRUD
+    public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+    }
+    
     public function readProductos()
     {
         $sql = "SELECT idLibro,  autor.nombre as 'nombreAutor', autor.apellido as 'apellidoAutor', NombreL,
@@ -225,7 +232,12 @@ class Productos extends Validator
             $this->idAutor, $this->idEditorial, $this->titulo, $this->idioma, $this->noPags,
             $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad
         );
-        return Database::executeRow($sql, $params);
+        if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Ingreso un producto');
+			return true;
+		} else {
+			return false;
+		}
     }
 
     public function updateProducto()
@@ -236,13 +248,23 @@ class Productos extends Validator
             $this->idAutor, $this->idEditorial, $this->titulo, $this->idioma, $this->noPags,
             $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad, $this->idLibro
         );
-        return Database::executeRow($sql, $params);
+        if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Modifico un producto');
+			return true;
+		} else {
+			return false;
+		}
     }
 
     public function deleteProducto()
     {
         $sql = 'DELETE FROM libro WHERE idLibro = ?';
         $params = array($this->idLibro);
-        return Database::executeRow($sql, $params);
+        if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Borro un producto');
+			return true;
+		} else {
+			return false;
+		}
     }
 }

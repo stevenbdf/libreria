@@ -107,5 +107,5 @@ Dashboard::headerTemplate('Pedidos');
 
 <?php
 require_once('../../core/helpers/dashboardTemplate.php');
-Dashboard::footerTemplate('index');
+Dashboard::footerTemplate('pedidos');
 ?>

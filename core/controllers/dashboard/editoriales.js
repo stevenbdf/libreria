@@ -107,7 +107,7 @@ $('#form-create-editorial').submit(async () => {
             if (result.status == 1) {
                 swal(
                     'Operación Correcta',
-                    'Autor guardado correctamente.',
+                    'Editorial guardado correctamente.',
                     'success'
                 )
                 $('#editorial').DataTable().destroy();

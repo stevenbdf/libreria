@@ -98,6 +98,12 @@ class Empleados extends Validator
 
 
 	//Metodos para manejar el CRUD
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
 
 	public function checkCorreo()
 	{
@@ -136,7 +142,12 @@ class Empleados extends Validator
 		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
 		$sql = 'INSERT INTO empleado(nombreEmpleado, apellidoEmpleado, correo, contrasena, dui) VALUES(?, ?, ?, ?, ?)';
 		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->dui);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Ingreso un empleado');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getEmpleados()
@@ -151,7 +162,12 @@ class Empleados extends Validator
 		$sql = 'UPDATE empleado SET nombreEmpleado = ?, apellidoEmpleado = ?, 
 						correo = ?, dui = ? WHERE idEmpleado = ?';
 		$params = array($this->nombres, $this->apellidos, $this->correo, $this->dui, $this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Modifico un empleado');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function updateContrasena()
@@ -166,6 +182,11 @@ class Empleados extends Validator
 	{
 		$sql = 'DELETE FROM empleado WHERE idEmpleado = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Borro un empleado');
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

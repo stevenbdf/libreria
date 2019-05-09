@@ -88,6 +88,13 @@ class Categoria extends Validator
 
 
 	//Metodos para manejar el CRUD
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
+
 	public function readCategoria()
 	{
 		$sql = 'SELECT idCategoria, nombreCat, descripcion, descuento, img FROM categoria ORDER BY idCategoria';
@@ -99,7 +106,12 @@ class Categoria extends Validator
 	{
 		$sql = 'INSERT INTO categoria(nombreCat, descripcion, descuento, img) VALUES (?, ?, ?, ?)';
 		$params = array($this->nombre, $this->descripcion, $this->descuento, $this->imagen);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Ingreso una categoria');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getCategoria()
@@ -113,13 +125,23 @@ class Categoria extends Validator
 	{
 		$sql = 'UPDATE categoria SET nombreCat = ?, descripcion = ?, descuento = ? , img = ? WHERE idCategoria = ?';
 		$params = array($this->nombre,$this->descripcion, $this->descuento, $this->imagen, $this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Modifico una categoria');
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function deleteCategoria()
 	{
 		$sql = 'DELETE FROM categoria WHERE idCategoria = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Borro una categoria');
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

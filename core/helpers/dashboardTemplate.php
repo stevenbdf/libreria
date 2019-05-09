@@ -3,22 +3,22 @@ class Dashboard
 {
 	public static function headerTemplate($title)
 	{
-        session_start();
-        
+		session_start();
+
 		ini_set('date.timezone', 'America/El_Salvador');
 
 		if (isset($_SESSION['idEmpleado'])) {
 			$filename = basename($_SERVER['PHP_SELF']);
 			if ($filename == 'index.php') {
 				header('location: main.php');
-			}else if ($filename == 'main.php'){
-				print ('<!DOCTYPE html>
+			} else if ($filename == 'main.php') {
+				print('<!DOCTYPE html>
 						<html lang="es">						
 						<head>
 							<!-- Required meta tags -->
 							<meta charset="utf-8">
 							<meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
-							<title>Dashboard - '.$title.'</title>
+							<title>Dashboard - ' . $title . '</title>
 							<!-- CSS -->
 							<!-- Add Material font (Roboto) and Material icon as needed -->
 							<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
@@ -48,7 +48,7 @@ class Dashboard
 									<a class="navbar-brand px-0" href="./main.php">Dashboard</a>
 								</div>
 								<nav class="navdrawer-nav">
-								<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>'.$_SESSION['correoUsuario'].'</p>
+								<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>' . $_SESSION['correoUsuario'] . '</p>
 								<p class="nav-link" data-target="#navdrawerDefault" data-toggle="navdrawer"><a  data-toggle="modal" data-target="#cambiarContrasenaModal" ><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Cambiar contraseña</a></p>
 								<p class="nav-link" onclick="signOff()"><i class="material-icons mr-3" style="font-size: 30px;">power_settings_new</i>Cerrar sesión</p>
 								</nav>
@@ -98,7 +98,7 @@ class Dashboard
 						<main>
 						
 				');
-			} else if ($filename == 'noticias.php'){
+			} else if ($filename == 'noticias.php') {
 				print('
 				<!DOCTYPE html>
 				<html lang="es">		
@@ -106,7 +106,7 @@ class Dashboard
 					<!-- Required meta tags -->
 					<meta charset="utf-8">
 					<meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
-					<title>Dashboard - '.$title.'</title>
+					<title>Dashboard - ' . $title . '</title>
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
 					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
@@ -146,7 +146,7 @@ class Dashboard
 							<a class="navbar-brand px-0" href="./main.php">Dashboard</a>
 						</div>
 						<nav class="navdrawer-nav">
-						<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>'.$_SESSION['correoUsuario'].'</p>
+						<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>' . $_SESSION['correoUsuario'] . '</p>
 						<p class="nav-link" data-target="#navdrawerDefault" data-toggle="navdrawer"><a  data-toggle="modal" data-target="#cambiarContrasenaModal" ><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Cambiar contraseña</a></p>
 						<p class="nav-link" onclick="signOff()"><i class="material-icons mr-3" style="font-size: 30px;">power_settings_new</i>Cerrar sesión</p>
 						</nav>
@@ -233,8 +233,7 @@ class Dashboard
 				</div>
 				<main>
 				');
-			}
-			else{
+			} else {
 				print('
 				<!DOCTYPE html>
 				<html lang="es">			
@@ -242,7 +241,7 @@ class Dashboard
 					<!-- Required meta tags -->
 					<meta charset="utf-8">
 					<meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
-					<title>Dashboard - '.$title.'</title>
+					<title>Dashboard - ' . $title . '</title>
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
 					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
@@ -271,7 +270,7 @@ class Dashboard
 							<a class="navbar-brand px-0" href="./main.php">Dashboard</a>
 						</div>
 						<nav class="navdrawer-nav">
-						<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>'.$_SESSION['correoUsuario'].'</p>
+						<p class="nav-link active"><i class="material-icons mr-3" style="font-size: 30px;">account_circle</i>' . $_SESSION['correoUsuario'] . '</p>
 						<p class="nav-link" data-target="#navdrawerDefault" data-toggle="navdrawer"><a  data-toggle="modal" data-target="#cambiarContrasenaModal" ><i class="material-icons mr-3" style="font-size: 30px;">settings</i>Cambiar contraseña</a></p>
 						<p class="nav-link" onclick="signOff()"><i class="material-icons mr-3" style="font-size: 30px;">power_settings_new</i>Cerrar sesión</p>
 						</nav>
@@ -367,7 +366,7 @@ class Dashboard
 					<!-- Required meta tags -->
 					<meta charset="utf-8">
 					<meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
-					<title>Dashboard - '.$title.'</title>
+					<title>Dashboard - ' . $title . '</title>
 					<!-- CSS -->
 					<!-- Add Material font (Roboto) and Material icon as needed -->
 					<link href="../../resources/fonts/Googlefonts.css" rel="stylesheet">
@@ -392,7 +391,30 @@ class Dashboard
 
 	public static function footerTemplate($controller)
 	{
-		print('
+		if ($controller == 'login') {
+			print('
+					</main>
+					<!-- Optional JavaScript -->
+					<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+					<script src="../../libraries/jquery-3.3.1.js"></script>
+					<script src="../../libraries/popper.js"></script>
+					<script src="../../libraries/bootstrap-dashboard.js"></script>
+
+					<!-- Then Material JavaScript on top of Bootstrap JavaScript -->
+
+					<!-- <script src="../../resources/js/material/material.js"></script> -->
+					<script src="../../resources/js/material/material.js"></script>
+					<script src="../../resources/js/material/jquery.dataTables.min.js"></script>
+					<script src="../../resources/js/material/dataTables.material.min.js"></script>
+					<script src="../../core/helpers/functions.js"></script>
+					<script src="../../resources/js/sweetalert2.min.js"></script>
+
+					<script src="../../core/controllers/dashboard/' . $controller . '.js"></script>
+					</body>
+			</html>
+		');
+		} else {
+			print('
 					</main>
 					<footer style="
 					background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 66%, #ee609c 80%, #ee609c 100%);
@@ -431,9 +453,10 @@ class Dashboard
 					<script src="../../core/helpers/functions.js"></script>
 					<script src="../../resources/js/sweetalert2.min.js"></script>
 
-					<script src="../../core/controllers/dashboard/'.$controller.'.js"></script>
+					<script src="../../core/controllers/dashboard/' . $controller . '.js"></script>
 					</body>
 			</html>
 		');
+		}
 	}
 }

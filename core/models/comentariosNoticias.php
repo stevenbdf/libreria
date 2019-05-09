@@ -77,6 +77,13 @@ class Comentario extends Validator
 	}
 
 	//Metodos para manejar el CRUD
+	public function insertBitacora($accion)
+	{
+		$sql = 'call insertBitacora ( ? , ?)';
+		$params = array($_SESSION['idEmpleado'], $accion);
+		return Database::executeRow($sql, $params);
+	}
+
 	public function readComentario()
 	{
 		$sql = 'SELECT idComentN, titulo, comentnoticia.idNoticia,comentnoticia.fecha ,cliente.img as img, comentario,comentnoticia.idClient, nombreCliente 
@@ -108,6 +115,11 @@ class Comentario extends Validator
 	{
 		$sql = 'DELETE FROM comentnoticia WHERE idComentN = ?';
 		$params = array($this->id);
-		return Database::executeRow($sql, $params);
+		if (Database::executeRow($sql, $params)) {
+			$this->insertBitacora('Borro un comentario de una noticia');
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
