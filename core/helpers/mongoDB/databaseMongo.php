@@ -181,7 +181,7 @@ if (isset($_GET['action'])) {
                             'idEditorial' => (int)$_POST['editorialSelect'],
                             'NombreL' => $_POST['titulo'],
                             'Idioma' => $_POST['idioma'],
-                            'NoPag' => $_POST['noPaginas'],
+                            'NoPag' => (int)$_POST['noPaginas'],
                             'encuadernacion' => $_POST['encuadernacion'],
                             'resena' => $_POST['resena'],
                             'precio' => floatval($_POST['precio']),
@@ -199,6 +199,90 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = $producto->getImageError();
                 }
+            }
+            break;
+        case 'updateProducto':
+            $collection = (new MongoDB\Client)->libreria->libro;
+            if (is_uploaded_file($_FILES['imagen-update']['tmp_name'])) {
+                if ($producto->setImagen($_FILES['imagen-update'], $_POST['imagen-producto'])) {
+                    $archivo = true;
+                } else {
+                    $result['exception'] = $producto->getImageError();
+                    $archivo = false;
+                }
+            } else {
+                if ($producto->setImagen(null, $_POST['imagen-producto'])) {
+                    $result['exception'] = 'No se subió ningún archivo';
+                } else {
+                    $result['exception'] = $producto->getImageError();
+                }
+                $archivo = false;
+            }
+
+            if ($archivo) {
+                $updateResult = $collection->updateOne(
+                    ['idLibro' => (int)$_POST['idLibro']],
+                    ['$set' => [
+                        'idAutor' => (int)$_POST['autorSelect-update'],
+                        'idEditorial' => (int)$_POST['editorialSelect-update'],
+                        'NombreL' => $_POST['titulo-update'],
+                        'Idioma' => $_POST['idioma-update'],
+                        'NoPag' => (int)$_POST['noPaginas-update'],
+                        'encuadernacion' => $_POST['encuadernacion-update'],
+                        'resena' => $_POST['resena-update'],
+                        'precio' => floatval($_POST['precio-update']),
+                        'idCat' => (int)$_POST['categoriaSelect-update'],
+                        'img' => $producto->getImageName(),
+                        'cant' => (int)$_POST['cantidad-update']
+                    ]]
+                );
+                if ($updateResult->getModifiedCount()) {
+                    if ($producto->saveFile($_FILES['imagen-update'], $producto->getRuta(), $producto->getImagen())) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['status'] = 2;
+                        $result['exception'] = 'No se guardó el archivo';
+                    }
+                } else {
+                    $result['exception'] = 'Operacion fallida';
+                }
+            } else {
+                $updateResult = $collection->updateOne(
+                    ['idLibro' => (int)$_POST['idLibro']],
+                    ['$set' => [
+                        'idAutor' => (int)$_POST['autorSelect-update'],
+                        'idEditorial' => (int)$_POST['editorialSelect-update'],
+                        'NombreL' => $_POST['titulo-update'],
+                        'Idioma' => $_POST['idioma-update'],
+                        'NoPag' => (int)$_POST['noPaginas-update'],
+                        'encuadernacion' => $_POST['encuadernacion-update'],
+                        'resena' => $_POST['resena-update'],
+                        'precio' => floatval($_POST['precio-update']),
+                        'idCat' => (int)$_POST['categoriaSelect-update'],
+                        'img' => $producto->getImageName(),
+                        'cant' => (int)$_POST['cantidad-update']
+                    ]]
+                );
+                if ($updateResult->getModifiedCount()) {
+                    $result['status'] = 3;
+                    $result['exception'] = 'No se guardo ningun archivo';
+                } else {
+                    $result['exception'] = 'Operacion fallida';
+                }
+            }
+            break;
+        case 'deleteProducto':
+            $collection = (new MongoDB\Client)->libreria->libro;
+            $deleteResult = $collection->deleteOne(['idLibro' => (int)$_POST['idLibro']]);
+            if ($deleteResult->getDeletedCount()) {
+                if ($producto->deleteFile($producto->getRuta(), $_POST['imagenProducto'])) {
+                    $result['status'] = 1;
+                } else {
+                    $result['status'] = 2;
+                    $result['exception'] = 'No se borró el archivo';
+                }
+            } else {
+                $result['exception'] = 'Operacion fallida';
             }
             break;
     }

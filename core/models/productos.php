@@ -14,7 +14,7 @@ class Productos extends Validator
     private $idCategoria = null;
     private $cantidad = null;
     private $imagen = null;
-    private $ruta = '../../resources/img/books/';
+    private $ruta = '../../../resources/img/books/';
 
     //Métodos para sobrecarga de propiedades
     public function setIdLibro($value)

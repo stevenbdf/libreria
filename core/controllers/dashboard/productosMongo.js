@@ -241,7 +241,14 @@ $('#form-create-producto').submit(async () => {
                 )
                 $('#productos').DataTable().destroy();
                 showTable();
-
+            } else if (result.status == 2) {
+                swal(
+                    'Atención',
+                    'Producto guardado. No se guardo el archivo',
+                    'warning'
+                )
+                $('#productos').DataTable().destroy();
+                showTable();
             }
         } else {
             swal(
@@ -255,3 +262,126 @@ $('#form-create-producto').submit(async () => {
         console.log(response)
     }
 })
+
+//Función para modificar un registro seleccionado previamente
+$('#form-update-producto').submit(async () => {
+    event.preventDefault();
+    const response = await $.ajax({
+        url: apiProductos + 'updateProducto',
+        type: 'post',
+        data: new FormData($('#form-update-producto')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status) {
+            $('#modificarProductosModal').modal('toggle');
+            if (result.status == 1) {
+                swal(
+                    'Operación Correcta',
+                    'Producto modificado correctamente.',
+                    'success'
+                )
+            } else if (result.status == 2) {
+                swal(
+                    '¡Atención!',
+                    'Producto modificado ' + result.exception,
+                    'success'
+                )
+            } else if (result.status == 3){
+                swal(
+                    '¡Atención!',
+                    'Producto modificado ' + result.exception,
+                    'warning'
+                )
+            }
+            $('#productos').DataTable().destroy();
+            showTable();
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+    } else {
+        swal(
+            'Error',
+            response,
+            'error'
+        )
+    }
+})
+
+//Función para eliminar un registro seleccionado
+function confirmDelete(id, file) {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere eliminar el producto?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, borrala.',
+        closeOnConfirm: false,
+        closeOnCancel: true
+    },
+        async (isConfirm) => {
+            if (isConfirm) {
+                const response = await $.ajax({
+                    url: apiProductos + 'deleteProducto',
+                    type: 'post',
+                    data: {
+                        idLibro: id,
+                        imagenProducto: file
+                    },
+                    datatype: 'json'
+                })
+                //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+                if (isJSONString(response)) {
+                    const result = JSON.parse(response);
+                    //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+                    if (result.status) {
+                        if (result.status == 1) {
+                            swal(
+                                'Operación Correcta',
+                                'Producto eliminado correctamente.',
+                                'success'
+                            )
+
+                        } else if (result.status == 2) {
+                            swal(
+                                'Operación parcialmente correcta',
+                                'Producto eliminado.' + result.exception,
+                                'warning'
+                            )
+                        }
+                        $('#productos').DataTable().destroy();
+                        showTable();
+
+                    } else {
+                        swal(
+                            'Error',
+                            result.exception,
+                            'error'
+                        )
+                    }
+                } else {
+                    swal(
+                        'Error',
+                        response,
+                        'error'
+                    )
+                }
+            }
+        });
+}

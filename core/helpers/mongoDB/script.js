@@ -15,17 +15,17 @@ db.editorial.insert({
 })
 
 db.autor.insert({
-    idAutor: 1,
-    nombre: 'Steven',
-    apellido: 'Diaz',
-    pais: 'El Salvador'
+    idAutor: 2,
+    nombre: 'Natalia',
+    apellido: 'Grande',
+    pais: 'Mexico'
 })
 
 db.categoria.insert({
-    idCategoria: 1,
-    nombreCat: 'Adolescentes',
-    descripcion: 'Los libros más populares de adolescentes estan aqui',
-    descuento: 15
+    idCategoria: 2,
+    nombreCat: 'Ciencia Ficción',
+    descripcion: 'Viaja a otros planetas, visita otras galaxias o viaja por el tiempo, robots, y más',
+    descuento: 25
 })
 
 db.libro.insert({
