@@ -272,5 +272,5 @@ Dashboard::headerTemplate('Productos');
 </div>
 <?php
 require_once('../../core/helpers/dashboardTemplate.php');
-Dashboard::footerTemplate('productos');
+Dashboard::footerTemplate('productosMongo');
 ?>
