@@ -1,0 +1,358 @@
+{
+    "fields": [
+      {
+        "name": "_id",
+        "path": "_id",
+        "count": 3,
+        "types": [
+          {
+            "name": "ObjectID",
+            "bsonType": "ObjectID",
+            "path": "_id",
+            "count": 3,
+            "values": [
+              "5cd4d5e91f13f59276c2c90e",
+              "5cd5bd53a76dd63298002a83",
+              "5cd5bd96a76dd63298002a84"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "ObjectID",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "cant",
+        "path": "cant",
+        "count": 3,
+        "types": [
+          {
+            "name": "Int32",
+            "bsonType": "Int32",
+            "path": "cant",
+            "count": 3,
+            "values": [
+              5,
+              20,
+              10
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "Int32",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "encuadernacion",
+        "path": "encuadernacion",
+        "count": 3,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "encuadernacion",
+            "count": 3,
+            "values": [
+              "Tapa blanda",
+              "Tapa dura de bolsillo",
+              "Tapa dura"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "idAutor",
+        "path": "idAutor",
+        "count": 3,
+        "types": [
+          {
+            "name": "Int32",
+            "bsonType": "Int32",
+            "path": "idAutor",
+            "count": 3,
+            "values": [
+              1,
+              2,
+              1
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": true
+          }
+        ],
+        "total_count": 3,
+        "type": "Int32",
+        "has_duplicates": true,
+        "probability": 1
+      },
+      {
+        "name": "idCat",
+        "path": "idCat",
+        "count": 3,
+        "types": [
+          {
+            "name": "Int32",
+            "bsonType": "Int32",
+            "path": "idCat",
+            "count": 3,
+            "values": [
+              1,
+              2,
+              1
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": true
+          }
+        ],
+        "total_count": 3,
+        "type": "Int32",
+        "has_duplicates": true,
+        "probability": 1
+      },
+      {
+        "name": "idEditorial",
+        "path": "idEditorial",
+        "count": 3,
+        "types": [
+          {
+            "name": "Int32",
+            "bsonType": "Int32",
+            "path": "idEditorial",
+            "count": 3,
+            "values": [
+              1,
+              1,
+              1
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 1,
+            "has_duplicates": true
+          }
+        ],
+        "total_count": 3,
+        "type": "Int32",
+        "has_duplicates": true,
+        "probability": 1
+      },
+      {
+        "name": "Idioma",
+        "path": "Idioma",
+        "count": 3,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "Idioma",
+            "count": 3,
+            "values": [
+              "Español",
+              "Español",
+              "Español"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 1,
+            "has_duplicates": true
+          }
+        ],
+        "total_count": 3,
+        "type": "String",
+        "has_duplicates": true,
+        "probability": 1
+      },
+      {
+        "name": "idLibro",
+        "path": "idLibro",
+        "count": 3,
+        "types": [
+          {
+            "name": "Int32",
+            "bsonType": "Int32",
+            "path": "idLibro",
+            "count": 2,
+            "values": [
+              2,
+              3
+            ],
+            "total_count": 0,
+            "probability": 0.6666666666666666,
+            "unique": 2,
+            "has_duplicates": false
+          },
+          {
+            "name": "Long",
+            "bsonType": "Long",
+            "path": "idLibro",
+            "count": 1,
+            "values": [
+              "1"
+            ],
+            "total_count": 0,
+            "probability": 0.3333333333333333,
+            "unique": 1,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": [
+          "Int32",
+          "Long"
+        ],
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "img",
+        "path": "img",
+        "count": 3,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "img",
+            "count": 3,
+            "values": [
+              "5cd5b9eb48755.jpg",
+              "5cd5bd53da66a.jpg",
+              "5cd5bd9611f23.jpg"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "NombreL",
+        "path": "NombreL",
+        "count": 3,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "NombreL",
+            "count": 3,
+            "values": [
+              "Bajo la Misma Estrella",
+              "Yo Robot",
+              "Hilda"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "NoPag",
+        "path": "NoPag",
+        "count": 3,
+        "types": [
+          {
+            "name": "Int32",
+            "bsonType": "Int32",
+            "path": "NoPag",
+            "count": 3,
+            "values": [
+              200,
+              200,
+              150
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": true
+          }
+        ],
+        "total_count": 3,
+        "type": "Int32",
+        "has_duplicates": true,
+        "probability": 1
+      },
+      {
+        "name": "precio",
+        "path": "precio",
+        "count": 3,
+        "types": [
+          {
+            "name": "Double",
+            "bsonType": "Double",
+            "path": "precio",
+            "count": 3,
+            "values": [
+              10.99,
+              50,
+              15.5
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "Double",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "resena",
+        "path": "resena",
+        "count": 3,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "resena",
+            "count": 3,
+            "values": [
+              "A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora.",
+              "Publicada por primera vez en 1950, cuando la electrónica digital estaba en su infancia, Yo, robot resultó ciertamente visionaria y tendría una influencia enorme no sólo en toda la ciencia ficción posterior, sino incluso en la propia ciencia de la robótica. Aquí formuló Issac Asomov por primera vez las tres leyes fundamentales de la robótica, de las que se valdría para plantear interrogantes que se adentran en el campo de la ética y de la psicología: ¿qué diferencia hay entre un robot inteligente y un ser humano?, ¿puede el creador de un robot predecir su comportamiento?, ¿debe la lógica determinar lo que es mejor para la humanidad? A través de una serie de historias conectadas entre sí por el personaje de la robopsicóloga Susan Calvin, en las que aparecen todo tipo de máquinas inteligentes -  robots que leen el pensamiento, robots que se vuelven locos, robots con sentido del humor o robots políticos-, Asimov inventa unos robots cada vez más perfectos, que llegan a convertirse en un desafío para sus creadores.",
+              "Las aventuras de hilda cuentan las historia de una niña que vive en el bosque, en este tiene muchas historias que contar con sus amigos"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 3,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 3,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      }
+    ],
+    "count": 3
+  }

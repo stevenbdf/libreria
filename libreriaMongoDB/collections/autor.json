@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5cd5aa9e5a37c559b52c3c79"},"idAutor":{"$numberInt":"1"},"nombre":"Steven","apellido":"Diaz","pais":"El Salvador"}
+{"_id":{"$oid":"5cd5bc805a37c559b52c3c7c"},"idAutor":{"$numberInt":"2"},"nombre":"Natalia","apellido":"Grande","pais":"Mexico"}

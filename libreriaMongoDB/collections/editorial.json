@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5cd4d4fd1f13f59276c2c90b"},"idEditorial":{"$numberInt":"1"},"nombreEdit":"Nube de Tinta","direccion":"Barcelona España","pais":"España","tel":{"$numberInt":"77814435"}}

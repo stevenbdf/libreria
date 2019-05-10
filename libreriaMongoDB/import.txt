@@ -1,0 +1,4 @@
+mongoimport -d libreria -c autor autor.json
+mongoimport -d libreria -c categoria categoria.json
+mongoimport -d libreria -c editorial editorial.json
+mongoimport -d libreria -c libro libro.json

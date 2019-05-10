@@ -1,0 +1,130 @@
+{
+    "fields": [
+      {
+        "name": "_id",
+        "path": "_id",
+        "count": 2,
+        "types": [
+          {
+            "name": "ObjectID",
+            "bsonType": "ObjectID",
+            "path": "_id",
+            "count": 2,
+            "values": [
+              "5cd4d5c81f13f59276c2c90d",
+              "5cd5b48c5a37c559b52c3c7b"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "ObjectID",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "descripcion",
+        "path": "descripcion",
+        "count": 2,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "descripcion",
+            "count": 2,
+            "values": [
+              "Los libros más populares de adolescentes estan aqui",
+              "Viaja a otros planetas, visita otras galaxias o viaja por el tiempo, robots, y más"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "descuento",
+        "path": "descuento",
+        "count": 2,
+        "types": [
+          {
+            "name": "Double",
+            "bsonType": "Double",
+            "path": "descuento",
+            "count": 2,
+            "values": [
+              15,
+              25
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "Double",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "idCategoria",
+        "path": "idCategoria",
+        "count": 2,
+        "types": [
+          {
+            "name": "Double",
+            "bsonType": "Double",
+            "path": "idCategoria",
+            "count": 2,
+            "values": [
+              1,
+              2
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "Double",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "nombreCat",
+        "path": "nombreCat",
+        "count": 2,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "nombreCat",
+            "count": 2,
+            "values": [
+              "Adolescentes",
+              "Ciencia Ficción"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      }
+    ],
+    "count": 2
+  }

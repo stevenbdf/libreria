@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5cd4d5c81f13f59276c2c90d"},"idCategoria":{"$numberInt":"1"},"nombreCat":"Adolescentes","descripcion":"Los libros más populares de adolescentes estan aqui","descuento":{"$numberInt":"15"}}
+{"_id":{"$oid":"5cd5b48c5a37c559b52c3c7b"},"idCategoria":{"$numberInt":"2"},"nombreCat":"Ciencia Ficción","descripcion":"Viaja a otros planetas, visita otras galaxias o viaja por el tiempo, robots, y más","descuento":{"$numberInt":"25"}}

@@ -1,0 +1,130 @@
+{
+    "fields": [
+      {
+        "name": "_id",
+        "path": "_id",
+        "count": 2,
+        "types": [
+          {
+            "name": "ObjectID",
+            "bsonType": "ObjectID",
+            "path": "_id",
+            "count": 2,
+            "values": [
+              "5cd5aa9e5a37c559b52c3c79",
+              "5cd5bc805a37c559b52c3c7c"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "ObjectID",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "apellido",
+        "path": "apellido",
+        "count": 2,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "apellido",
+            "count": 2,
+            "values": [
+              "Diaz",
+              "Grande"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "idAutor",
+        "path": "idAutor",
+        "count": 2,
+        "types": [
+          {
+            "name": "Double",
+            "bsonType": "Double",
+            "path": "idAutor",
+            "count": 2,
+            "values": [
+              1,
+              2
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "Double",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "nombre",
+        "path": "nombre",
+        "count": 2,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "nombre",
+            "count": 2,
+            "values": [
+              "Steven",
+              "Natalia"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      },
+      {
+        "name": "pais",
+        "path": "pais",
+        "count": 2,
+        "types": [
+          {
+            "name": "String",
+            "bsonType": "String",
+            "path": "pais",
+            "count": 2,
+            "values": [
+              "El Salvador",
+              "Mexico"
+            ],
+            "total_count": 0,
+            "probability": 1,
+            "unique": 2,
+            "has_duplicates": false
+          }
+        ],
+        "total_count": 2,
+        "type": "String",
+        "has_duplicates": false,
+        "probability": 1
+      }
+    ],
+    "count": 2
+  }
