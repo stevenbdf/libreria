@@ -101,7 +101,7 @@ class Pedidos extends Validator
 				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
-				WHERE pedido.idCliente = 9
+				WHERE pedido.idCliente = ?
 				ORDER BY idPedido DESC';
 		$params = array($_SESSION['idCliente']);
 		return Database::getRows($sql, $params);
