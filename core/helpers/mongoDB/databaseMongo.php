@@ -1,17 +1,11 @@
 <?php
 require 'vendor/autoload.php';
-// $db = (new MongoDB\Client("mongodb://127.0.0.1:27017"))->dbname->libreria;
-// $result = $db->autor->find();
+require_once('../../../core/helpers/validator.php');
+require_once('../../../core/models/productos.php');
 
-// $document = $collection->insertOne(['idAutor' => 1, 'nombre' => 'Manuel', 'apellido' => 'Gonzalez', 'pais' => 'Mexico']);
-// $cursor = $collection->find();
-// $autores = array();
-// foreach ($cursor as $id => $value) {
-//     array_push($autores, array($value['idAutor']  =>
-//     array('nombre' => $value['nombre'], 'apellido' => $value['apellido'], 'pais' => $value['pais'])));
-// }
 if (isset($_GET['action'])) {
     $result = array('status' => 0, 'exception' => '');
+    $producto = new Productos;
     switch ($_GET['action']) {
         case 'readProductos':
             $collection = (new MongoDB\Client)->libreria->libro;
@@ -164,6 +158,47 @@ if (isset($_GET['action'])) {
                 $result['status'] = 1;
             } else {
                 $result['exception'] = 'Error no tiene nada';
+            }
+            break;
+        case 'createProducto':
+            if (is_uploaded_file($_FILES['imagen']['tmp_name'])) {
+                if ($producto->setImagen($_FILES['imagen'], null)) {
+                    $collectionLibro = (new MongoDB\Client)->libreria->libro;
+                    $salida = $collectionLibro->find();
+                    $libros = array();
+                    foreach ($salida as $id => $value) {
+                        array_push($libros, $value);
+                    }
+                    $idNuevo = 1;
+                    if (count($libros) > 0) {
+                        $idNuevo = $libros[count($libros) - 1]['idLibro'] + 1;
+                    }
+                    $collection = (new MongoDB\Client)->libreria->libro;
+                    $cursor = $collection->insertOne(
+                        [
+                            'idLibro' => $idNuevo,
+                            'idAutor' => (int)$_POST['autorSelect'],
+                            'idEditorial' => (int)$_POST['editorialSelect'],
+                            'NombreL' => $_POST['titulo'],
+                            'Idioma' => $_POST['idioma'],
+                            'NoPag' => $_POST['noPaginas'],
+                            'encuadernacion' => $_POST['encuadernacion'],
+                            'resena' => $_POST['resena'],
+                            'precio' => floatval($_POST['precio']),
+                            'idCat' => (int)$_POST['categoriaSelect'],
+                            'img' => $producto->getImageName(),
+                            'cant' => (int)$_POST['cantidad']
+                        ]
+                    );
+                    if ($producto->saveFile($_FILES['imagen'], $producto->getRuta(), $producto->getImagen())) {
+                        $result['status'] = 1;
+                    } else {
+                        $result['status'] = 2;
+                        $result['exception'] = 'No se guardó el archivo';
+                    }
+                } else {
+                    $result['exception'] = $producto->getImageError();
+                }
             }
             break;
     }

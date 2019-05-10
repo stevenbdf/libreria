@@ -65,7 +65,6 @@ const ajaxRequest = async (API, functionName) => {
     }
 }
 
-
 //Función para obtener y mostrar los registros disponibles
 const showTable = async () => {
     const response = await $.ajax({
@@ -150,6 +149,7 @@ function fillTable(rows) {
     });
 }
 
+//Función para limitar el texto muy largo
 function limitText(descripcion) {
     var descripcionCorta = '';
     const limiteCaracteres = 35;
@@ -182,15 +182,13 @@ const modalUpdate = async id => {
     if (isJSONString(response)) {
         const result = JSON.parse(response);
         //Se comprueba si el resultado es satisfactorio para mostrar los valores en el formulario, sino se muestra la excepción
-        console.log(result)
         if (result.status) {
-            console.log(result.dataset)
             const dataset = result.dataset[0];
             $('#form-update-producto')[0].reset();
             $('#idLibro').val(dataset.idLibro);
             $('#autorSelect-update').val(dataset.idAutor);
             $('#editorialSelect-update').val(dataset.idEditorial);
-            $('#categoriaSelect-update').val(dataset.idCat);
+            $('#categoriaSelect-update').val(dataset.idCategoria);
             $('#titulo-update').val(dataset.NombreL);
             $('#idioma-update').val(dataset.Idioma);
             $('#noPaginas-update').val(dataset.NoPag);
@@ -212,3 +210,48 @@ const modalUpdate = async id => {
         console.log(response);
     }
 }
+
+//Función para crear un nuevo registro
+$('#form-create-producto').submit(async () => {
+    event.preventDefault();
+    const response = await $.ajax({
+        url: apiProductos + 'createProducto',
+        type: 'post',
+        data: new FormData($('#form-create-producto')[0]),
+        datatype: 'json',
+        cache: false,
+        contentType: false,
+        processData: false
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (result.status) {
+            $('#form-create-producto')[0].reset();
+            $('#guardarProductosModal').modal('toggle');
+            if (result.status == 1) {
+                swal(
+                    'Operación Correcta',
+                    'Producto guardado correctamente.',
+                    'success'
+                )
+                $('#productos').DataTable().destroy();
+                showTable();
+
+            }
+        } else {
+            swal(
+                'Error',
+                result.exception,
+                'error'
+            )
+        }
+        console.log(result.dataset)
+    } else {
+        console.log(response)
+    }
+})
