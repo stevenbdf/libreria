@@ -29,13 +29,14 @@ db.categoria.insert({
 })
 
 db.libro.insert({
+    idLibro: 2,
     idAutor: 1,
     idEditorial: 1,
-    NombreL: 'Bajo la Misma Estrella',
+    NombreL: 'EL Teorema de Katherine',
     Idioma: 'Español',
     NoPag: 304,
     encuadernacion: 'Tapa blanda',
-    resena: 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora.',
+    resena: 'No hay we',
     precio: 10.99,
     idCat: 1,
     img: '5cc67a4988d2d.jpg',
@@ -82,11 +83,12 @@ db.libro.aggregate([
     { $unwind: "$categoria" },
 
     //Propiedad para filtrar
-    //{ $match: { nombre: "Steven" } }
+    { $match: { idLibro: 1 } },
 
     // Se define que campos quieres en tu consulta
     {
         $project: {
+            idLibro: 1,
             autor: "$autor.nombre",
             editorial: "$editorial.nombreEdit",
             NombreL: 1,

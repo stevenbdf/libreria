@@ -27,7 +27,6 @@ Dashboard::headerTemplate('Productos');
                             <th scope="col">Titulo</th>
                             <th scope="col">Imagen</th>
                             <th scope="col">Categoria</th>
-                            <th scope="col">Aprobación</th>
                             <th scope="col">Autor</th>
                             <th scope="col">Editorial</th>
                             <th scope="col">Cantidad</th>
