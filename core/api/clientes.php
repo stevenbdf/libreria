@@ -45,12 +45,23 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         }
     } else if (isset($_SESSION['idCliente']) && $_GET['site'] == 'public') {
         switch ($_GET['action']) {
+            case 'checkSession':
+                if (isset($_SESSION['idCliente'])) {
+                    $result['status'] = 1;
+                    $result['dataset'] = $_SESSION['idCliente'];
+                }
+                break;
             case 'logout':
                 if (session_destroy()) {
                     header('location: ../../views/public/index.php');
                     $_SESSION['carrito'] = array();
                 } else {
                     header('location: ../../views/public/index.php');
+                }
+                break;
+            case 'logoutApp':
+                if (session_destroy()) {
+                    $result['status'] = 1;
                 }
                 break;
             case 'get':
@@ -150,6 +161,12 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         }
     } else if ($_GET['site'] == 'public') {
         switch ($_GET['action']) {
+            case 'checkSession':
+                if (isset($_SESSION['idCliente'])) {
+                    $result['status'] = 1;
+                    $result['dataset'] = $_SESSION['idCliente'];
+                }
+                break;
             case 'register':
                 $_POST = $clientes->validateForm($_POST);
                 if ($clientes->setNombres($_POST['nombres'])) {
@@ -170,7 +187,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                                 $result['exception'] = 'Operación fallida';
                                             }
                                         } else {
-                                            $result['exception'] = $clientes->getImageError().'. La dimension de la imagen debe ser 500x500';
+                                            $result['exception'] = $clientes->getImageError() . '. La dimension de la imagen debe ser 500x500';
                                         }
                                     } else {
                                         $result['exception'] = 'Clave menor a 6 caracteres';

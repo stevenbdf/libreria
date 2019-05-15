@@ -137,8 +137,8 @@ class Clientes extends Validator
 	public function createCliente()
 	{
 		$hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
-		$sql = 'INSERT INTO cliente(nombreCliente, apellidoCliente, correo, contrasena, direccion, img)
-						VALUES(?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO cliente(nombreCliente, apellidoCliente, correo, contrasena, direccion, img, estado)
+						VALUES(?, ?, ?, ?, ?, ?, 1)';
 		$params = array($this->nombres, $this->apellidos, $this->correo, $hash, $this->direccion, 
 										$this->img );
 		return Database::executeRow($sql, $params);
