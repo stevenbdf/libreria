@@ -1,21 +1,32 @@
 <?php
 require('../../resources/libraries/fpdf.php');
+require('../../core/helpers/database.php');
+require('../../core/helpers/validator.php');
 
 class PDF extends FPDF
 {
+private $titulo;
+
+public function setTitulo($value){
+	$this->titulo= $value;
+}
 // Cabecera de p�gina
 function Header()
 {
 	// Logo
-	$this->Image('logo_pb.png',10,8,33);
+	$this->Image('../../resources/img/logo.png',20,10,56);
 	// Arial bold 15
-	$this->SetFont('Arial','B',15);
+	$this->SetFont('Arial','',25);
 	// Movernos a la derecha
 	$this->Cell(80);
 	// T�tulo
-	$this->Cell(30,10,'Title',1,0,'C');
+	$this->Cell(100,15,$this->titulo,0,0,'R');
+
+	
+	
 	// Salto de l�nea
-	$this->Ln(20);
+	$this->Ln(10);
+	
 }
 
 // Pie de p�gina
@@ -30,12 +41,5 @@ function Footer()
 }
 }
 
-// Creaci�n del objeto de la clase heredada
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Times','',12);
-for($i=1;$i<=40;$i++)
-	$pdf->Cell(0,10,'Imprimiendo l�nea n�mero '.$i,0,1);
-$pdf->Output();
+
 ?>
