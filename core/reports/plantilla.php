@@ -47,7 +47,7 @@ class PDF extends FPDF
 		$this->SetFont('Arial', 'I', 14);
 		//Información de en cabezado, autor y fecha del reporte, autor proviene de session
 		($this->mostrarAutor) ? ($this->Cell(65, 30, 'Autor: ' . $_SESSION['correoUsuario'], 0, 0, 'C'))
-			: ($this->Cell(65, 30, '', 0, 0, 'C'));
+			: ($this->Cell(65, 30, 'Cliente: '. $_SESSION['correoCliente'], 0, 0, 'C'));
 		$this->Cell(130, 30, 'Generado el: ' . date('d-m-Y H:i:s'), 0, 1, 'R');
 		//Salto de linea
 		$this->Ln(1);
