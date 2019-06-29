@@ -7,6 +7,7 @@ class PDF extends FPDF
 {
 	//Variable que almacena titulo del reporte
 	private $titulo;
+	private $mostrarAutor = false;
 
 	/**
 	 * Función que establece valor a titulo
@@ -15,6 +16,14 @@ class PDF extends FPDF
 	public function setTitulo($value)
 	{
 		$this->titulo = $value;
+	}
+
+	/**
+	 * Función que establece valor a mostrar autor
+	 */
+	public function mostrarAutor()
+	{
+		$this->mostrarAutor = true;
 	}
 
 	// Cabecera de p�gina
@@ -37,7 +46,8 @@ class PDF extends FPDF
 		//Definimos la fuente, tipo, y tamaño para información de encabezado
 		$this->SetFont('Arial', 'I', 14);
 		//Información de en cabezado, autor y fecha del reporte, autor proviene de session
-		$this->Cell(65, 30, 'Autor: ' . $_SESSION['correoUsuario'], 0, 0, 'C');
+		($this->mostrarAutor) ? ($this->Cell(65, 30, 'Autor: ' . $_SESSION['correoUsuario'], 0, 0, 'C'))
+			: ($this->Cell(65, 30, '', 0, 0, 'C'));
 		$this->Cell(130, 30, 'Generado el: ' . date('d-m-Y H:i:s'), 0, 1, 'R');
 		//Salto de linea
 		$this->Ln(1);
