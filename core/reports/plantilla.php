@@ -29,7 +29,9 @@ class PDF extends FPDF
 	// Cabecera de p�gina
 	function Header()
 	{
-		session_start();
+		if (!isset($_SESSION)) {
+			session_start();
+		}
 		ini_set('date.timezone', 'America/El_Salvador');
 		//Se especifica 10 mm de margenes, osea 1cm
 		$this->SetMargins(10, 10, 10);

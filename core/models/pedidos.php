@@ -94,6 +94,17 @@ class Pedidos extends Validator
 		return Database::getRows($sql, $params);
 	}
 
+	public function readPedidosFecha($fecha1, $fecha2, $estado)
+	{
+		$sql = 'SELECT idPedido, nombreCliente, apellidoCliente, correo, fecha, pedido.estado,
+				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
+				FROM pedido 
+				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
+				WHERE pedido.estado = '.$estado.' AND pedido.fecha BETWEEN '.$fecha1.' AND '.$fecha2.' ORDER BY idPedido DESC';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
+
 	//Metodos para manejar el CRUD
 	public function readPedidosCliente()
 	{
