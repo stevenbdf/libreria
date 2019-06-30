@@ -106,7 +106,7 @@ class Pedidos extends Validator
 		$params = array($_SESSION['idCliente']);
 		return Database::getRows($sql, $params);
 	}
-
+ 
 	public function getPedido()
 	{
 		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, fecha, pedido.estado 
