@@ -8,6 +8,7 @@ Dashboard::headerTemplate('Pedidos');
         <div class="row shadow-sm p-3 mb-5 bg-white rounded">
             <div class="table-responsive-lg" style="width:100%">
                 <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Pedidos</h1>
+
                 <div class="row d-flex justify-content-center">
                     <div class="col-6 col-md-4 text-center">
                         <button type="button" class="ml-lg-2 btn btn-info" id="reload">
@@ -30,6 +31,29 @@ Dashboard::headerTemplate('Pedidos');
                     </thead>
                     <tbody id="tbody-read-pedidos"></tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row shadow-sm p-3 mb-5 bg-white rounded">
+            <h1 class="text-center w-100 text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Reportes</h1>
+            <p class="text-center w-100">Genera un reporte en PDF de los pedidos por un rango de fecha especifico, organizados por estado</p>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="fecha1">Fecha Inicio</label>
+                    <input type="date" class="form-control" id="fecha1" placeholder="Fecha Inicio">
+                    <small class="form-text text-muted">Ej. 19/05/2019</small>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label for="fecha2">Fecha Final</label>
+                    <input type="date" class="form-control" id="fecha2" placeholder="Fecha Final">
+                    <small class="form-text text-muted">Ej. 30/05/2019</small>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center my-4">
+                <button type="button" onclick="enviarReporte()" class="btn btn-success py-3">Generar Reporte
+                    <i class="material-icons">insert_drive_file</i>
+                </button>
             </div>
         </div>
     </div>

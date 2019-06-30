@@ -40,7 +40,7 @@ $('#reload').click(async () => {
 //Función para obtener el nombre y elemento de acuerdo al estado
 function getTipoEstado(idEstado) {
     idEstado = parseInt(idEstado)
-    switch(idEstado){
+    switch (idEstado) {
         case 0: return '<span class="badge p-2 badge-info d-flex justify-content-center">Pagado</span>';
         case 1: return '<span class="badge p-2 badge-success d-flex justify-content-center">Enviado</span>';
         case 2: return '<span class="badge p-2 badge-danger d-flex justify-content-center">Cancelado</span>';
@@ -125,7 +125,7 @@ function fillTableDetalle(rows) {
     });
     $('#tbody-read-detalle-pedidos').html(content);
     var total = 0;
-    rows.map( (item, index) => {
+    rows.map((item, index) => {
         total = total + (valoresProductos.cantidad[index] * valoresProductos.precioVenta[index]);
     })
     $('#total').val(total.toFixed(2));
@@ -169,12 +169,12 @@ const modalUpdate = async id => {
                 console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
             });
 
-            if(isJSONString(response)) {
+            if (isJSONString(response)) {
                 const result = JSON.parse(response);
-                if(result.status) {
+                if (result.status) {
                     fillTableDetalle(result.dataset)
-                }else{
-                    console.log('error:',result.exception)
+                } else {
+                    console.log('error:', result.exception)
                 }
             }
 
@@ -229,3 +229,9 @@ $('#form-pedidos').submit(async () => {
         console.log(response);
     }
 })
+
+const enviarReporte = () => {
+    let fecha1 = $('input#fecha1').val()
+    let fecha2 = $('input#fecha2').val()
+    location.href = `../../core/reports/pedidos.php?fecha1=${fecha1}&fecha2=${fecha2}`;
+}
