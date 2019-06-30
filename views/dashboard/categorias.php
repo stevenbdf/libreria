@@ -33,7 +33,7 @@ Dashboard::headerTemplate('Categorias');
             </table>
         </div>
     </div>
-</div>
+ 
 <!-- Ventana para guardar Categoria -->
 <div class="modal fade" id="guardarCategoriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -54,7 +54,7 @@ Dashboard::headerTemplate('Categorias');
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Descuento:</label>
-                                <input type="text"  name="descuento" class="form-control form-control-alternative">
+                                <input type="text" name="descuento" class="form-control form-control-alternative">
                             </div>
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Descripción:</label>

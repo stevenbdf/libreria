@@ -42,6 +42,7 @@ const showOptions = async () => {
 
     $('#categoriaSelect').html(categoriasOpt);
     $('#categoriaSelect-update').html(categoriasOpt);
+    $('#categoriaSelect-report').html(categoriasOpt);
 }
 
 //Función para obtener y mostrar los registros disponibles
@@ -401,4 +402,9 @@ function confirmDelete(id, file) {
                 }
             }
         });
+}
+
+const EnviarReporte = () => {
+    let categoria = document.getElementById($('CategoriaSelect-report')).value();
+    location.href = `../../core/reports/categorias.php?idCategoria=${categoria}`;
 }

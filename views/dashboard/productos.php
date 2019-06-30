@@ -43,6 +43,28 @@ Dashboard::headerTemplate('Productos');
         </div>
     </div>
 </div>
+
+<div class="row shadow-sm p-3 mb-5 bg-white rounded">
+    <h1 class="text-center w-100 text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Reportes</h1>
+    <p class="text-center w-100">Genera un reporte en PDF de los libros por categoria existentes</p>
+    <div class="col-12 col-md-12">
+        <div class="input-group mb-3">
+            <div class="form-group col-8 ml-5">
+                <div class="floating-label">
+                    <label for="categoria-report">Categoria</label>
+                    <select class="form-control" name="categoriaSelect-report" id="categoriaSelect-report"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 d-flex justify-content-center my-4">
+        <button type="button" onclick="EnviarReporte()" class="btn btn-success py-3">Generar Reporte
+            <i class="material-icons">insert_drive_file</i>
+        </button>
+    </div>
+</div>
+</div>
+</div>
 <!-- Ventana para guardar Productos -->
 <div class="modal fade" id="guardarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
