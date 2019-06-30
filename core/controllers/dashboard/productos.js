@@ -405,6 +405,6 @@ function confirmDelete(id, file) {
 }
 
 const EnviarReporte = () => {
-    let categoria = document.getElementById($('CategoriaSelect-report')).value();
+    let categoria = $('#categoriaSelect-report').val()
     location.href = `../../core/reports/categorias.php?idCategoria=${categoria}`;
 }
