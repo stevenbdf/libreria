@@ -36,7 +36,7 @@ function llenarTabla($pdf, $pedido, $estado)
         $pdf->SetTextColor(0, 0, 0);
         foreach ($datos as $fila) {
             $pdf->Cell(20, 10, utf8_decode($fila['idPedido']), 1, 0, 'C');
-            $pdf->Cell(60, 10, utf8_decode($fila['nombreCliente'].$fila['apellidoCliente']), 1, 0, 'L');
+            $pdf->Cell(60, 10, utf8_decode($fila['nombreCliente'].' '.$fila['apellidoCliente']), 1, 0, 'L');
             $pdf->Cell(60, 10, utf8_decode($fila['correo']), 1, 0, 'L');
             $pdf->Cell(25, 10, utf8_decode($fila['fecha']), 1, 0, 'C');
             $pdf->Cell(30, 10, utf8_decode("$".$fila['montoTotal']), 1, 1, 'R');
