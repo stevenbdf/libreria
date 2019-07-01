@@ -193,7 +193,7 @@ class Productos extends Validator
     }
 
     //Metodos para manejar el CRUD
-    public function readProductosByCategory()
+    public function readProductosByCategory($idCategoria)
     {
         $sql = "SELECT idLibro,  autor.nombre as 'nombreAutor', autor.apellido as 'apellidoAutor', NombreL,
             editorial.nombreEdit as 'editorial', categoria.nombreCat, cant as 'cantidad', 
@@ -204,7 +204,7 @@ class Productos extends Validator
             INNER JOIN categoria ON libro.idCat = categoria.idCategoria
             INNER JOIN editorial ON libro.idEditorial = editorial.idEditorial
             WHERE libro.idCat = ? ORDER BY idLibro ";
-        $params = array($this->idCategoria);
+        $params = array($idCategoria);
         return Database::getRows($sql, $params);
     }
 
@@ -267,4 +267,12 @@ class Productos extends Validator
 			return false;
 		}
     }
+
+    public function getNombre($idCategoria)
+    {
+        $sql='SELECT nombreCat FROM categoria WHERE idCategoria= ?';
+        $params = array($idCategoria);
+        return Database::getRow($sql, $params);
+    }
+
 }
