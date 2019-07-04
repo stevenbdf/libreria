@@ -62,6 +62,23 @@ Dashboard::headerTemplate('Productos');
             <i class="material-icons">insert_drive_file</i>
         </button>
     </div>
+
+    <p class="text-center w-100">Genera un reporte en PDF de los comentarios y likes filtrados por libro</p>
+    <div class="col-12 col-md-12">
+        <div class="input-group mb-3">
+            <div class="form-group col-8 ml-5">
+                <div class="floating-label">
+                    <label for="categoria-report">Libro</label>
+                    <select class="form-control" name="libroSelect-report" id="libroSelect-report"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 d-flex justify-content-center my-4">
+        <button type="button" onclick="EnviarReporteL()" class="btn btn-success py-3">Generar Reporte
+            <i class="material-icons">insert_drive_file</i>
+        </button>
+    </div>
 </div>
 <!-- Ventana para guardar Productos -->
 <div class="modal fade" id="guardarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

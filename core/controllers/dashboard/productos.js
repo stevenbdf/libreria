@@ -15,6 +15,8 @@ const apiCategorias = '../../core/api/categorias.php?site=dashboard&action=';
 const showOptions = async () => {
     const autores = await ajaxRequest(apiAutores, 'readAutores');
 
+    const libros = await ajaxRequest(apiProductos, 'readProductos');
+
     const editoriales = await ajaxRequest(apiEditoriales, 'readEditorial');
 
     const categorias = await ajaxRequest(apiCategorias, 'readCategoria');
@@ -34,6 +36,11 @@ const showOptions = async () => {
         categoriasOpt += `<option value="${item.idCategoria}">${item.nombreCat} Desc. ${item.descuento}%</option>)`;
     })
 
+    let librosOpt = '<option value="0"> </option>';
+    libros.map(item => {
+        librosOpt += `<option value="${item.idLibro}">${item.NombreL} Desc. ${item.descuento}%</option>)`;
+    })
+
     $('#autorSelect').html(autoresOpt);
     $('#autorSelect-update').html(autoresOpt);
 
@@ -43,6 +50,8 @@ const showOptions = async () => {
     $('#categoriaSelect').html(categoriasOpt);
     $('#categoriaSelect-update').html(categoriasOpt);
     $('#categoriaSelect-report').html(categoriasOpt);
+
+    $('#libroSelect-report').html(librosOpt); 
 }
 
 //Función para obtener y mostrar los registros disponibles
@@ -407,4 +416,9 @@ function confirmDelete(id, file) {
 const EnviarReporte = () => {
     let categoria = $('#categoriaSelect-report').val()
     location.href = `../../core/reports/categorias.php?idCategoria=${categoria}`;
+}
+
+const EnviarReporteL = () => {
+    let libro = $('#libroSelect-report').val()
+    location.href = `../../core/reports/reacciones.php?idLibro=${libro}`;
 }

@@ -208,7 +208,7 @@ class Productos extends Validator
         return Database::getRows($sql, $params);
     }
 
-    public function getProducto()
+    public function getProducto($idLibro)
     {
         $sql = "SELECT idLibro, libro.idAutor, autor.pais, autor.nombre as 'nombreAutor', autor.apellido as 'apellidoAutor', NombreL,
         libro.idEditorial, editorial.nombreEdit as 'editorial', libro.idCat, categoria.nombreCat, cant as 'cantidad',
@@ -219,7 +219,7 @@ class Productos extends Validator
         INNER JOIN categoria ON libro.idCat = categoria.idCategoria
         INNER JOIN editorial ON libro.idEditorial = editorial.idEditorial
         WHERE idLibro = ?";
-        $params = array($this->idLibro);
+        $params = array($idLibro);
         return Database::getRow($sql, $params);
     }
 
@@ -272,6 +272,13 @@ class Productos extends Validator
     {
         $sql='SELECT nombreCat FROM categoria WHERE idCategoria= ?';
         $params = array($idCategoria);
+        return Database::getRow($sql, $params);
+    }
+
+    public function getNombreL($idLibro)
+    {
+        $sql='SELECT NombreL FROM libro WHERE idLibro=?';
+        $params = array($idLibro);
         return Database::getRow($sql, $params);
     }
 
