@@ -126,5 +126,12 @@ class Autores extends Validator
 		}
 	}
 
+	public function getCountBooksByAuthor()
+	{
+		$sql = 'SELECT COUNT(libro.idLibro) AS Cantidad , concat_ws(" ", nombre ,apellido) AS Nombre from autor INNER JOIN libro on autor.idAutor = libro.idAutor GROUP By autor.nombre';
+		$params = array(null);
+		return Database::getRows($sql, $params);
+	}
+
 }
 ?>

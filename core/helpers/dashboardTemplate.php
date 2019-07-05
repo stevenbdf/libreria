@@ -186,6 +186,9 @@ class Dashboard
 							<li class="nav-item">
 								<a class="nav-link" href="./bitacora.php"><i class="material-icons mr-3">format_list_bulleted</i> Bitacora</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./graficas.php"><i class="material-icons mr-3">timeline</i> Gráficas</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -309,6 +312,9 @@ class Dashboard
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" href="./bitacora.php"><i class="material-icons mr-3">format_list_bulleted</i> Bitacora</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="./graficas.php"><i class="material-icons mr-3">timeline</i> Gráficas</a>
 							</li>
 						</ul>
 					</div>

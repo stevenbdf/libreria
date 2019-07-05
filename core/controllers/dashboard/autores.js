@@ -1,12 +1,13 @@
 $(document).ready(() => {
     showTable();
+    graficoAutores()
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiAutores = '../../core/api/autores.php?site=dashboard&action=';
 
 //Función para obtener y mostrar los registros disponibles
-const showTable = async () => {
+const showTable = async () => { 
     const response = await $.ajax({
         url: apiAutores + 'readAutores',
         type: 'post',
@@ -248,7 +249,149 @@ function confirmDelete(id) {
                 } else {
                     console.log(response);
                 }
+
+
             }
+
         });
 }
 
+function graficoAutores()
+{
+    $.ajax({
+        url: apiAutores + 'getCountBooksByAuthor',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+    .done(function(response){
+        // Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+        if (isJSONString(response)) {
+            const result = JSON.parse(response);
+            // Se comprueba si el resultado es satisfactorio, sino se remueve la etiqueta canvas
+            if (result.status) {
+
+                let colors = [];
+                var cantidad = [];
+                var name =[];
+                
+                for(i in result.dataset){
+                    cantidad.push(result.dataset[i].Cantidad);
+                    name.push(result.dataset[i].Nombre);
+                    colors.push('#' + (Math.random().toString(16)).substring(2, 8));
+                }
+                const context = $('#chart');
+                const chart = new Chart(context, {
+                    type: 'bar',
+                    data: {
+                        labels: name,
+                        datasets: [{
+                            label: 'Libros',
+                            data: cantidad,
+                            backgroundColor: colors,
+                            borderColor: '#000000',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Libros por autor'
+                        },
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true,
+                                    stepSize: 1
+                                }
+                            }]
+                        }
+                    }
+                });
+               /* var charData ={
+                    labels:name,
+                    dataset : [
+                        {
+                            backgroundColor: 'red',
+                            borderColor: 'black',
+                            pointBorderColor: 'black',
+                            hoverBackgroundColor: 'red',
+                            hoverBorderColor: 'rgba(200,200 , 200,1)',
+                            data: cantidad
+                        },
+                    ]
+                };
+
+                console.log(cantidad);
+                console.log(name);
+                
+                var ctx = $('#chart');
+                
+                var barGraph = new  Chart(ctx, {
+                    type: 'line',
+                    data: charData,
+                    options: {
+                        legend: {
+                            labels: {
+                                generateLabels: function (chart) {
+                                    labels = Chart.defaults.global.defaultFontColor = 'black';
+                                    return labels;
+                                } 
+                            },
+                            display: false,
+                        },
+                        scales:{
+                            yAxes: [{
+                                ticks:{
+                                    fontColor: 'white',
+                                    fontStyle: 'bold',
+                                    beginAtZero: true,
+                                    padding: 20,
+                                    stepSize: 1
+
+                                },
+                                gridLines: {
+                                    drawTicks: false,
+                                    display: false
+                                }
+                            }],
+                            xAxes: [{
+                                gridLines: {
+                                    zeroLineColor: 'transparent'
+                                },
+                                ticks: {
+                                    padding: 10,
+                                    fontColor: 'white',
+                                    fontStyle: 'bold'
+                                }
+                            }]
+                        },
+                        gridLines: {
+                            display: true,
+                            color: 'white',
+
+                        },
+                        tooltips: {
+                            callbacks: {
+                                label: tooltipItem => '${tooltipItem.yLabel}: ${tooltipItem.xLabel}',
+                                title: () => null,
+                            }
+                        },
+                    },
+                })*/
+                
+            } else {
+                $('#chart').remove();
+            }
+        } else {
+            console.log(response);
+        }
+    })
+    .fail(function(jqXHR){
+        // Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+}

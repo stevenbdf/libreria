@@ -91,7 +91,14 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
 				} else {
 					$result['exception'] = 'Autor incorrecta';
 				}
-            	break;
+                break;
+                case 'getCountBooksByAuthor':
+                if ($result['dataset']= $autor->getCountBooksByAuthor()){
+                    $result['status'] = 1;
+                }else {
+                    $result['exception'] = 'No existen datos';
+                }
+                break;
 			default:
                 exit('Acción no disponible');
         }
@@ -126,6 +133,8 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 }
                 break;
+
+                
             default:
                 exit('Acción no disponible');
     	}
