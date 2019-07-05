@@ -36,7 +36,7 @@ function llenarTabla($pdf, $producto)
             $pdf->Cell(40, 10, utf8_decode($fila['idLibro']), 1, 0, 'C');
             $pdf->Cell(60, 10, utf8_decode($fila['NombreL']), 1, 0, 'L');
             $pdf->Cell(60, 10, utf8_decode($fila['nombreAutor'].' '.$fila['apellidoAutor']), 1, 0, 'L');
-            $pdf->Cell(35, 10, utf8_decode("$".$fila['precio']), 1, 1, 'R');
+            $pdf->Cell(35, 10, utf8_decode("$".$fila['precioFinal']), 1, 1, 'R');
         }
     } else {
         $pdf->Cell(0, 15, 'SIN LIBROS DE ESTA CATEGORIA', 0, 1, 'C');

@@ -35,6 +35,29 @@ Dashboard::headerTemplate('Autores');
             </table>
         </div>
     </div>
+    <div class="row shadow-sm p-3 mb-5 bg-white rounded">
+        <h1 class="text-center w-100 text-uppercase mt-4 mb-4"
+            style="font-family: 'Arimo', sans-serif; font-size:50px;">Reportes</h1>
+        <p class="text-center w-100">Genera un reporte en PDF de los libros por cada autor</p>
+        <div class="col-6 offset-3">
+            <div class="custom-control custom-switch">
+                <input class="custom-control-input" id="customSwitch" type="checkbox">
+                <span class="custom-control-track"></span>
+                <label class="custom-control-label" for="customSwitch">Filtrar por autor</label>
+            </div>
+            <div class="form-group mt-3">
+                <div class="floating-label">
+                    <label for="autorSelect">Selecciona un autor</label>
+                    <select class="form-control" name="autorSelect" id="autorSelect" disabled></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center my-4">
+            <button type="button" onclick="enviarReporte()" class="btn btn-success py-3">Generar Reporte
+                <i class="material-icons">insert_drive_file</i>
+            </button>
+        </div>
+    </div>
 </div>
 <!-- Ventana para guardar Autor -->
 <div class="modal fade" id="guardarAutoresModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -53,15 +76,20 @@ Dashboard::headerTemplate('Autores');
                         <div class="row">
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" id="name" name="nombres" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name',1,50)">
+                                <input type="text" id="name" name="nombres"
+                                    class="form-control form-control-alternative" required
+                                    onfocusout="validateAlphabetic('name',1,50)">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Apellido:</label>
-                                <input type="text" id="lastName" name="apellidos" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('lastName',1,50)">
+                                <input type="text" id="lastName" name="apellidos"
+                                    class="form-control form-control-alternative" required
+                                    onfocusout="validateAlphabetic('lastName',1,50)">
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Pais:</label>
-                        <input type="text" name="pais" id="country" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('country',1,50)">
+                        <input type="text" name="pais" id="country" class="form-control form-control-alternative"
+                            required onfocusout="validateAlphabetic('country',1,50)">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
