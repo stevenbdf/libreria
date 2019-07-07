@@ -159,8 +159,9 @@ const pagarPedido = async () => {
                 'success'
             );
             setTimeout(() => {
-                location.reload();
+                location.href=`../../core/reports/comprobante.php?idPedido=${result.dataset}`;
             }, 3000);
+            console.log(result.dataset)
         }
     } else {
         console.log(response);

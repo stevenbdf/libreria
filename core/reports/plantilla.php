@@ -48,9 +48,9 @@ class PDF extends FPDF
 		//Definimos la fuente, tipo, y tamaño para información de encabezado
 		$this->SetFont('Arial', 'I', 14);
 		//Información de en cabezado, autor y fecha del reporte, autor proviene de session
-		($this->mostrarAutor) ? ($this->Cell(75, 30, 'Hecho por: ' . $_SESSION['correoUsuario'], 0, 0, 'C'))
-			: ($this->Cell(65, 30, 'Cliente: ' . $_SESSION['correoCliente'], 0, 0, 'C'));
-		$this->Cell(120, 30, 'Generado el: ' . date('d-m-Y H:i:s'), 0, 1, 'R');
+		($this->mostrarAutor) ? ($this->Cell(75, 15, 'Hecho por: ' . $_SESSION['correoUsuario'], 0, 0, 'C'))
+			: ($this->Cell(70, 15, 'Cliente: ' . $_SESSION['correoCliente'], 0, 0, 'C'));
+		$this->Cell(120, 15, 'Generado el: ' . date('d-m-Y H:i:s'), 0, 1, 'R');
 		//Salto de linea
 		$this->Ln(1);
 	}

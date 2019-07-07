@@ -187,6 +187,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 if ($pedido->setIdCliente($_SESSION['idCliente'])) {
                     if ($pedido->createPedido()) {
                         if ($pedido->setId(Database::getLastRowId())) {
+                            $pedidoId = Database::getLastRowId();
                             $itemsAgregados = 0;
                             foreach ($_SESSION['carrito'] as $key => $value) {
                                 foreach ($value as $key2 => $value2) {
@@ -203,6 +204,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                             }
                             if ($itemsAgregados == count($_SESSION['carrito'])) {
                                 $result['status'] = 1;
+                                $result['dataset'] = $pedidoId;
                                 $_SESSION['carrito'] = array();
                             } else {
                                 $result['exception'] = 'No se ingresaron todos los items al carrito. Item s  agregados: ' . $itemsAgregados;

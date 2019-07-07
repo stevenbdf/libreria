@@ -120,7 +120,7 @@ class Pedidos extends Validator
  
 	public function getPedido()
 	{
-		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, fecha, pedido.estado 
+		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, direccion, fecha, pedido.estado 
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
 				WHERE idPedido = ?
