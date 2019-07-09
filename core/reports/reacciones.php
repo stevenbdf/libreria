@@ -25,6 +25,7 @@ $pdf->Output();
 function llenarLikes($pdf, $producto)
 {
     $datos = $producto->getProducto( (int)$_GET['idLibro']);
+    var_dump($datos);
     $pdf->SetFont('Arial', '', 14);
     if (!empty($datos)) {
         $pdf->SetFillColor(94, 114, 228);

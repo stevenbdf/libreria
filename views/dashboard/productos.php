@@ -81,6 +81,7 @@ Dashboard::headerTemplate('Productos');
 </div>
 
 
+
 <!-- Ventana para guardar Productos -->
 <div class="modal fade" id="guardarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">

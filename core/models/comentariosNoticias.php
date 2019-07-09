@@ -99,7 +99,7 @@ class Comentario extends Validator
 	{
 		$sql = 'INSERT INTO comentnoticia(idNoticia, comentario, fecha, idClient)
 						VALUES (?, ? ,(SELECT NOW()), ?)';
-		$params = array($this->idNoticia, $this->comentario,$this->idCliente );
+		$params = array($this->idNoticia, $this->comentario, $this->idCliente);
 		return Database::executeRow($sql, $params);
 	}
 
@@ -111,6 +111,18 @@ class Comentario extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
+	public function getCommentByNew($idNoticia)
+	{
+		$sql = 'SELECT idComentN, comentario FROM comentnoticia  WHERE idNoticia= ?';
+		$params = array($idNoticia);
+		return Database::executeRow($sql, $params);
+	}
+	public function getNameNew($idNoticia)
+	{ 
+		$sql = 'SELECT titulo FROM comentnoticia,noticia WHERE comentnoticia.idNoticia=noticia.idNoticia= ?';
+		$params = array($idNoticia);
+		return Database::executeRow($sql, $params);
+	}
 	public function deleteComentario()
 	{
 		$sql = 'DELETE FROM comentnoticia WHERE idComentN = ?';

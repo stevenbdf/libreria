@@ -118,13 +118,14 @@ class Noticias extends Validator
 		}
 	}
 
-	public function getNoticia()
+
+
+	public function getNombrenoticiaBYID()
 	{
 		$sql = 'SELECT idNoticia, titulo, descripcion, img FROM noticia WHERE idNoticia = ?';
 		$params = array($this->id);
 		return Database::getRow($sql, $params);
 	}
-
 	public function updateNoticia()
 	{
 		$sql = 'UPDATE noticia SET titulo = ?, descripcion = ?, img = ? WHERE idNoticia = ?';

@@ -37,6 +37,25 @@ Dashboard::headerTemplate('Noticias');
         </div>
     </div>
 </div>
+<div class="row shadow-sm p-3 mb-5 bg-white rounded">
+        <h1 class="text-center w-100 text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Reportes</h1>
+        <p class="text-center w-100">Genera un reporte en PDF de los comentarios por noticia</p>
+        <div class="col-12 col-md-12">
+            <div class="input-group mb-3">
+                <div class="form-group col-8 ml-5">
+                    <div class="floating-label">
+                        <label for="categoria-report">Noticias</label>
+                        <select class="form-control" name="noticiaSelect-report" id="noticiaSelect-report"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 d-flex justify-content-center my-4">
+            <button type="button" onclick="EnviarReporte()" class="btn btn-success py-3">Generar Reporte
+                <i class="material-icons">insert_drive_file</i>
+            </button>
+        </div>
+    </div>
 <!-- Ventana para guardar Autor -->
 <div class="modal fade" id="guardarNoticiaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
