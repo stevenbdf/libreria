@@ -115,13 +115,13 @@ class Comentario extends Validator
 	{
 		$sql = 'SELECT idComentN, comentario FROM comentnoticia  WHERE idNoticia= ?';
 		$params = array($idNoticia);
-		return Database::executeRow($sql, $params);
+		return Database::getRows($sql, $params);
 	}
 	public function getNameNew($idNoticia)
 	{ 
 		$sql = 'SELECT titulo FROM comentnoticia,noticia WHERE comentnoticia.idNoticia=noticia.idNoticia= ?';
 		$params = array($idNoticia);
-		return Database::executeRow($sql, $params);
+		return Database::getRow($sql, $params);
 	}
 	public function deleteComentario()
 	{
