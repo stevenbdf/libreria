@@ -196,6 +196,20 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Producto incorrecto';
                 }
                 break;
+            case 'getTop5Aprobacion':
+                if ($result['dataset'] = $producto->getTop5Aprobacion()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['status'] = 0;
+                }
+                break;
+            case 'getLibrosEditorial':
+                if($result['dataset'] = $producto->librosEditorial()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['status'] = 0;
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
@@ -224,7 +238,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                 }
                 break;
             case 'readCartItems':
-            
+
                 if (!isset($result['dataset'])) {
                     $result['dataset'] = array();
                 }

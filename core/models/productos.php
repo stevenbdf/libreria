@@ -290,4 +290,21 @@ class Productos extends Validator
         $params = array($idLibro);
         return Database::getRow($sql, $params);
     }
+
+    public function getTop5Aprobacion()
+    {
+        $sql = "SELECT idLibro , nombreL, getAprobacionLibro(idLibro) as 'aprobacion' FROM libro  
+        ORDER BY `aprobacion`  DESC LIMIT 5";
+        $params = array(null);
+        return Database::getRows($sql, $params);
+    }
+
+    public function librosEditorial()
+    {
+        $sql = "SELECT E.nombreEdit, COUNT(l.idEditorial) as cantidad
+        FROM libro l INNER JOIN editorial e ON  l.idEditorial=e.idEditorial
+        GROUP BY l.idEditorial";
+        $params = array(null);
+        return Database::getRows($sql, $params);
+    }
 }
