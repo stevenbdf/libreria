@@ -6,10 +6,12 @@ Dashboard::headerTemplate('Productos');
     <div id="alerts"></div>
     <div class="row shadow-sm p-3 mb-5 bg-white rounded">
         <div style="width:100%">
-            <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Productos</h1>
+            <h1 class="text-center text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">
+                Productos</h1>
             <div class="row d-flex justify-content-center">
                 <div class="col-6 col-md-4 text-center">
-                    <button type="button" class="mr-lg-2 btn btn-success" data-toggle="modal" data-target="#guardarProductosModal">
+                    <button type="button" class="mr-lg-2 btn btn-success" data-toggle="modal"
+                        data-target="#guardarProductosModal">
                         <i class="material-icons mr-2">add</i>
                         Agregar
                     </button>
@@ -43,7 +45,8 @@ Dashboard::headerTemplate('Productos');
         </div>
     </div>
     <div class="row shadow-sm p-3 mb-5 bg-white rounded">
-        <h1 class="text-center w-100 text-uppercase mt-4 mb-4" style="font-family: 'Arimo', sans-serif; font-size:50px;">Reportes</h1>
+        <h1 class="text-center w-100 text-uppercase mt-4 mb-4"
+            style="font-family: 'Arimo', sans-serif; font-size:50px;">Reportes</h1>
         <p class="text-center w-100">Genera un reporte en PDF de los libros por categoria existentes</p>
         <div class="col-12 col-md-12">
             <div class="input-group mb-3">
@@ -60,29 +63,29 @@ Dashboard::headerTemplate('Productos');
                 <i class="material-icons">insert_drive_file</i>
             </button>
         </div>
-    </div>
-
-    <p class="text-center w-100">Genera un reporte en PDF de los comentarios y likes filtrados por libro</p>
-    <div class="col-12 col-md-12">
-        <div class="input-group mb-3">
-            <div class="form-group col-8 ml-5">
-                <div class="floating-label">
-                    <label for="categoria-report">Libro</label>
-                    <select class="form-control" name="libroSelect-report" id="libroSelect-report"></select>
+        <p class="text-center w-100">Genera un reporte en PDF de los comentarios y likes filtrados por libro</p>
+        <div class="col-12 col-md-12">
+            <div class="input-group mb-3">
+                <div class="form-group col-8 ml-5">
+                    <div class="floating-label">
+                        <label for="categoria-report">Libro</label>
+                        <select class="form-control" name="libroSelect-report" id="libroSelect-report"></select>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 d-flex justify-content-center my-4">
-        <button type="button" onclick="EnviarReporteL()" class="btn btn-success py-3">Generar Reporte
-            <i class="material-icons">insert_drive_file</i>
-        </button>
+        <div class="col-12 d-flex justify-content-center my-4">
+            <button type="button" onclick="EnviarReporteL()" class="btn btn-success py-3">Generar Reporte
+                <i class="material-icons">insert_drive_file</i>
+            </button>
+        </div>
     </div>
 </div>
 
 
 <!-- Ventana para guardar Productos -->
-<div class="modal fade" id="guardarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="guardarProductosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,7 +110,8 @@ Dashboard::headerTemplate('Productos');
                                 <div class="form-group">
                                     <div class="floating-label">
                                         <label for="editorialSelect">Editorial</label>
-                                        <select class="form-control" name="editorialSelect" id="editorialSelect"></select>
+                                        <select class="form-control" name="editorialSelect"
+                                            id="editorialSelect"></select>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +125,8 @@ Dashboard::headerTemplate('Productos');
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">No.Págs:</label>
-                                <input type="number" min="1" max="2000" name="noPaginas" class="form-control form-control-alternative" required>
+                                <input type="number" min="1" max="2000" name="noPaginas"
+                                    class="form-control form-control-alternative" required>
                             </div>
                             <div class="col-5">
                                 <div class="form-group mt-4">
@@ -256,16 +261,19 @@ Dashboard::headerTemplate('Productos');
                         <div class="row">
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">Precio:</label>
-                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio-update" id="precio-update" class="form-control form-control-alternative">
+                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio-update"
+                                    id="precio-update" class="form-control form-control-alternative">
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">Cantidad:</label>
-                                <input type="number" min="0" max="5000" step="1" name="cantidad-update" id="cantidad-update" class="form-control form-control-alternative">
+                                <input type="number" min="0" max="5000" step="1" name="cantidad-update"
+                                    id="cantidad-update" class="form-control form-control-alternative">
                             </div>
                             <div class="col-6">
                                 <div class="form-group mt-3">
                                     <label for="categoria">Categoria</label>
-                                    <select class="form-control" name="categoriaSelect-update" id="categoriaSelect-update"></select>
+                                    <select class="form-control" name="categoriaSelect-update"
+                                        id="categoriaSelect-update"></select>
 
                                 </div>
                             </div>
@@ -290,13 +298,15 @@ Dashboard::headerTemplate('Productos');
                             </div>
                             <div class="col-12">
                                 <div class="custom-file mt-4">
-                                    <input type="file" class="custom-file-input" name="imagen-update" id="imagen-update" lang="es">
+                                    <input type="file" class="custom-file-input" name="imagen-update" id="imagen-update"
+                                        lang="es">
                                     <label class="custom-file-label" for="imagen-update">Seleccionar imagen</label>
                                 </div>
                             </div>
                         </div>
                         <label for="archivo" class="col-form-label">Archivo</label>
-                        <input name="imagen-producto" id="imagen-producto" type="text" class="form-control form-control-alternative" readonly>
+                        <input name="imagen-producto" id="imagen-producto" type="text"
+                            class="form-control form-control-alternative" readonly>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

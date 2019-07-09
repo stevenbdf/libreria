@@ -171,12 +171,12 @@ class Productos extends Validator
 
     //Metodos para manejar el CRUD
     public function insertBitacora($accion)
-	{
-		$sql = 'call insertBitacora ( ? , ?)';
-		$params = array($_SESSION['idEmpleado'], $accion);
-		return Database::executeRow($sql, $params);
+    {
+        $sql = 'call insertBitacora ( ? , ?)';
+        $params = array($_SESSION['idEmpleado'], $accion);
+        return Database::executeRow($sql, $params);
     }
-    
+
     public function readProductos()
     {
         $sql = "SELECT idLibro,  autor.nombre as 'nombreAutor', autor.apellido as 'apellidoAutor', NombreL,
@@ -233,11 +233,11 @@ class Productos extends Validator
             $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad
         );
         if (Database::executeRow($sql, $params)) {
-			$this->insertBitacora('Ingreso un producto');
-			return true;
-		} else {
-			return false;
-		}
+            $this->insertBitacora('Ingreso un producto');
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function updateProducto()
@@ -249,11 +249,11 @@ class Productos extends Validator
             $this->encuadernacion, $this->resena, $this->precio, $this->idCategoria, $this->imagen, $this->cantidad, $this->idLibro
         );
         if (Database::executeRow($sql, $params)) {
-			$this->insertBitacora('Modifico un producto');
-			return true;
-		} else {
-			return false;
-		}
+            $this->insertBitacora('Modifico un producto');
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function deleteProducto()
@@ -261,25 +261,33 @@ class Productos extends Validator
         $sql = 'DELETE FROM libro WHERE idLibro = ?';
         $params = array($this->idLibro);
         if (Database::executeRow($sql, $params)) {
-			$this->insertBitacora('Borro un producto');
-			return true;
-		} else {
-			return false;
-		}
+            $this->insertBitacora('Borro un producto');
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getNombre($idCategoria)
     {
-        $sql='SELECT nombreCat FROM categoria WHERE idCategoria= ?';
+        $sql = 'SELECT nombreCat FROM categoria WHERE idCategoria= ?';
         $params = array($idCategoria);
         return Database::getRow($sql, $params);
     }
 
     public function getNombreL($idLibro)
     {
-        $sql='SELECT NombreL FROM libro WHERE idLibro=?';
+        $sql = 'SELECT NombreL FROM libro WHERE idLibro=?';
         $params = array($idLibro);
         return Database::getRow($sql, $params);
     }
 
+    public function getReacciones($idLibro)
+    {
+        $sql = "SELECT idLibro, getAprobacionLibro(idLibro) as 'aprobacion', 
+        getLikes(idLibro) as 'likes', getDislikes(idLibro) as 'dislikes' 
+        FROM libro WHERE idLibro = ?";
+        $params = array($idLibro);
+        return Database::getRow($sql, $params);
+    }
 }

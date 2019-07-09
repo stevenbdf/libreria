@@ -1,68 +1,56 @@
 <?php
 require('plantilla.php');
-
 require('../models/productos.php');
+require('../models/comentariosLibros.php');
 
 $producto = new Productos;
+$comentarios = new Comentario;
 
 
 // Creación del objeto de la clase heredada
-$nombre = $producto->getNombreL((int)$_GET['idLibro']);
+$nombre = $producto->getNombreL((int) $_GET['idLibro']);
+$comentarios->setIdLibro((int) $_GET['idLibro']);
 $pdf = new PDF('P', 'mm', 'letter');
 $pdf->setTitulo(utf8_decode('Reaciones por libro'));
 $pdf->mostrarAutor();
 $pdf->AliasNbPages();
 $pdf->AddPage();
-$pdf->Cell(0, 15, utf8_decode('Libros filtrados por libro ').$nombre['NombreL'], 0, 1, 'L');
+$pdf->Cell(0, 15, utf8_decode('Titulo: ') . $nombre['NombreL'], 0, 1, 'L');
 $pdf->SetFont('Arial', 'B', 14);
-$pdf->Cell(0, 15, 'LIKES', 0, 1, 'C');
-llenarLikes($pdf, $producto);
-$pdf->SetFont('Arial', 'B', 14);
-$pdf->Cell(0, 15, 'DISLIKES', 0, 1, 'C');
-llenarDislikes($pdf, $producto);
+$reacciones = $producto->getReacciones((int) $_GET['idLibro']);
+$pdf->Cell(65, 15, 'LIKES: ' . $reacciones['likes'], 0, 0, 'L');
+$pdf->Cell(65, 15, 'DISLIKES: ' . $reacciones['dislikes'], 0, 0, 'L');
+$pdf->Cell(65, 15, utf8_decode('Aprobación: ') . $reacciones['aprobacion'] . '%', 0, 1, 'L');
+$pdf->Cell(0, 15, 'Comentarios', 0, 1, 'C');
+llenarTabla($pdf, $comentarios, (int) $_GET['idLibro']);
 $pdf->Output();
 
-function llenarLikes($pdf, $producto)
+
+function llenarTabla($pdf, $comentarios, $idLibro)
 {
-    $datos = $producto->getProducto( (int)$_GET['idLibro']);
+    $comentarios->setId($idLibro);
+    $datos = $comentarios->readComentariosLibro();
     $pdf->SetFont('Arial', '', 14);
     if (!empty($datos)) {
         $pdf->SetFillColor(94, 114, 228);
         $pdf->SetTextColor(255, 255, 255);
-        $pdf->Cell(40, 10, utf8_decode('Código'), 1, 0, 'C', true);
-        $pdf->Cell(60, 10, utf8_decode('Like'), 1, 0, 'C', true);
+        $pdf->Cell(25, 10, utf8_decode('Código'), 1, 0, 'C', true);
+        $pdf->Cell(40, 10, utf8_decode('Cliente'), 1, 0, 'C', true);
+        $pdf->Cell(30, 10, utf8_decode('Fecha'), 1, 0, 'C', true);
+        $pdf->Cell(100, 10, utf8_decode('Comentario'), 1, 1, 'C', true);
         $pdf->SetFont('Arial', '', 10);
         $pdf->SetTextColor(0, 0, 0);
         foreach ($datos as $fila) {
-            $pdf->Cell(40, 10, utf8_decode($fila['idLibro']), 1, 0, 'C');
-            $pdf->Cell(60, 10, utf8_decode($fila['likes']), 1, 0, 'L');
+            $pdf->Cell(25, 10, utf8_decode($fila['idComent']), 0, 0, 'C');
+            $pdf->Cell(40, 10, utf8_decode($fila['nombreCliente']), 0, 0, 'L');
+            $pdf->Cell(30, 10, utf8_decode($fila['fecha']), 0, 0, 'C');
+            $pdf->SetFillColor(255, 255, 255);
+            $pdf->MultiCell(100, 10, utf8_decode($fila['comentario']), 0, 1, 'L', false);
+            $pdf->SetFillColor(0, 0, 0);
+            $pdf->Cell(0, 0.5, '', 0, 1, 'C', true);
         }
     } else {
-        $pdf->Cell(0, 15, 'SIN LIKES EN ESTE LIBRO', 0, 1, 'C');
+        $pdf->Cell(0, 15, 'SIN COMENTARIOS', 0, 1, 'C');
     }
     unset($datos);
-    $pdf->SetFont('Arial', 'B', 14);
-}
-
-
-function llenarDislikes($pdf, $producto)
-{
-    $datos = $producto->getProducto((int) $_GET['idLibro']);
-    $pdf->SetFont('Arial', '', 14);
-    if (!empty($datos)) {
-        $pdf->SetFillColor(94, 114, 228);
-        $pdf->SetTextColor(255, 255, 255);
-        $pdf->Cell(40, 10, utf8_decode('Código'), 1, 0, 'C', true);
-        $pdf->Cell(60, 10, utf8_decode('Dislike'), 1, 0, 'C', true);
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->SetTextColor(0, 0, 0);
-        foreach ($datos as $fila) {
-            $pdf->Cell(40, 10, utf8_decode($fila['idLibro']), 1, 0, 'C');
-            $pdf->Cell(60, 10, utf8_decode($fila['dislikes']), 1, 0, 'L');
-        }
-    } else {
-        $pdf->Cell(0, 15, 'SIN DISLIKES EN ESTE LIBRO', 0, 1, 'C');
-    }
-    unset($datos);
-    $pdf->SetFont('Arial', 'B', 14);
 }
