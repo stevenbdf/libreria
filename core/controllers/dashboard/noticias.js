@@ -6,10 +6,43 @@ $(document).ready(async () => {
         $('button#insertImage-2').addClass('fr-disabled');
     });
     showTable();
+    showOptions();
 })
 
+const ajaxRequest = async (API, functionName) => {
+    const response = await $.ajax({
+        url: API + `${functionName}`
+    }).fail(function (jqXHR) {
+        //Se muestran en consola los posibles errores de la solicitud AJAX
+        console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+    });
+    if (isJSONString(response)) {
+        const result = JSON.parse(response);
+        //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
+        if (!result.status) {
+            swal('Error',
+                result.exception,
+                'error'
+            )
+        }
+        return result.dataset;
+    } else {
+        console.log(response);
+    }
+}
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiNoticia = '../../core/api/noticia.php?site=dashboard&action=';
+
+const showOptions = async () => {
+const noticias = await ajaxRequest(apiNoticia, 'readNoticia');
+
+let noticiasOpt = '<option value="0"> </option>';
+    noticias.map(item => {
+        noticiasOpt += `<option value="${item.idNoticia}">${item.titulo}</option>)`;
+    })
+
+    $('#noticiaSelect-report').html(noticiasOpt); 
+}
 
 //Función para obtener y mostrar los registros disponibles
 const showTable = async () => {
@@ -318,3 +351,7 @@ function confirmDelete(id, file) {
         });
 }
 
+const EnviarReporte = () => {
+    let noticia = $('#noticiaSelect-report').val()
+    location.href = `../../core/reports/comentarios.php?idNoticia=${noticia}`;
+}
