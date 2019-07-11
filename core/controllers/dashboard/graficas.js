@@ -324,7 +324,7 @@ function categoriasSolicitadas() {
                         data: {
                             labels: name,
                             datasets: [{
-                                label: '# de Libros',
+                                label: '# de presencia en pedidos',
                                 data: cantidad,
                                 backgroundColor: colors,
                                 borderColor: '#000000',
