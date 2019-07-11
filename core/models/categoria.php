@@ -124,7 +124,7 @@ class Categoria extends Validator
 	public function updateCategoria()
 	{
 		$sql = 'UPDATE categoria SET nombreCat = ?, descripcion = ?, descuento = ? , img = ? WHERE idCategoria = ?';
-		$params = array($this->nombre,$this->descripcion, $this->descuento, $this->imagen, $this->id);
+		$params = array($this->nombre, $this->descripcion, $this->descuento, $this->imagen, $this->id);
 		if (Database::executeRow($sql, $params)) {
 			$this->insertBitacora('Modifico una categoria');
 			return true;
@@ -143,5 +143,18 @@ class Categoria extends Validator
 		} else {
 			return false;
 		}
+	}
+
+	public function getLibroPedidoCategoria()
+	{
+		$sql = 'SELECT cat.nombreCat nombreCategoria, COUNT(cat.nombreCat) cantidad FROM detallepedido dp
+		INNER JOIN libro l ON dp.idLibro = l.idLibro
+		INNER JOIN categoria cat ON l.idCat = cat.idCategoria
+		INNER JOIN pedido p ON dp.idPedido = p.idPedido
+		WHERE YEAR(p.fecha) = YEAR(CURDATE())
+		GROUP BY cat.nombreCat
+		ORDER BY cat.nombreCat ASC';
+		$params = array(null);
+		return Database::getRows($sql,$params);
 	}
 }

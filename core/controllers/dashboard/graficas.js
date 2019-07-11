@@ -2,11 +2,15 @@ $(document).ready(() => {
     graficoAutores()
     graficoTop5Aprobacion()
     librosEditorial()
+    pedidosMes()
+    categoriasSolicitadas()
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiAutores = '../../core/api/autores.php?site=dashboard&action='
 const apiProductos = '../../core/api/productos.php?site=dashboard&action='
+const apiPedidos = '../../core/api/pedidos.php?site=dashboard&action='
+const apiCategoria = '../../core/api/categorias.php?site=dashboard&action='
 
 function randomRgba() {
     let colores = ['000000', '120209', '240411', '36061a', '470823', '590a2b', '6b0b34', '7d0d3c', '8e0f45',
@@ -43,7 +47,7 @@ function graficoAutores() {
                     }
                     const context = $('#chart-autores');
                     const chart = new Chart(context, {
-                        type: 'bar',
+                        type: 'polarArea',
                         data: {
                             labels: name,
                             datasets: [{
@@ -96,7 +100,6 @@ function graficoTop5Aprobacion() {
             // Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
             if (isJSONString(response)) {
                 const result = JSON.parse(response);
-                console.log(result)
                 // Se comprueba si el resultado es satisfactorio, sino se remueve la etiqueta canvas
                 if (result.status) {
 
@@ -115,7 +118,7 @@ function graficoTop5Aprobacion() {
                         data: {
                             labels: name,
                             datasets: [{
-                                label: 'Libros',
+                                label: '% de aprobación',
                                 data: cantidad,
                                 backgroundColor: colors,
                                 borderColor: '#000000',
@@ -164,7 +167,6 @@ function librosEditorial() {
             // Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
             if (isJSONString(response)) {
                 const result = JSON.parse(response);
-                console.log(result)
                 // Se comprueba si el resultado es satisfactorio, sino se remueve la etiqueta canvas
                 if (result.status) {
 
@@ -210,6 +212,150 @@ function librosEditorial() {
                     })
                 } else {
                     $('#chart-libros-editorial').remove();
+                }
+            } else {
+                console.log(response);
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+}
+
+function pedidosMes() {
+    $.ajax({
+        url: apiPedidos + 'readPedidosByMonth',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+        .done(function (response) {
+            // Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                // Se comprueba si el resultado es satisfactorio, sino se remueve la etiqueta canvas
+                if (result.status) {
+
+                    let colors = [];
+                    var cantidad = [];
+                    var name = [];
+                    console.log(result.dataset)
+                    for (i in result.dataset) {
+                        cantidad.push(result.dataset[i].cantidad);
+                        name.push(result.dataset[i].mes);
+                        colors.push('#' + randomRgba());
+                    }
+                    const context = $('#chart-pedidos-mes');
+                    const chart = new Chart(context, {
+                        type: 'line',
+                        data: {
+                            labels: name,
+                            datasets: [{
+                                label: '# de Pedidos',
+                                data: cantidad,
+                                backgroundColor: colors,
+                                borderColor: '#000000',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Cantidad de pedidos por mes'
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        stepSize: 10
+                                    }
+                                }]
+                            },
+                            elements: {
+                                line: {
+                                    fill: false
+                                }
+                            }
+                        }
+                    })
+                } else {
+                    $('#chart-pedidos-mes').remove();
+                }
+            } else {
+                console.log(response);
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se muestran en consola los posibles errores de la solicitud AJAX
+            console.log('Error: ' + jqXHR.status + ' ' + jqXHR.statusText);
+        });
+}
+
+function categoriasSolicitadas() {
+    $.ajax({
+        url: apiCategoria + 'getLibroPedidoCategoria',
+        type: 'post',
+        data: null,
+        datatype: 'json'
+    })
+        .done(function (response) {
+            // Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
+            if (isJSONString(response)) {
+                const result = JSON.parse(response);
+                // Se comprueba si el resultado es satisfactorio, sino se remueve la etiqueta canvas
+                if (result.status) {
+
+                    let colors = [];
+                    var cantidad = [];
+                    var name = [];
+                    console.log(result.dataset)
+                    for (i in result.dataset) {
+                        cantidad.push(result.dataset[i].cantidad);
+                        name.push(result.dataset[i].nombreCategoria);
+                        colors.push('#' + randomRgba());
+                    }
+                    const context = $('#chart-categorias-vendidas');
+                    const chart = new Chart(context, {
+                        type: 'bar',
+                        data: {
+                            labels: name,
+                            datasets: [{
+                                label: '# de Libros',
+                                data: cantidad,
+                                backgroundColor: colors,
+                                borderColor: '#000000',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Categorias más vendidas'
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        stepSize: 10
+                                    }
+                                }]
+                            },
+                            elements: {
+                                line: {
+                                    fill: false
+                                }
+                            }
+                        }
+                    })
+                } else {
+                    $('#chart-categorias-vendidas').remove();
                 }
             } else {
                 console.log(response);

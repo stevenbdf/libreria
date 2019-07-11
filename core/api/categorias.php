@@ -138,6 +138,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Categoria incorrecta';
                 }
                 break;
+            case 'getLibroPedidoCategoria':
+                if($result['dataset'] = $categoria->getLibroPedidoCategoria()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'Error al obtener categorias más vendidas';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }

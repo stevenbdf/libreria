@@ -100,7 +100,7 @@ class Pedidos extends Validator
 				(SELECT SUM((cantidad * precioVenta)) FROM detallepedido d WHERE d.idPedido = pedido.idPedido) as montoTotal
 				FROM pedido 
 				INNER JOIN cliente ON pedido.idCliente = cliente.idCliente
-				WHERE pedido.estado = '.$estado.' AND pedido.fecha BETWEEN '.$fecha1.' AND '.$fecha2.' ORDER BY idPedido DESC';
+				WHERE pedido.estado = ' . $estado . ' AND pedido.fecha BETWEEN ' . $fecha1 . ' AND ' . $fecha2 . ' ORDER BY idPedido DESC';
 		$params = array(null);
 		return Database::getRows($sql, $params);
 	}
@@ -117,7 +117,7 @@ class Pedidos extends Validator
 		$params = array($_SESSION['idCliente']);
 		return Database::getRows($sql, $params);
 	}
- 
+
 	public function getPedido()
 	{
 		$sql = 'SELECT idPedido, pedido.idCliente, nombreCliente, apellidoCliente, direccion, fecha, pedido.estado 
@@ -165,7 +165,8 @@ class Pedidos extends Validator
 		return Database::executeRow($sql, $params);
 	}
 
-	public function updateEstadoPedido(){
+	public function updateEstadoPedido()
+	{
 		$sql = 'UPDATE pedido SET estado = ? WHERE idPedido = ?';
 		$params = array($this->estado, $this->id);
 		if (Database::executeRow($sql, $params)) {
@@ -173,6 +174,64 @@ class Pedidos extends Validator
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public function readPedidosByMonth()
+	{
+		$sql = 'SELECT COUNT(idPedido) cantidad , MONTH(fecha) mes
+		FROM pedido WHERE YEAR(fecha) = YEAR(CURRENT_DATE()) GROUP BY MONTH(fecha)';
+		$params = array(null);
+		$dataset = Database::getRows($sql, $params);
+		foreach ($dataset as $key => $value) {
+			$dataset[$key]['cantidad'] = (int) $value['cantidad'];
+			$dataset[$key]['mes'] = $this->getMonthName($value['mes']);
+		}
+		return $dataset;
+	}
+
+	private function getMonthName($monthNum)
+	{
+		switch ((int) $monthNum) {
+			case 1:
+				return 'Enero';
+				break;
+			case 2:
+				return 'Febrero';
+				break;
+			case 3:
+				return 'Marzo';
+				break;
+			case 4:
+				return 'Abril';
+				break;
+			case 5:
+				return 'Mayo';
+				break;
+			case 6:
+				return 'Junio';
+				break;
+			case 7:
+				return 'Julio';
+				break;
+			case 8:
+				return 'Agosto';
+				break;
+			case 9:
+				return 'Septiembre';
+				break;
+			case 10:
+				return 'Octubre';
+				break;
+			case 11:
+				return 'Noviembre';
+				break;
+			case 12:
+				return 'Diciembre';
+				break;
+			default:
+				return 'Mes incorrecto';
+				break;
 		}
 	}
 }

@@ -23,6 +23,16 @@ Dashboard::headerTemplate('Graficas');
                     <canvas id="chart-libros-editorial"></canvas>
                 </div>
             </div>
+            <div class="row mt-3">
+                <div class="col-12 col-md-10 offset-1">
+                    <canvas id="chart-pedidos-mes"></canvas>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 col-md-10 offset-1">
+                    <canvas id="chart-categorias-vendidas"></canvas>
+                </div>
+            </div>
             <script type="text/javascript" src="../../resources/js/chart.js"></script>
         </div>
     </div>

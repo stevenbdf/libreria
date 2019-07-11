@@ -76,6 +76,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     $result['exception'] = 'Pedido incorrecto';
                 }
                 break;
+            case 'readPedidosByMonth':
+                if ($result['dataset'] = $pedido->readPedidosByMonth()) {
+                    $result['status'] = 1;
+                } else {
+                    $result['exception'] = 'Error al obtener informacion de pedidos';
+                }
+                break;
             default:
                 exit('Acción no disponible');
         }
