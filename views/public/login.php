@@ -38,7 +38,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
                     </div>
-                    <input name="correo" class="form-control form-control-alternative" placeholder="Email" type="email">
+                    <input name="correo" class="form-control form-control-alternative" placeholder="Email" type="email" autocomplete="off" >
                   </div>
                 </div>
 
@@ -47,7 +47,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                     </div>
-                    <input name="contrasena" class="form-control" placeholder="Password" type="password">
+                    <input name="contrasena" class="form-control" placeholder="Password" type="password" autocomplete="off">
                   </div>
                 </div>
                 <div class="custom-control custom-control-alternative custom-checkbox">

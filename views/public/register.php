@@ -41,7 +41,7 @@ echo modelPage::header();
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
-                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required onfocusout="validateAlphabetic('name',1,50)">
+                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required onfocusout="validateAlphabetic('name',1,50)" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@ echo modelPage::header();
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
-                                            <input id="lastName" name="apellidos" class="form-control" placeholder="Apellido" type="text" required onfocusout="validateAlphabetic('lastName',1,50)">
+                                            <input id="lastName" name="apellidos" class="form-control" placeholder="Apellido" type="text" required onfocusout="validateAlphabetic('lastName',1,50)" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@ echo modelPage::header();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
                                     </div>
-                                    <input id="email" name="correo" class="form-control" placeholder="Correo" type="email" required>
+                                    <input id="email" name="correo" class="form-control" placeholder="Correo" type="email" required autocomplete="off">
                                 </div>
                             </div>
 
@@ -71,7 +71,7 @@ echo modelPage::header();
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                     </div>
-                                    <input id="address" name="direccion" class="form-control" placeholder="Dirección" type="text" required>
+                                    <input id="address" name="direccion" class="form-control" placeholder="Dirección" type="text" required autocomplete="off">
                                 </div>
                             </div>
 
@@ -93,11 +93,8 @@ echo modelPage::header();
                                 </div>
                             </div>
                             <!-- Captcha-->
-                            
                                 <div class="g-recaptcha" data-sitekey="6LeltbQUAAAAAIcVQck7G6SYHc17IIMKFpaFOzV2"></div>
                                 <br>
-                            
-
                             <div class="form-group">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
