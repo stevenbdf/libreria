@@ -152,43 +152,47 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $clientes->validateForm($_POST);
-                if ($clientes->setNombres($_POST['nombres'])) {
-                    if ($clientes->setApellidos($_POST['apellidos'])) {
-                        if ($clientes->setCorreo($_POST['correo'])) {
-                            if ($clientes->setDireccion($_POST['direccion'])) {
-                                if ($_POST['clave1'] == $_POST['clave2']) {
-                                    if ($clientes->setContrasena($_POST['clave1'])) {
-                                        if ($clientes->setImagen($_FILES['imagen'], null)) {
-                                            if ($clientes->createCliente()) {
-                                                if ($clientes->saveFile($_FILES['imagen'], $clientes->getRuta(), $clientes->getImagen())) {
-                                                    $result['status'] = 1;
+                if ($_POST['g-recaptcha-response']){
+                    if ($clientes->setNombres($_POST['nombres'])) {
+                        if ($clientes->setApellidos($_POST['apellidos'])) {
+                            if ($clientes->setCorreo($_POST['correo'])) {
+                                if ($clientes->setDireccion($_POST['direccion'])) {
+                                    if ($_POST['clave1'] == $_POST['clave2']) {
+                                        if ($clientes->setContrasena($_POST['clave1'])) {
+                                            if ($clientes->setImagen($_FILES['imagen'], null)) {
+                                                if ($clientes->createCliente()) {
+                                                    if ($clientes->saveFile($_FILES['imagen'], $clientes->getRuta(), $clientes->getImagen())) {
+                                                        $result['status'] = 1;
+                                                    } else {
+                                                        $result['status'] = 2;
+                                                        $result['exception'] = 'No se guardó el archivo';
+                                                    }
                                                 } else {
-                                                    $result['status'] = 2;
-                                                    $result['exception'] = 'No se guardó el archivo';
+                                                    $result['exception'] = 'Operación fallida';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Operación fallida';
+                                                $result['exception'] = $clientes->getImageError().'. La dimension de la imagen debe ser 500x500';
                                             }
                                         } else {
-                                            $result['exception'] = $clientes->getImageError().'. La dimension de la imagen debe ser 500x500';
+                                            $result['exception'] = 'Clave menor a 6 caracteres';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                        $result['exception'] = 'Claves diferentes';
                                     }
                                 } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                    $result['exception'] = 'Direccion incorrecta';
                                 }
                             } else {
-                                $result['exception'] = 'Direccion incorrecta';
+                                $result['exception'] = 'Correo incorrecto';
                             }
                         } else {
-                            $result['exception'] = 'Correo incorrecto';
+                            $result['exception'] = 'Apellidos incorrectos';
                         }
                     } else {
-                        $result['exception'] = 'Apellidos incorrectos';
+                        $result['exception'] = 'Nombres incorrectos';
                     }
                 } else {
-                    $result['exception'] = 'Nombres incorrectos';
+                    $result['exception'] = 'Verifique que sos humano ';
                 }
                 break;
             case 'login':

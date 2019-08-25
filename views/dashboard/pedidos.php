@@ -39,14 +39,14 @@ Dashboard::headerTemplate('Pedidos');
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="fecha1">Fecha Inicio</label>
-                    <input type="date" class="form-control" id="fecha1" placeholder="Fecha Inicio">
+                    <input type="date" class="form-control" id="fecha1" placeholder="Fecha Inicio" autocomplete="off">
                     <small class="form-text text-muted">Ej. 19/05/2019</small>
                 </div>
             </div>
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     <label for="fecha2">Fecha Final</label>
-                    <input type="date" class="form-control" id="fecha2" placeholder="Fecha Final">
+                    <input type="date" class="form-control" id="fecha2" placeholder="Fecha Final" autocomplete="off">
                     <small class="form-text text-muted">Ej. 30/05/2019</small>
                 </div>
             </div>

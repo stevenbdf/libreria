@@ -19,6 +19,7 @@ $('#formulario-registro').submit(async () => {
     //Se verifica si la respuesta de la API es una cadena JSON, sino se muestra el resultado en consola
     if (isJSONString(response)) {
         const result = JSON.parse(response);
+        console.log(result);
         //Se comprueba si el resultado es satisfactorio, sino se muestra la excepción
         if (result.status) {
             $('#formulario-registro')[0].reset();

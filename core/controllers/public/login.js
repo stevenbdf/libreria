@@ -4,7 +4,6 @@ const apiSesion = '../../core/api/clientes.php?site=public&action=';
 //Función para validar el usuario al momento de iniciar sesión
 $('#form-login-cliente').submit(async () => {
     event.preventDefault();
-    console.log('tenra')
     const response = await $.ajax({
         url: apiSesion + 'login',
         type: 'post',

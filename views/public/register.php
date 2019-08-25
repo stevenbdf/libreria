@@ -1,7 +1,7 @@
 <?php
-  require_once '../../core/helpers/modelPage.php';
-  echo modelPage::header();
- ?>
+require_once '../../core/helpers/modelPage.php';
+echo modelPage::header();
+?>
 <!--contenido de pagina -->
 <main id="login">
     <div class="container-fluid login pt-5 pt-lg-4 pb-4">
@@ -41,7 +41,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
-                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required onfocusout="validateAlphabetic('name',1,50)" >
+                                            <input id="name" name="nombres" class="form-control" placeholder="Nombre" type="text" required onfocusout="validateAlphabetic('name',1,50)" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -51,8 +51,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
                                             </div>
-                                            <input id="lastName" name="apellidos" class="form-control" placeholder="Apellido"
-                                                type="text" required onfocusout="validateAlphabetic('lastName',1,50)">
+                                            <input id="lastName" name="apellidos" class="form-control" placeholder="Apellido" type="text" required onfocusout="validateAlphabetic('lastName',1,50)" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +62,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-envelope-open"></i></span>
                                     </div>
-                                    <input id="email" name="correo" class="form-control" placeholder="Correo" type="email" required>
+                                    <input id="email" name="correo" class="form-control" placeholder="Correo" type="email" required autocomplete="off">
                                 </div>
                             </div>
 
@@ -72,7 +71,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                     </div>
-                                    <input id="address" name="direccion" class="form-control" placeholder="Dirección" type="text" required>
+                                    <input id="address" name="direccion" class="form-control" placeholder="Dirección" type="text" required autocomplete="off">
                                 </div>
                             </div>
 
@@ -90,18 +89,18 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                                     </div>
-                                    <input id="password2" name="clave2" class="form-control" placeholder="Confirmar contraseña"
-                                        type="password" required >
+                                    <input id="password2" name="clave2" class="form-control" placeholder="Confirmar contraseña" type="password" required>
                                 </div>
                             </div>
-
+                            <!-- Captcha-->
+                                <div class="g-recaptcha" data-sitekey="6LeltbQUAAAAAIcVQck7G6SYHc17IIMKFpaFOzV2"></div>
+                                <br>
                             <div class="form-group">
                                 <div class="input-group input-group-alternative">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-file-image"></i></span>
                                     </div>
-                                    <input id="imagen" name="imagen" class="form-control"
-                                        type="file" required>
+                                    <input id="imagen" name="imagen" class="form-control" type="file">
                                 </div>
                             </div>
 
@@ -109,6 +108,8 @@
                                 <button type="submit" class="btn btn-primary my-4">Acceder</button>
                             </div>
                         </form>
+
+
                         <!-- división de la misión -->
                     </div>
                 </div>
@@ -126,6 +127,7 @@
 
 
 
+
 <!-- archivos necesarios -->
 <script src="../../resources/js/jquery-3.3.1.slim.js"></script>
 <script src="../../resources/js/jquery-3.2.1.min.js"></script>
@@ -137,6 +139,7 @@
 <script defer src="../../resources/js/index.js"></script>
 <script defer src="../../core/controllers/public/register.js"></script>
 <script src="../../core/helpers/Public.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </body>
 

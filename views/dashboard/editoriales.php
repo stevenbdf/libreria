@@ -51,19 +51,19 @@ Dashboard::headerTemplate('Editoriales');
                         <div class="row">
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombre" id="name" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name', 1,50)">
+                                <input type="text" name="nombre" id="name" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name', 1,50)" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Telefono:</label>
-                                <input type="text" name="telefono" class="form-control form-control-alternative" required onfocusout="validatePhone('phone,1,10')">
+                                <input type="text" name="telefono" class="form-control form-control-alternative" required onfocusout="validatePhone('phone,1,10')" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Pais:</label>
-                                <input type="text" name="pais" class="form-control form-control-alternative" required>
+                                <input type="text" name="pais" class="form-control form-control-alternative" required autocomplete="off">
                             </div>
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Direccion:</label>
-                                <input type="text" name="direccion" class="form-control form-control-alternative" required>
+                                <input type="text" name="direccion" class="form-control form-control-alternative" required autocomplete="off">
                             </div>
                         </div>
                     </div>
