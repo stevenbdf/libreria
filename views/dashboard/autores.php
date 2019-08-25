@@ -78,18 +78,18 @@ Dashboard::headerTemplate('Autores');
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
                                 <input type="text" id="name" name="nombres"
                                     class="form-control form-control-alternative" required
-                                    onfocusout="validateAlphabetic('name',1,50)">
+                                    onfocusout="validateAlphabetic('name',1,50)" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Apellido:</label>
                                 <input type="text" id="lastName" name="apellidos"
                                     class="form-control form-control-alternative" required
-                                    onfocusout="validateAlphabetic('lastName',1,50)">
+                                    onfocusout="validateAlphabetic('lastName',1,50)" autocomplete="off">
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Pais:</label>
                         <input type="text" name="pais" id="country" class="form-control form-control-alternative"
-                            required onfocusout="validateAlphabetic('country',1,50)">
+                            required onfocusout="validateAlphabetic('country',1,50)" autocomplete="off">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>

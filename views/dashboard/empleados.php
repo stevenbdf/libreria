@@ -51,23 +51,23 @@ Dashboard::headerTemplate('Empleados');
                         <div class="row">
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" name="nombre" class="form-control form-control-alternative">
+                                <input type="text" name="nombre" class="form-control form-control-alternative" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Apellido:</label>
-                                <input type="text" name="apellido" class="form-control form-control-alternative">
+                                <input type="text" name="apellido" class="form-control form-control-alternative" autocomplete="off">
                             </div>
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Correo:</label>
-                                <input type="text" name="correo" class="form-control form-control-alternative">
+                                <input type="text" name="correo" class="form-control form-control-alternative" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                                <input type="text" name="contrasena" class="form-control form-control-alternative">
+                                <input type="text" name="contrasena" class="form-control form-control-alternative" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">DUI:</label>
-                                <input type="text" name="dui" class="form-control form-control-alternative">
+                                <input type="text" name="dui" class="form-control form-control-alternative" autocomplete="off">
                             </div>
                         </div>
                     </div>

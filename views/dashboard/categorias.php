@@ -50,7 +50,7 @@ Dashboard::headerTemplate('Categorias');
                         <div class="row">
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" id="name" name="nombre" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name',1,30)">
+                                <input type="text" id="name" name="nombre" class="form-control form-control-alternative" required onfocusout="validateAlphabetic('name',1,30)" autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <label for="recipient-name" class="col-form-label">Descuento:</label>
@@ -58,7 +58,7 @@ Dashboard::headerTemplate('Categorias');
                             </div>
                             <div class="col-12">
                                 <label for="recipient-name" class="col-form-label">Descripción:</label>
-                                <textarea class="form-control" name="descripcion" id="descripcion" aria-label="With textarea"></textarea>
+                                <textarea class="form-control" name="descripcion" id="descripcion" aria-label="With textarea"></textarea autocomplete="off">
                             </div>
                             <div class="col-12 mt-4">
                                 <div class="input-group mb-3">
@@ -66,7 +66,7 @@ Dashboard::headerTemplate('Categorias');
                                         <span class="input-group-text">Imagen:</span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="imagen" id="imagen" required>
+                                        <input type="file" class="custom-file-input" name="imagen" id="imagen" required autocomplete="off">
                                         <label class="custom-file-label" for="inputGroupFile01">.gif, .png, .jpg</label>
                                     </div>
                                 </div>

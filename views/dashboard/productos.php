@@ -118,16 +118,16 @@ Dashboard::headerTemplate('Productos');
                             </div>
                         </div>
                         <label for="recipient-name" class="col-form-label">Titulo:</label>
-                        <input type="text" name="titulo" class="form-control form-control-alternative" required>
+                        <input type="text" name="titulo" class="form-control form-control-alternative" required autocomplete="off">
                         <div class="row mt-3">
                             <div class="col-4">
                                 <label for="recipient-name" class="col-form-label">Idioma:</label>
-                                <input type="text" name="idioma" class="form-control form-control-alternative" required>
+                                <input type="text" name="idioma" class="form-control form-control-alternative" required autocomplete="off">
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">No.Págs:</label>
                                 <input type="number" min="1" max="2000" name="noPaginas"
-                                    class="form-control form-control-alternative" required>
+                                    class="form-control form-control-alternative" required autocomplete="off">
                             </div>
                             <div class="col-5">
                                 <div class="form-group mt-4">
@@ -151,11 +151,11 @@ Dashboard::headerTemplate('Productos');
                         <div class="row">
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">Precio:</label>
-                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio" class="form-control form-control-alternative" required>
+                                <input type="number" min="0.01" max="999.99" step="0.01" name="precio" class="form-control form-control-alternative" required autocomplete="off">
                             </div>
                             <div class="col-3">
                                 <label for="recipient-name" class="col-form-label">Cantidad:</label>
-                                <input type="number" min="0" max="5000" step="1" name="cantidad" class="form-control form-control-alternative" required>
+                                <input type="number" min="0" max="5000" step="1" name="cantidad" class="form-control form-control-alternative" required autocomplete="off">
                             </div>
                             <div class="col-6">
                                 <div class="form-group mt-4">
