@@ -8,6 +8,7 @@ class Empleados extends Validator
 	private $correo = null;
 	private $contrasena = null;
 	private $dui = null;
+	private $autenticacion = null;
 
 	//Métodos para sobrecarga de propiedades
 	public function setId($value)
@@ -94,6 +95,11 @@ class Empleados extends Validator
 	public function getDui()
 	{
 		return $this->dui;
+	}
+
+	public function setAutenticacion($valorJSON)
+	{
+		$this->autenticacion = $valorJSON;
 	}
 
 
@@ -188,5 +194,25 @@ class Empleados extends Validator
 		} else {
 			return false;
 		}
+	}
+
+	public function leerAutenticacion($correo)
+	{
+		if ($correo) {
+			$sql = 'SELECT autenticacion FROM empleado WHERE correo = ?';
+			$param = $this->correo;
+		} else {
+			$sql = 'SELECT autenticacion FROM empleado WHERE idEmpleado = ?';
+			$param = $this->id;
+		}
+		$params = array($param);
+		$auth = Database::getRow($sql, $params);
+		return  json_decode($auth['autenticacion'], true);
+	}
+
+	public function updateAutenticacion() {
+		$sql = 'UPDATE empleado SET autenticacion = ? WHERE correo = ?';
+		$params = array($this->autenticacion,$this->correo);
+		return Database::executeRow($sql, $params);
 	}
 }

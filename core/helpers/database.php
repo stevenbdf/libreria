@@ -2,6 +2,7 @@
 /*
     Clase para realizar las operaciones en la base de datos.
 */
+ini_set('date.timezone', 'America/El_Salvador');
 class Database
 {
 /*
