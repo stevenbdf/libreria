@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 09, 2019 at 08:31 AM
+-- Generation Time: Aug 26, 2019 at 05:14 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -113,16 +113,17 @@ INSERT INTO `aprobacion` (`idAprobacion`, `idLibro`, `idCliente`, `tipo`) VALUES
 (14, 4, 1, 0),
 (42, 5, 9, 1),
 (50, 3, 9, 0),
-(51, 1, 9, 1),
 (52, 1, 4, 0),
 (53, 17, 9, 1),
 (55, 7, 9, 1),
 (58, 14, 9, 0),
-(59, 18, 9, 1),
-(60, 15, 9, 1),
 (61, 1, 10, 1),
-(62, 2, 9, 1),
-(63, 16, 10, 1);
+(63, 16, 10, 1),
+(64, 10, 9, 0),
+(67, 1, 9, 1),
+(68, 2, 9, 0),
+(69, 15, 9, 0),
+(70, 16, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -198,7 +199,15 @@ INSERT INTO `bitacora` (`idBitacora`, `idUsuario`, `fecha`, `accion`) VALUES
 (284, 1, '2019-05-09 00:27:42', 'Modifico el estado de un pedido'),
 (285, 1, '2019-05-09 00:29:50', 'Ingreso un producto'),
 (286, 1, '2019-05-09 00:30:05', 'Modifico un producto'),
-(287, 1, '2019-05-09 00:30:17', 'Borro un producto');
+(287, 1, '2019-05-09 00:30:17', 'Borro un producto'),
+(288, 1, '2019-05-10 10:56:32', 'Ingreso un producto'),
+(289, 1, '2019-06-09 13:45:20', 'Deshabilito un cliente'),
+(290, 1, '2019-06-09 13:45:22', 'Habilito un cliente'),
+(291, 1, '2019-06-27 21:54:05', 'Modifico un producto'),
+(292, 1, '2019-06-27 21:54:19', 'Modifico un producto'),
+(293, 1, '2019-06-27 21:54:28', 'Modifico un producto'),
+(294, 1, '2019-06-27 21:54:36', 'Modifico un producto'),
+(295, 1, '2019-08-24 18:00:19', 'Habilito un cliente');
 
 -- --------------------------------------------------------
 
@@ -242,22 +251,26 @@ CREATE TABLE `cliente` (
   `correo` varchar(70) COLLATE utf8_bin NOT NULL,
   `contrasena` varchar(70) COLLATE utf8_bin NOT NULL,
   `direccion` text COLLATE utf8_bin NOT NULL,
-  `img` text COLLATE utf8_bin NOT NULL
+  `img` text COLLATE utf8_bin NOT NULL,
+  `autenticacion` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `cliente`
 --
 
-INSERT INTO `cliente` (`idCliente`, `estado`, `nombreCliente`, `apellidoCliente`, `correo`, `contrasena`, `direccion`, `img`) VALUES
-(1, 1, 'Fabiola Nicole', 'Martínez Ramírez', 'fabiolamartinez190201@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
-(2, 0, 'Steven Benjamín', 'Díaz Flores', 'steven_123@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
-(3, 0, 'Allison Stefany ', 'Cartagena Cárcamo', 'alli_12@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
-(4, 1, 'Ana Melisa', 'Ramírez', 'melisaramirez_25@hotmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
-(5, 1, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg'),
-(6, 1, 'Daniel', 'Carranza', 'dncarr@outlook.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'san salvador', 'profile.jpeg'),
-(9, 1, 'Steven Benjamin', 'Diaz  Flores', 'stevenbdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'San salvador El Salvador', '5ccce83663be0.png'),
-(10, 1, 'Carlos Eduardo', 'Santana Miguel', 'carlos@gmail.com', '$2y$10$CRoqUUwE0istsSRtPwFjnOBd6vKDLdxL4F1KNY8DBzjIDyUMHRRFm', 'San Salvador el Salvador', '5ccefd6e47950.jpg');
+INSERT INTO `cliente` (`idCliente`, `estado`, `nombreCliente`, `apellidoCliente`, `correo`, `contrasena`, `direccion`, `img`, `autenticacion`) VALUES
+(1, 1, 'Fabiola Nicole', 'Martínez Ramírez', 'fabiolamartinez190201@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(2, 0, 'Steven Benjamín', 'Díaz Flores', 'steven_123@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(3, 0, 'Allison Stefany ', 'Cartagena Cárcamo', 'alli_12@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(4, 1, 'Ana Melisa', 'Ramírez', 'melisaramirez_25@hotmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(5, 1, 'Herbert Williams', 'Cornejo Mardonado', 'herbert_cornejo@ricaldone.edu.sv', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', '', 'profile.jpeg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(6, 1, 'Daniel', 'Carranza', 'dncarr@outlook.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'san salvador', 'profile.jpeg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(9, 1, 'Steven Benjamin', 'Diaz  Flores', 'stevenbdf@gmail.com', '$2y$10$gTxs5ay3fiiyIp50NTAqzeJGDPCpRC8BmUdGIkGrI8jo2628DJwmK', 'San salvador El Salvador', '5ccce83663be0.png', '{\"intentos\":0,\"estado\":1,\"fechaBloqueo\":null}'),
+(10, 1, 'Carlos Eduardo', 'Santana Miguel', 'carlos@gmail.com', '$2y$10$CRoqUUwE0istsSRtPwFjnOBd6vKDLdxL4F1KNY8DBzjIDyUMHRRFm', 'San Salvador el Salvador', '5ccefd6e47950.jpg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(12, 1, 'Valentina', 'Giselle', 'valentinagiselle2016@gmail.com', '$2y$10$7kkbrlRHAzlsoAyDdztmt.7H45PdYVyBhjTny1z6wJVgXM803rLlm', 'San Salvador', '5cd72071a1b21.jpg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(14, 1, 'NuevoTest', 'NuevoTest', 'test@gmail.com', '$2y$10$ph54zVNQlO/246lbAy5L3eDiix91b5eW.Xse0VPk0yVt1B.kVdTQG', 'San Salvador el Salvador', '5cdba728a911f.jpg', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(15, 1, 'Eduardo', 'Calderon', 'edu_calderon@yahoo.com', '$2y$10$DWhES4eYMYAAvXPxycxljuGbmGDDDgh1z7c4UCubH8uDNTELny04O', 'Colonia Miramonte San Salvador', '5d61cf0446538.png', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }');
 
 -- --------------------------------------------------------
 
@@ -349,7 +362,11 @@ INSERT INTO `detallepedido` (`idDetalle`, `idPedido`, `idLibro`, `cantidad`, `pr
 (17, 10, 3, 3, 10.60),
 (18, 11, 14, 1, 5.00),
 (19, 11, 1, 1, 10.00),
-(20, 11, 4, 1, 12.00);
+(20, 11, 4, 1, 12.00),
+(21, 12, 14, 1, 5.00),
+(22, 13, 2, 1, 9.34),
+(23, 14, 13, 4, 13.39),
+(24, 14, 10, 2, 11.62);
 
 --
 -- Triggers `detallepedido`
@@ -398,18 +415,19 @@ CREATE TABLE `empleado` (
   `apellidoEmpleado` varchar(50) COLLATE utf8_bin NOT NULL,
   `correo` varchar(50) COLLATE utf8_bin NOT NULL,
   `contrasena` varchar(70) COLLATE utf8_bin NOT NULL,
-  `DUI` varchar(10) COLLATE utf8_bin NOT NULL
+  `DUI` varchar(10) COLLATE utf8_bin NOT NULL,
+  `autenticacion` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `empleado`
 --
 
-INSERT INTO `empleado` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `correo`, `contrasena`, `DUI`) VALUES
-(1, 'Steven Benjamin', 'Diaz Flores', 'stevenbdf@gmail.com', '$2y$10$83HkFW63USkaRjx.Up7byuB8NH3rsSK5bzjNt4WvQ/OePQ8lnpZcS', '01805710'),
-(2, 'Gabriela Michelle', 'Oporto Gil', 'gab.oporto@outlook.es', '$2y$10$g3jDSak9FbQIH4sAtkUq/ex2x9zUu3xw3mWKLxmYaCGHJYflQR10C', '15634234'),
-(3, 'Stephanie Gisselle', 'Zetino Rodríguez', 'gis.zet_12@icloud.com', '$2y$10$g3jDSak9FbQIH4sAtkUq/ex2x9zUu3xw3mWKLxmYaCGHJYflQR10C', '345216763'),
-(5, 'Manuel', 'Gonzalez', 'manuel@gmail.com', '$2y$10$DC1suA1Y9f6HHj.3RQzNnej9IcG5NSqm2XSRLorRBdM5.em./IezO', '20150444');
+INSERT INTO `empleado` (`idEmpleado`, `nombreEmpleado`, `apellidoEmpleado`, `correo`, `contrasena`, `DUI`, `autenticacion`) VALUES
+(1, 'Steven Benjamin', 'Diaz Flores', 'stevenbdf@gmail.com', '$2y$10$83HkFW63USkaRjx.Up7byuB8NH3rsSK5bzjNt4WvQ/OePQ8lnpZcS', '01805710', '{\"intentos\":3,\"estado\":0,\"fechaBloqueo\":\"2019-08-25 20:14:23\"}'),
+(2, 'Gabriela Michelle', 'Oporto Gil', 'gab.oporto@outlook.es', '$2y$10$g3jDSak9FbQIH4sAtkUq/ex2x9zUu3xw3mWKLxmYaCGHJYflQR10C', '15634234', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(3, 'Stephanie Gisselle', 'Zetino Rodríguez', 'gis.zet_12@icloud.com', '$2y$10$g3jDSak9FbQIH4sAtkUq/ex2x9zUu3xw3mWKLxmYaCGHJYflQR10C', '345216763', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }'),
+(5, 'Manuel', 'Gonzalez', 'manuel@gmail.com', '$2y$10$DC1suA1Y9f6HHj.3RQzNnej9IcG5NSqm2XSRLorRBdM5.em./IezO', '20150444', '{\"intentos\": 0, \"estado\": 1, \"fechaBloqueo\": null }');
 
 -- --------------------------------------------------------
 
@@ -438,15 +456,15 @@ CREATE TABLE `libro` (
 
 INSERT INTO `libro` (`idLibro`, `idAutor`, `idEditorial`, `NombreL`, `Idioma`, `NoPag`, `encuadernacion`, `resena`, `precio`, `idCat`, `img`, `cant`) VALUES
 (1, 2, 1, 'El teorema de katherine', 'Español', 18, 'Tapa blanda', 'Según Colin Singleton existen dos tipos de persona: los que dejan y los que son dejados. Él, sin duda, pertenece al segundo. Su última ex, Katherine XIX, no es una reina, sino la Katherine número diecinueve que le ha roto el corazón.\r\n\r\nPara escapar de su mal de amores, y con el propósito de hallar un teorema que explique su maldición de las Katherines, Colin emprende junto a su amigo Hassan una aventura que le llevará a Gutshot, un pueblecito de Tennessee, y a la sospecha de que en la vida la inteligencia no siempre es la mejor compañera de viaje.', 10, 2, '5cc679ff368a4.jpg', 7),
-(2, 2, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora.', 10.99, 36, '5cc67a4988d2d.jpg', 15),
+(2, 2, 3, 'Bajo la Misma Estrella', 'Español', 304, 'Tapa blanda', 'A Hazel y a Gus les gustaría tener vidas más corrientes. Algunos dirían que no han nacido con estrella, que su mundo es injusto. Hazel y Gus son solo adolescentes, pero si algo les ha enseñado el cáncer que ambos padecen es que no hay tiempo para lamentaciones, porque, nos guste o no, solo existe el hoy y el ahora. Y por ello, con la intención de hacer realidad el mayor deseo de Hazel - conocer a su escritor favorito -, cruzarán juntos el Atlántico para vivir una aventura contrarreloj, tan catártica como desgarradora.', 10.99, 36, '5cc67a4988d2d.jpg', 14),
 (3, 1, 1, 'Yo antes de ti', 'Español', 496, 'Tapa blanda', 'Louisa Clark sabe muchas cosas. Sabe cuántos pasos hay entre la parada del autobús y su casa. Sabe que le gusta trabajar en el café The Buttered Bun y sabe que quizá no quiera a su novio Patrick.Lo que Lou no sabe es que está a punto de perder su trabajo o que son sus pequeñas rutinas las que la mantienen en su sano juicio.Will Traynor sabe que un accidente de moto se llevó sus ganas de vivir. Sabe que ahora todo le parece insignificante y triste y sabe exactamente cómo va a ponerle fin.Lo que Will no sabe es que Lou está a punto de irrumpir en su mundo con una explosión de color.Y ninguno de los dos sabe queva a cambiar al otro para siempre.Yo antes de ti reúne a dos personas que no podrían tener menos en común en una novela conmovedoramente romántica con una pregunta: ¿qué decidirías cuando hacer feliz a la persona a la que amas significa también destrozarte el corazón?', 10.6, 2, '5cc67ab8cfbdc.jpg', 0),
 (4, 10, 4, 'Lo mejor de mí', 'Español', 398, 'Tapa blanda', 'Durante la primavera de 1984, cuando todavía iban al instituto, Amanda Collier y Dawson Cole se enamoraron para siempre. Aunque pertenecían a estratos sociales muy diferentes, el amor que sentían el uno por el otro parecía capaz de desafiar cualquier impedimento que la realidad en la vida de la pequeña ciudad de Oriental en Carolina del Norte quisiera ponerles por delante. Pero el verano después de su graduación una serie de acontecimientos imprevistos separaría a la pareja y los llevaría por caminos radicalmente opuestos.', 12, 2, '5cc67af077b0f.jpg', 49),
 (5, 3, 2, 'Oscuros', 'Español', 416, 'Tapa blanda', 'Helstone, Inglaterra, 1854.Es noche cerrada y dos jóvenes conversan en una remota casa de campo. Se sienten irresistiblemente atraídos el uno por el otro, pero él insiste en que no pueden estar juntos. Ella obvia sus advertencias y se acerca a él, con paso lento y desafiante.Cuando se besan, una furiosa llamarada lo inunda todo.', 11.5, 37, '5cc67b2442626.jpg', 14),
 (7, 9, 6, 'Shut up im lesbian', 'Inglés', 600, 'Tapa blanda', 'Skyler siempre ha soñado con estudiar en la prestigiosa universidad de Harvard. Y lo consigue gracias a la beca que le consiguió su padre.\r\nLo que ella no tuvo en cuenta al llegar al primer día es la mirada pervertida de chicos y asco por parte de las chicas.\r\nNo quiere ser una más en la lista de todos ellos. Por eso se le ocurre una mentira espontánea: Fingir ser lesbiana.\r\nClaro, todo saldría perfecto. No se meterían con ella. \r\nHasta que se topa con ellos: Ashton, Michael, Calum y Luke, accidentalmente sus compañeros de cuarto.\r\nFingir frente a la gente no hay problema, pero incluso fingir en tu propio cuarto se vuelve algo complicado.\r\nAún más si éstos cuatro chicos deciden ponerte a prueba y te traen a una chica -que para peor, siente algo por ti- para que empiecen algo.\r\n\r\n-Sigo sin creer que eres lesbiana. -Ashton se acomodó en el sillón y me miró con una sonrisa lujuriosa. - A no ser que en verdad seas hetero pero tengas miedo de admitirlo. -canturreó.\r\n\r\n-¡Cállate! Soy lesbiana.', 15, 36, '5cc67bb48c2bf.jpg', 35),
-(10, 7, 1, 'Las Aventuras de Hilda', 'Español', 80, 'Tapa dura', 'Las aventuras de hilda cuentan las historia de una niña que vive en el bosque, en este tiene muchas historias que contar con sus amigos', 15.5, 4, '5cc5dd7853d24.jpg', 49),
-(13, 9, 5, '101 razones para odiarla', 'Español', 204, 'Tapa dura de bolsillo', 'Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas. \r\n\r\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar. \r\n\r\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.', 15.75, 36, '5cc6785d5e02e.jpg', 25),
-(14, 11, 5, 'Secret Wars', 'Inglés', 312, 'Tapa blanda', '¡El Universo Marvel ya no existe! Las incursiones interdimensionales han eliminado todas y cada una de las dimensiones una por una, y ahora, a pesar de los mejores esfuerzos de los científicos, sabios y superhumanos de ambas dimensiones, el Universo Marvel y el Universo Último han chocado entre sí ... ¡y han sido destruidos! Ahora, todo lo que existe en el vasto cosmos vacío es un solo planeta de mosaico titánico, hecho de los restos fragmentados de cientos de dimensiones devastadas: ¡Mundo de batalla! ¡Y los sobrevivientes de esta catástrofe multiversal deben aprender a sobrevivir en este extraño nuevo reino! ¿Qué extrañas criaturas habitan este mundo? ¿Qué caras familiares harán su regreso? ¿Y qué pasa cuando los diversos reinos van a la guerra? El Universo Marvel está muerto ... ¡y los vencedores de las Guerras Secretas determinarán lo que vendrá después!', 20, 1, '5cccffc73ef82.jpg', 14),
-(15, 12, 5, 'YO ROBOT', 'Español', 300, 'Tapa blanda', 'Publicada por primera vez en 1950, cuando la electrónica digital estaba en su infancia, Yo, robot resultó ciertamente visionaria y tendría una influencia enorme no sólo en toda la ciencia ficción posterior, sino incluso en la propia ciencia de la robótica. Aquí formuló Issac Asomov por primera vez las tres leyes fundamentales de la robótica, de las que se valdría para plantear interrogantes que se adentran en el campo de la ética y de la psicología: ¿qué diferencia hay entre un robot inteligente y un ser humano?, ¿puede el creador de un robot predecir su comportamiento?, ¿debe la lógica determinar lo que es mejor para la humanidad? A través de una serie de historias conectadas entre sí por el personaje de la robopsicóloga Susan Calvin, en las que aparecen todo tipo de máquinas inteligentes -  robots que leen el pensamiento, robots que se vuelven locos, robots con sentido del humor o robots políticos-, Asimov inventa unos robots cada vez más perfectos, que llegan a convertirse en un desafío para sus creadores.', 15, 3, '5ccd00b8e0412.jpg', 25),
+(10, 7, 1, 'Las Aventuras de Hilda', 'Español', 80, 'Tapa dura', 'Las aventuras de hilda cuentan las historia de una niña que vive en el bosque, en este tiene muchas historias que contar con sus amigos', 15.5, 4, '5d158f74c0c17.jpg', 47),
+(13, 9, 5, '101 razones para odiarla', 'Español', 204, 'Tapa dura de bolsillo', 'Claudia Martell y Olivia Simón nacieron el mismo día, en el mismo hospital, separadas únicamente por el espacio que hay entre la alcoba 311 y la 312 del Hospital Gregorio Marañón de Madrid. Son tantas las cosas que las unen y sus familias tan cercanas, que deberían ser amigas. Pero esa es solo la teoría. En la práctica, el cariño que se profesan sus madres es inversamente proporcional al odio que se profesan las hijas. \r\n\r\nPor lo demás, lo único que tienen en común estas dos mujeres es un cumpleaños que nunca tienen ganas de celebrar y una desmedida entrega a su trabajo en García & Morán Ediciones, en donde el destino les jugó la mala pasada de volverlas a juntar. \r\n\r\nAhora, si quieren conservar su trabajo como editoras, Claudia y Olivia tendrán que olvidar el pasado, demostrar que son un equipo y conseguir que un famoso y escurridizo escritor firme un contrato capaz de subsanar los apuros económicos de la editorial. ¿Y quién sabe? A lo mejor durante su aventura son capaces de descubrir lo que sus madres saben desde hace años: que del amor al odio hay solo un paso.', 15.75, 36, '5cc6785d5e02e.jpg', 21),
+(14, 11, 5, 'Secret Wars', 'Inglés', 312, 'Tapa blanda', '¡El Universo Marvel ya no existe! Las incursiones interdimensionales han eliminado todas y cada una de las dimensiones una por una, y ahora, a pesar de los mejores esfuerzos de los científicos, sabios y superhumanos de ambas dimensiones, el Universo Marvel y el Universo Último han chocado entre sí ... ¡y han sido destruidos! Ahora, todo lo que existe en el vasto cosmos vacío es un solo planeta de mosaico titánico, hecho de los restos fragmentados de cientos de dimensiones devastadas: ¡Mundo de batalla! ¡Y los sobrevivientes de esta catástrofe multiversal deben aprender a sobrevivir en este extraño nuevo reino! ¿Qué extrañas criaturas habitan este mundo? ¿Qué caras familiares harán su regreso? ¿Y qué pasa cuando los diversos reinos van a la guerra? El Universo Marvel está muerto ... ¡y los vencedores de las Guerras Secretas determinarán lo que vendrá después!', 20, 1, '5cccffc73ef82.jpg', 13),
+(15, 12, 5, 'YO ROBOT', 'Español', 300, 'Tapa blanda', 'Publicada por primera vez en 1950, cuando la electrónica digital estaba en su infancia, Yo, robot resultó ciertamente visionaria y tendría una influencia enorme no sólo en toda la ciencia ficción posterior, sino incluso en la propia ciencia de la robótica. Aquí formuló Issac Asomov por primera vez las tres leyes fundamentales de la robótica, de las que se valdría para plantear interrogantes que se adentran en el campo de la ética y de la psicología: ¿qué diferencia hay entre un robot inteligente y un ser humano?, ¿puede el creador de un robot predecir su comportamiento?, ¿debe la lógica determinar lo que es mejor para la humanidad? A través de una serie de historias conectadas entre sí por el personaje de la robopsicóloga Susan Calvin, en las que aparecen todo tipo de máquinas inteligentes -  robots que leen el pensamiento, robots que se vuelven locos, robots con sentido del humor o robots políticos-, Asimov inventa unos robots cada vez más perfectos, que llegan a convertirse en un desafío para sus creadores.', 15, 3, '5d158f7ccc48d.jpg', 25),
 (16, 13, 4, 'El Marciano', 'Español', 339, 'Tapa blanda', 'Seis días atrás el astronauta Mark Watney se convirtió en uno de los primeros hombres en caminar por la superficie de Marte. Ahora está seguro de que será el primer hombre en morir allí. La tripulación de la nave en que viajaba se ve obligada a evacuar el planeta a causa de una tormenta de polvo, dejando atrás a Mark tras darlo por muerto. Pero él está vivo, y atrapado a millones de kilómetros de cualquier ser humano, sin posibilidad de enviar señales a la Tierra. De todos modos, si lograra establecer conexión, moriría mucho antes de que el rescate llegara.', 18.5, 3, '5ccd02a7bfde1.jpg', 48),
 (17, 14, 1, 'El libro de los abrazos', 'Español', 200, 'Tapa dura', 'Obra genial tanto por su originalidad como por su capacidad expresiva, impactante más si cabe por la sencillez con que está escrita. Los nadies: los hijos de nadie, los dueños de nada. Los nadies: los ningunos, los ninguneados, corriendo la liebre, muriendo la vida, jodidos, rejodidos: Que no son, aunque sean. Que no hablan idiomas, sino dialectos. Que no profesan religiones, sino supersticiones. Que no hacen arte, sino artesanía. Que no practican cultura, sino folklore. Que no son seres humanos, sino recursos humanos. Que no tienen cara, sino brazos. Que no tienen nombre, sino número. Que no figuran en la historia universal, sino en la crónica roja de la prensa local. Los nadies, que cuestan menos que la bala que los mata. Los Nadies. El libro de los abrazos.', 9.5, 34, '5ccd046350548.jpg', 17),
 (18, 15, 7, 'Asesinato en el Orient Express', 'Español', 240, 'Tapa blanda de bolsillo', 'La novela más popular del mítico detective Hércules Poirot.\r\n\r\nEn un lugar aislado de la antigua Yugoslavia, en plena madrugada, una fuerte tormenta de nieve obstaculiza la línea férrea por donde circula el Orient Express. Procedente de la exótica Estambul, en él viaja el detective Hércules Poirot, que repentinamente se topa con uno de los casos más desconcertantes de su carrera: en el compartimiento vecino ha sido asesinado Samuel E. Ratchett mientras dormía, pese a que ningún indicio trasluce un móvil concreto. Poirot aprovechará la situación para indagar entre los ocupantes del vagón, que a todas luces deberían ser los únicos posibles autores del crimen.\r\n\r\nUna víctima, doce sospechosos y una mente privilegiada en busca de la verdad.', 10, 35, '5ccd062b6185d.jpg', 20);
@@ -504,7 +522,10 @@ INSERT INTO `pedido` (`idPedido`, `idCliente`, `fecha`, `estado`) VALUES
 (8, 9, '2019-05-07', '0'),
 (9, 9, '2019-05-07', '0'),
 (10, 9, '2019-05-07', '0'),
-(11, 9, '2019-05-07', '2');
+(11, 9, '2019-05-07', '2'),
+(12, 9, '2019-07-08', '0'),
+(13, 9, '2019-07-10', '0'),
+(14, 9, '2019-07-10', '0');
 
 --
 -- Indexes for dumped tables
@@ -610,31 +631,31 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT for table `aprobacion`
 --
 ALTER TABLE `aprobacion`
-  MODIFY `idAprobacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `idAprobacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `autor`
 --
 ALTER TABLE `autor`
-  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idAutor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `bitacora`
 --
 ALTER TABLE `bitacora`
-  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=288;
+  MODIFY `idBitacora` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `comentlibro`
@@ -646,31 +667,31 @@ ALTER TABLE `comentlibro`
 -- AUTO_INCREMENT for table `comentnoticia`
 --
 ALTER TABLE `comentnoticia`
-  MODIFY `idComentN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idComentN` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `detallepedido`
 --
 ALTER TABLE `detallepedido`
-  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idDetalle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `empleado`
 --
 ALTER TABLE `empleado`
-  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idEmpleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `noticia`
@@ -682,7 +703,7 @@ ALTER TABLE `noticia`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

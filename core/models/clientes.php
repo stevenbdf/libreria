@@ -10,6 +10,7 @@ class Clientes extends Validator
     private $contrasena = null;
     private $img = null;
     private $ruta = '../../resources/img/clients/';
+    private $autenticacion = null;
 
     //Métodos para sobrecarga de propiedades
     public function setId($value)
@@ -123,6 +124,11 @@ class Clientes extends Validator
     {
         return $this->img;
     }
+
+    public function setAutenticacion($valorJSON)
+	{
+		$this->autenticacion = $valorJSON;
+	}
 
 
     //Metodos para manejar el CRUD
@@ -258,4 +264,24 @@ class Clientes extends Validator
         $params = array($this->correo);
         return Database::getRow($sql, $params);
     }
+
+    public function leerAutenticacion($correo)
+	{
+		if ($correo) {
+			$sql = 'SELECT autenticacion FROM cliente WHERE correo = ?';
+			$param = $this->correo;
+		} else {
+			$sql = 'SELECT autenticacion FROM cliente WHERE idCliente = ?';
+			$param = $this->id;
+		}
+		$params = array($param);
+		$auth = Database::getRow($sql, $params);
+		return  json_decode($auth['autenticacion'], true);
+	}
+
+	public function updateAutenticacion() {
+		$sql = 'UPDATE cliente SET autenticacion = ? WHERE correo = ?';
+		$params = array($this->autenticacion,$this->correo);
+		return Database::executeRow($sql, $params);
+	}
 }

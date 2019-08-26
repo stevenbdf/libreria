@@ -46,12 +46,11 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     } else if (isset($_SESSION['idCliente']) && $_GET['site'] == 'public') {
         switch ($_GET['action']) {
             case 'logout':
-                if (session_destroy()) {
-                    header('location: ../../views/public/index.php');
-                    $_SESSION['carrito'] = array();
-                } else {
-                    header('location: ../../views/public/index.php');
-                }
+                unset($_SESSION['idCliente']);
+                unset($_SESSION['correoCliente']);
+                unset($_SESSION['imagenCliente']);
+                header('location: ../../views/public/index.php');
+                $_SESSION['carrito'] = array();
                 break;
             case 'get':
                 if ($clientes->setId($_SESSION['idCliente'])) {
@@ -152,7 +151,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $clientes->validateForm($_POST);
-                if ($_POST['g-recaptcha-response']){
+                if ($_POST['g-recaptcha-response']) {
                     if ($clientes->setNombres($_POST['nombres'])) {
                         if ($clientes->setApellidos($_POST['apellidos'])) {
                             if ($clientes->setCorreo($_POST['correo'])) {
@@ -171,7 +170,7 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                                                     $result['exception'] = 'Operación fallida';
                                                 }
                                             } else {
-                                                $result['exception'] = $clientes->getImageError().'. La dimension de la imagen debe ser 500x500';
+                                                $result['exception'] = $clientes->getImageError() . '. La dimension de la imagen debe ser 500x500';
                                             }
                                         } else {
                                             $result['exception'] = 'Clave menor a 6 caracteres';
@@ -201,13 +200,92 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
                     if ($clientes->checkEstado()) {
                         if ($clientes->checkCorreo()) {
                             if ($clientes->setContrasena($_POST['contrasena'])) {
-                                if ($clientes->checkPassword()) {
-                                    $_SESSION['idCliente'] = $clientes->getId();
-                                    $_SESSION['correoCliente'] = $clientes->getCorreo();
-                                    $_SESSION['imagenCliente'] = $clientes->getImagenCliente();
-                                    $result['status'] = 1;
+                                $informacion = $clientes->leerAutenticacion(true);
+                                if ($informacion['estado']) {
+                                    if ($clientes->checkPassword()) {
+                                        $informacion['estado'] = 1;
+                                        $informacion['intentos'] = 0;
+                                        $informacion['fechaBloqueo'] = null;
+                                        if (modificarAutenticacion($informacion, $clientes)) {
+                                            $_SESSION['idCliente'] = $clientes->getId();
+                                            $_SESSION['correoCliente'] = $clientes->getCorreo();
+                                            $_SESSION['imagenCliente'] = $clientes->getImagenCliente();
+                                            $result['status'] = 1;
+                                        } else {
+                                            $result['exception'] = 'Error al modificar autenticacion';
+                                        }
+                                    } else {
+                                        //Aumenta el numero de intentos
+                                        $informacion['intentos']++;
+                                        if ($informacion['intentos'] >= 3) {
+                                            //Bloquea usuario y envia mensaje
+                                            //Modifica el objeto autenticacion con bloqueo y fecha de bloqueo
+                                            $informacion['estado'] = 0;
+                                            $informacion['fechaBloqueo'] = date("Y-m-d H:i:s");
+                                            //Actualiza en base de datos
+                                            if (modificarAutenticacion($informacion, $clientes)) {
+                                                $result['exception'] = 'Clave incorrecta, tu usuario ha sido bloqueado por 24 horas, espera para volver a intentarlo.';
+                                            } else {
+                                                $result['exception'] = 'Error al modificar autenticacion';
+                                            }
+                                        } else {
+                                            //Envia mensaje con intentos restantes
+                                            if (modificarAutenticacion($informacion, $clientes)) {
+                                                $result['exception'] = 'Clave incorrecta tienes ' . (3 - $informacion['intentos']) . ' intentos restantes';
+                                            } else {
+                                                $result['exception'] = 'Error al modificar autenticacion';
+                                            }
+                                        }
+                                    }
                                 } else {
-                                    $result['exception'] = 'Clave inexistente';
+                                    $fechaActual = date_create(date("Y-m-d H:i:s"));
+                                    $diferencia = date_diff(date_create($informacion['fechaBloqueo']), $fechaActual);
+                                    if ((int) $diferencia->format("%R%a")) {
+                                        $informacion['estado'] = 1;
+                                        $informacion['intentos'] = 0;
+                                        $informacion['fechaBloqueo'] = null;
+                                        if (modificarAutenticacion($informacion, $clientes)) {
+                                            if ($clientes->checkPassword()) {
+                                                $informacion['estado'] = 1;
+                                                $informacion['intentos'] = 0;
+                                                $informacion['fechaBloqueo'] = null;
+                                                if (modificarAutenticacion($informacion, $clientes)) {
+                                                    $_SESSION['idCliente'] = $clientes->getId();
+                                                    $_SESSION['correoCliente'] = $clientes->getCorreo();
+                                                    $_SESSION['imagenCliente'] = $clientes->getImagenCliente();
+                                                    $result['status'] = 1;
+                                                } else {
+                                                    $result['exception'] = 'Error al modificar autenticacion';
+                                                }
+                                            } else {
+                                                //Aumenta el numero de intentos
+                                                $informacion['intentos']++;
+                                                if ($informacion['intentos'] >= 3) {
+                                                    //Bloquea usuario y envia mensaje
+                                                    //Modifica el objeto autenticacion con bloqueo y fecha de bloqueo
+                                                    $informacion['estado'] = 0;
+                                                    $informacion['fechaBloqueo'] = date("Y-m-d H:i:s");
+                                                    //Actualiza en base de datos
+                                                    if (modificarAutenticacion($informacion, $clientes)) {
+                                                        $result['exception'] = 'Clave incorrecta, tu usuario ha sido bloqueado por 24 horas, espera para volver a intentarlo.';
+                                                    } else {
+                                                        $result['exception'] = 'Error al modificar autenticacion';
+                                                    }
+                                                } else {
+                                                    //Envia mensaje con intentos restantes
+                                                    if (modificarAutenticacion($informacion, $clientes)) {
+                                                        $result['exception'] = 'Clave incorrecta tienes ' . (3 - $informacion['intentos']) . ' intentos restantes';
+                                                    } else {
+                                                        $result['exception'] = 'Error al modificar autenticacion';
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Error al modificar autenticacion';
+                                        }
+                                    } else {
+                                        $result['exception'] = 'Tu usuario ha sido bloqueado por 24 horas, espera para volver a intentarlo.';
+                                    }
                                 }
                             } else {
                                 $result['exception'] = 'Clave menor a 6 caracteres';
@@ -232,4 +310,13 @@ if (isset($_GET['site']) && isset($_GET['action'])) {
     print(json_encode($result));
 } else {
     exit('Recurso denegado');
+}
+
+function modificarAutenticacion($nuevoJSON, $clientes)
+{
+    //Establece el nuevo objeto autenticacion
+    $clientes->setAutenticacion(json_encode($nuevoJSON));
+
+    //Actualiza en base de datos
+    return $clientes->updateAutenticacion();
 }
