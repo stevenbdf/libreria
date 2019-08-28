@@ -63,7 +63,7 @@ function signOffClientePublic() {
         title: 'Advertencia',
         text: '¿Quiere cerrar la sesión?',
         type: 'warning',
-        showCancelButton: true,,
+        showCancelButton: true,
         confirmButtonText: 'Aceptar'
     },(function(isConfirm){
         isConfirm && (location.href = apiSessionCliente + 'logout');
