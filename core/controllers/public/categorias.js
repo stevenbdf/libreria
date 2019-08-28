@@ -1,6 +1,7 @@
 
 $(document).ready(() => {
     showCategories();
+    usuarioInactivoPublic()
 })
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiCategorias = '../../core/api/categorias.php?site=public&action=';

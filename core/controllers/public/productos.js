@@ -1,5 +1,6 @@
 $(document).ready(() => {
     showProducts();
+    usuarioInactivoPublic()
 })
 //Constante para establecer la ruta y parámetros de comunicación con la API
 const apiProductos = '../../core/api/productos.php?site=public&action=';
@@ -20,6 +21,7 @@ function findGetParameter(parameterName) {
         });
     return result;
 }
+
 
 //Función para obtener y mostrar los registros disponibles
 const showProducts = async () => {

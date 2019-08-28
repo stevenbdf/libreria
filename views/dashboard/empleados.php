@@ -69,6 +69,7 @@ Dashboard::headerTemplate('Empleados');
                                 <label for="recipient-name" class="col-form-label">DUI:</label>
                                 <input type="text" name="dui" class="form-control form-control-alternative" autocomplete="off">
                             </div>
+                           
                         </div>
                     </div>
                     <div class="modal-footer">

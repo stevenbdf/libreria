@@ -1,5 +1,6 @@
 $(document).ready(() => {
     showTable();
+    usuarioInactivoDash();
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API

@@ -454,6 +454,7 @@ class Dashboard
 
 					<!-- <script src="../../resources/js/material/material.js"></script> -->
 					<script src="../../resources/js/material/material.js"></script>
+					<script src="../../core/helpers/closeSession.js"></script>
 					<script src="../../resources/js/material/jquery.dataTables.min.js"></script>
 					<script src="../../resources/js/material/dataTables.material.min.js"></script>
 					<script src="../../core/helpers/functions.js"></script>

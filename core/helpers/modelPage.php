@@ -223,6 +223,7 @@ class modelPage
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <script src="../../core/helpers/functions.js"></script>
+        <script src="../../core/helpers/closeSession.js"></script>
         <script src="../../resources/js/popper.js"></script>
         <script src="../../resources/js/bootstrap.js"></script>
         <script src="../../resources/js/bootstrap.bundle.min.js"></script>
