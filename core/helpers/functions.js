@@ -31,6 +31,19 @@ function signOff() {
 }
 
 //Función para cerrar la sesión del usuario
+function signOffDash() {
+    swal({
+        title: 'Advertencia',
+        text: 'Se ha cerrado sesión por inactividad',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar'
+    },(function(isConfirm){
+        isConfirm && (location.href = apiSession + 'logout');
+    }))
+}
+
+//Función para cerrar la sesión del usuario
 function signOffCliente() {
     swal({
         title: 'Advertencia',
@@ -38,6 +51,19 @@ function signOffCliente() {
         type: 'warning',
         showCancelButton: true,
         cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Aceptar'
+    },(function(isConfirm){
+        isConfirm && (location.href = apiSessionCliente + 'logout');
+    }))
+}
+
+//Función para cerrar la sesión del usuario
+function signOffClientePublic() {
+    swal({
+        title: 'Advertencia',
+        text: '¿Quiere cerrar la sesión?',
+        type: 'warning',
+        showCancelButton: true,
         confirmButtonText: 'Aceptar'
     },(function(isConfirm){
         isConfirm && (location.href = apiSessionCliente + 'logout');
@@ -84,43 +110,3 @@ $('#form-update-contrasena').submit(async () => {
     }
 })
 
-//creo la funcion usuario inactivo para cerrar la sesion del usuario
-function usuarioInactivo()
-{
-    //segundos cuando el usuario esta activo
-    var segundosActivo = 0;
- 
-    //un minuto 60 x 1 = 60 segundos.
-    var maxSegundos = (60 * 1);
- 
-    //metodo para ejecutar cada segundo(1000 milisegundos = 1 segundo)
-    setInterval(function(){
-        segundosActivo++;
-        //si el usuario esta inactivo por maxSegundos
-        if(segundosActivo > maxSegundos){
-            swal('El usuario ha estado inactivo por mas de ' + maxSegundos + ' segundos');
-            //Redirigir al logout
-            signOffCliente();
-        }
-    }, 1000);
- 
-    //funcion para detectar que el usuario este activo
-    function activity()
-    {
-        //restablecer la variable de los segundo y volver a 0
-        segundosActivo = 0;
-    }
-    //Se define eventos DOM (detecta que el usario esta inactivo)
-   var activityEvents = [
-        'mousedown', 'mousemove', 'keydown',
-        'scroll', 'touchstart'
-   ];
- 
-    //registra la actividad del usuario
-    activityEvents.forEach(function(eventName) {
-        document.addEventListener(eventName, activity, true);
-    });
- 
-}
-
-usuarioInactivo();

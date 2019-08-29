@@ -37,7 +37,6 @@ const checkUsuarios = async () => {
         console.log(response);
     }
 }
-
 //Función para validar el usuario al momento de iniciar sesión
 $('#form-session').submit(async () => {
     event.preventDefault();

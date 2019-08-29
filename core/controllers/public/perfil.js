@@ -1,5 +1,6 @@
 $(document).ready(async () => {
     await showData(); 
+    usuarioInactivoPublic()
 })
 
 //Constante para establecer la ruta y parámetros de comunicación con la API
