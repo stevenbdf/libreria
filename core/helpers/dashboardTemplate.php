@@ -389,7 +389,7 @@ class Dashboard
 				<main>
 			');
 			$filename = basename($_SERVER['PHP_SELF']);
-			if ($filename != 'index.php' && $filename != 'register.php') {
+			if ($filename != 'index.php' && $filename != 'register.php' && $filename != 'recuperarContrasena.php') {
 				header('location: index.php');
 			}
 		}
@@ -397,7 +397,7 @@ class Dashboard
 
 	public static function footerTemplate($controller)
 	{
-		if ($controller == 'login') {
+		if ($controller == 'login' || $controller == 'recuperarContrasena') {
 			print('
 					</main>
 					<!-- Optional JavaScript -->

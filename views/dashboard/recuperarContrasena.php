@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/dashboardTemplate.php');
-Dashboard::headerTemplate('Iniciar sesión');
+Dashboard::headerTemplate('Recuperar cuenta');
 ?>
 <div class="container">
     <div class="row d-flex justify-content-center">
@@ -9,27 +9,23 @@ Dashboard::headerTemplate('Iniciar sesión');
                 <div class="card-body">
                     <form class="row" id="form-session">
                         <div class="col-12 d-flex justify-content-center align-items-center py-4" style="flex-direction: column;">
-                            <h1>Iniciar Sesión</h1>
+                            <h1>Recupera Tu Cuenta</h1>
                             <i class="material-icons mt-4" style="font-size: 120px;">
                                 supervised_user_circle
                             </i>
                         </div>
                         <div class="form-group col-12 col-md-10 mt-3 offset-md-1">
                             <label for="exampleInputEmail1">Correo:</label>
-                            <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" placeholder="alguien@dominio.com" required autocomplete="off">
+                            <input type="email" class="form-control" name="correo" id="correo" aria-describedby="emailHelp" placeholder="Ingresa tu correo" required autocomplete="off">
                             <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo
                                 electrónico con nadie más.</small>
                         </div>
-                        <div class="form-group col-12 col-md-10 mt-3 offset-md-1">
-                            <label for="exampleInputPassword1">Contraseña:</label>
-                            <input type="password" class="form-control" name="contrasena" id="contrasena" placeholder="*******" required autocomplete="off">
-                        </div>
                         <div class="col-12 col-md-10 offset-md-1">
                             <div class="row d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary p-3">Ingresar</button>
+                                <button onclick="enviarCorreo()" type="button" class="btn btn-primary p-3">Enviar</button>
                             </div>
-                            <a href="recuperarContrasena.php">
-                                <p class="mt-5 text-center">¿Olvidaste tu contraseña?</p>
+                            <a href="index.php">
+                                <p class="mt-5 text-center">Iniciar Sesión</p>
                             </a>
                         </div>
                     </form>
@@ -40,5 +36,5 @@ Dashboard::headerTemplate('Iniciar sesión');
 </div>
 <?php
 require_once('../../core/helpers/dashboardTemplate.php');
-Dashboard::footerTemplate('login');
+Dashboard::footerTemplate('recuperarContrasena');
 ?>

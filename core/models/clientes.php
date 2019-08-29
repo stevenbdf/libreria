@@ -258,6 +258,14 @@ class Clientes extends Validator
         return Database::executeRow($sql, $params);
     }
 
+    public function updateContrasenaCorreo()
+    {
+        $hash = password_hash($this->contrasena, PASSWORD_DEFAULT);
+        $sql = 'UPDATE cliente SET contrasena = ? WHERE correo = ?';
+        $params = array($hash, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
+
     public function getImagenCliente()
     {
         $sql = 'SELECT img FROM cliente WHERE correo = ?';
