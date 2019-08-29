@@ -59,7 +59,6 @@ if ($cliente->checkCorreo()) {
         $cabeceras .= 'To: Steven Diaz <stevenbdf@gmail.com>' . "\r\n";
         $cabeceras .= 'From: Libreria Maquilishuat <libreria.maquilishuat@gmail.com>' . "\r\n";
         $mail = mail($para, $título, $mensaje, $cabeceras);
-
         if ($mail) {
             http_response_code(200);
             $resp = array('message' => 'Se ha enviado tu nueva contraseña, revisa tu correo electronico');
